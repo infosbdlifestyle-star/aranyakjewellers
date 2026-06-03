@@ -1,217 +1,239 @@
 "use client";
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { CATEGORIES } from '@/constants/categories';
 import { Reveal } from '@/components/animations/Reveal';
+import { useRef } from 'react';
 
 export default function Home() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const yParallax = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacityParallax = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <main className="min-h-screen flex flex-col silk-texture">
+    <main className="min-h-screen flex flex-col silk-texture bg-ivory" ref={containerRef}>
       
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Editorial Hero Section */}
+      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-primary">
         <motion.div 
           className="absolute inset-0"
-          initial={{ scale: 1.2 }}
+          initial={{ scale: 1.15 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
+          transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+          style={{ y: yParallax, opacity: opacityParallax }}
         >
           <Image 
             src="/hero-banner.png" 
             alt="Aranyak Jewellers Collection" 
             fill
-            className="object-cover animate-slow-zoom no-select"
+            className="object-cover animate-slow-zoom no-select opacity-90 mix-blend-luminosity"
             priority
           />
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/70" />
         
-        <div className="relative z-10 flex flex-col items-center text-center space-y-8 px-4 max-w-5xl mx-auto">
-            <Reveal y={40}>
-              <h2 className="text-secondary text-xs md:text-sm font-medium tracking-[0.6em] uppercase mb-4 drop-shadow-md">
-                Legacy of Excellence Since 1995
-              </h2>
+        {/* Subtle Vignette */}
+        <div className="absolute inset-0 bg-radial from-transparent via-transparent to-primary/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent pointer-events-none" />
+        
+        <div className="relative z-10 w-full px-6 flex flex-col items-center text-center mt-20">
+            <Reveal y={30} duration={1}>
+              <p className="text-secondary text-[9px] font-bold tracking-[0.8em] uppercase mb-8 drop-shadow-md">
+                Legacy Since 1995
+              </p>
             </Reveal>
-            <Reveal delay={0.2} y={40}>
-              <h1 className="text-6xl md:text-9xl font-serif font-bold text-white leading-[1.1] mb-8 drop-shadow-2xl">
-                Where Every Piece <br /> <span className="font-editorial text-secondary italic">Tells a Story</span>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.4} y={40}>
-              <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+            
+            <div className="mask-clip">
+              <Reveal delay={0.2} y={100} duration={1.2}>
+                <h1 className="text-7xl md:text-[10rem] font-serif font-light text-white leading-[0.85] tracking-tight drop-shadow-2xl mix-blend-overlay">
+                  Timeless <br /> <span className="font-editorial text-secondary/90 italic ml-12 md:ml-32">Elegance</span>
+                </h1>
+              </Reveal>
+            </div>
+
+            <Reveal delay={0.6} y={30}>
+              <div className="mt-16 md:mt-24">
                 <Link 
                   href="/collections" 
-                  className="group relative px-16 py-6 bg-secondary text-primary font-bold tracking-[0.4em] uppercase text-[10px] overflow-hidden transition-all shadow-[0_20px_50px_rgba(212,175,55,0.3)] luxury-shimmer"
+                  className="group flex items-center space-x-6 text-white hover:text-secondary transition-colors duration-500"
                 >
-                  <span className="relative z-10">Discover Masterpieces</span>
-                  <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                </Link>
-                <Link 
-                  href="/stores" 
-                  className="px-16 py-6 border border-white/40 text-white font-bold tracking-[0.4em] uppercase text-[10px] hover:bg-white hover:text-primary transition-all backdrop-blur-sm"
-                >
-                  Visit Our Showrooms
+                  <span className="text-[10px] uppercase tracking-[0.4em] font-bold">Explore Collections</span>
+                  <div className="w-16 h-[1px] bg-white/50 group-hover:bg-secondary group-hover:w-24 transition-all duration-500" />
                 </Link>
               </div>
             </Reveal>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4 opacity-70">
-          <span className="text-[8px] uppercase tracking-[0.5em] text-white/50 font-bold">Scroll to Explore</span>
-          <div className="w-[1px] h-16 bg-white/20 relative overflow-hidden">
+        {/* Minimal Scroll Indicator */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center pb-8">
+          <div className="w-[1px] h-24 bg-white/10 relative overflow-hidden">
             <motion.div 
-              className="absolute top-0 left-0 w-full h-1/2 bg-secondary"
-              animate={{ top: ["0%", "100%"] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              className="absolute top-0 left-0 w-full h-full bg-secondary origin-top animate-fill-down"
             />
           </div>
         </div>
       </section>
 
-      {/* Signature Promise */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            <Reveal>
-              <div className="text-center space-y-4">
-                <div className="text-3xl text-secondary mb-4">✧</div>
-                <h4 className="text-lg font-serif font-bold tracking-tight text-primary">Certified Authenticity</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">Every diamond and gemstone is ethically sourced and BIS Hallmarked for guaranteed purity.</p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="text-center space-y-4">
-                <div className="text-3xl text-secondary mb-4">✧</div>
-                <h4 className="text-lg font-serif font-bold tracking-tight text-primary">Master Craftsmanship</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">Our artisans spend hundreds of hours handcrafting each unique piece to perfection.</p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div className="text-center space-y-4">
-                <div className="text-3xl text-secondary mb-4">✧</div>
-                <h4 className="text-lg font-serif font-bold tracking-tight text-primary">Lifetime Exchange</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">We stand by our quality with transparent lifetime exchange and buy-back policies.</p>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Editorial Category Section */}
-      <section className="py-32 bg-ivory overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-20">
-            <Reveal>
-              <div className="space-y-4">
-                <p className="text-[10px] tracking-[0.5em] uppercase text-secondary font-bold">Curated Selections</p>
-                <h3 className="text-4xl md:text-6xl font-serif font-bold text-primary italic">The Art of <span className="text-foreground">Adornment</span></h3>
-              </div>
-            </Reveal>
-            <Link href="/collections" className="text-xs font-bold tracking-widest uppercase border-b border-primary/20 pb-2 hover:border-secondary transition-all mt-8 md:mt-0">
-              View All Categories
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {CATEGORIES.slice(0, 4).map((cat, i) => (
-              <Reveal key={cat.id} delay={i * 0.1}>
-                <Link 
-                  href={`/category/${cat.slug}`}
-                  className="group relative aspect-[3/4] overflow-hidden bg-white block"
-                >
-                  <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/0 transition-all duration-700" />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center space-y-4">
-                     <div className="text-6xl font-serif text-primary/10 group-hover:text-primary group-hover:scale-125 transition-all duration-700">
-                       {cat.name[0]}
-                     </div>
-                     <h5 className="text-xl font-serif font-bold text-primary">{cat.name}</h5>
-                     <p className="text-[9px] tracking-[0.2em] uppercase text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">Explore Collection</p>
-                  </div>
-                  <div className="absolute inset-4 border border-primary/10 group-hover:border-secondary/30 transition-all duration-700 pointer-events-none" />
+      {/* The Aranyak Philosophy (Editorial Layout) */}
+      <section className="py-40 bg-ivory text-primary relative z-20">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="flex flex-col md:flex-row gap-20 items-center">
+            <div className="w-full md:w-5/12 space-y-10">
+              <Reveal>
+                <h2 className="text-sm font-bold tracking-[0.4em] uppercase text-secondary">The Philosophy</h2>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h3 className="text-5xl md:text-6xl font-serif font-light leading-tight text-balance">
+                  Masterpieces born from <span className="font-editorial italic">heritage</span> & crafted for eternity.
+                </h3>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="text-sm text-primary/70 leading-relaxed font-light tracking-wide max-w-sm">
+                  We blend traditional Bengali artistry with contemporary silhouettes. Every facet tells a story of meticulous craftsmanship, uncompromising purity, and a legacy of trust spanning over 25 years.
+                </p>
+              </Reveal>
+              <Reveal delay={0.3}>
+                <Link href="/about" className="inline-block mt-4 text-[10px] font-bold uppercase tracking-[0.3em] hover-underline-gold pb-2">
+                  Read Our Story
                 </Link>
               </Reveal>
-            ))}
+            </div>
+            
+            <div className="w-full md:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 md:mt-0">
+              {[
+                { num: "01", title: "Purity", desc: "100% BIS Hallmarked gold and certified diamonds." },
+                { num: "02", title: "Craft", desc: "Handcrafted by artisans carrying generations of skill." },
+                { num: "03", title: "Trust", desc: "Transparent exchange policies for lifelong peace of mind." },
+                { num: "04", title: "Curation", desc: "Exclusive designs tailored for the modern connoisseur." }
+              ].map((item, i) => (
+                <Reveal key={i} delay={0.1 * i} y={30}>
+                  <div className="group border-l border-primary/10 pl-8 py-2 hover:border-secondary transition-colors duration-500">
+                    <div className="text-5xl font-editorial text-primary/10 mb-4 group-hover:text-secondary/30 transition-colors duration-500">{item.num}</div>
+                    <h4 className="text-xl font-serif font-medium mb-3">{item.title}</h4>
+                    <p className="text-xs text-primary/60 leading-relaxed tracking-wide">{item.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Showcase */}
+      {/* Curated Categories (Collage Layout) */}
       <section className="py-32 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="container mx-auto px-6 max-w-[1400px]">
+          <div className="text-center mb-24">
             <Reveal>
-              <div className="relative group">
-                <div className="absolute -inset-4 border border-secondary/20 translate-x-4 translate-y-4 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700" />
-                <div className="relative aspect-square overflow-hidden gold-foil-border">
-                  <Image 
-                    src="/bridal-edit.png" 
-                    alt="The Bridal Edit" 
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-1000"
-                  />
-                </div>
-              </div>
+              <p className="text-[10px] tracking-[0.5em] uppercase text-secondary font-bold mb-6">Curated Selections</p>
             </Reveal>
-            <Reveal delay={0.2}>
-              <div className="space-y-8">
-                <span className="text-[10px] tracking-[0.5em] uppercase text-secondary font-bold">Bridal Special</span>
-                <h3 className="text-5xl md:text-7xl font-serif font-bold text-primary leading-tight">Heritage <br /> <span className="font-editorial">Excellence</span></h3>
-                <p className="text-muted-foreground leading-relaxed max-w-md italic">
-                  &ldquo;Our bridal collections are a tribute to the rich heritage of Tripura, blending traditional motifs with contemporary elegance for the modern bride.&rdquo;
-                </p>
-                <div className="pt-4">
-                  <Link 
-                    href="/category/gold" 
-                    className="inline-flex items-center space-x-6 group"
-                  >
-                    <span className="text-xs font-bold tracking-[0.4em] uppercase">Explore Bridal Collection</span>
-                    <div className="w-12 h-[1px] bg-primary group-hover:w-20 transition-all" />
-                  </Link>
-                </div>
+            <Reveal delay={0.1}>
+              <h3 className="text-5xl md:text-7xl font-serif font-light text-primary">High <span className="font-editorial italic">Jewellery</span></h3>
+            </Reveal>
+          </div>
+
+          {/* Asymmetrical Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 auto-rows-[300px] md:auto-rows-[400px]">
+            
+            {/* Large Feature (Left) */}
+            <div className="md:col-span-7 row-span-1 relative group overflow-hidden bg-ivory flex items-center justify-center p-12 hover:shadow-2xl transition-all duration-700">
+              <div className="absolute inset-0 bg-[url('/featured-earrings.png')] bg-cover bg-center opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/20 transition-all duration-700" />
+              <div className="relative z-10 text-center flex flex-col items-center">
+                <span className="text-[10px] tracking-[0.3em] uppercase text-secondary mb-4 font-bold opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">Bespoke</span>
+                <h4 className="text-5xl font-serif font-light text-primary group-hover:text-white transition-colors duration-500">{CATEGORIES[0]?.name || 'Gold'}</h4>
+                <Link href={`/category/${CATEGORIES[0]?.slug}`} className="mt-8 text-xs tracking-[0.2em] uppercase text-primary border-b border-primary/30 pb-1 group-hover:text-white group-hover:border-white/50 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100">
+                  Discover Collection
+                </Link>
               </div>
+            </div>
+
+            {/* Top Right */}
+            <div className="md:col-span-5 row-span-1 relative group overflow-hidden bg-[#F5F5F0] flex items-center justify-center p-8 hover:shadow-xl transition-all duration-500">
+              <div className="absolute inset-0 bg-[url('/modern-aura.png')] bg-cover bg-center opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/40 transition-all duration-700" />
+              <div className="relative z-10 text-center">
+                <h4 className="text-4xl font-serif font-light text-primary group-hover:text-white transition-colors duration-500">{CATEGORIES[1]?.name || 'Diamond'}</h4>
+                <Link href={`/category/${CATEGORIES[1]?.slug}`} className="absolute inset-0 z-20"><span className="sr-only">View Collection</span></Link>
+              </div>
+            </div>
+
+            {/* Bottom Left */}
+            <div className="md:col-span-4 row-span-1 relative group overflow-hidden bg-[#FAFAFA] flex items-center justify-center p-8 hover:shadow-xl transition-all duration-500">
+               <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/80 transition-all duration-700" />
+               <div className="relative z-10 text-center">
+                <h4 className="text-3xl font-serif font-light text-primary group-hover:text-secondary transition-colors duration-500">{CATEGORIES[2]?.name || 'Silver'}</h4>
+                <Link href={`/category/${CATEGORIES[2]?.slug}`} className="absolute inset-0 z-20"><span className="sr-only">View Collection</span></Link>
+              </div>
+            </div>
+
+            {/* Bottom Right Large */}
+            <div className="md:col-span-8 row-span-1 relative group overflow-hidden bg-primary flex items-center justify-center p-12 hover:shadow-2xl transition-all duration-700">
+              <div className="absolute inset-0 opacity-20 bg-[url('/bridal-edit.png')] bg-cover bg-center group-hover:opacity-40 group-hover:scale-105 transition-all duration-1000 grayscale group-hover:grayscale-0" />
+              <div className="relative z-10 text-center flex flex-col items-center">
+                <h4 className="text-4xl md:text-5xl font-serif font-light text-white mb-6">Bridal & <span className="font-editorial italic text-secondary">Trousseau</span></h4>
+                <Link href="/category/gold" className="text-[10px] tracking-[0.3em] uppercase text-white hover-underline-gold pb-1">
+                  View Bridal Lookbook
+                </Link>
+              </div>
+            </div>
+
+          </div>
+          
+          <div className="text-center mt-20">
+            <Reveal>
+              <Link href="/collections" className="inline-flex items-center space-x-4 text-xs font-bold tracking-[0.3em] uppercase text-primary hover:text-secondary transition-colors group">
+                <span>View All Categories</span>
+                <div className="w-12 h-[1px] bg-primary group-hover:bg-secondary transition-colors" />
+              </Link>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Showroom CTA */}
-      <section className="relative py-32 overflow-hidden">
+      {/* Showroom Editorial CTA */}
+      <section className="relative py-40 overflow-hidden bg-primary">
         <div className="absolute inset-0">
           <Image 
             src="/showroom.jpg" 
             alt="Aranyak Jewellers Showroom" 
             fill 
-            className="object-cover"
+            className="object-cover opacity-30 mix-blend-luminosity animate-slow-zoom"
           />
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent" />
         </div>
-        <div className="relative z-10 container mx-auto px-4 text-center text-white space-y-8">
+        
+        <div className="relative z-10 container mx-auto px-6 max-w-4xl text-center text-white">
           <Reveal>
-            <p className="text-[10px] tracking-[0.5em] uppercase text-secondary font-bold">Experience in Person</p>
+            <div className="w-12 h-[1px] bg-secondary mx-auto mb-10" />
           </Reveal>
           <Reveal delay={0.1}>
-            <h3 className="text-4xl md:text-6xl font-serif font-bold italic">Visit Our Showrooms</h3>
+            <h3 className="text-5xl md:text-7xl font-serif font-light mb-10 leading-tight">
+              Experience the <br /> <span className="font-editorial italic text-secondary">Brilliance</span> in Person
+            </h3>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="text-ivory/70 max-w-xl mx-auto leading-relaxed">
-              Step into our luxurious showrooms across Tripura and experience the brilliance of our collections in person. Our experts are ready to guide you.
+            <p className="text-xs md:text-sm text-white/60 tracking-wider max-w-xl mx-auto leading-loose mb-16 font-light">
+              Step into our luxurious boutiques across Tripura. Enjoy personalized consultations, private viewings, and bespoke design services with our master jewelers.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <div className="flex flex-wrap justify-center gap-6 pt-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
               <Link 
                 href="/stores" 
-                className="bg-secondary text-primary px-12 py-5 text-[10px] font-bold tracking-[0.4em] uppercase hover:bg-white transition-all shadow-xl"
+                className="bg-secondary text-primary px-12 py-5 text-[10px] font-bold tracking-[0.4em] uppercase hover:bg-white transition-all duration-300"
               >
-                Find a Store
+                Find a Boutique
               </Link>
               <Link 
                 href="/contact" 
-                className="border border-white/30 text-white px-12 py-5 text-[10px] font-bold tracking-[0.4em] uppercase hover:bg-white hover:text-primary transition-all"
+                className="text-[10px] font-bold tracking-[0.3em] uppercase text-white hover-underline-gold pb-2"
               >
-                Get in Touch
+                Book Consultation
               </Link>
             </div>
           </Reveal>

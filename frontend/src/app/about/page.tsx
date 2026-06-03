@@ -9,79 +9,104 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen flex flex-col">
-      <section className="py-20 burgundy-gradient text-white text-center">
-        <Reveal>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">Our Legacy</h1>
-          <p className="text-sm tracking-[0.3em] uppercase text-ivory/60">Crafting elegance since generations</p>
+    <main className="min-h-screen flex flex-col bg-ivory text-primary">
+      {/* Editorial Hero */}
+      <section className="pt-32 pb-20 px-6 text-center">
+        <Reveal y={40}>
+          <p className="text-[10px] font-bold tracking-[0.6em] uppercase text-secondary mb-8">Est. 1995</p>
+        </Reveal>
+        <Reveal delay={0.1} y={40}>
+          <h1 className="text-6xl md:text-8xl font-serif font-light mb-8 tracking-tight">Our <span className="font-editorial italic">Legacy</span></h1>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <div className="w-[1px] h-24 bg-primary/20 mx-auto" />
         </Reveal>
       </section>
 
+      {/* Story Section - Asymmetrical Magazine Layout */}
       <section className="py-20">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="space-y-12 text-center">
-            <Reveal>
-              <div className="grid md:grid-cols-2 gap-12 items-center text-center md:text-left">
-                <div className="relative aspect-square overflow-hidden gold-foil-border">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="flex flex-col md:flex-row gap-16 md:gap-32 items-center">
+            
+            {/* Image Side */}
+            <div className="w-full md:w-5/12 relative">
+              <Reveal>
+                <div className="relative aspect-[3/4] w-full bg-primary/5 overflow-hidden group">
                   <Image 
                     src="/md.jpg" 
                     alt="Managing Director - Aranyak Jewellers" 
                     fill
-                    className="object-cover"
+                    className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105 mix-blend-multiply"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
+                  {/* Decorative Frame */}
+                  <div className="absolute inset-4 border border-primary/20 z-10 pointer-events-none" />
                 </div>
-                <div className="space-y-6">
-                  <h2 className="text-3xl font-serif font-bold text-primary italic">A Vision of Purity</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    &ldquo;At Aranyak Jewellers, we don&apos;t just sell jewellery; we preserve traditions. Every piece is a promise of trust and a celebration of craftsmanship that has defined Tripura&apos;s elegance for over 25 years.&rdquo;
+              </Reveal>
+              
+              {/* Overlapping Text Box */}
+              <Reveal delay={0.2} x={-30}>
+                <div className="hidden md:block absolute -right-16 bottom-16 bg-white p-8 max-w-xs shadow-2xl z-20 border border-border">
+                  <p className="font-editorial text-2xl leading-snug text-primary">
+                    &ldquo;Preserving traditions while defining Tripura&apos;s elegance for over a quarter of a century.&rdquo;
                   </p>
-                  <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-secondary">&mdash; Managing Director</p>
+                  <p className="mt-6 text-[9px] font-bold tracking-[0.3em] uppercase text-secondary">&mdash; The Founder</p>
                 </div>
-              </div>
-            </Reveal>
-
-            <div className="pt-12">
-              <h2 className="text-2xl font-serif font-bold text-primary mb-4">Who We Are</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Aranyak Jewellers is one of Tripura&apos;s most trusted names in gold, diamond, and silver jewellery.
-                With multiple showrooms across the state, we bring you handcrafted pieces that blend traditional Bengali
-                artistry with contemporary design. Every piece at Aranyak is a testament to our commitment to purity,
-                craftsmanship, and trust.
-              </p>
+              </Reveal>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            {/* Text Side */}
+            <div className="w-full md:w-7/12 space-y-16">
               <Reveal delay={0.1}>
-                <div className="p-8 bg-ivory border border-border text-center h-full">
-                  <div className="text-3xl font-serif font-bold text-secondary mb-2">BIS</div>
-                  <span className="text-xs text-muted-foreground tracking-wider uppercase">Hallmark Certified</span>
+                <div className="space-y-6">
+                  <h2 className="text-4xl font-serif font-light">A Vision of <span className="font-editorial italic text-secondary">Purity</span></h2>
+                  <p className="text-primary/70 leading-relaxed tracking-wide font-light">
+                    Aranyak Jewellers is not just a destination for fine jewelry; it is an institution built on trust, artistry, and heritage. What began as a singular vision in 1995 has blossomed into Tripura&apos;s most prestigious jewelry house.
+                  </p>
+                  <p className="text-primary/70 leading-relaxed tracking-wide font-light">
+                    We believe that every piece of jewelry carries a soul. It is a silent witness to life&apos;s most profound moments—a wedding vow, a milestone anniversary, a gift of enduring love. Our master artisans, carrying centuries-old Bengali goldsmithing traditions, pour hundreds of hours into realizing these masterpieces.
+                  </p>
                 </div>
               </Reveal>
+
               <Reveal delay={0.2}>
-                <div className="p-8 bg-ivory border border-border text-center h-full">
-                  <div className="text-3xl font-serif font-bold text-secondary mb-2">5+</div>
-                  <span className="text-xs text-muted-foreground tracking-wider uppercase">Showrooms in Tripura</span>
-                </div>
-              </Reveal>
-              <Reveal delay={0.3}>
-                <div className="p-8 bg-ivory border border-border text-center h-full">
-                  <div className="text-3xl font-serif font-bold text-secondary mb-2">25+</div>
-                  <span className="text-xs text-muted-foreground tracking-wider uppercase">Years of Trust</span>
+                <div className="grid grid-cols-2 gap-x-12 gap-y-16 border-t border-primary/10 pt-16">
+                  <div>
+                    <div className="text-4xl font-serif font-light text-secondary mb-4">BIS</div>
+                    <h3 className="text-xs font-bold tracking-[0.2em] uppercase mb-2">Hallmark Certified</h3>
+                    <p className="text-xs text-primary/60 leading-relaxed">Absolute transparency in purity. Every gram accounted for.</p>
+                  </div>
+                  <div>
+                    <div className="text-4xl font-serif font-light text-secondary mb-4">25+</div>
+                    <h3 className="text-xs font-bold tracking-[0.2em] uppercase mb-2">Years of Trust</h3>
+                    <p className="text-xs text-primary/60 leading-relaxed">A generational legacy of uncompromising quality.</p>
+                  </div>
+                  <div>
+                    <div className="text-4xl font-serif font-light text-secondary mb-4">05</div>
+                    <h3 className="text-xs font-bold tracking-[0.2em] uppercase mb-2">Showrooms</h3>
+                    <p className="text-xs text-primary/60 leading-relaxed">Luxurious boutiques across Tripura for your convenience.</p>
+                  </div>
+                  <div>
+                    <div className="text-4xl font-serif font-light text-secondary mb-4">100%</div>
+                    <h3 className="text-xs font-bold tracking-[0.2em] uppercase mb-2">Exchange Value</h3>
+                    <p className="text-xs text-primary/60 leading-relaxed">Lifetime buy-back guarantees safeguarding your investment.</p>
+                  </div>
                 </div>
               </Reveal>
             </div>
 
-            <div>
-              <h2 className="text-2xl font-serif font-bold text-primary mb-4">Our Promise</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Every gram of gold, every carat of diamond that leaves our stores carries a promise &mdash;
-                a promise of authenticity, purity, and timeless value. We are BIS Hallmark certified
-                and every piece comes with a detailed certificate of purity and weight.
-              </p>
-            </div>
           </div>
         </div>
+      </section>
+
+      {/* Full Width Quote */}
+      <section className="py-32 bg-primary text-white text-center px-6">
+        <Reveal>
+          <div className="text-secondary text-4xl mb-8">✧</div>
+          <h2 className="text-3xl md:text-5xl max-w-4xl mx-auto font-serif font-light leading-snug">
+            &ldquo;Every gram of gold that leaves our stores carries our <span className="font-editorial italic text-secondary">solemn promise</span> of authenticity.&rdquo;
+          </h2>
+        </Reveal>
       </section>
     </main>
   );

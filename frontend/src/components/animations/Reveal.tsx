@@ -9,15 +9,16 @@ interface RevealProps {
   delay?: number;
   duration?: number;
   y?: number;
+  x?: number;
 }
 
-export const Reveal = ({ children, width = "fit-content", delay = 0, duration = 0.5, y = 20 }: RevealProps) => {
+export const Reveal = ({ children, width = "fit-content", delay = 0, duration = 0.5, y = 20, x = 0 }: RevealProps) => {
   return (
     <div style={{ position: "relative", width }}>
       <motion.div
         variants={{
-          hidden: { opacity: 0, y, visibility: "hidden" as any },
-          visible: { opacity: 1, y: 0, visibility: "visible" as any },
+          hidden: { opacity: 0, y, x, visibility: "hidden" as any },
+          visible: { opacity: 1, y: 0, x: 0, visibility: "visible" as any },
         }}
         initial="hidden"
         whileInView="visible"

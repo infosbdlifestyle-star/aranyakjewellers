@@ -10,81 +10,99 @@ export const metadata: Metadata = {
 
 export default function CollectionsPage() {
   return (
-    <main className="min-h-screen flex flex-col">
+    <main className="min-h-screen flex flex-col bg-ivory">
       {/* Page Hero */}
-      <section className="relative py-32 burgundy-gradient text-white text-center overflow-hidden">
+      <section className="relative pt-40 pb-20 px-6 text-center bg-primary text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity animate-slow-zoom" />
         <div className="relative z-10">
-          <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6 tracking-tight">Our Collections</h1>
-          <div className="flex items-center justify-center space-x-4">
-            <div className="h-[1px] w-12 bg-secondary" />
-            <p className="text-xs tracking-[0.4em] uppercase text-ivory/80">Crafting Legacies Since Generations</p>
-            <div className="h-[1px] w-12 bg-secondary" />
-          </div>
+          <Reveal y={40}>
+            <p className="text-[10px] tracking-[0.6em] uppercase text-secondary mb-8 font-bold">The Archives</p>
+          </Reveal>
+          <Reveal delay={0.1} y={40}>
+            <h1 className="text-6xl md:text-8xl font-serif font-light mb-8 tracking-tight">Our <span className="font-editorial italic">Collections</span></h1>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="w-[1px] h-24 bg-secondary mx-auto mt-12" />
+          </Reveal>
         </div>
       </section>
 
-      {/* Categories Grid */}
-      <section className="py-24 bg-ivory">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {CATEGORIES.map((cat, idx) => (
-              <Reveal key={cat.id} delay={idx * 0.1}>
-                <div className="group relative bg-white border border-border overflow-hidden flex flex-col md:flex-row min-h-[350px] transition-all duration-500 hover:shadow-2xl">
-                  {/* Visual Area */}
-                  <div className="w-full md:w-1/2 bg-ivory relative overflow-hidden flex items-center justify-center p-10 border-b md:border-b-0 md:border-r border-border">
-                    <div className="text-primary/10 font-serif text-9xl group-hover:scale-110 group-hover:text-primary/15 transition-all duration-700 select-none">
-                      {cat.name[0]}
-                    </div>
-                    <div className="absolute inset-0 flex items-center justify-center p-6">
-                      <div className="w-full h-full border border-primary/5 group-hover:border-primary/20 transition-all duration-500" />
-                    </div>
-                  </div>
-
-                  {/* Content Area */}
-                  <div className="p-10 flex-1 flex flex-col justify-between">
-                    <div>
-                      <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-2 block">
-                        Category 0{idx + 1}
-                      </span>
-                      <h2 className="text-3xl font-serif font-bold text-primary mb-6 group-hover:translate-x-2 transition-transform">
-                        {cat.name}
-                      </h2>
+      {/* Staggered Zig-Zag Layout */}
+      <section className="py-32">
+        <div className="container mx-auto px-6 max-w-7xl space-y-32 md:space-y-48">
+          {CATEGORIES.map((cat, idx) => {
+            const isEven = idx % 2 === 0;
+            return (
+              <div key={cat.id} className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-16 md:gap-24 items-center`}>
+                
+                {/* Image/Visual Area */}
+                <div className="w-full md:w-1/2 relative">
+                  <Reveal y={40}>
+                    <div className="relative aspect-[4/5] bg-primary/5 flex items-center justify-center p-12 overflow-hidden group">
+                      <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-700" />
+                      <div className="text-[15rem] font-serif font-light text-primary/5 group-hover:text-primary/10 transition-colors duration-1000 select-none transform group-hover:scale-110">
+                        {cat.name[0]}
+                      </div>
                       
-                      {cat.subcategories ? (
-                        <div className="space-y-3 mb-8">
-                          {cat.subcategories.slice(0, 4).map((sub) => (
-                            <Link
-                              key={sub.id}
-                              href={`/category/${cat.slug}/${sub.slug}`}
-                              className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-all group/link"
-                            >
-                              <span className="w-0 group-hover/link:w-4 h-[1px] bg-primary transition-all overflow-hidden" />
-                              {sub.name}
-                            </Link>
-                          ))}
-                          {cat.subcategories.length > 4 && (
-                            <p className="text-[10px] text-muted-foreground italic">+{cat.subcategories.length - 4} more collections</p>
-                          )}
-                        </div>
-                      ) : (
-                        <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-                          Explore our masterfully crafted {cat.name.toLowerCase()} pieces, designed for every occasion.
-                        </p>
-                      )}
+                      {/* Decorative Frame */}
+                      <div className="absolute inset-6 border border-primary/10 group-hover:border-secondary/30 transition-colors duration-700 pointer-events-none" />
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border border-primary/5 scale-[0.85] group-hover:scale-95 transition-transform duration-1000 pointer-events-none" />
                     </div>
+                  </Reveal>
+                  
+                  {/* Floating Number */}
+                  <Reveal delay={0.2} x={isEven ? -40 : 40}>
+                    <div className={`absolute top-1/2 -translate-y-1/2 ${isEven ? '-left-12' : '-right-12'} hidden md:block mix-blend-difference z-20`}>
+                      <span className="text-[8rem] font-editorial text-ivory/50">0{idx + 1}</span>
+                    </div>
+                  </Reveal>
+                </div>
 
+                {/* Content Area */}
+                <div className={`w-full md:w-1/2 flex flex-col ${isEven ? 'md:items-start' : 'md:items-end md:text-right'}`}>
+                  <Reveal delay={0.1} y={30}>
+                    <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-secondary mb-6 block">
+                      Chapter {idx + 1}
+                    </span>
+                    <h2 className="text-5xl md:text-6xl font-serif font-light text-primary mb-10">
+                      {cat.name}
+                    </h2>
+                  </Reveal>
+                  
+                  <Reveal delay={0.2} y={30}>
+                    {cat.subcategories ? (
+                      <div className={`space-y-4 mb-12 w-full ${isEven ? 'text-left' : 'text-right'}`}>
+                        {cat.subcategories.map((sub) => (
+                          <Link
+                            key={sub.id}
+                            href={`/category/${cat.slug}/${sub.slug}`}
+                            className={`flex items-center gap-4 text-sm text-primary/60 hover:text-primary transition-colors duration-300 group/link ${isEven ? 'justify-start' : 'justify-end'}`}
+                          >
+                            {isEven && <span className="w-0 group-hover/link:w-6 h-[1px] bg-secondary transition-all duration-300" />}
+                            <span className="tracking-wide uppercase text-[10px] font-bold">{sub.name}</span>
+                            {!isEven && <span className="w-0 group-hover/link:w-6 h-[1px] bg-secondary transition-all duration-300" />}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-sm text-primary/70 leading-relaxed font-light max-w-md mb-12">
+                        Immerse yourself in our masterfully crafted {cat.name.toLowerCase()} pieces, where traditional techniques meet contemporary sophistication.
+                      </p>
+                    )}
+                  </Reveal>
+
+                  <Reveal delay={0.3} y={30}>
                     <Link
                       href={`/category/${cat.slug}`}
-                      className="inline-flex items-center space-x-4 text-xs tracking-[0.3em] uppercase text-primary font-bold group/btn"
+                      className="inline-flex items-center space-x-4 text-[10px] font-bold tracking-[0.3em] uppercase text-primary group/btn"
                     >
-                      <span>View Collection</span>
-                      <div className="w-8 h-[1px] bg-primary group-hover/btn:w-12 transition-all" />
+                      <span className="hover-underline-gold pb-1">Explore {cat.name}</span>
                     </Link>
-                  </div>
+                  </Reveal>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </section>
     </main>
