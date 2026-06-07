@@ -5,6 +5,9 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import OfferBanner from "@/components/layout/OfferBanner";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { PageLoader } from "@/components/ui/PageLoader";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,10 +53,14 @@ export default function RootLayout({
       className={`${geistSans.variable} ${cormorant.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
-        <OfferBanner />
-        <Header />
-        {children}
-        <Footer />
+        <PageLoader />
+        <CustomCursor />
+        <SmoothScroll>
+          <OfferBanner />
+          <Header />
+          {children}
+          <Footer />
+        </SmoothScroll>
         <WhatsAppButton />
       </body>
     </html>

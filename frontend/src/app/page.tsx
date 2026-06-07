@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { CATEGORIES } from '@/constants/categories';
 import { Reveal } from '@/components/animations/Reveal';
+import { MouseParallaxImage } from '@/components/ui/MouseParallaxImage';
 import { useRef } from 'react';
 
 export default function Home() {
@@ -180,7 +181,7 @@ export default function Home() {
             
             {/* 3 & 5. Large Feature (Real Images & Glow) */}
             <Link href={`/category/${CATEGORIES[0]?.slug}`} className="md:col-span-7 row-span-1 relative group overflow-hidden bg-[#0A0505] flex items-center justify-center p-12 border border-white/10 transition-all duration-1000">
-              <Image src="/IMG_20260603_123905.png" alt="Gold Jewellery" fill className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-[2s] ease-out" />
+              <MouseParallaxImage src="/IMG_20260603_123905.png" alt="Gold Jewellery" intensity={15} />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050202]/90 via-[#050202]/20 to-transparent" />
               <div className="relative z-10 text-center flex flex-col items-center justify-end h-full pb-8">
                 <span className="text-[9px] tracking-[0.5em] uppercase text-white/70 mb-6 opacity-0 group-hover:opacity-100 transition-all duration-1000 transform translate-y-4 group-hover:translate-y-0">Bespoke</span>
@@ -193,7 +194,7 @@ export default function Home() {
 
             {/* Top Right */}
             <Link href={`/category/${CATEGORIES[1]?.slug}`} className="md:col-span-5 row-span-1 relative group overflow-hidden bg-[#0A0505] flex items-center justify-center p-8 border-t border-r border-b border-white/10 transition-all duration-1000">
-              <Image src="/IMG_20260603_142513.png" alt="Diamond Jewellery" fill className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-[2s] ease-out" />
+              <MouseParallaxImage src="/IMG_20260603_142513.png" alt="Diamond Jewellery" intensity={15} />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050202]/90 via-[#050202]/20 to-transparent" />
               <div className="relative z-10 text-center flex flex-col items-center justify-end h-full pb-8">
                 <h4 className="text-4xl font-serif font-light text-white mb-6">{CATEGORIES[1]?.name || 'Diamond'}</h4>
@@ -205,7 +206,7 @@ export default function Home() {
 
             {/* Bottom Left */}
             <Link href={`/category/${CATEGORIES[2]?.slug}`} className="md:col-span-4 row-span-1 relative group overflow-hidden bg-[#0A0505] flex items-center justify-center p-8 border-l border-b border-r md:border-r-0 border-white/10 transition-all duration-1000">
-               <Image src="/IMG_20260603_142317.png" alt="Silver Jewellery" fill className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-[2s] ease-out" />
+               <MouseParallaxImage src="/IMG_20260603_142317.png" alt="Silver Jewellery" intensity={15} />
                <div className="absolute inset-0 bg-gradient-to-t from-[#050202]/90 via-[#050202]/20 to-transparent" />
                <div className="relative z-10 text-center flex flex-col items-center justify-end h-full pb-8">
                 <h4 className="text-3xl font-serif font-light text-white mb-6">{CATEGORIES[2]?.name || 'Silver'}</h4>
@@ -217,7 +218,7 @@ export default function Home() {
 
             {/* Bottom Right Large */}
             <Link href="/category/gold" className="md:col-span-8 row-span-1 relative group overflow-hidden bg-[#0A0505] flex items-center justify-center p-12 border-l md:border-l-0 border-r border-b border-white/10 transition-all duration-1000">
-              <Image src="/IMG_20260603_141113.png" alt="Bridal Edit" fill className="object-cover opacity-70 group-hover:opacity-80 group-hover:scale-105 transition-transform duration-[2s] ease-out" />
+              <MouseParallaxImage src="/IMG_20260603_141113.png" alt="Bridal Edit" intensity={20} />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050202]/90 via-[#050202]/30 to-transparent" />
               <div className="relative z-10 text-center flex flex-col items-center justify-end h-full pb-8">
                 <span className="text-[9px] tracking-[0.5em] uppercase text-white/70 mb-6">The Heritage</span>
