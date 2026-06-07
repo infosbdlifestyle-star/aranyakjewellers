@@ -35,21 +35,22 @@ export default function CategoryPage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-ivory">
-      <section className="py-32 burgundy-gradient text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 silk-texture opacity-30 mix-blend-overlay" />
+    <main className="min-h-screen flex flex-col bg-[#050202] text-white">
+      {/* Hero */}
+      <section className="relative py-32 text-center overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
+        <div className="absolute inset-0 silk-texture opacity-20 mix-blend-overlay" />
         <div className="relative z-10">
           <Reveal>
-            <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-light mb-6 tracking-tight capitalize">
+            <p className="text-[9px] font-bold tracking-[0.6em] uppercase text-white/50 mb-8">The Collection</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-light mb-8 tracking-tight capitalize">
               {category?.name || slug.replace(/-/g, ' ')}
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="flex items-center justify-center space-x-6">
-              <div className="h-[1px] w-12 bg-secondary/50" />
-              <p className="text-[10px] tracking-[0.5em] font-bold uppercase text-ivory/80">The Collection</p>
-              <div className="h-[1px] w-12 bg-secondary/50" />
-            </div>
+            <div className="w-[1px] h-24 bg-gradient-to-b from-secondary to-transparent mx-auto" />
           </Reveal>
         </div>
       </section>
@@ -60,7 +61,7 @@ export default function CategoryPage() {
             <>
               <Reveal>
                 <div className="text-center mb-24">
-                  <p className="text-primary/70 max-w-2xl mx-auto leading-relaxed font-light tracking-wide">
+                  <p className="text-white/50 max-w-2xl mx-auto leading-relaxed font-light tracking-wide text-sm">
                     Discover our exquisite range of {category.name.toLowerCase()} jewellery, handcrafted by master artisans with the finest materials and BIS Hallmark certification. Select a chapter below to explore.
                   </p>
                 </div>
@@ -70,29 +71,30 @@ export default function CategoryPage() {
                   <Reveal key={sub.id} delay={i * 0.1} y={40}>
                     <Link
                       href={`/category/${slug}/${sub.slug}`}
-                      className="group relative aspect-square overflow-hidden bg-white border border-border hover:border-secondary/30 hover:shadow-2xl transition-all duration-500 flex flex-col items-center justify-center p-8 text-center"
+                      className="group relative aspect-square overflow-hidden bg-[#0A0505] border border-white/10 hover:border-secondary/30 transition-all duration-500 flex flex-col items-center justify-center p-8 text-center"
                     >
-                      <div className="text-7xl font-serif font-light text-primary/5 group-hover:text-primary/10 group-hover:scale-110 transition-all duration-700 mb-6">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                      <div className="text-7xl font-serif font-light text-white/[0.03] group-hover:text-white/[0.06] group-hover:scale-110 transition-all duration-700 mb-6">
                         {sub.name[0]}
                       </div>
-                      <h3 className="text-2xl font-serif font-light text-primary mb-4">{sub.name}</h3>
-                      <div className="w-8 h-[1px] bg-primary/20 group-hover:bg-secondary group-hover:w-16 transition-all duration-500 mb-4" />
+                      <h3 className="text-2xl font-serif font-light text-white mb-4">{sub.name}</h3>
+                      <div className="w-8 h-[1px] bg-white/20 group-hover:bg-secondary group-hover:w-16 transition-all duration-500 mb-4" />
                       <p className="text-[9px] tracking-[0.3em] font-bold uppercase text-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500">Explore Collection</p>
                       
                       {/* Decorative border */}
-                      <div className="absolute inset-4 border border-primary/0 group-hover:border-primary/5 transition-all duration-700 pointer-events-none" />
+                      <div className="absolute inset-4 border border-white/0 group-hover:border-white/5 transition-all duration-700 pointer-events-none" />
                     </Link>
                   </Reveal>
                 ))}
               </div>
             </>
           ) : (
-            /* Direct Products Gallery if no subcategories (e.g. Costume Jewellery) */
+            /* Direct Products Gallery if no subcategories */
             <>
               {loading ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 animate-pulse">
                   {[...Array(6)].map((_, i) => (
-                    <div key={i} className="aspect-[4/5] bg-primary/5" />
+                    <div key={i} className="aspect-[4/5] bg-white/5" />
                   ))}
                 </div>
               ) : products.length > 0 ? (
@@ -100,23 +102,23 @@ export default function CategoryPage() {
                   {products.map((p, i) => (
                     <Reveal key={p.id} delay={(i % 3) * 0.1} y={40}>
                       <div className="group cursor-pointer">
-                        <div className="relative aspect-[4/5] bg-ivory overflow-hidden mb-6 border border-border group-hover:border-secondary/30 transition-colors duration-500">
+                        <div className="relative aspect-[4/5] bg-[#0A0505] overflow-hidden mb-6 border border-white/10 group-hover:border-secondary/30 transition-colors duration-500">
                           {p.images && p.images[0] ? (
                             <img 
                               src={p.images[0]} 
                               alt={p.name} 
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 mix-blend-multiply" 
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
                             />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center text-primary/20 font-serif text-6xl">
+                            <div className="w-full h-full flex items-center justify-center text-white/10 font-serif text-6xl">
                               {p.name[0]}
                             </div>
                           )}
-                          <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
+                          <div className="absolute inset-0 bg-white/0 group-hover:bg-white/[0.02] transition-colors duration-500" />
                         </div>
                         <div className="text-center space-y-2">
                           <p className="text-[9px] uppercase tracking-widest text-secondary font-bold">{p.goldPurity}KT • {p.goldWeight}g</p>
-                          <h3 className="text-xl font-serif font-light text-primary">{p.name}</h3>
+                          <h3 className="text-xl font-serif font-light text-white">{p.name}</h3>
                         </div>
                       </div>
                     </Reveal>
@@ -124,15 +126,15 @@ export default function CategoryPage() {
                 </div>
               ) : (
                 <div className="text-center py-20 space-y-8">
-                  <div className="text-6xl text-secondary font-serif">✧</div>
-                  <h2 className="text-4xl font-serif font-light text-primary">Collection Coming Soon</h2>
-                  <p className="text-primary/70 max-w-md mx-auto leading-loose font-light">
+                  <div className="text-5xl text-secondary font-serif">✧</div>
+                  <h2 className="text-4xl font-serif font-light text-white">Collection Coming Soon</h2>
+                  <p className="text-white/50 max-w-md mx-auto leading-loose font-light">
                     Our artisans are handcrafting exquisite pieces for this collection. Visit our showroom to explore in person.
                   </p>
                   <div className="pt-8">
                     <Link
                       href="/stores"
-                      className="inline-block bg-primary text-white px-10 py-5 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-secondary transition-all shadow-xl"
+                      className="btn-luxury px-10 py-5 text-[10px] font-bold tracking-[0.3em] uppercase inline-block"
                     >
                       Visit Showroom
                     </Link>

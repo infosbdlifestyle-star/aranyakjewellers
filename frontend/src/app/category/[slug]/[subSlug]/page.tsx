@@ -26,9 +26,6 @@ export default function SubCategoryPage() {
 
   const fetchProducts = async () => {
     try {
-      // Assuming api.getProducts filters by subCategory slug.
-      // E.g. getProducts({ subCategory: subCategory.name }) or similar based on backend schema.
-      // Looking at the admin panel, category/subCategory strings are saved as their Names or Slugs.
       const filters: Record<string, string> = {};
       if (category?.name) filters.category = category.name;
       if (subCategory?.name) filters.subCategory = subCategory.name;
@@ -43,11 +40,11 @@ export default function SubCategoryPage() {
 
   if (!category || !subCategory) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-ivory">
+      <main className="min-h-screen flex items-center justify-center bg-[#050202] text-white">
         <div className="text-center">
-          <h1 className="text-4xl font-serif font-light text-primary mb-4">Collection Not Found</h1>
-          <Link href="/collections" className="text-xs tracking-[0.3em] uppercase text-secondary hover-underline-gold pb-1">
-            Back to Collections
+          <h1 className="text-4xl font-serif font-light mb-4">Collection Not Found</h1>
+          <Link href="/" className="text-xs tracking-[0.3em] uppercase text-secondary hover-underline-gold pb-1">
+            Back to Home
           </Link>
         </div>
       </main>
@@ -55,17 +52,17 @@ export default function SubCategoryPage() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col bg-ivory overflow-hidden">
+    <main className="min-h-screen flex flex-col bg-[#050202] text-white overflow-hidden">
       {/* Editorial Hero */}
-      <section className="relative h-[60vh] md:h-[80vh] flex items-center justify-center bg-primary overflow-hidden">
+      <section className="relative h-[60vh] md:h-[80vh] flex items-center justify-center overflow-hidden border-b border-white/10">
         {/* Abstract luxury background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-[#1A0A0A]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#050202] via-[#0A0505] to-[#1A0A0A]" />
         <div className="absolute inset-0 opacity-20 silk-texture mix-blend-overlay" />
         
         {/* Massive Initial Letter */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
           <Reveal>
-            <span className="text-[30vw] font-serif font-light text-white/5 select-none leading-none transform translate-y-12">
+            <span className="text-[30vw] font-serif font-light text-white/[0.03] select-none leading-none transform translate-y-12">
               {subCategory.name[0]}
             </span>
           </Reveal>
@@ -87,18 +84,18 @@ export default function SubCategoryPage() {
           </div>
           
           <Reveal delay={0.3}>
-            <div className="w-[1px] h-24 bg-secondary mx-auto mt-8" />
+            <div className="w-[1px] h-24 bg-gradient-to-b from-secondary to-transparent mx-auto mt-8" />
           </Reveal>
         </div>
       </section>
 
       {/* Dynamic Gallery or Coming Soon */}
-      <section className="py-32">
+      <section className="py-24">
         <div className="container mx-auto px-6 max-w-7xl">
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 animate-pulse">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="aspect-[4/5] bg-primary/5" />
+                <div key={i} className="aspect-[4/5] bg-white/5" />
               ))}
             </div>
           ) : products.length > 0 ? (
@@ -106,25 +103,24 @@ export default function SubCategoryPage() {
               {products.map((p, i) => (
                 <Reveal key={p.id} delay={(i % 3) * 0.1} y={40}>
                   <div className="group cursor-pointer">
-                    <div className="relative aspect-[4/5] bg-ivory overflow-hidden mb-6 border border-border group-hover:border-secondary/30 transition-colors duration-500">
+                    <div className="relative aspect-[4/5] bg-[#0A0505] overflow-hidden mb-6 border border-white/10 group-hover:border-secondary/30 transition-colors duration-500">
                       {p.images && p.images[0] ? (
                         <img 
                           src={p.images[0]} 
                           alt={p.name} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 mix-blend-multiply" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-primary/20 font-serif text-6xl">
+                        <div className="w-full h-full flex items-center justify-center text-white/10 font-serif text-6xl">
                           {p.name[0]}
                         </div>
                       )}
-                      {/* Luxury overlay */}
-                      <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
+                      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/[0.02] transition-colors duration-500" />
                     </div>
                     <div className="text-center space-y-2">
                       <p className="text-[9px] uppercase tracking-widest text-secondary font-bold">{p.goldPurity}KT • {p.goldWeight}g</p>
-                      <h3 className="text-xl font-serif font-light text-primary">{p.name}</h3>
-                      <p className="text-xs text-primary/60 max-w-xs mx-auto line-clamp-2">{p.description || "An exquisite piece crafted with mastery."}</p>
+                      <h3 className="text-xl font-serif font-light text-white">{p.name}</h3>
+                      <p className="text-xs text-white/40 max-w-xs mx-auto line-clamp-2">{p.description || "An exquisite piece crafted with mastery."}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -137,12 +133,12 @@ export default function SubCategoryPage() {
                 <div className="text-secondary text-5xl mb-12">✧</div>
               </Reveal>
               <Reveal delay={0.1} y={40}>
-                <h2 className="text-4xl md:text-6xl font-serif font-light text-primary mb-12 leading-tight">
+                <h2 className="text-4xl md:text-6xl font-serif font-light text-white mb-12 leading-tight">
                   An Exquisite Selection <br /> <span className="font-editorial italic text-secondary">Awaits You</span>
                 </h2>
               </Reveal>
               <Reveal delay={0.2} y={40}>
-                <p className="text-sm text-primary/70 leading-loose tracking-wide font-light max-w-2xl mx-auto mb-16">
+                <p className="text-sm text-white/50 leading-loose tracking-wide font-light max-w-2xl mx-auto mb-16">
                   Our master artisans are currently handcrafting the next generation of masterpieces for the {subCategory.name} collection. Each piece is meticulously designed to reflect the pure elegance and heritage of Aranyak Jewellers.
                 </p>
               </Reveal>
@@ -150,8 +146,8 @@ export default function SubCategoryPage() {
           )}
 
           <Reveal delay={0.3} y={40}>
-             <div className="mt-32 text-center">
-               <Link href={`/category/${category.slug}`} className="text-[10px] font-bold tracking-[0.3em] uppercase text-primary hover-underline-gold pb-1">
+             <div className="mt-24 text-center">
+               <Link href={`/category/${category.slug}`} className="text-[10px] font-bold tracking-[0.3em] uppercase text-white hover-underline-gold pb-1">
                  Return to {category.name}
                </Link>
              </div>
