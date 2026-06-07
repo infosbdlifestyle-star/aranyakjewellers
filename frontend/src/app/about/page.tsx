@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Editorial Hero */}
-      <section className="pt-40 pb-20 px-6 text-center relative overflow-hidden">
+      <section className="pt-32 pb-20 px-6 text-center relative overflow-hidden">
         <Reveal y={40}>
           <p className="text-[9px] font-bold tracking-[0.6em] uppercase text-white/50 mb-8 relative z-10">Est. 1995</p>
         </Reveal>
@@ -100,7 +100,7 @@ export default function AboutPage() {
       </section>
 
       {/* Full Width Quote */}
-      <section className="py-40 bg-[#0A0505] text-white text-center px-6 border-y border-white/10">
+      <section className="py-24 bg-[#0A0505] text-white text-center px-6 border-y border-white/10">
         <Reveal>
           <div className="text-white/40 text-sm font-editorial mb-12">✧</div>
           <h2 className="text-4xl md:text-6xl max-w-5xl mx-auto font-serif font-light leading-snug relative z-10">

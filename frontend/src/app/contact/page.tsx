@@ -34,7 +34,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Hero */}
-      <section className="py-40 relative bg-[#050202] text-white text-center border-b border-white/10">
+      <section className="py-24 relative bg-[#050202] text-white text-center border-b border-white/10">
         <Reveal>
           <h1 className="text-5xl md:text-7xl font-serif font-light mb-6">Get in Touch</h1>
           <p className="text-[10px] tracking-[0.5em] uppercase text-white/50 font-bold">We&apos;d love to hear from you</p>
@@ -42,7 +42,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Cards */}
-      <section className="py-32 bg-[#050202] text-white">
+      <section className="py-24 bg-[#050202] text-white">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="grid md:grid-cols-3 gap-8 mb-32">
             {CONTACT_INFO.map((info, i) => (

@@ -17,7 +17,7 @@ export default function StoresPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Hero Section */}
-      <section className="relative py-40 bg-[#050202] text-white text-center overflow-hidden border-b border-white/10">
+      <section className="relative py-24 bg-[#050202] text-white text-center overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] opacity-10 mix-blend-luminosity" />
         <div className="relative z-10">
           <h1 className="text-5xl md:text-7xl font-serif font-light mb-8 tracking-tight">Our Showrooms</h1>
@@ -74,7 +74,7 @@ export default function StoresPage() {
       </section>
 
       {/* Appointment CTA */}
-      <section className="py-32 bg-[#050202] text-white relative overflow-hidden border-t border-white/10">
+      <section className="py-24 bg-[#050202] text-white relative overflow-hidden border-t border-white/10">
         <div className="container mx-auto px-4 text-center space-y-8 relative z-10">
           <h2 className="text-4xl md:text-6xl font-serif font-light italic">Personalized Shopping Experience</h2>
           <p className="max-w-2xl mx-auto text-white/70 text-sm md:text-base leading-relaxed font-light">

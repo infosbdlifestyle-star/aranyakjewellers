@@ -100,7 +100,7 @@ export default function Home() {
       </section>
 
       {/* 7. The Aranyak Philosophy (Typography Polish & Dark Premium Theme) */}
-      <section className="py-40 md:py-60 bg-[#050202] text-white relative z-20 overflow-hidden border-b border-white/10">
+      <section className="py-20 md:py-28 bg-[#050202] text-white relative z-20 overflow-hidden border-b border-white/10">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="flex flex-col md:flex-row gap-16 md:gap-20 items-center">
             <div className="w-full md:w-5/12 space-y-10">
@@ -146,8 +146,26 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Editorial Image Break */}
+      <section className="h-[60vh] w-full relative overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0 bg-[#050202]/30 z-10" />
+        <Image 
+          src="/IMG_20260603_142707.jpg" 
+          alt="Aranyak Craftsmanship" 
+          fill 
+          className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-[3s]" 
+        />
+        <div className="relative z-20 h-full flex items-center justify-center text-center px-6">
+          <Reveal>
+            <h2 className="text-4xl md:text-6xl font-serif font-light text-white tracking-wide">
+              The Art of <span className="font-editorial italic">Perfection</span>
+            </h2>
+          </Reveal>
+        </div>
+      </section>
+
       {/* 9. Curated Categories (Asymmetrical Grid with Parallax & Real Images) */}
-      <section className="py-40 md:py-60 bg-[#050202] border-b border-white/10 relative overflow-hidden">
+      <section className="py-20 md:py-28 bg-[#050202] border-b border-white/10 relative overflow-hidden">
         <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
           <div className="text-center mb-32 md:mb-40">
             <Reveal>
@@ -224,7 +242,7 @@ export default function Home() {
       </section>
 
       {/* Showroom Editorial CTA */}
-      <section className="relative py-32 md:py-40 overflow-hidden bg-primary border-t border-white/10">
+      <section className="relative py-24 overflow-hidden bg-primary border-t border-white/10">
         <div className="absolute inset-0">
           <Image 
             src="/showroom.jpg" 

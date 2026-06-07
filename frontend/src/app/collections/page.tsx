@@ -12,7 +12,7 @@ export default function CollectionsPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Page Hero */}
-      <section className="relative pt-40 pb-20 px-6 text-center bg-[#050202] text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 px-6 text-center bg-[#050202] text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity animate-slow-zoom" />
         <div className="relative z-10">
           <Reveal y={40}>
@@ -28,8 +28,8 @@ export default function CollectionsPage() {
       </section>
 
       {/* Staggered Zig-Zag Layout */}
-      <section className="py-32">
-        <div className="container mx-auto px-6 max-w-7xl space-y-32 md:space-y-48">
+      <section className="py-24">
+        <div className="container mx-auto px-6 max-w-7xl space-y-24 md:space-y-32">
           {CATEGORIES.map((cat, idx) => {
             const isEven = idx % 2 === 0;
             return (
