@@ -13,7 +13,6 @@ const NAV_LINKS = [
 ];
 
 const Header = () => {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -23,6 +22,16 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on route change (resize)
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
+
   return (
     <header className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${
       isScrolled ? 'glass border-white/20 shadow-lg' : 'bg-white/95 backdrop-blur-sm border-border/30'
@@ -31,7 +40,7 @@ const Header = () => {
         {/* Mobile Menu Toggle */}
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-primary p-2 hover:bg-ivory rounded-full transition-all"
+          className="lg:hidden text-primary p-2 hover:bg-ivory rounded-full transition-all"
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? (
@@ -42,33 +51,32 @@ const Header = () => {
         </button>
 
         {/* Logo */}
-        <Link href="/" className="flex flex-col items-center absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0">
-          <span className="text-xl md:text-2xl font-serif font-bold gold-gradient tracking-widest uppercase">
+        <Link href="/" className="flex flex-col items-center absolute left-1/2 -translate-x-1/2 lg:relative lg:left-0 lg:translate-x-0">
+          <span className="text-xl lg:text-2xl font-serif font-bold gold-gradient tracking-widest uppercase">
             Aranyak
           </span>
-          <span className="text-[8px] md:text-[10px] tracking-[0.3em] text-primary uppercase font-medium">
+          <span className="text-[8px] lg:text-[10px] tracking-[0.3em] text-primary uppercase font-medium">
             Jewellers
           </span>
         </Link>
 
         {/* Navigation - Desktop */}
-        <nav className="hidden md:flex flex-1 justify-center items-center space-x-10">
-          {CATEGORIES.slice(0, 4).map((cat) => (
+        <nav className="hidden lg:flex flex-1 justify-center items-center space-x-6 xl:space-x-8">
+          {/* Category Dropdowns — show ALL categories */}
+          {CATEGORIES.map((cat) => (
             <div 
               key={cat.id}
               className="relative group py-4"
-              onMouseEnter={() => setActiveCategory(cat.id)}
-              onMouseLeave={() => setActiveCategory(null)}
             >
               <Link 
                 href={`/category/${cat.slug}`}
-                className="text-xs font-bold text-foreground hover:text-primary transition-colors uppercase tracking-[0.2em]"
+                className="text-[10px] xl:text-xs font-bold text-foreground hover:text-primary transition-colors uppercase tracking-[0.15em]"
               >
                 {cat.name}
               </Link>
 
-              {/* Mega Menu */}
-              {cat.subcategories && (
+              {/* Dropdown for subcategories */}
+              {cat.subcategories && cat.subcategories.length > 0 && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 glass p-6 shadow-2xl border border-white/20 transition-all duration-300 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-4 group-hover:translate-y-0 z-[100]">
                   <div className="grid grid-cols-1 gap-4">
                     {cat.subcategories.map((sub) => (
@@ -86,12 +94,15 @@ const Header = () => {
             </div>
           ))}
 
+          {/* Divider */}
+          <div className="h-4 w-[1px] bg-border/50" />
+
           {/* Static nav links */}
           {NAV_LINKS.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-xs font-bold text-foreground hover:text-primary transition-colors uppercase tracking-[0.2em]"
+              className="text-[10px] xl:text-xs font-bold text-foreground hover:text-primary transition-colors uppercase tracking-[0.15em]"
             >
               {link.name}
             </Link>
@@ -99,7 +110,7 @@ const Header = () => {
         </nav>
 
         {/* Phone CTA - Right */}
-        <div className="hidden md:flex items-center space-x-4 min-w-[150px] justify-end">
+        <div className="hidden lg:flex items-center space-x-4 min-w-[120px] justify-end">
           <a 
             href="tel:+91XXXXXXXXXX" 
             className="flex items-center space-x-2 text-primary hover:text-secondary transition-all group"
@@ -112,10 +123,10 @@ const Header = () => {
 
       {/* Mobile Menu Drawer */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-20 bg-white z-[90] animate-in fade-in slide-in-from-top duration-300">
-          <div className="flex flex-col h-[calc(100vh-5rem)] bg-ivory/30 p-8 pb-32 space-y-8 overflow-y-auto">
+        <div className="lg:hidden fixed inset-0 top-20 bg-white z-[90] animate-in fade-in slide-in-from-top duration-300">
+          <div className="flex flex-col h-[calc(100vh-5rem)] bg-ivory/30 p-8 pb-32 space-y-6 overflow-y-auto">
             {CATEGORIES.map((cat) => (
-              <div key={cat.id} className="space-y-4">
+              <div key={cat.id} className="space-y-3">
                 <Link 
                   href={`/category/${cat.slug}`}
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -124,8 +135,8 @@ const Header = () => {
                   <span>{cat.name}</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-secondary"><path d="m9 18 6-6-6-6"/></svg>
                 </Link>
-                {cat.subcategories && (
-                  <div className="grid grid-cols-2 gap-4 pl-4 border-l border-secondary/20">
+                {cat.subcategories && cat.subcategories.length > 0 && (
+                  <div className="grid grid-cols-2 gap-3 pl-4 border-l border-secondary/20">
                     {cat.subcategories.map((sub) => (
                       <Link
                         key={sub.id}
@@ -141,7 +152,7 @@ const Header = () => {
               </div>
             ))}
             
-            <div className="pt-8 border-t border-border space-y-4">
+            <div className="pt-6 border-t border-border space-y-4">
               {NAV_LINKS.map((link) => (
                 <Link 
                   key={link.name}
