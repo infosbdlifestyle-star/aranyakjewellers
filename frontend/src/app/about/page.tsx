@@ -12,6 +12,8 @@ export default function AboutPage() {
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Editorial Hero */}
       <section className="pt-32 pb-20 px-6 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
+        <div className="absolute inset-0 silk-texture opacity-20 mix-blend-overlay" />
         <Reveal y={40}>
           <p className="text-[9px] font-bold tracking-[0.6em] uppercase text-white/50 mb-8 relative z-10">Est. 1995</p>
         </Reveal>

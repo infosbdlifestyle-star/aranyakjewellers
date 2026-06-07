@@ -57,6 +57,7 @@ export default function SubCategoryPage() {
       <section className="relative h-[60vh] md:h-[80vh] flex items-center justify-center overflow-hidden border-b border-white/10">
         {/* Abstract luxury background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#050202] via-[#0A0505] to-[#1A0A0A]" />
+        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-[0.06] mix-blend-luminosity" />
         <div className="absolute inset-0 opacity-20 silk-texture mix-blend-overlay" />
         
         {/* Massive Initial Letter */}
