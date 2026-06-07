@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="space-y-6">
             <Link href="/">
               <img 
-                src="/logo.png" 
+                src="/logo-transparent.png" 
                 alt="Aranyak Jewellers" 
                 className="h-14 w-auto brightness-0 invert"
               />

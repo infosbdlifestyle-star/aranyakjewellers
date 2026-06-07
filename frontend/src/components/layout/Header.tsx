@@ -54,9 +54,9 @@ const Header = () => {
         {/* Logo */}
         <Link href="/" className="absolute left-1/2 -translate-x-1/2 lg:relative lg:left-0 lg:translate-x-0">
           <img 
-            src="/logo.png" 
+            src="/logo-transparent.png" 
             alt="Aranyak Jewellers" 
-            className="h-12 lg:h-14 w-auto mix-blend-multiply"
+            className="h-12 lg:h-14 w-auto"
           />
         </Link>
 
