@@ -204,7 +204,7 @@ export default function Home() {
               <div className="relative z-10 text-center flex flex-col items-center justify-end h-full pb-8">
                 <span className="text-[9px] tracking-[0.5em] uppercase text-white/70 mb-6">The Heritage</span>
                 <h4 className="text-4xl md:text-5xl font-serif font-light text-white mb-8">Bridal & <span className="font-editorial italic">Trousseau</span></h4>
-                <div className="text-[9px] tracking-[0.4em] uppercase text-[#050202] bg-white px-10 py-4 opacity-0 group-hover:opacity-100 transition-all duration-1000 transform translate-y-4 group-hover:translate-y-0">
+                <div className="btn-luxury px-10 py-4 opacity-0 group-hover:opacity-100 transition-all duration-1000 transform translate-y-4 group-hover:translate-y-0 text-[9px] font-bold tracking-[0.4em] uppercase">
                   View Lookbook
                 </div>
               </div>

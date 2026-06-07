@@ -85,7 +85,7 @@ export default function StoresPage() {
               href="https://wa.me/91XXXXXXXXXX?text=I%20would%20like%20to%20book%20an%20appointment" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="bg-white text-[#050202] px-12 py-4 text-[9px] font-bold tracking-[0.4em] uppercase hover:bg-secondary transition-colors duration-500"
+              className="btn-luxury px-12 py-4 text-[9px] font-bold tracking-[0.4em] uppercase"
             >
               Book an Appointment
             </a>

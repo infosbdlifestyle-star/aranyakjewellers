@@ -175,6 +175,49 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
+/* Textured Deep Color Button */
+.btn-luxury {
+  background-color: var(--primary);
+  color: var(--secondary);
+  border: 1px solid rgba(203, 161, 53, 0.3); /* border-secondary/30 */
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-out;
+}
+
+.btn-luxury::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(203, 161, 53, 0.05) 0px,
+      rgba(203, 161, 53, 0.05) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(203, 161, 53, 0.03) 0px,
+      rgba(203, 161, 53, 0.03) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.btn-luxury:hover {
+  background-color: var(--secondary);
+  color: var(--primary);
+  box-shadow: 0 0 20px rgba(203, 161, 53, 0.2);
+}
+
+.btn-luxury:hover::before {
+  opacity: 0;
+}
+
 /* Hover underline effect */
 .hover-underline-gold {
   position: relative;
