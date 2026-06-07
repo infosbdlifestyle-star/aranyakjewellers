@@ -151,10 +151,10 @@ export default function Home() {
       <section className="h-[60vh] w-full relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[#050202]/30 z-10" />
         <Image 
-          src="/IMG_20260603_142707.jpg" 
+          src="/hero-necklace.png" 
           alt="Aranyak Craftsmanship" 
           fill 
-          className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-[3s]" 
+          className="object-cover object-center" 
         />
         <div className="relative z-20 h-full flex items-center justify-center text-center px-6">
           <Reveal>
