@@ -5,12 +5,13 @@ import Link from 'next/link';
 import { CATEGORIES } from '@/constants/categories';
 
 const NAV_LINKS = [
-  { name: 'Collections', href: '/collections' },
   { name: 'About', href: '/about' },
   { name: 'Stores', href: '/stores' },
-  { name: 'Gold Rate', href: '/gold-rate' },
   { name: 'Contact', href: '/contact' },
 ];
+
+// Categories to hide from the navigation menu
+const HIDDEN_CATEGORIES = ['costume-jewellery', 'offers-deals'];
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -63,7 +64,7 @@ const Header = () => {
         {/* Navigation - Desktop */}
         <nav className="hidden lg:flex flex-1 justify-center items-center space-x-6 xl:space-x-8">
           {/* Category Dropdowns — show ALL categories */}
-          {CATEGORIES.map((cat) => (
+          {CATEGORIES.filter(cat => !HIDDEN_CATEGORIES.includes(cat.slug)).map((cat) => (
             <div 
               key={cat.id}
               className="relative group py-4"
@@ -94,8 +95,6 @@ const Header = () => {
             </div>
           ))}
 
-          {/* Divider */}
-          <div className="h-4 w-[1px] bg-border/50" />
 
           {/* Static nav links */}
           {NAV_LINKS.map((link) => (
@@ -125,7 +124,7 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 top-20 bg-white z-[90] animate-in fade-in slide-in-from-top duration-300">
           <div className="flex flex-col h-[calc(100vh-5rem)] bg-ivory/30 p-8 pb-32 space-y-6 overflow-y-auto">
-            {CATEGORIES.map((cat) => (
+            {CATEGORIES.filter(cat => !HIDDEN_CATEGORIES.includes(cat.slug)).map((cat) => (
               <div key={cat.id} className="space-y-3">
                 <Link 
                   href={`/category/${cat.slug}`}
