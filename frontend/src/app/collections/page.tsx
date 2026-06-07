@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function CollectionsPage() {
   return (
-    <main className="min-h-screen flex flex-col bg-ivory">
+    <main className="min-h-screen flex flex-col bg-primary text-white">
       {/* Page Hero */}
       <section className="relative pt-40 pb-20 px-6 text-center bg-primary text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity animate-slow-zoom" />
@@ -38,22 +38,22 @@ export default function CollectionsPage() {
                 {/* Image/Visual Area */}
                 <div className="w-full md:w-1/2 relative">
                   <Reveal y={40}>
-                    <div className="relative aspect-[4/5] bg-primary/5 flex items-center justify-center p-12 overflow-hidden group">
-                      <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-700" />
-                      <div className="text-[15rem] font-serif font-light text-primary/5 group-hover:text-primary/10 transition-colors duration-1000 select-none transform group-hover:scale-110">
+                    <div className="relative aspect-[4/5] bg-white/5 flex items-center justify-center p-12 overflow-hidden group">
+                      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-700" />
+                      <div className="text-[15rem] font-serif font-light text-white/5 group-hover:text-white/10 transition-colors duration-1000 select-none transform group-hover:scale-110">
                         {cat.name[0]}
                       </div>
                       
                       {/* Decorative Frame */}
-                      <div className="absolute inset-6 border border-primary/10 group-hover:border-secondary/30 transition-colors duration-700 pointer-events-none" />
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border border-primary/5 scale-[0.85] group-hover:scale-95 transition-transform duration-1000 pointer-events-none" />
+                      <div className="absolute inset-6 border border-white/10 group-hover:border-secondary/30 transition-colors duration-700 pointer-events-none" />
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border border-white/5 scale-[0.85] group-hover:scale-95 transition-transform duration-1000 pointer-events-none" />
                     </div>
                   </Reveal>
                   
                   {/* Floating Number */}
                   <Reveal delay={0.2} x={isEven ? -40 : 40}>
                     <div className={`absolute top-1/2 -translate-y-1/2 ${isEven ? '-left-12' : '-right-12'} hidden md:block mix-blend-difference z-20`}>
-                      <span className="text-[8rem] font-editorial text-ivory/50">0{idx + 1}</span>
+                      <span className="text-[8rem] font-editorial text-white/50">0{idx + 1}</span>
                     </div>
                   </Reveal>
                 </div>
@@ -64,7 +64,7 @@ export default function CollectionsPage() {
                     <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-secondary mb-6 block">
                       Chapter {idx + 1}
                     </span>
-                    <h2 className="text-5xl md:text-6xl font-serif font-light text-primary mb-10">
+                    <h2 className="text-5xl md:text-6xl font-serif font-light text-white mb-10">
                       {cat.name}
                     </h2>
                   </Reveal>
@@ -76,7 +76,7 @@ export default function CollectionsPage() {
                           <Link
                             key={sub.id}
                             href={`/category/${cat.slug}/${sub.slug}`}
-                            className={`flex items-center gap-4 text-sm text-primary/60 hover:text-primary transition-colors duration-300 group/link ${isEven ? 'justify-start' : 'justify-end'}`}
+                            className={`flex items-center gap-4 text-sm text-white/60 hover:text-white transition-colors duration-300 group/link ${isEven ? 'justify-start' : 'justify-end'}`}
                           >
                             {isEven && <span className="w-0 group-hover/link:w-6 h-[1px] bg-secondary transition-all duration-300" />}
                             <span className="tracking-wide uppercase text-[10px] font-bold">{sub.name}</span>
@@ -85,7 +85,7 @@ export default function CollectionsPage() {
                         ))}
                       </div>
                     ) : (
-                      <p className="text-sm text-primary/70 leading-relaxed font-light max-w-md mb-12">
+                      <p className="text-sm text-white/70 leading-relaxed font-light max-w-md mb-12">
                         Immerse yourself in our masterfully crafted {cat.name.toLowerCase()} pieces, where traditional techniques meet contemporary sophistication.
                       </p>
                     )}
@@ -94,9 +94,9 @@ export default function CollectionsPage() {
                   <Reveal delay={0.3} y={30}>
                     <Link
                       href={`/category/${cat.slug}`}
-                      className="inline-flex items-center space-x-4 text-[10px] font-bold tracking-[0.3em] uppercase text-primary group/btn"
+                      className="inline-flex items-center space-x-4 text-[10px] font-bold tracking-[0.3em] uppercase text-white group/btn"
                     >
-                      <span className="hover-underline-gold pb-1">Explore {cat.name}</span>
+                      <span className="hover-underline-gold pb-1 border-b border-secondary/50 hover:border-secondary">Explore {cat.name}</span>
                     </Link>
                   </Reveal>
                 </div>

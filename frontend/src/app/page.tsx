@@ -149,7 +149,7 @@ export default function Home() {
       </section>
 
       {/* 9. Curated Categories (Asymmetrical Grid with Parallax & Real Images) */}
-      <section className="py-24 md:py-32 bg-[#FDFDFB]">
+      <section className="py-24 md:py-32 bg-primary border-b border-white/10">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="text-center mb-16 md:mb-24">
             <Reveal>
@@ -163,7 +163,7 @@ export default function Home() {
           <motion.div style={{ y: yParallaxGrid }} className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-4 auto-rows-[350px] md:auto-rows-[450px]">
             
             {/* 3 & 5. Large Feature (Real Images & Glow) */}
-            <Link href={`/category/${CATEGORIES[0]?.slug}`} className="md:col-span-7 row-span-1 relative group overflow-hidden bg-ivory flex items-center justify-center p-12 hover:shadow-[0_20px_40px_rgba(203,161,53,0.15)] hover:z-10 transition-all duration-700 border border-transparent hover:border-secondary/30">
+            <Link href={`/category/${CATEGORIES[0]?.slug}`} className="md:col-span-7 row-span-1 relative group overflow-hidden bg-primary/50 flex items-center justify-center p-12 hover:shadow-[0_20px_40px_rgba(203,161,53,0.15)] hover:z-10 transition-all duration-700 border border-white/5 hover:border-secondary/30">
               <Image src="/IMG_20260603_123905.png" alt="Gold Jewellery" fill className="object-cover opacity-90 group-hover:scale-105 transition-all duration-1000" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent group-hover:from-primary/90 transition-all duration-700" />
               <div className="relative z-10 text-center flex flex-col items-center translate-y-8 group-hover:translate-y-0 transition-transform duration-700">
@@ -176,7 +176,7 @@ export default function Home() {
             </Link>
 
             {/* Top Right */}
-            <Link href={`/category/${CATEGORIES[1]?.slug}`} className="md:col-span-5 row-span-1 relative group overflow-hidden bg-[#F5F5F0] flex items-center justify-center p-8 hover:shadow-[0_20px_40px_rgba(203,161,53,0.15)] hover:z-10 transition-all duration-700 border border-transparent hover:border-secondary/30">
+            <Link href={`/category/${CATEGORIES[1]?.slug}`} className="md:col-span-5 row-span-1 relative group overflow-hidden bg-primary/30 flex items-center justify-center p-8 hover:shadow-[0_20px_40px_rgba(203,161,53,0.15)] hover:z-10 transition-all duration-700 border border-white/5 hover:border-secondary/30">
               <Image src="/IMG_20260603_142513.png" alt="Diamond Jewellery" fill className="object-cover opacity-90 group-hover:scale-105 transition-all duration-1000" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent transition-all duration-700" />
               <div className="relative z-10 text-center flex flex-col items-center">
@@ -188,7 +188,7 @@ export default function Home() {
             </Link>
 
             {/* Bottom Left */}
-            <Link href={`/category/${CATEGORIES[2]?.slug}`} className="md:col-span-4 row-span-1 relative group overflow-hidden bg-white flex items-center justify-center p-8 hover:shadow-[0_20px_40px_rgba(203,161,53,0.15)] hover:z-10 transition-all duration-700 border border-transparent hover:border-secondary/30">
+            <Link href={`/category/${CATEGORIES[2]?.slug}`} className="md:col-span-4 row-span-1 relative group overflow-hidden bg-primary/40 flex items-center justify-center p-8 hover:shadow-[0_20px_40px_rgba(203,161,53,0.15)] hover:z-10 transition-all duration-700 border border-white/5 hover:border-secondary/30">
                <Image src="/IMG_20260603_142317.png" alt="Silver Jewellery" fill className="object-cover opacity-90 group-hover:scale-105 transition-all duration-1000" />
                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent transition-all duration-700" />
                <div className="relative z-10 text-center flex flex-col items-center">
@@ -200,7 +200,7 @@ export default function Home() {
             </Link>
 
             {/* Bottom Right Large */}
-            <Link href="/category/gold" className="md:col-span-8 row-span-1 relative group overflow-hidden bg-primary flex items-center justify-center p-12 hover:shadow-[0_20px_40px_rgba(203,161,53,0.15)] hover:z-10 transition-all duration-700 border border-transparent hover:border-secondary/30">
+            <Link href="/category/gold" className="md:col-span-8 row-span-1 relative group overflow-hidden bg-primary/60 flex items-center justify-center p-12 hover:shadow-[0_20px_40px_rgba(203,161,53,0.15)] hover:z-10 transition-all duration-700 border border-white/5 hover:border-secondary/30">
               <Image src="/IMG_20260603_141113.png" alt="Bridal Edit" fill className="object-cover opacity-80 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
               <div className="relative z-10 text-center flex flex-col items-center">
@@ -216,9 +216,9 @@ export default function Home() {
           
           <div className="text-center mt-20 md:mt-32">
             <Reveal>
-              <Link href="/collections" className="inline-flex items-center space-x-4 text-xs font-bold tracking-[0.3em] uppercase text-primary hover:text-secondary transition-colors group">
+              <Link href="/collections" className="inline-flex items-center space-x-4 text-xs font-bold tracking-[0.3em] uppercase text-white hover:text-secondary transition-colors group">
                 <span>View All Categories</span>
-                <div className="w-12 h-[1px] bg-primary group-hover:bg-secondary transition-colors" />
+                <div className="w-12 h-[1px] bg-white/50 group-hover:bg-secondary transition-colors" />
               </Link>
             </Reveal>
           </div>

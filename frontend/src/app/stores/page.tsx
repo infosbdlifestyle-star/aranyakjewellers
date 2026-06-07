@@ -15,7 +15,7 @@ const STORES = [
 
 export default function StoresPage() {
   return (
-    <main className="min-h-screen flex flex-col bg-ivory">
+    <main className="min-h-screen flex flex-col bg-primary text-white">
       {/* Hero Section */}
       <section className="relative py-24 burgundy-gradient text-white text-center overflow-hidden">
         <div className="relative z-10">
@@ -33,17 +33,18 @@ export default function StoresPage() {
           <div className="grid md:grid-cols-2 gap-10">
             {STORES.map((store, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="group bg-white border border-border overflow-hidden flex flex-col sm:flex-row hover:shadow-2xl transition-all duration-500">
+                <div className="group bg-primary/50 border border-white/10 overflow-hidden flex flex-col sm:flex-row hover:shadow-[0_0_30px_rgba(203,161,53,0.15)] hover:border-secondary/30 transition-all duration-500">
                   {/* Store Image Placeholder */}
-                  <div className="w-full sm:w-48 h-32 sm:h-auto bg-ivory flex items-center justify-center border-b sm:border-b-0 sm:border-r border-border overflow-hidden">
-                     <div className="text-primary/20 font-serif text-4xl group-hover:scale-110 transition-transform duration-500">
+                  <div className="w-full sm:w-48 h-32 sm:h-auto bg-white/5 flex items-center justify-center border-b sm:border-b-0 sm:border-r border-white/10 overflow-hidden relative">
+                     <div className="absolute inset-0 bg-[url('/showroom.jpg')] bg-cover bg-center opacity-30 mix-blend-overlay group-hover:scale-105 transition-transform duration-1000" />
+                     <div className="text-white/20 font-serif text-4xl group-hover:scale-110 transition-transform duration-500 relative z-10">
                        {store.name.split('–')[1]?.[1] || 'A'}
                      </div>
                   </div>
                   
                   <div className="p-8 flex-1 space-y-4">
-                    <h3 className="text-xl font-serif font-bold text-primary group-hover:text-secondary transition-colors">{store.name}</h3>
-                    <div className="space-y-3 text-sm text-muted-foreground">
+                    <h3 className="text-xl font-serif font-bold text-white group-hover:text-secondary transition-colors">{store.name}</h3>
+                    <div className="space-y-3 text-sm text-white/60">
                       <p className="flex items-start gap-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-secondary shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                         {store.address}
@@ -58,7 +59,7 @@ export default function StoresPage() {
                       </p>
                     </div>
                     <div className="pt-4">
-                      <button className="text-[10px] font-bold tracking-[0.2em] uppercase text-primary border-b border-primary/20 pb-1 hover:text-secondary hover:border-secondary transition-all">
+                      <button className="text-[10px] font-bold tracking-[0.2em] uppercase text-white border-b border-white/20 pb-1 hover:text-secondary hover:border-secondary transition-all">
                         Get Directions
                       </button>
                     </div>
