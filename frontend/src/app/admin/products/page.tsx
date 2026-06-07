@@ -301,12 +301,29 @@ export default function AdminProductsPage() {
                       <label className="text-[10px] font-bold tracking-widest uppercase text-primary">Category</label>
                       <select 
                         value={formData.category}
-                        onChange={(e) => setFormData({...formData, category: e.target.value})}
+                        onChange={(e) => setFormData({...formData, category: e.target.value, subCategory: ''})}
                         className="w-full bg-ivory border border-border px-4 py-3 text-sm outline-none focus:border-secondary"
                       >
                         {CATEGORIES.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
                       </select>
                     </div>
+                    
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold tracking-widest uppercase text-primary">Sub-Category</label>
+                      <select 
+                        value={formData.subCategory}
+                        onChange={(e) => setFormData({...formData, subCategory: e.target.value})}
+                        className="w-full bg-ivory border border-border px-4 py-3 text-sm outline-none focus:border-secondary"
+                      >
+                        <option value="">None</option>
+                        {CATEGORIES.find(c => c.name === formData.category)?.subcategories?.map(sub => (
+                          <option key={sub.id} value={sub.name}>{sub.name}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold tracking-widest uppercase text-primary">Stock Count</label>
                       <input 
