@@ -40,7 +40,7 @@ export default function CategoryPage() {
         <div className="absolute inset-0 silk-texture opacity-30 mix-blend-overlay" />
         <div className="relative z-10">
           <Reveal>
-            <h1 className="text-6xl md:text-8xl font-serif font-light mb-6 tracking-tight capitalize">
+            <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-light mb-6 tracking-tight capitalize">
               {category?.name || slug.replace(/-/g, ' ')}
             </h1>
           </Reveal>

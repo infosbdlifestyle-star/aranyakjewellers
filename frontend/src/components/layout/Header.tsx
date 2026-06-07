@@ -113,7 +113,7 @@ const Header = () => {
       {/* Mobile Menu Drawer */}
       {isMobileMenuOpen && (
         <div className="md:hidden fixed inset-0 top-20 bg-white z-[90] animate-in fade-in slide-in-from-top duration-300">
-          <div className="flex flex-col h-full bg-ivory/30 p-8 space-y-8 overflow-y-auto">
+          <div className="flex flex-col h-[calc(100vh-5rem)] bg-ivory/30 p-8 pb-32 space-y-8 overflow-y-auto">
             {CATEGORIES.map((cat) => (
               <div key={cat.id} className="space-y-4">
                 <Link 

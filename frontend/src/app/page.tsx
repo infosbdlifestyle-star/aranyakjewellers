@@ -50,8 +50,8 @@ export default function Home() {
             
             <div className="mask-clip">
               <Reveal delay={0.2} y={100} duration={1.2}>
-                <h1 className="text-7xl md:text-[10rem] font-serif font-light text-white leading-[0.85] tracking-tight drop-shadow-2xl mix-blend-overlay">
-                  Timeless <br /> <span className="font-editorial text-secondary/90 italic ml-12 md:ml-32">Elegance</span>
+                <h1 className="text-6xl sm:text-7xl md:text-[10rem] font-serif font-light text-white leading-[0.85] tracking-tight drop-shadow-2xl mix-blend-overlay">
+                  Timeless <br /> <span className="font-editorial text-secondary/90 italic ml-4 sm:ml-12 md:ml-32">Elegance</span>
                 </h1>
               </Reveal>
             </div>

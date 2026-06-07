@@ -80,7 +80,7 @@ export default function SubCategoryPage() {
           
           <div className="mask-clip">
             <Reveal delay={0.1} y={60} duration={1}>
-              <h1 className="text-5xl md:text-8xl font-serif font-light text-white leading-tight tracking-tight mb-8">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-light text-white leading-tight tracking-tight mb-8">
                 The <span className="font-editorial italic text-secondary/90">{subCategory.name}</span>
               </h1>
             </Reveal>
