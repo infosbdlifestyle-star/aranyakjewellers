@@ -15,13 +15,12 @@ const STORES = [
 
 export default function StoresPage() {
   return (
-    <main className="min-h-screen flex flex-col bg-primary text-white">
+    <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Hero Section */}
-      <section className="relative py-32 bg-primary text-white text-center overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 bg-[url('/hero-banner.png')] opacity-[0.03] mix-blend-overlay" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_var(--tw-gradient-stops))] from-secondary/10 via-primary/5 to-transparent pointer-events-none blur-2xl" />
+      <section className="relative py-40 bg-[#050202] text-white text-center overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0 bg-[url('/hero-banner.png')] opacity-10 mix-blend-luminosity" />
         <div className="relative z-10">
-          <h1 className="text-5xl md:text-7xl font-serif font-light mb-6 tracking-tight drop-shadow-xl">Our Showrooms</h1>
+          <h1 className="text-5xl md:text-7xl font-serif font-light mb-8 tracking-tight">Our Showrooms</h1>
           <div className="flex items-center justify-center space-x-4">
             <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-secondary" />
             <p className="text-xs tracking-[0.4em] uppercase text-white/80 font-bold">Experience Luxury Across Tripura</p>
@@ -35,19 +34,19 @@ export default function StoresPage() {
           <div className="grid md:grid-cols-2 gap-10">
             {STORES.map((store, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="group bg-white/[0.02] backdrop-blur-xl border border-white/10 overflow-hidden flex flex-col sm:flex-row hover:shadow-[0_0_40px_rgba(203,161,53,0.15)] hover:border-secondary/40 hover:bg-white/[0.04] transition-all duration-700 rounded-xl relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                <div className="group bg-[#0A0505] border border-white/10 overflow-hidden flex flex-col sm:flex-row hover:border-secondary/40 transition-colors duration-700 relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                   {/* Store Image Placeholder */}
-                  <div className="w-full sm:w-48 h-32 sm:h-auto bg-white/5 flex items-center justify-center border-b sm:border-b-0 sm:border-r border-white/10 overflow-hidden relative">
-                     <div className="absolute inset-0 bg-[url('/showroom.jpg')] bg-cover bg-center opacity-20 mix-blend-overlay group-hover:scale-105 transition-transform duration-1000" />
-                     <div className="text-white/20 font-serif text-5xl group-hover:scale-110 transition-transform duration-500 relative z-10 drop-shadow-md">
+                  <div className="w-full sm:w-48 h-32 sm:h-auto bg-[#050202] flex items-center justify-center border-b sm:border-b-0 sm:border-r border-white/10 overflow-hidden relative">
+                     <div className="absolute inset-0 bg-[url('/showroom.jpg')] bg-cover bg-center opacity-40 mix-blend-luminosity group-hover:scale-105 transition-transform duration-[2s] ease-out" />
+                     <div className="text-white font-serif font-light text-5xl relative z-10">
                        {store.name.split('–')[1]?.[1] || 'A'}
                      </div>
                   </div>
                   
-                  <div className="p-8 flex-1 space-y-4 relative z-10">
-                    <h3 className="text-xl font-serif font-medium text-white group-hover:text-secondary transition-colors duration-300 drop-shadow-sm">{store.name}</h3>
-                    <div className="space-y-3 text-sm text-white/60">
+                  <div className="p-10 flex-1 space-y-6 relative z-10">
+                    <h3 className="text-2xl font-serif font-light text-white group-hover:text-secondary transition-colors duration-300">{store.name}</h3>
+                    <div className="space-y-4 text-xs tracking-wide text-white/50 font-light">
                       <p className="flex items-start gap-3 group-hover:text-white/80 transition-colors duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-secondary shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                         {store.address}
@@ -75,12 +74,9 @@ export default function StoresPage() {
       </section>
 
       {/* Appointment CTA */}
-      <section className="py-24 bg-primary text-white relative overflow-hidden border-t border-white/10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-secondary/10 via-primary/5 to-transparent pointer-events-none blur-2xl" />
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-[url('/IMG_20260603_142513.png')] opacity-[0.03] mix-blend-luminosity bg-cover pointer-events-none" />
-        
+      <section className="py-32 bg-[#050202] text-white relative overflow-hidden border-t border-white/10">
         <div className="container mx-auto px-4 text-center space-y-8 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-serif font-light italic drop-shadow-xl">Personalized Shopping Experience</h2>
+          <h2 className="text-4xl md:text-6xl font-serif font-light italic">Personalized Shopping Experience</h2>
           <p className="max-w-2xl mx-auto text-white/70 text-sm md:text-base leading-relaxed font-light">
             Our experts are here to help you find the perfect piece. Book a private viewing or video consultation to explore our exclusive collections.
           </p>
@@ -89,13 +85,13 @@ export default function StoresPage() {
               href="https://wa.me/91XXXXXXXXXX?text=I%20would%20like%20to%20book%20an%20appointment" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="bg-secondary text-primary px-10 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white transition-all shadow-xl rounded-sm hover:shadow-[0_0_20px_rgba(203,161,53,0.4)]"
+              className="bg-white text-[#050202] px-12 py-4 text-[9px] font-bold tracking-[0.4em] uppercase hover:bg-secondary transition-colors duration-500"
             >
               Book an Appointment
             </a>
             <a 
               href="tel:+91XXXXXXXXXX"
-              className="border border-white/20 px-10 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-primary transition-all rounded-sm backdrop-blur-sm bg-white/5"
+              className="border border-white/20 px-12 py-4 text-[9px] font-bold tracking-[0.4em] uppercase hover:bg-white hover:text-[#050202] transition-colors duration-500"
             >
               Call Us Now
             </a>

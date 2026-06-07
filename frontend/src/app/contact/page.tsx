@@ -32,29 +32,26 @@ const CONTACT_INFO = [
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen flex flex-col">
+    <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Hero */}
-      <section className="py-32 relative bg-primary text-white text-center overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-secondary/20 via-primary/5 to-transparent pointer-events-none blur-3xl opacity-70" />
+      <section className="py-40 relative bg-[#050202] text-white text-center border-b border-white/10">
         <Reveal>
-          <h1 className="text-5xl md:text-7xl font-serif font-light mb-4 drop-shadow-xl relative z-10">Get in Touch</h1>
-          <p className="text-sm tracking-[0.4em] uppercase text-white/80 font-bold relative z-10">We&apos;d love to hear from you</p>
+          <h1 className="text-5xl md:text-7xl font-serif font-light mb-6">Get in Touch</h1>
+          <p className="text-[10px] tracking-[0.5em] uppercase text-white/50 font-bold">We&apos;d love to hear from you</p>
         </Reveal>
       </section>
 
       {/* Contact Cards */}
-      <section className="py-24 bg-primary text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/hero-banner.png')] opacity-[0.03] mix-blend-overlay" />
-        
-        <div className="container mx-auto px-4 max-w-5xl relative z-10">
-          <div className="grid md:grid-cols-3 gap-8 mb-24">
+      <section className="py-32 bg-[#050202] text-white">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="grid md:grid-cols-3 gap-8 mb-32">
             {CONTACT_INFO.map((info, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="bg-white/[0.02] backdrop-blur-2xl border border-white/10 p-10 text-center space-y-4 hover:shadow-[0_0_40px_rgba(203,161,53,0.15)] hover:border-secondary/40 hover:bg-white/[0.04] transition-all duration-700 rounded-2xl h-full group">
-                  <div className="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-secondary group-hover:scale-110 transition-transform duration-500 shadow-inner">
+                <div className="bg-[#0A0505] border border-white/10 p-12 text-center space-y-6 transition-colors duration-700 h-full group">
+                  <div className="w-16 h-16 mx-auto bg-[#050202] border border-white/10 flex items-center justify-center text-white/80 group-hover:text-white transition-colors duration-500">
                     {info.icon}
                   </div>
-                  <h3 className="text-xl font-serif font-medium text-white drop-shadow-md">{info.title}</h3>
+                  <h3 className="text-xl font-serif font-light text-white tracking-wide">{info.title}</h3>
                   <div className="space-y-1">
                     {info.details.map((detail, j) => (
                       <p key={j} className="text-sm text-white/60 group-hover:text-white/80 transition-colors duration-300">{detail}</p>
@@ -67,70 +64,68 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <Reveal>
-            <div className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-10 md:p-16 max-w-3xl mx-auto shadow-2xl relative overflow-hidden rounded-3xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-              <div className="absolute inset-0 bg-[url('/hero-banner.png')] opacity-[0.05] mix-blend-overlay pointer-events-none" />
-              <div className="text-center mb-12 relative z-10">
-                <h2 className="text-3xl font-serif font-light text-white italic mb-3 drop-shadow-md">Send Us a Message</h2>
-                <p className="text-sm text-white/60">Fill in your details and we&apos;ll get back to you shortly</p>
+            <div className="bg-[#0A0505] border border-white/10 p-10 md:p-16 max-w-3xl mx-auto relative">
+              <div className="text-center mb-16 relative z-10">
+                <h2 className="text-4xl font-serif font-light text-white italic mb-4">Send Us a Message</h2>
+                <p className="text-[10px] uppercase tracking-widest text-white/50">Fill in your details</p>
               </div>
 
               <form className="space-y-6 relative z-10">
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-8">
                   <div>
-                    <label htmlFor="contact-name" className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 mb-2 block">Full Name</label>
+                    <label htmlFor="contact-name" className="text-[9px] font-bold tracking-[0.3em] uppercase text-white/50 mb-3 block">Full Name</label>
                     <input 
                       id="contact-name"
                       type="text" 
                       placeholder="Your name"
-                      className="w-full border border-white/10 px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-secondary transition-colors bg-white/5"
+                      className="w-full border-b border-white/20 px-0 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white transition-colors bg-transparent"
                     />
                   </div>
                   <div>
-                    <label htmlFor="contact-phone" className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 mb-2 block">Phone Number</label>
+                    <label htmlFor="contact-phone" className="text-[9px] font-bold tracking-[0.3em] uppercase text-white/50 mb-3 block">Phone Number</label>
                     <input 
                       id="contact-phone"
                       type="tel" 
                       placeholder="+91-XXXXXXXXXX"
-                      className="w-full border border-white/10 px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-secondary transition-colors bg-white/5"
+                      className="w-full border-b border-white/20 px-0 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white transition-colors bg-transparent"
                     />
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="contact-email" className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 mb-2 block">Email Address</label>
+                  <label htmlFor="contact-email" className="text-[9px] font-bold tracking-[0.3em] uppercase text-white/50 mb-3 block">Email Address</label>
                   <input 
                     id="contact-email"
                     type="email" 
                     placeholder="your@email.com"
-                    className="w-full border border-white/10 px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-secondary transition-colors bg-white/5"
+                    className="w-full border-b border-white/20 px-0 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white transition-colors bg-transparent"
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-subject" className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 mb-2 block">Subject</label>
+                  <label htmlFor="contact-subject" className="text-[9px] font-bold tracking-[0.3em] uppercase text-white/50 mb-3 block">Subject</label>
                   <select 
                     id="contact-subject"
-                    className="w-full border border-white/10 px-4 py-3 text-sm text-white focus:outline-none focus:border-secondary transition-colors bg-[#2A0A0A] appearance-none"
+                    className="w-full border-b border-white/20 px-0 py-3 text-sm text-white focus:outline-none focus:border-white transition-colors bg-transparent appearance-none rounded-none"
                   >
-                    <option>General Inquiry</option>
-                    <option>Product Inquiry</option>
-                    <option>Book Appointment</option>
-                    <option>Custom Order</option>
-                    <option>Feedback</option>
+                    <option className="bg-[#050202]">General Inquiry</option>
+                    <option className="bg-[#050202]">Product Inquiry</option>
+                    <option className="bg-[#050202]">Book Appointment</option>
+                    <option className="bg-[#050202]">Custom Order</option>
+                    <option className="bg-[#050202]">Feedback</option>
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="contact-message" className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 mb-2 block">Message</label>
+                  <label htmlFor="contact-message" className="text-[9px] font-bold tracking-[0.3em] uppercase text-white/50 mb-3 block">Message</label>
                   <textarea 
                     id="contact-message"
-                    rows={5} 
+                    rows={4} 
                     placeholder="Tell us how we can help..."
-                    className="w-full border border-white/10 px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-secondary transition-colors bg-white/5 resize-none"
+                    className="w-full border-b border-white/20 px-0 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white transition-colors bg-transparent resize-none"
                   />
                 </div>
-                <div className="text-center pt-4">
+                <div className="text-center pt-8">
                   <button 
                     type="submit"
-                    className="bg-secondary text-primary px-16 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white transition-all shadow-xl luxury-shimmer"
+                    className="bg-white text-[#0A0505] px-16 py-4 text-[9px] font-bold tracking-[0.4em] uppercase hover:bg-white/80 transition-all"
                   >
                     Send Message
                   </button>
