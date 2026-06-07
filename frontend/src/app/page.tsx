@@ -99,26 +99,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. The Aranyak Philosophy (Typography Polish) */}
-      <section className="py-24 md:py-40 bg-ivory text-primary relative z-20">
-        <div className="container mx-auto px-6 max-w-7xl">
+      {/* 7. The Aranyak Philosophy (Typography Polish & Dark Premium Theme) */}
+      <section className="py-24 md:py-40 bg-primary text-white relative z-20 overflow-hidden border-b border-white/10">
+        {/* Subtle background texture */}
+        <div className="absolute inset-0 opacity-[0.05] bg-[url('/hero-banner.png')] bg-cover bg-center mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/50 to-primary pointer-events-none" />
+        
+        <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="flex flex-col md:flex-row gap-16 md:gap-20 items-center">
             <div className="w-full md:w-5/12 space-y-10">
               <Reveal>
                 <h2 className="text-sm font-bold tracking-[0.4em] uppercase text-secondary">The Philosophy</h2>
               </Reveal>
               <Reveal delay={0.1}>
-                <h3 className="text-5xl md:text-6xl font-serif font-light leading-tight text-balance tracking-wide">
-                  Masterpieces born from <span className="font-editorial italic">heritage</span> & crafted for eternity.
+                <h3 className="text-5xl md:text-6xl font-serif font-light leading-tight text-balance tracking-wide text-white">
+                  Masterpieces born from <span className="font-editorial italic text-secondary/90">heritage</span> & crafted for eternity.
                 </h3>
               </Reveal>
               <Reveal delay={0.2}>
-                <p className="text-sm md:text-base text-primary/80 leading-loose font-light tracking-wide max-w-md">
+                <p className="text-sm md:text-base text-white/70 leading-loose font-light tracking-wide max-w-md">
                   We blend traditional Bengali artistry with contemporary silhouettes. Every facet tells a story of meticulous craftsmanship, uncompromising purity, and a legacy of trust spanning over 25 years.
                 </p>
               </Reveal>
               <Reveal delay={0.3}>
-                <Link href="/about" className="inline-block mt-4 text-[10px] font-bold uppercase tracking-[0.3em] hover-underline-gold pb-2">
+                <Link href="/about" className="inline-block mt-4 text-[10px] font-bold uppercase tracking-[0.3em] text-white hover:text-secondary transition-colors duration-300 border-b border-secondary/50 hover:border-secondary pb-2">
                   Read Our Story
                 </Link>
               </Reveal>
@@ -132,10 +136,10 @@ export default function Home() {
                 { num: "04", title: "Curation", desc: "Exclusive designs tailored for the modern connoisseur." }
               ].map((item, i) => (
                 <Reveal key={i} delay={0.1 * i} y={30}>
-                  <div className="group border-l-2 border-primary/10 pl-8 py-2 hover:border-secondary transition-colors duration-500">
-                    <div className="text-4xl md:text-5xl font-editorial text-primary/20 mb-4 group-hover:text-secondary/50 transition-colors duration-500">{item.num}</div>
-                    <h4 className="text-xl font-serif font-medium mb-3 tracking-wide">{item.title}</h4>
-                    <p className="text-xs text-primary/70 leading-relaxed tracking-wide">{item.desc}</p>
+                  <div className="group border-l-2 border-white/10 pl-8 py-2 hover:border-secondary transition-colors duration-500">
+                    <div className="text-4xl md:text-5xl font-editorial text-white/10 mb-4 group-hover:text-secondary/50 transition-colors duration-500">{item.num}</div>
+                    <h4 className="text-xl font-serif font-medium mb-3 tracking-wide text-white">{item.title}</h4>
+                    <p className="text-xs text-white/50 leading-relaxed tracking-wide group-hover:text-white/80 transition-colors duration-500">{item.desc}</p>
                   </div>
                 </Reveal>
               ))}
