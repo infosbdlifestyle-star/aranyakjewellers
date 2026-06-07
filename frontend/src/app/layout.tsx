@@ -5,7 +5,6 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import OfferBanner from "@/components/layout/OfferBanner";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { PageLoader } from "@/components/ui/PageLoader";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 
@@ -54,7 +53,6 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
         <PageLoader />
-        <CustomCursor />
         <SmoothScroll>
           <OfferBanner />
           <Header />
