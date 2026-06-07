@@ -52,13 +52,12 @@ const Header = () => {
         </button>
 
         {/* Logo */}
-        <Link href="/" className="flex flex-col items-center absolute left-1/2 -translate-x-1/2 lg:relative lg:left-0 lg:translate-x-0">
-          <span className="text-xl lg:text-2xl font-serif font-bold gold-gradient tracking-widest uppercase">
-            Aranyak
-          </span>
-          <span className="text-[8px] lg:text-[10px] tracking-[0.3em] text-primary uppercase font-medium">
-            Jewellers
-          </span>
+        <Link href="/" className="absolute left-1/2 -translate-x-1/2 lg:relative lg:left-0 lg:translate-x-0">
+          <img 
+            src="/logo.png" 
+            alt="Aranyak Jewellers" 
+            className="h-12 lg:h-14 w-auto mix-blend-multiply"
+          />
         </Link>
 
         {/* Navigation - Desktop */}

@@ -10,13 +10,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-6">
-            <Link href="/" className="flex flex-col">
-              <span className="text-3xl font-serif font-bold text-secondary tracking-widest uppercase">
-                Aranyak
-              </span>
-              <span className="text-xs tracking-[0.4em] text-ivory/80 uppercase font-medium">
-                Jewellers
-              </span>
+            <Link href="/">
+              <img 
+                src="/logo.png" 
+                alt="Aranyak Jewellers" 
+                className="h-14 w-auto brightness-0 invert"
+              />
             </Link>
             <p className="text-sm text-ivory/60 leading-relaxed">
               Exquisite craftsmanship and timeless designs. Aranyak Jewellers brings you the finest gold, diamond, and silver jewellery in Tripura.
