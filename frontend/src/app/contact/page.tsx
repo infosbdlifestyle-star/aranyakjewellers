@@ -34,27 +34,30 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen flex flex-col">
       {/* Hero */}
-      <section className="py-20 burgundy-gradient text-white text-center">
+      <section className="py-32 relative bg-primary text-white text-center overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-secondary/20 via-primary/5 to-transparent pointer-events-none blur-3xl opacity-70" />
         <Reveal>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">Get in Touch</h1>
-          <p className="text-sm tracking-[0.3em] uppercase text-ivory/60">We&apos;d love to hear from you</p>
+          <h1 className="text-5xl md:text-7xl font-serif font-light mb-4 drop-shadow-xl relative z-10">Get in Touch</h1>
+          <p className="text-sm tracking-[0.4em] uppercase text-white/80 font-bold relative z-10">We&apos;d love to hear from you</p>
         </Reveal>
       </section>
 
       {/* Contact Cards */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="grid md:grid-cols-3 gap-8 mb-20">
+      <section className="py-24 bg-primary text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/hero-banner.png')] opacity-[0.03] mix-blend-overlay" />
+        
+        <div className="container mx-auto px-4 max-w-5xl relative z-10">
+          <div className="grid md:grid-cols-3 gap-8 mb-24">
             {CONTACT_INFO.map((info, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="bg-primary/50 border border-white/10 p-10 text-center space-y-4 hover:shadow-[0_0_30px_rgba(203,161,53,0.15)] hover:border-secondary/30 transition-all duration-500 h-full">
-                  <div className="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-secondary">
+                <div className="bg-white/[0.02] backdrop-blur-2xl border border-white/10 p-10 text-center space-y-4 hover:shadow-[0_0_40px_rgba(203,161,53,0.15)] hover:border-secondary/40 hover:bg-white/[0.04] transition-all duration-700 rounded-2xl h-full group">
+                  <div className="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-secondary group-hover:scale-110 transition-transform duration-500 shadow-inner">
                     {info.icon}
                   </div>
-                  <h3 className="text-xl font-serif font-bold text-white">{info.title}</h3>
+                  <h3 className="text-xl font-serif font-medium text-white drop-shadow-md">{info.title}</h3>
                   <div className="space-y-1">
                     {info.details.map((detail, j) => (
-                      <p key={j} className="text-sm text-white/60">{detail}</p>
+                      <p key={j} className="text-sm text-white/60 group-hover:text-white/80 transition-colors duration-300">{detail}</p>
                     ))}
                   </div>
                 </div>
@@ -64,10 +67,11 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <Reveal>
-            <div className="bg-primary/30 border border-white/10 p-10 md:p-16 max-w-3xl mx-auto shadow-2xl relative overflow-hidden">
-              <div className="absolute inset-0 bg-[url('/hero-banner.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
+            <div className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-10 md:p-16 max-w-3xl mx-auto shadow-2xl relative overflow-hidden rounded-3xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-[url('/hero-banner.png')] opacity-[0.05] mix-blend-overlay pointer-events-none" />
               <div className="text-center mb-12 relative z-10">
-                <h2 className="text-3xl font-serif font-bold text-white italic mb-3">Send Us a Message</h2>
+                <h2 className="text-3xl font-serif font-light text-white italic mb-3 drop-shadow-md">Send Us a Message</h2>
                 <p className="text-sm text-white/60">Fill in your details and we&apos;ll get back to you shortly</p>
               </div>
 

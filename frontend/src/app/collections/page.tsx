@@ -14,15 +14,16 @@ export default function CollectionsPage() {
       {/* Page Hero */}
       <section className="relative pt-40 pb-20 px-6 text-center bg-primary text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity animate-slow-zoom" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-secondary/20 via-primary/5 to-transparent pointer-events-none blur-3xl opacity-80" />
         <div className="relative z-10">
           <Reveal y={40}>
             <p className="text-[10px] tracking-[0.6em] uppercase text-secondary mb-8 font-bold">The Archives</p>
           </Reveal>
           <Reveal delay={0.1} y={40}>
-            <h1 className="text-6xl md:text-8xl font-serif font-light mb-8 tracking-tight">Our <span className="font-editorial italic">Collections</span></h1>
+            <h1 className="text-6xl md:text-8xl font-serif font-light mb-8 tracking-tight drop-shadow-xl">Our <span className="font-editorial italic text-white/90">Collections</span></h1>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="w-[1px] h-24 bg-secondary mx-auto mt-12" />
+            <div className="w-[1px] h-24 bg-gradient-to-b from-secondary to-transparent mx-auto mt-12" />
           </Reveal>
         </div>
       </section>
@@ -38,15 +39,15 @@ export default function CollectionsPage() {
                 {/* Image/Visual Area */}
                 <div className="w-full md:w-1/2 relative">
                   <Reveal y={40}>
-                    <div className="relative aspect-[4/5] bg-white/5 flex items-center justify-center p-12 overflow-hidden group">
+                    <div className="relative aspect-[4/5] bg-white/[0.02] backdrop-blur-3xl flex items-center justify-center p-12 overflow-hidden group shadow-[0_0_40px_rgba(0,0,0,0.5)] rounded-lg">
                       <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-700" />
-                      <div className="text-[15rem] font-serif font-light text-white/5 group-hover:text-white/10 transition-colors duration-1000 select-none transform group-hover:scale-110">
+                      <div className="text-[15rem] font-serif font-light text-white/[0.03] group-hover:text-white/10 transition-colors duration-1000 select-none transform group-hover:scale-110 drop-shadow-2xl">
                         {cat.name[0]}
                       </div>
                       
                       {/* Decorative Frame */}
-                      <div className="absolute inset-6 border border-white/10 group-hover:border-secondary/30 transition-colors duration-700 pointer-events-none" />
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border border-white/5 scale-[0.85] group-hover:scale-95 transition-transform duration-1000 pointer-events-none" />
+                      <div className="absolute inset-6 border border-white/10 group-hover:border-secondary/30 transition-colors duration-700 pointer-events-none rounded-sm" />
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border border-white/5 scale-[0.85] group-hover:scale-95 transition-transform duration-1000 pointer-events-none rounded-sm" />
                     </div>
                   </Reveal>
                   

@@ -100,10 +100,15 @@ export default function Home() {
       </section>
 
       {/* 7. The Aranyak Philosophy (Typography Polish & Dark Premium Theme) */}
-      <section className="py-24 md:py-40 bg-primary text-white relative z-20 overflow-hidden border-b border-white/10">
-        {/* Subtle background texture */}
-        <div className="absolute inset-0 opacity-[0.05] bg-[url('/hero-banner.png')] bg-cover bg-center mix-blend-overlay" />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/50 to-primary pointer-events-none" />
+      <section className="py-32 md:py-48 bg-primary text-white relative z-20 overflow-hidden border-b border-white/10">
+        {/* Massive Offset Background Image */}
+        <div className="absolute top-0 right-0 w-full md:w-3/4 h-full opacity-10 mix-blend-luminosity">
+           <Image src="/IMG_20260603_123905.png" alt="Offset Texture" fill className="object-cover object-right" />
+           <div className="absolute inset-0 bg-gradient-to-l from-transparent to-primary" />
+        </div>
+        
+        {/* Radial Glow Gradient */}
+        <div className="absolute top-1/2 left-0 w-full h-[500px] bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-secondary/10 via-primary/5 to-transparent -translate-y-1/2 pointer-events-none blur-3xl" />
         
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="flex flex-col md:flex-row gap-16 md:gap-20 items-center">
@@ -128,7 +133,10 @@ export default function Home() {
               </Reveal>
             </div>
             
-            <div className="w-full md:w-7/12 grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-16 mt-8 md:mt-0">
+            <div className="w-full md:w-7/12 grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-16 mt-16 md:mt-0 relative">
+              {/* Glassmorphic Background Panel for list */}
+              <div className="absolute -inset-8 md:-inset-12 bg-white/[0.02] backdrop-blur-2xl border border-white/5 shadow-2xl rounded-3xl pointer-events-none hidden md:block" />
+              
               {[
                 { num: "01", title: "Purity", desc: "100% BIS Hallmarked gold and certified diamonds." },
                 { num: "02", title: "Craft", desc: "Handcrafted by artisans carrying generations of skill." },
@@ -136,10 +144,10 @@ export default function Home() {
                 { num: "04", title: "Curation", desc: "Exclusive designs tailored for the modern connoisseur." }
               ].map((item, i) => (
                 <Reveal key={i} delay={0.1 * i} y={30}>
-                  <div className="group border-l-2 border-white/10 pl-8 py-2 hover:border-secondary transition-colors duration-500">
-                    <div className="text-4xl md:text-5xl font-editorial text-white/10 mb-4 group-hover:text-secondary/50 transition-colors duration-500">{item.num}</div>
-                    <h4 className="text-xl font-serif font-medium mb-3 tracking-wide text-white">{item.title}</h4>
-                    <p className="text-xs text-white/50 leading-relaxed tracking-wide group-hover:text-white/80 transition-colors duration-500">{item.desc}</p>
+                  <div className="group border-l-[3px] border-white/10 pl-8 py-4 hover:border-secondary transition-all duration-500 relative z-10 bg-white/[0.01] hover:bg-white/[0.04] rounded-r-xl">
+                    <div className="text-4xl md:text-5xl font-editorial text-white/20 mb-4 group-hover:text-secondary/60 transition-colors duration-500 drop-shadow-md">{item.num}</div>
+                    <h4 className="text-xl font-serif font-medium mb-3 tracking-wide text-white group-hover:text-secondary transition-colors duration-300">{item.title}</h4>
+                    <p className="text-xs text-white/60 leading-relaxed tracking-wide group-hover:text-white transition-colors duration-500">{item.desc}</p>
                   </div>
                 </Reveal>
               ))}
@@ -149,21 +157,24 @@ export default function Home() {
       </section>
 
       {/* 9. Curated Categories (Asymmetrical Grid with Parallax & Real Images) */}
-      <section className="py-24 md:py-32 bg-primary border-b border-white/10">
-        <div className="container mx-auto px-6 max-w-[1400px]">
-          <div className="text-center mb-16 md:mb-24">
+      <section className="py-32 md:py-48 bg-primary border-b border-white/10 relative overflow-hidden">
+        {/* Background Radial Texture */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_var(--tw-gradient-stops))] from-secondary/5 via-primary/20 to-primary pointer-events-none" />
+        
+        <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
+          <div className="text-center mb-24 md:mb-32">
             <Reveal>
-              <p className="text-[10px] tracking-[0.5em] uppercase text-secondary font-bold mb-6">Curated Selections</p>
+              <p className="text-[10px] tracking-[0.6em] uppercase text-secondary font-bold mb-6">Curated Selections</p>
             </Reveal>
             <Reveal delay={0.1}>
-              <h3 className="text-5xl md:text-7xl font-serif font-light text-primary">High <span className="font-editorial italic">Jewellery</span></h3>
+              <h3 className="text-5xl md:text-8xl font-serif font-light text-white drop-shadow-2xl">High <span className="font-editorial italic text-white/90">Jewellery</span></h3>
             </Reveal>
           </div>
 
-          <motion.div style={{ y: yParallaxGrid }} className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-4 auto-rows-[350px] md:auto-rows-[450px]">
+          <motion.div style={{ y: yParallaxGrid }} className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 auto-rows-[400px] md:auto-rows-[500px]">
             
             {/* 3 & 5. Large Feature (Real Images & Glow) */}
-            <Link href={`/category/${CATEGORIES[0]?.slug}`} className="md:col-span-7 row-span-1 relative group overflow-hidden bg-primary/50 flex items-center justify-center p-12 hover:shadow-[0_20px_40px_rgba(203,161,53,0.15)] hover:z-10 transition-all duration-700 border border-white/5 hover:border-secondary/30">
+            <Link href={`/category/${CATEGORIES[0]?.slug}`} className="md:col-span-7 row-span-1 relative group overflow-hidden bg-primary/40 flex items-center justify-center p-12 shadow-2xl hover:z-10 transition-all duration-700 border border-white/10 hover:border-secondary/40 backdrop-blur-xl rounded-2xl">
               <Image src="/IMG_20260603_123905.png" alt="Gold Jewellery" fill className="object-cover opacity-90 group-hover:scale-105 transition-all duration-1000" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent group-hover:from-primary/90 transition-all duration-700" />
               <div className="relative z-10 text-center flex flex-col items-center translate-y-8 group-hover:translate-y-0 transition-transform duration-700">
@@ -176,7 +187,7 @@ export default function Home() {
             </Link>
 
             {/* Top Right */}
-            <Link href={`/category/${CATEGORIES[1]?.slug}`} className="md:col-span-5 row-span-1 relative group overflow-hidden bg-primary/30 flex items-center justify-center p-8 hover:shadow-[0_20px_40px_rgba(203,161,53,0.15)] hover:z-10 transition-all duration-700 border border-white/5 hover:border-secondary/30">
+            <Link href={`/category/${CATEGORIES[1]?.slug}`} className="md:col-span-5 row-span-1 relative group overflow-hidden bg-primary/40 flex items-center justify-center p-8 shadow-2xl hover:z-10 transition-all duration-700 border border-white/10 hover:border-secondary/40 backdrop-blur-xl rounded-2xl">
               <Image src="/IMG_20260603_142513.png" alt="Diamond Jewellery" fill className="object-cover opacity-90 group-hover:scale-105 transition-all duration-1000" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent transition-all duration-700" />
               <div className="relative z-10 text-center flex flex-col items-center">
@@ -188,7 +199,7 @@ export default function Home() {
             </Link>
 
             {/* Bottom Left */}
-            <Link href={`/category/${CATEGORIES[2]?.slug}`} className="md:col-span-4 row-span-1 relative group overflow-hidden bg-primary/40 flex items-center justify-center p-8 hover:shadow-[0_20px_40px_rgba(203,161,53,0.15)] hover:z-10 transition-all duration-700 border border-white/5 hover:border-secondary/30">
+            <Link href={`/category/${CATEGORIES[2]?.slug}`} className="md:col-span-4 row-span-1 relative group overflow-hidden bg-primary/40 flex items-center justify-center p-8 shadow-2xl hover:z-10 transition-all duration-700 border border-white/10 hover:border-secondary/40 backdrop-blur-xl rounded-2xl">
                <Image src="/IMG_20260603_142317.png" alt="Silver Jewellery" fill className="object-cover opacity-90 group-hover:scale-105 transition-all duration-1000" />
                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent transition-all duration-700" />
                <div className="relative z-10 text-center flex flex-col items-center">
@@ -200,7 +211,7 @@ export default function Home() {
             </Link>
 
             {/* Bottom Right Large */}
-            <Link href="/category/gold" className="md:col-span-8 row-span-1 relative group overflow-hidden bg-primary/60 flex items-center justify-center p-12 hover:shadow-[0_20px_40px_rgba(203,161,53,0.15)] hover:z-10 transition-all duration-700 border border-white/5 hover:border-secondary/30">
+            <Link href="/category/gold" className="md:col-span-8 row-span-1 relative group overflow-hidden bg-primary/40 flex items-center justify-center p-12 shadow-2xl hover:z-10 transition-all duration-700 border border-white/10 hover:border-secondary/40 backdrop-blur-xl rounded-2xl">
               <Image src="/IMG_20260603_141113.png" alt="Bridal Edit" fill className="object-cover opacity-80 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
               <div className="relative z-10 text-center flex flex-col items-center">
