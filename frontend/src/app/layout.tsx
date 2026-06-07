@@ -3,7 +3,7 @@ import { Geist, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import GoldRateBar from "@/components/layout/GoldRateBar";
+import OfferBanner from "@/components/layout/OfferBanner";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 
 const geistSans = Geist({
@@ -50,7 +50,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${cormorant.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
-        <GoldRateBar />
+        <OfferBanner />
         <Header />
         {children}
         <Footer />
