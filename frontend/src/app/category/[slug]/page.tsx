@@ -37,7 +37,7 @@ export default function CategoryPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Hero */}
-      <section className="relative py-32 text-center overflow-hidden border-b border-white/10">
+      <section className="relative py-28 md:py-36 text-center overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
         <div className="absolute inset-0 silk-texture opacity-20 mix-blend-overlay" />
         <div className="relative z-10">
@@ -74,7 +74,7 @@ export default function CategoryPage() {
                       className="group relative aspect-square overflow-hidden bg-[#0A0505] border border-white/10 hover:border-secondary/30 transition-all duration-500 flex flex-col items-center justify-center p-8 text-center"
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                      <div className="text-7xl font-serif font-light text-white/[0.03] group-hover:text-white/[0.06] group-hover:scale-110 transition-all duration-700 mb-6">
+                      <div className="text-7xl font-serif font-light text-white/[0.06] group-hover:text-white/[0.1] group-hover:scale-110 transition-all duration-700 mb-6">
                         {sub.name[0]}
                       </div>
                       <h3 className="text-2xl font-serif font-light text-white mb-4">{sub.name}</h3>

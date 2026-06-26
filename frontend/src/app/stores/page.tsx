@@ -7,17 +7,17 @@ export const metadata: Metadata = {
 };
 
 const STORES = [
-  { name: 'Aranyak Jewellers – Main Showroom', address: 'Battala, Agartala, Tripura 799001', phone: '+91-XXXXXXXXXX', hours: '10:00 AM – 8:00 PM' },
-  { name: 'Aranyak Jewellers – City Centre', address: 'Durga Chowmuhani, Agartala, Tripura', phone: '+91-XXXXXXXXXX', hours: '10:00 AM – 8:00 PM' },
-  { name: 'Aranyak Jewellers – Dharmanagar', address: 'Main Road, Dharmanagar, North Tripura', phone: '+91-XXXXXXXXXX', hours: '10:00 AM – 7:30 PM' },
-  { name: 'Aranyak Jewellers – Udaipur', address: 'Bazar Road, Udaipur, Gomati, Tripura', phone: '+91-XXXXXXXXXX', hours: '10:00 AM – 7:30 PM' },
+  { name: 'Aranyak Jewellers – Agartala', address: 'M B B CHOWMUHANI (NEAR KAMAN CHOWMUHANI), AGARTALA, WEST TRIPURA, PIN-799001', phone: '+91-XXXXXXXXXX', hours: '10:00 AM – 8:00 PM' },
+  { name: 'Aranyak Jewellers – Dharmanagar', address: 'D N V ROAD, DHARMANAGAR, NORTH TRIPURA, PIN-799250', phone: '+91-XXXXXXXXXX', hours: '10:00 AM – 7:30 PM' },
+  { name: 'Aranyak Jewellers – Kailashahar', address: 'GIRLS SCHOOL ROAD, KAILASHAHAR, UNAKOTI TRIPURA, PIN-799277', phone: '+91-XXXXXXXXXX', hours: '10:00 AM – 7:30 PM' },
+  { name: 'Aranyak Jewellers – Khowai', address: 'SUBHASH PARK, KHOWAI TRIPURA, PIN-799201', phone: '+91-XXXXXXXXXX', hours: '10:00 AM – 7:30 PM' },
 ];
 
 export default function StoresPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Hero Section */}
-      <section className="relative py-24 bg-[#050202] text-white text-center overflow-hidden border-b border-white/10">
+      <section className="relative py-28 md:py-36 bg-[#050202] text-white text-center overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] opacity-10 mix-blend-luminosity" />
         <div className="relative z-10">
           <h1 className="text-5xl md:text-7xl font-serif font-light mb-8 tracking-tight">Our Showrooms</h1>
@@ -39,8 +39,8 @@ export default function StoresPage() {
                   {/* Store Image Placeholder */}
                   <div className="w-full sm:w-48 h-32 sm:h-auto bg-[#050202] flex items-center justify-center border-b sm:border-b-0 sm:border-r border-white/10 overflow-hidden relative">
                      <div className="absolute inset-0 bg-[url('/showroom.jpg')] bg-cover bg-center opacity-40 mix-blend-luminosity group-hover:scale-105 transition-transform duration-[2s] ease-out" />
-                     <div className="text-white font-serif font-light text-5xl relative z-10">
-                       {store.name.split('–')[1]?.[1] || 'A'}
+                     <div className="text-white font-serif font-light text-5xl relative z-10 uppercase">
+                       {store.name.split('–')[1]?.trim()[0] || 'A'}
                      </div>
                   </div>
                   
@@ -75,7 +75,7 @@ export default function StoresPage() {
 
       {/* Appointment CTA */}
       <section className="py-24 bg-[#050202] text-white relative overflow-hidden border-t border-white/10">
-        <div className="container mx-auto px-4 text-center space-y-8 relative z-10">
+        <div className="container mx-auto px-4 max-w-4xl text-center space-y-8 relative z-10">
           <h2 className="text-4xl md:text-6xl font-serif font-light italic">Personalized Shopping Experience</h2>
           <p className="max-w-2xl mx-auto text-white/70 text-sm md:text-base leading-relaxed font-light">
             Our experts are here to help you find the perfect piece. Book a private viewing or video consultation to explore our exclusive collections.

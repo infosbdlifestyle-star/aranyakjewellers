@@ -22,7 +22,7 @@ export default function Home() {
     <main className="min-h-screen flex flex-col bg-[#050202]" ref={containerRef}>
       
       {/* 1. Editorial Hero Section (Fixed Blend Mode & Image) */}
-      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-primary">
+      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#050202]">
         <motion.div 
           className="absolute inset-0"
           initial={{ scale: 1.15 }}
@@ -40,7 +40,7 @@ export default function Home() {
         </motion.div>
         
         {/* Subtle Dark Gradient Overlay for Text Readability without destroying colors */}
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050202]/90 via-[#050202]/40 to-transparent pointer-events-none" />
         
         <div className="relative z-10 w-full px-6 flex flex-col items-center text-center mt-20">
             <Reveal y={30} duration={1}>
@@ -81,18 +81,18 @@ export default function Home() {
       </section>
 
       {/* 4. Dynamic Marquee Banner */}
-      <section className="bg-primary border-y border-white/10 py-3 overflow-hidden flex items-center shadow-inner">
+      <section className="bg-[#0A0505] border-y border-white/10 py-3 overflow-hidden flex items-center shadow-inner">
         <div className="w-full flex whitespace-nowrap overflow-hidden">
           <div className="animate-marquee flex items-center">
             {[...Array(4)].map((_, i) => (
               <div key={i} className="flex items-center space-x-8 mx-8">
                 <span className="text-[10px] tracking-[0.3em] font-bold text-secondary uppercase">100% BIS Hallmarked</span>
                 <span className="text-secondary/50">✦</span>
-                <span className="text-[10px] tracking-[0.3em] font-bold text-ivory uppercase">Certified Diamonds</span>
+                <span className="text-[10px] tracking-[0.3em] font-bold text-white/80 uppercase">Certified Diamonds</span>
                 <span className="text-secondary/50">✦</span>
                 <span className="text-[10px] tracking-[0.3em] font-bold text-secondary uppercase">Legacy Since 1995</span>
                 <span className="text-secondary/50">✦</span>
-                <span className="text-[10px] tracking-[0.3em] font-bold text-ivory uppercase">Master Craftsmanship</span>
+                <span className="text-[10px] tracking-[0.3em] font-bold text-white/80 uppercase">Master Craftsmanship</span>
                 <span className="text-secondary/50">✦</span>
               </div>
             ))}
@@ -185,7 +185,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#050202]/90 via-[#050202]/20 to-transparent" />
               <div className="relative z-10 text-center flex flex-col items-center justify-end h-full pb-8">
                 <span className="text-[9px] tracking-[0.5em] uppercase text-white/70 mb-6 opacity-0 group-hover:opacity-100 transition-all duration-1000 transform translate-y-4 group-hover:translate-y-0">Bespoke</span>
-                <h4 className="text-5xl font-serif font-light text-white">{CATEGORIES[0]?.name || 'Gold'}</h4>
+                <h4 className="text-4xl md:text-5xl font-serif font-light text-white">{CATEGORIES[0]?.name || 'Gold'}</h4>
                 <div className="mt-8 text-[9px] tracking-[0.4em] uppercase text-white border-b border-white pb-2 opacity-0 group-hover:opacity-100 transition-all duration-1000 transform translate-y-4 group-hover:translate-y-0">
                   Discover
                 </div>
@@ -197,7 +197,7 @@ export default function Home() {
               <MouseParallaxImage src="/IMG_20260603_142513.png" alt="Diamond Jewellery" intensity={15} />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050202]/90 via-[#050202]/20 to-transparent" />
               <div className="relative z-10 text-center flex flex-col items-center justify-end h-full pb-8">
-                <h4 className="text-4xl font-serif font-light text-white mb-6">{CATEGORIES[1]?.name || 'Diamond'}</h4>
+                <h4 className="text-4xl md:text-5xl font-serif font-light text-white mb-6">{CATEGORIES[1]?.name || 'Diamond'}</h4>
                 <div className="text-[9px] tracking-[0.4em] uppercase text-white border-b border-white pb-2 opacity-0 group-hover:opacity-100 transition-all duration-1000 transform translate-y-4 group-hover:translate-y-0">
                   Discover
                 </div>
@@ -209,7 +209,7 @@ export default function Home() {
                <MouseParallaxImage src="/IMG_20260603_142317.png" alt="Silver Jewellery" intensity={15} />
                <div className="absolute inset-0 bg-gradient-to-t from-[#050202]/90 via-[#050202]/20 to-transparent" />
                <div className="relative z-10 text-center flex flex-col items-center justify-end h-full pb-8">
-                <h4 className="text-3xl font-serif font-light text-white mb-6">{CATEGORIES[2]?.name || 'Silver'}</h4>
+                <h4 className="text-4xl md:text-5xl font-serif font-light text-white mb-6">{CATEGORIES[2]?.name || 'Silver'}</h4>
                 <div className="text-[9px] tracking-[0.4em] uppercase text-white border-b border-white pb-2 opacity-0 group-hover:opacity-100 transition-all duration-1000 transform translate-y-4 group-hover:translate-y-0">
                   Discover
                 </div>
@@ -243,7 +243,7 @@ export default function Home() {
       </section>
 
       {/* Showroom Editorial CTA */}
-      <section className="relative py-24 overflow-hidden bg-primary border-t border-white/10">
+      <section className="relative py-28 overflow-hidden bg-[#050202] border-t border-white/10">
         <div className="absolute inset-0">
           <Image 
             src="/showroom.jpg" 
@@ -251,7 +251,7 @@ export default function Home() {
             fill 
             className="object-cover opacity-40 animate-slow-zoom"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050202]/90 via-[#050202]/70 to-transparent" />
         </div>
         
         <div className="relative z-10 container mx-auto px-6 max-w-4xl text-center text-white">

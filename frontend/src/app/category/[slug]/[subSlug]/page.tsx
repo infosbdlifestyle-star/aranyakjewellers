@@ -63,7 +63,7 @@ export default function SubCategoryPage() {
         {/* Massive Initial Letter */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
           <Reveal>
-            <span className="text-[30vw] font-serif font-light text-white/[0.03] select-none leading-none transform translate-y-12">
+            <span className="text-[30vw] font-serif font-light text-white/[0.06] select-none leading-none transform translate-y-12">
               {subCategory.name[0]}
             </span>
           </Reveal>

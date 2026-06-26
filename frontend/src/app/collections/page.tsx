@@ -12,7 +12,7 @@ export default function CollectionsPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Page Hero */}
-      <section className="relative pt-32 pb-20 px-6 text-center bg-[#050202] text-white overflow-hidden">
+      <section className="relative py-28 md:py-36 px-6 text-center bg-[#050202] text-white overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity animate-slow-zoom" />
         <div className="relative z-10">
           <Reveal y={40}>
@@ -76,7 +76,7 @@ export default function CollectionsPage() {
                           <Link
                             key={sub.id}
                             href={`/category/${cat.slug}/${sub.slug}`}
-                            className={`flex items-center gap-4 text-sm text-white/60 hover:text-white transition-colors duration-300 group/link ${isEven ? 'justify-start' : 'justify-end'}`}
+                            className={`flex items-center gap-4 text-sm text-white/60 hover:text-white transition-colors duration-300 group/link ${isEven ? 'justify-start' : 'justify-end'} py-1`}
                           >
                             {isEven && <span className="w-0 group-hover/link:w-6 h-[1px] bg-secondary transition-all duration-300" />}
                             <span className="tracking-wide uppercase text-[10px] font-bold">{sub.name}</span>

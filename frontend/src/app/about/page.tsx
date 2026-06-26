@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Editorial Hero */}
-      <section className="pt-32 pb-20 px-6 text-center relative overflow-hidden">
+      <section className="py-28 md:py-36 px-6 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
         <div className="absolute inset-0 silk-texture opacity-20 mix-blend-overlay" />
         <Reveal y={40}>
@@ -33,7 +33,7 @@ export default function AboutPage() {
             {/* Image Side */}
             <div className="w-full md:w-5/12 relative">
               <Reveal>
-                <div className="relative aspect-[3/4] w-full bg-primary/5 overflow-hidden group">
+                <div className="relative aspect-[3/4] w-full bg-[#0A0505] overflow-hidden group">
                   <Image 
                     src="/md.jpg" 
                     alt="Managing Director - Aranyak Jewellers" 
@@ -72,23 +72,23 @@ export default function AboutPage() {
               </Reveal>
 
               <Reveal delay={0.2}>
-                <div className="grid grid-cols-2 pt-12 border-t border-l border-white/10">
-                  <div className="border-r border-b border-white/10 p-8 hover:bg-white/[0.02] transition-colors duration-500">
+                <div className="grid grid-cols-2 pt-12 border-t border-l border-white/10 divide-x divide-y divide-white/10">
+                  <div className="p-8 hover:bg-white/[0.02] transition-colors duration-500">
                     <div className="text-sm font-editorial text-white/40 mb-8">I</div>
                     <h3 className="text-[10px] font-bold tracking-[0.3em] uppercase mb-3 text-white">Hallmark Certified</h3>
                     <p className="text-xs text-white/50 leading-relaxed font-light">Absolute transparency in purity. Every gram accounted for.</p>
                   </div>
-                  <div className="border-r border-b border-white/10 p-8 hover:bg-white/[0.02] transition-colors duration-500">
+                  <div className="p-8 hover:bg-white/[0.02] transition-colors duration-500">
                     <div className="text-sm font-editorial text-white/40 mb-8">II</div>
                     <h3 className="text-[10px] font-bold tracking-[0.3em] uppercase mb-3 text-white">25+ Years of Trust</h3>
                     <p className="text-xs text-white/50 leading-relaxed font-light">A generational legacy of uncompromising quality.</p>
                   </div>
-                  <div className="border-r border-b border-white/10 p-8 hover:bg-white/[0.02] transition-colors duration-500">
+                  <div className="p-8 hover:bg-white/[0.02] transition-colors duration-500">
                     <div className="text-sm font-editorial text-white/40 mb-8">III</div>
-                    <h3 className="text-[10px] font-bold tracking-[0.3em] uppercase mb-3 text-white">05 Showrooms</h3>
+                    <h3 className="text-[10px] font-bold tracking-[0.3em] uppercase mb-3 text-white">04 Showrooms</h3>
                     <p className="text-xs text-white/50 leading-relaxed font-light">Luxurious boutiques across Tripura for your convenience.</p>
                   </div>
-                  <div className="border-r border-b border-white/10 p-8 hover:bg-white/[0.02] transition-colors duration-500">
+                  <div className="p-8 hover:bg-white/[0.02] transition-colors duration-500">
                     <div className="text-sm font-editorial text-white/40 mb-8">IV</div>
                     <h3 className="text-[10px] font-bold tracking-[0.3em] uppercase mb-3 text-white">100% Exchange Value</h3>
                     <p className="text-xs text-white/50 leading-relaxed font-light">Lifetime buy-back guarantees safeguarding your investment.</p>

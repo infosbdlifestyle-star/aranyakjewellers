@@ -12,7 +12,7 @@ const CONTACT_INFO = [
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
     ),
     title: 'Visit Us',
-    details: ['Battala, Agartala', 'Tripura 799001, India'],
+    details: ['M B B CHOWMUHANI, AGARTALA', 'Tripura 799001, India'],
   },
   {
     icon: (
@@ -34,7 +34,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Hero */}
-      <section className="py-24 relative bg-[#050202] text-white text-center border-b border-white/10 overflow-hidden">
+      <section className="py-28 md:py-36 relative bg-[#050202] text-white text-center border-b border-white/10 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
         <div className="absolute inset-0 silk-texture opacity-20 mix-blend-overlay" />
         <Reveal>
@@ -45,11 +45,11 @@ export default function ContactPage() {
 
       {/* Contact Cards */}
       <section className="py-24 bg-[#050202] text-white">
-        <div className="container mx-auto px-4 max-w-5xl">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid md:grid-cols-3 gap-8 mb-32">
             {CONTACT_INFO.map((info, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="bg-[#0A0505] border border-white/10 p-12 text-center space-y-6 transition-colors duration-700 h-full group">
+                <div className="bg-[#0A0505] border border-white/10 p-12 text-center space-y-6 transition-colors duration-700 min-h-[260px] flex flex-col items-center justify-center group">
                   <div className="w-16 h-16 mx-auto bg-[#050202] border border-white/10 flex items-center justify-center text-white/80 group-hover:text-white transition-colors duration-500">
                     {info.icon}
                   </div>
