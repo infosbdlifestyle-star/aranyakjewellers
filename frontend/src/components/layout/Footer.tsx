@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-white pt-16 pb-8">
+    <footer className="bg-[#050202] text-white pt-16 pb-8 border-t border-white/10">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
@@ -17,7 +17,7 @@ const Footer = () => {
                 className="h-14 w-auto brightness-0 invert"
               />
             </Link>
-            <p className="text-sm text-ivory/60 leading-relaxed">
+            <p className="text-sm text-white/60 leading-relaxed">
               Exquisite craftsmanship and timeless designs. Aranyak Jewellers brings you the finest gold, diamond, and silver jewellery in Tripura.
             </p>
           </div>
@@ -25,11 +25,10 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h4 className="text-lg font-serif font-bold text-secondary mb-6">Quick Links</h4>
-            <ul className="space-y-4 text-sm text-ivory/70">
+            <ul className="space-y-4 text-sm text-white/70">
               <li><Link href="/about" className="hover:text-secondary transition-colors">About Us</Link></li>
               <li><Link href="/collections" className="hover:text-secondary transition-colors">Our Collections</Link></li>
               <li><Link href="/stores" className="hover:text-secondary transition-colors">Store Locator</Link></li>
-              <li><Link href="/gold-rate" className="hover:text-secondary transition-colors">Live Gold Rate</Link></li>
               <li><Link href="/contact" className="hover:text-secondary transition-colors">Contact Us</Link></li>
             </ul>
           </div>
@@ -37,7 +36,7 @@ const Footer = () => {
           {/* Our Collections */}
           <div>
             <h4 className="text-lg font-serif font-bold text-secondary mb-6">Collections</h4>
-            <ul className="space-y-4 text-sm text-ivory/70">
+            <ul className="space-y-4 text-sm text-white/70">
               <li><Link href="/category/gold" className="hover:text-secondary transition-colors">Gold Jewellery</Link></li>
               <li><Link href="/category/diamond" className="hover:text-secondary transition-colors">Diamond Jewellery</Link></li>
               <li><Link href="/category/silver" className="hover:text-secondary transition-colors">Silver Jewellery</Link></li>
@@ -48,7 +47,7 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h4 className="text-lg font-serif font-bold text-secondary mb-6">Get in Touch</h4>
-            <div className="space-y-4 text-sm text-ivory/70">
+            <div className="space-y-4 text-sm text-white/70">
               <p className="flex items-start gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-secondary shrink-0 mt-0.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                 Battala, Agartala, Tripura 799001
@@ -70,11 +69,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-ivory/10 pt-8 flex flex-col md:flex-row items-center justify-between text-[10px] text-ivory/40 uppercase tracking-widest">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between text-[10px] text-white/40 uppercase tracking-widest">
           <p>&copy; {currentYear} Aranyak Jewellers. All Rights Reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="hover:text-ivory/70">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-ivory/70">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-white/70">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white/70">Terms of Service</Link>
           </div>
         </div>
       </div>

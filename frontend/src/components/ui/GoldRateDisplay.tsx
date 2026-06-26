@@ -13,17 +13,17 @@ const GoldRateDisplay = () => {
   return (
     <div className="space-y-4">
       {GOLD_RATES.map(rate => (
-        <div key={rate.id} className="bg-white border border-border p-6 flex items-center justify-between hover:shadow-lg transition-shadow duration-300">
+        <div key={rate.id} className="bg-[#0A0505] border border-white/10 p-8 flex items-center justify-between hover:border-secondary/40 transition-colors duration-500 group">
           <div>
-            <h3 className="text-lg font-serif font-bold">{rate.purity}KT Gold</h3>
-            <span className="text-xs text-muted-foreground">per 10 grams</span>
+            <h3 className="text-xl font-serif font-light text-white group-hover:text-secondary transition-colors duration-300">{rate.purity}KT Gold</h3>
+            <span className="text-[10px] tracking-widest uppercase font-bold text-white/50">per 10 grams</span>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-serif font-bold text-primary">
+            <p className="text-3xl font-serif font-light text-secondary mb-1">
               ₹{rate.pricePer10g.toLocaleString('en-IN')}
             </p>
-            <span className="text-[10px] text-muted-foreground">
-              Last updated: {new Date(rate.updatedAt).toLocaleDateString('en-IN')}
+            <span className="text-[9px] tracking-widest uppercase font-bold text-white/40">
+              Updated: {new Date(rate.updatedAt).toLocaleDateString('en-IN')}
             </span>
           </div>
         </div>

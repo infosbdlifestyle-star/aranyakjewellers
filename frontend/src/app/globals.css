@@ -2,21 +2,21 @@
 
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #111111;
-    --primary: #2A0A0A; /* Deepest Wine / Charcoal */
-    --primary-foreground: #ffffff;
-    --secondary: #CBA135; /* Champagne Gold */
-    --secondary-foreground: #111111;
-    --accent: #E5D3B3;
-    --accent-foreground: #2A0A0A;
-    --ivory: #FAF9F6; /* Off-white for less eye strain */
-    --muted: #f4f4f5;
-    --muted-foreground: #71717a;
-    --card: #ffffff;
-    --card-foreground: #111111;
-    --border: #e2e2e7;
-    --input: #e2e2e7;
+    --background: #050202;
+    --foreground: #ffffff;
+    --primary: #CBA135; /* Champagne Gold */
+    --primary-foreground: #050202;
+    --secondary: #E5D3B3; /* Lighter Gold Accent */
+    --secondary-foreground: #050202;
+    --accent: #2A0A0A; /* Deepest Wine / Charcoal */
+    --accent-foreground: #ffffff;
+    --ivory: #ffffff; /* Using pure white for contrasts against dark bg */
+    --muted: #1A1A1A;
+    --muted-foreground: #a1a1aa;
+    --card: #0A0505;
+    --card-foreground: #ffffff;
+    --border: #27272a;
+    --input: #27272a;
     --ring: #CBA135;
     --radius: 0.5rem;
   }
@@ -79,12 +79,12 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
-/* Glassmorphism utility */
+/* Glassmorphism utility - Dark Theme Default */
 .glass {
-  background: rgba(250, 249, 246, 0.6);
+  background: rgba(10, 5, 5, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .dark .glass {
@@ -282,7 +282,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--ivory);
+  background: #0A0505;
 }
 
 ::-webkit-scrollbar-thumb {
