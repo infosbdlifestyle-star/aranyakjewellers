@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 export default function AdminBannersPage() {
   const { user, token, isAuthenticated, isLoading } = useAuth();
@@ -16,6 +15,7 @@ export default function AdminBannersPage() {
   const [editingBanner, setEditingBanner] = useState<any>(null);
   const [saving, setSaving] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<{type: string, msg: string}>({type: '', msg: ''});
 
   const [formData, setFormData] = useState({
     title: '',
@@ -44,6 +44,7 @@ export default function AdminBannersPage() {
   };
 
   const handleOpenModal = (banner: any = null) => {
+    setSaveStatus({type: '', msg: ''});
     if (banner) {
       setEditingBanner(banner);
       setFormData({
@@ -87,21 +88,24 @@ export default function AdminBannersPage() {
     e.preventDefault();
     if (!token) return;
     if (!formData.imageUrl) {
-      alert('Image is required');
+      setSaveStatus({type: 'error', msg: 'Banner image is required.'});
       return;
     }
     
     setSaving(true);
+    setSaveStatus({type: '', msg: ''});
     try {
       if (editingBanner) {
         await api.updateBanner(token, editingBanner.id, formData);
+        setSaveStatus({type: 'success', msg: '✓ Banner updated successfully!'});
       } else {
         await api.createBanner(token, formData);
+        setSaveStatus({type: 'success', msg: '✓ Banner created successfully!'});
       }
       fetchBanners();
-      setIsModalOpen(false);
+      setTimeout(() => setIsModalOpen(false), 1000);
     } catch (err) {
-      alert('Failed to save banner');
+      setSaveStatus({type: 'error', msg: '✗ Failed to save banner.'});
     } finally {
       setSaving(false);
     }
@@ -120,163 +124,249 @@ export default function AdminBannersPage() {
   if (isLoading || !user || (user.role !== 'ADMIN' && user.role !== 'SUPER_ADMIN')) return null;
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAFAF8]">
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-40">
-        <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
-              <Link href="/admin" className="p-2 hover:bg-gray-100 rounded-lg transition-all" title="Back to Dashboard">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m15 18-6-6 6-6"/></svg>
-              </Link>
-              <div>
-                <h1 className="text-lg font-semibold text-gray-900">Banner Management</h1>
-              </div>
-            </div>
-            
-            <button 
-              onClick={() => handleOpenModal()}
-              className="bg-gray-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition-all flex items-center gap-2 shadow-sm"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-              Add Banner
-            </button>
-          </div>
+    <main className="p-6 lg:p-10 flex flex-col h-full">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div>
+          <h1 className="text-3xl font-serif font-light tracking-tight text-white/90">Banner <span className="text-secondary italic">Management</span></h1>
+          <p className="text-sm text-white/50 mt-1">Manage homepage carousel images.</p>
+        </div>
+        <button 
+          onClick={() => handleOpenModal()}
+          className="bg-secondary text-[#050202] hover:bg-secondary/90 px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(179,139,63,0.3)] flex items-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+          Add Banner
+        </button>
+      </div>
+
+      <div className="bg-[#1A1515]/50 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl flex-1 overflow-hidden flex flex-col">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-white/5 border-b border-white/10">
+                <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Banner</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Order</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Status</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5">
+              {loading ? (
+                <tr>
+                  <td colSpan={4} className="px-6 py-10 text-center text-sm text-white/50">
+                    <div className="animate-pulse flex flex-col items-center gap-3">
+                      <div className="w-8 h-8 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
+                      Loading banners...
+                    </div>
+                  </td>
+                </tr>
+              ) : banners.length > 0 ? (
+                banners.map((b) => (
+                  <tr key={b.id} className="hover:bg-white/5 transition-colors group">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-4">
+                        <div className="w-32 h-16 bg-black rounded-lg overflow-hidden border border-white/10 shrink-0 relative">
+                          {b.imageUrl ? (
+                            <img src={b.imageUrl} alt="" className="w-full h-full object-cover" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-white/20">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                            </div>
+                          )}
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-white/90 truncate">{b.title || 'Untitled Banner'}</p>
+                          {b.link && <p className="text-[10px] text-white/40 truncate max-w-[250px] mt-0.5">{b.link}</p>}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-xs font-mono text-white/60">{b.order}</td>
+                    <td className="px-6 py-4">
+                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${
+                        b.isActive 
+                          ? 'bg-green-500/10 text-green-400 border-green-500/20' 
+                          : 'bg-white/5 text-white/40 border-white/10'
+                      }`}>
+                        {b.isActive ? 'Active' : 'Hidden'}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button 
+                          onClick={() => handleOpenModal(b)} 
+                          className="p-2 bg-white/5 hover:bg-secondary/20 hover:text-secondary rounded-lg text-white/60 transition-colors"
+                          title="Edit Banner"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+                        </button>
+                        <button 
+                          onClick={() => handleDelete(b.id)} 
+                          className="p-2 bg-white/5 hover:bg-red-500/20 hover:text-red-400 rounded-lg text-white/60 transition-colors"
+                          title="Delete Banner"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={4} className="px-6 py-16 text-center text-white/40">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="mx-auto mb-4 opacity-50"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                    <p className="text-sm">No banners found. Click "Add Banner" to create one.</p>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <section className="flex-1 py-8">
-        <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-gray-50 border-b border-gray-200">
-                  <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase">Banner</th>
-                  <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase">Order</th>
-                  <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase">Status</th>
-                  <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {loading ? (
-                  <tr>
-                    <td colSpan={4} className="px-4 py-6 text-center text-gray-500">Loading banners...</td>
-                  </tr>
-                ) : banners.length > 0 ? (
-                  banners.map((b) => (
-                    <tr key={b.id} className="hover:bg-gray-50/50">
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-3">
-                          <div className="w-24 h-12 bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
-                            {b.imageUrl ? (
-                              <img src={b.imageUrl} alt="" className="w-full h-full object-cover" />
-                            ) : (
-                              <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">No Image</div>
-                            )}
-                          </div>
-                          <div>
-                            <p className="text-sm font-medium text-gray-900">{b.title || 'Untitled Banner'}</p>
-                            {b.link && <p className="text-[10px] text-gray-500">{b.link}</p>}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-4 py-3"><span className="text-sm text-gray-900 font-medium">{b.order}</span></td>
-                      <td className="px-4 py-3">
-                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold ${
-                          b.isActive ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500'
-                        }`}>
-                          {b.isActive ? 'Active' : 'Inactive'}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <button onClick={() => handleOpenModal(b)} className="text-blue-600 hover:text-blue-800 text-sm font-medium">Edit</button>
-                          <button onClick={() => handleDelete(b.id)} className="text-red-600 hover:text-red-800 text-sm font-medium">Delete</button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={4} className="px-4 py-10 text-center text-gray-500">No banners found. Click "Add Banner" to create one.</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* Modal */}
+      {/* Add/Edit Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white rounded-xl w-full max-w-md shadow-xl overflow-hidden">
-            <div className="p-4 border-b border-gray-200 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-gray-900">{editingBanner ? 'Edit Banner' : 'Add Banner'}</h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-gray-400 hover:text-gray-600">&times;</button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => !saving && setIsModalOpen(false)} />
+          
+          <div className="bg-[#1A1515] border border-white/10 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative z-10 animate-in zoom-in-95 fade-in duration-200 custom-scrollbar">
+            <div className="sticky top-0 bg-[#1A1515]/90 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between z-20">
+              <h2 className="text-xl font-serif text-white">
+                {editingBanner ? 'Edit Banner' : 'Add New Banner'}
+              </h2>
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                disabled={saving}
+                className="p-2 text-white/40 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors disabled:opacity-50"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              </button>
             </div>
-            <form onSubmit={handleSubmit} className="p-4 space-y-4">
-              <div className="bg-gray-50 p-5 rounded-lg border border-gray-200">
-                <label className="block text-sm font-bold text-gray-900 mb-1">Banner Image *</label>
-                <p className="text-xs text-gray-500 mb-4">Recommended size: <strong className="text-gray-700">1920x1080 pixels</strong> (Landscape). Max size: 5MB.</p>
-                
-                {formData.imageUrl ? (
-                  <div className="relative w-full h-32 md:h-48 rounded-lg overflow-hidden border border-gray-300 group shadow-sm bg-white">
-                    <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button 
-                        type="button" 
-                        onClick={() => setFormData({...formData, imageUrl: ''})} 
-                        className="bg-red-600 text-white px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 hover:bg-red-700 shadow-lg transition-all"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
-                        Delete Image
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 flex flex-col items-center justify-center bg-white hover:bg-gray-50 transition-colors relative cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-gray-400 mb-3"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
-                    <span className="text-sm font-medium text-blue-600 underline">Click to upload from computer</span>
-                    <span className="text-xs text-gray-500 mt-2">PNG, JPG, WEBP formats</span>
+
+            <form onSubmit={handleSubmit} className="p-6">
+              {saveStatus.msg && (
+                <div className={`mb-6 px-4 py-3 rounded-xl text-sm font-medium flex items-center gap-2 ${
+                  saveStatus.type === 'success' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'
+                }`}>
+                  {saveStatus.msg}
+                </div>
+              )}
+
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Banner Title (Internal)</label>
+                  <input 
+                    type="text" 
+                    value={formData.title}
+                    onChange={(e) => setFormData({...formData, title: e.target.value})}
+                    className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors"
+                    placeholder="e.g. Summer Sale 2024"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Destination Link (Optional)</label>
+                  <input 
+                    type="text" 
+                    value={formData.link}
+                    onChange={(e) => setFormData({...formData, link: e.target.value})}
+                    className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors"
+                    placeholder="e.g. /category/diamond-rings"
+                  />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Display Order</label>
                     <input 
-                      type="file" 
-                      accept="image/*" 
-                      onChange={handleImageUpload} 
-                      disabled={uploadingImage} 
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                      type="number" 
+                      required
+                      value={formData.order}
+                      onChange={(e) => setFormData({...formData, order: Number(e.target.value)})}
+                      className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors"
                     />
                   </div>
-                )}
-                
-                {uploadingImage && (
-                  <div className="mt-4 flex items-center gap-3 text-sm text-blue-700 font-medium bg-blue-50 p-4 rounded-lg border border-blue-100">
-                    <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                    Uploading image securely...
+                  
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Status</label>
+                    <label className="flex items-center gap-3 bg-[#050202] border border-white/10 rounded-xl px-4 py-3 cursor-pointer select-none">
+                      <div className="relative">
+                        <input 
+                          type="checkbox" 
+                          className="sr-only peer"
+                          checked={formData.isActive}
+                          onChange={(e) => setFormData({...formData, isActive: e.target.checked})}
+                        />
+                        <div className="w-9 h-5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
+                      </div>
+                      <span className="text-sm font-medium text-white">{formData.isActive ? 'Active (Live)' : 'Hidden'}</span>
+                    </label>
                   </div>
-                )}
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Banner Image</label>
+                  {formData.imageUrl ? (
+                    <div className="relative h-48 bg-black rounded-xl border border-white/10 overflow-hidden group">
+                      <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                      <button 
+                        type="button"
+                        onClick={() => setFormData({ ...formData, imageUrl: '' })}
+                        className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-red-400 hover:text-red-300"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                      </button>
+                    </div>
+                  ) : (
+                    <label className="h-48 bg-[#050202] border border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-white/5 hover:border-secondary transition-all group">
+                      {uploadingImage ? (
+                        <div className="w-6 h-6 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
+                      ) : (
+                        <>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white/30 group-hover:text-secondary mb-2 transition-colors"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                          <span className="text-[10px] text-white/50 uppercase tracking-widest font-bold">Upload Image</span>
+                        </>
+                      )}
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        className="hidden" 
+                        onChange={handleImageUpload}
+                        disabled={uploadingImage}
+                      />
+                    </label>
+                  )}
+                  <p className="text-[10px] text-white/40 mt-2 leading-relaxed">
+                    Recommended size: 1920x1080 pixels (Landscape). Max 5MB.
+                  </p>
+                </div>
               </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
-                <input type="text" value={formData.title} onChange={(e) => setFormData({...formData, title: e.target.value})} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 outline-none focus:border-gray-400" placeholder="Optional title" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Link URL</label>
-                <input type="text" value={formData.link} onChange={(e) => setFormData({...formData, link: e.target.value})} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 outline-none focus:border-gray-400" placeholder="e.g. /category/gold-chains" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Display Order</label>
-                <input type="number" value={formData.order} onChange={(e) => setFormData({...formData, order: Number(e.target.value)})} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900 outline-none focus:border-gray-400" />
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <input type="checkbox" id="isActive" checked={formData.isActive} onChange={(e) => setFormData({...formData, isActive: e.target.checked})} className="accent-green-600" />
-                <label htmlFor="isActive" className="text-sm text-gray-700">Banner is active</label>
-              </div>
-              
-              <div className="flex justify-end gap-2 pt-4">
-                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg">Cancel</button>
-                <button type="submit" disabled={saving || uploadingImage} className="px-4 py-2 text-sm text-white bg-gray-900 rounded-lg disabled:opacity-50">{saving ? 'Saving...' : 'Save'}</button>
+
+              <div className="mt-8 pt-6 border-t border-white/10 flex justify-end gap-4">
+                <button 
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  disabled={saving}
+                  className="px-6 py-3 rounded-lg text-sm font-bold text-white/70 hover:bg-white/10 uppercase tracking-widest transition-colors disabled:opacity-50"
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit"
+                  disabled={saving}
+                  className="bg-secondary text-[#050202] hover:bg-secondary/90 px-8 py-3 rounded-lg text-sm font-bold uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(179,139,63,0.3)] disabled:opacity-50 flex items-center gap-2"
+                >
+                  {saving ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-[#050202] border-t-transparent rounded-full animate-spin"></div>
+                      Saving...
+                    </>
+                  ) : (
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                      {editingBanner ? 'Save Changes' : 'Create Banner'}
+                    </>
+                  )}
+                </button>
               </div>
             </form>
           </div>

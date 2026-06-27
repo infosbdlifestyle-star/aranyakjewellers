@@ -3,9 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
-
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 export default function AdminProductsPage() {
   const { user, token, isAuthenticated, isLoading } = useAuth();
@@ -41,7 +39,6 @@ export default function AdminProductsPage() {
 
   useEffect(() => {
     if (isLoading) return;
-    
     if (!isAuthenticated || (user?.role !== 'ADMIN' && user?.role !== 'SUPER_ADMIN')) {
       router.push('/login');
       return;
@@ -66,7 +63,6 @@ export default function AdminProductsPage() {
     setLoading(false);
   };
 
-  // Filtered products
   const filteredProducts = useMemo(() => {
     let result = products;
     if (filterCategory !== 'All') {
@@ -86,22 +82,14 @@ export default function AdminProductsPage() {
     return result;
   }, [products, filterCategory, filterSubCategory, searchQuery]);
 
-  // Get subcategories for current filter
   const filterSubCategories = useMemo(() => {
     if (filterCategory === 'All') return [];
     const cat = dbCategories.find(c => c.name === filterCategory);
     if (!cat) return [];
-    // Assuming backend returns flat categories where parentId points to parent, or we just filter by parentId
     return dbCategories.filter(c => c.parentId === cat.id);
   }, [filterCategory, dbCategories]);
 
-  // Stats
-  const stats = useMemo(() => ({
-    total: products.length,
-    active: products.filter(p => p.isActive).length,
-    outOfStock: products.filter(p => p.stockCount === 0).length,
-    categories: [...new Set(products.map(p => p.category))].length,
-  }), [products]);
+  const rootCategories = dbCategories.filter(c => !c.parentId);
 
   const handleOpenModal = (product: any = null) => {
     setSaveStatus({type: '', msg: ''});
@@ -137,7 +125,6 @@ export default function AdminProductsPage() {
     setIsModalOpen(true);
   };
 
-  // Auto-generate slug from name
   const handleNameChange = (name: string) => {
     const slug = name
       .toLowerCase()
@@ -186,7 +173,6 @@ export default function AdminProductsPage() {
         setSaveStatus({type: 'success', msg: '✓ Product created successfully!'});
       }
       fetchProducts();
-      // Close modal after 1 second so user sees success
       setTimeout(() => setIsModalOpen(false), 1000);
     } catch (err) {
       setSaveStatus({type: 'error', msg: '✗ Failed to save product. Please try again.'});
@@ -200,494 +186,401 @@ export default function AdminProductsPage() {
     try {
       await api.deleteProduct(token, id);
       fetchProducts();
-    } catch {
+    } catch (err) {
       alert('Failed to delete product');
-    }
-  };
-
-  const handleToggleActive = async (product: any) => {
-    if (!token) return;
-    try {
-      await api.updateProduct(token, product.id, { isActive: !product.isActive });
-      fetchProducts();
-    } catch {
-      alert('Failed to update product status');
     }
   };
 
   if (isLoading || !user || (user.role !== 'ADMIN' && user.role !== 'SUPER_ADMIN')) return null;
 
-  // Get subcategories for current form category
-  const formSubCategories = useMemo(() => {
-    const cat = dbCategories.find(c => c.name === formData.category);
-    if (!cat) return [];
-    return dbCategories.filter(c => c.parentId === cat.id);
-  }, [formData.category, dbCategories]);
-  
-  const rootCategories = dbCategories.filter(c => !c.parentId);
-
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAFAF8]">
-      
-      {/* Top Bar */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-40">
-        <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
-              <Link href="/admin" className="p-2 hover:bg-gray-100 rounded-lg transition-all" title="Back to Dashboard">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m15 18-6-6 6-6"/></svg>
-              </Link>
-              <div>
-                <h1 className="text-lg font-semibold text-gray-900">Product Management</h1>
-                <p className="text-xs text-gray-500">{products.length} products in inventory</p>
-              </div>
-            </div>
-            
-            <button 
-              onClick={() => handleOpenModal()}
-              className="bg-gray-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition-all flex items-center gap-2 shadow-sm"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-              Add Product
-            </button>
-          </div>
+    <main className="p-6 lg:p-10 flex flex-col h-full">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div>
+          <h1 className="text-3xl font-serif font-light tracking-tight text-white/90">Product <span className="text-secondary italic">Inventory</span></h1>
+          <p className="text-sm text-white/50 mt-1">Manage your boutique catalog and stock.</p>
+        </div>
+        <button 
+          onClick={() => handleOpenModal()}
+          className="bg-secondary text-[#050202] hover:bg-secondary/90 px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(179,139,63,0.3)] flex items-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+          Add Product
+        </button>
+      </div>
+
+      {/* Filters */}
+      <div className="bg-[#1A1515]/50 backdrop-blur-md rounded-2xl border border-white/10 p-5 mb-8 flex flex-col md:flex-row gap-4">
+        <div className="flex-1 relative">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input 
+            type="text" 
+            placeholder="Search products by name, SKU, or description..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-[#050202] border border-white/10 rounded-xl pl-12 pr-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-secondary transition-colors"
+          />
+        </div>
+        
+        <div className="flex gap-4">
+          <select 
+            value={filterCategory}
+            onChange={(e) => {
+              setFilterCategory(e.target.value);
+              setFilterSubCategory('All');
+            }}
+            className="bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary appearance-none min-w-[150px]"
+          >
+            <option value="All">All Categories</option>
+            {rootCategories.map(c => (
+              <option key={c.id} value={c.name}>{c.name}</option>
+            ))}
+          </select>
+
+          <select 
+            value={filterSubCategory}
+            onChange={(e) => setFilterSubCategory(e.target.value)}
+            disabled={filterCategory === 'All' || filterSubCategories.length === 0}
+            className="bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary appearance-none min-w-[150px] disabled:opacity-50"
+          >
+            <option value="All">All Subcategories</option>
+            {filterSubCategories.map(c => (
+              <option key={c.id} value={c.name}>{c.name}</option>
+            ))}
+          </select>
         </div>
       </div>
 
-      <section className="flex-1 py-6">
-        <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
-          
-          {/* Stats Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
-              <p className="text-xs text-gray-500 font-medium">Total Products</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">{stats.total}</p>
-            </div>
-            <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
-              <p className="text-xs text-gray-500 font-medium">Active</p>
-              <p className="text-2xl font-bold text-green-600 mt-1">{stats.active}</p>
-            </div>
-            <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
-              <p className="text-xs text-gray-500 font-medium">Out of Stock</p>
-              <p className="text-2xl font-bold text-red-500 mt-1">{stats.outOfStock}</p>
-            </div>
-            <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
-              <p className="text-xs text-gray-500 font-medium">Categories Used</p>
-              <p className="text-2xl font-bold text-blue-600 mt-1">{stats.categories}</p>
-            </div>
-          </div>
-
-          {/* Filters Bar */}
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 mb-6">
-            <div className="flex flex-col md:flex-row gap-3">
-              {/* Search */}
-              <div className="flex-1 relative">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <input
-                  type="text"
-                  placeholder="Search products by name, SKU..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg pl-10 pr-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:bg-white transition-all placeholder:text-gray-400"
-                />
-              </div>
-
-              {/* Category Filter */}
-              <select
-                value={filterCategory}
-                onChange={(e) => { setFilterCategory(e.target.value); setFilterSubCategory('All'); }}
-                className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 min-w-[160px]"
-              >
-                <option value="All">All Categories</option>
-                {rootCategories.map(c => (
-                  <option key={c.id} value={c.name}>{c.name}</option>
-                ))}
-              </select>
-
-              {/* SubCategory Filter */}
-              <select
-                value={filterSubCategory}
-                onChange={(e) => setFilterSubCategory(e.target.value)}
-                disabled={filterSubCategories.length === 0}
-                className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 min-w-[180px] disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <option value="All">All Sub-Categories</option>
-                {filterSubCategories.map(sub => (
-                  <option key={sub.id} value={sub.name}>{sub.name}</option>
-                ))}
-              </select>
-            </div>
-            
-            {/* Results info */}
-            <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
-              <span>Showing {filteredProducts.length} of {products.length} products</span>
-              {(filterCategory !== 'All' || filterSubCategory !== 'All' || searchQuery) && (
-                <button 
-                  onClick={() => { setFilterCategory('All'); setFilterSubCategory('All'); setSearchQuery(''); }}
-                  className="text-blue-600 hover:text-blue-800 font-medium"
-                >
-                  Clear filters
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Products Table */}
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200">
-                    <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Product</th>
-                    <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Category</th>
-                    <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Sub-Category</th>
-                    <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Specs</th>
-                    <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Stock</th>
-                    <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Price</th>
-                    <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
-                    <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {loading ? (
-                    [...Array(5)].map((_, i) => (
-                      <tr key={i} className="animate-pulse">
-                        <td colSpan={8} className="px-4 py-6"><div className="h-4 bg-gray-100 rounded w-full" /></td>
-                      </tr>
-                    ))
-                  ) : filteredProducts.length > 0 ? (
-                    filteredProducts.map((p) => (
-                      <tr key={p.id} className="hover:bg-gray-50/50 transition-colors">
-                        <td className="px-4 py-3">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center shrink-0 overflow-hidden">
-                              {p.images?.[0] ? (
-                                <img src={p.images[0]} alt="" className="w-full h-full object-cover" />
-                              ) : (
-                                <span className="text-gray-300 font-serif font-bold text-sm">A</span>
-                              )}
-                            </div>
-                            <div className="min-w-0">
-                              <p className="text-sm font-medium text-gray-900 truncate max-w-[200px]">{p.name}</p>
-                              <p className="text-[10px] text-gray-400 font-mono">{p.sku || 'No SKU'}</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">
-                            {p.category}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3">
-                          {p.subCategory ? (
-                            <span className="text-xs text-gray-600">{p.subCategory}</span>
+      {/* Product List */}
+      <div className="bg-[#1A1515]/50 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl flex-1 overflow-hidden flex flex-col">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-white/5 border-b border-white/10">
+                <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Product</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">SKU</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Category</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Weight (g)</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Stock</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Status</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5">
+              {loading ? (
+                <tr>
+                  <td colSpan={7} className="px-6 py-10 text-center text-sm text-white/50">
+                    <div className="animate-pulse flex flex-col items-center gap-3">
+                      <div className="w-8 h-8 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
+                      Loading inventory...
+                    </div>
+                  </td>
+                </tr>
+              ) : filteredProducts.length === 0 ? (
+                <tr>
+                  <td colSpan={7} className="px-6 py-16 text-center text-white/40">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="mx-auto mb-4 opacity-50"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 14 3-3 3 3"/><path d="M12 11v6"/></svg>
+                    <p className="text-sm">No products found matching your criteria.</p>
+                  </td>
+                </tr>
+              ) : (
+                filteredProducts.map((product) => (
+                  <tr key={product.id} className="hover:bg-white/5 transition-colors group">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-lg bg-black overflow-hidden border border-white/10 shrink-0 relative">
+                          {product.images && product.images.length > 0 ? (
+                            <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover" />
                           ) : (
-                            <span className="text-xs text-gray-300 italic">—</span>
+                            <div className="w-full h-full flex items-center justify-center text-white/20">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                            </div>
                           )}
-                        </td>
-                        <td className="px-4 py-3">
-                          <div className="text-xs font-medium text-gray-700">
-                            {p.goldPurity}KT <span className="text-gray-300">•</span> {p.goldWeight}g
-                          </div>
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className={`text-xs font-semibold ${p.stockCount > 0 ? 'text-green-600' : 'text-red-500'}`}>
-                            {p.stockCount}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3">
-                          <p className="text-sm font-semibold text-gray-900">
-                            {p.pricing?.finalPrice ? `₹${p.pricing.finalPrice.toLocaleString('en-IN')}` : '—'}
-                          </p>
-                        </td>
-                        <td className="px-4 py-3">
-                          <button 
-                            onClick={() => handleToggleActive(p)}
-                            className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold cursor-pointer transition-colors ${
-                              p.isActive 
-                                ? 'bg-green-50 text-green-700 border border-green-200 hover:bg-green-100' 
-                                : 'bg-gray-100 text-gray-500 border border-gray-200 hover:bg-gray-200'
-                            }`}
-                            title="Click to toggle"
-                          >
-                            {p.isActive ? '● Live' : '○ Hidden'}
-                          </button>
-                        </td>
-                        <td className="px-4 py-3 text-right">
-                          <div className="flex items-center justify-end gap-1">
-                            <button 
-                              onClick={() => handleOpenModal(p)}
-                              className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 transition-all rounded-lg"
-                              title="Edit product"
-                            >
-                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
-                            </button>
-                            <button 
-                              onClick={() => handleDelete(p.id)}
-                              className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 transition-all rounded-lg"
-                              title="Delete product"
-                            >
-                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan={8} className="px-4 py-16 text-center">
-                        <div className="text-gray-400 mb-2">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="mx-auto"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 9 6 6"/><path d="m15 9-6 6"/></svg>
                         </div>
-                        <p className="text-gray-500 font-medium">No products found</p>
-                        <p className="text-xs text-gray-400 mt-1">
-                          {searchQuery || filterCategory !== 'All' ? 'Try adjusting your filters' : 'Click "Add Product" to create your first product'}
-                        </p>
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
+                        <div>
+                          <p className="text-sm font-medium text-white/90 truncate max-w-[200px]">{product.name}</p>
+                          <p className="text-[10px] text-white/40 truncate max-w-[200px]">{product.slug}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-xs font-mono text-white/60">{product.sku}</td>
+                    <td className="px-6 py-4">
+                      <p className="text-xs text-white/80">{product.category}</p>
+                      {product.subCategory && <p className="text-[10px] text-white/40">{product.subCategory}</p>}
+                    </td>
+                    <td className="px-6 py-4 text-xs text-white/70">
+                      {product.goldWeight ? `${product.goldWeight}g` : '-'}
+                      {product.goldPurity ? <span className="ml-1 text-[10px] text-secondary">({product.goldPurity}K)</span> : null}
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className={`text-xs font-bold ${product.stockCount > 0 ? 'text-white' : 'text-red-400'}`}>
+                        {product.stockCount}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${
+                        product.isActive 
+                          ? 'bg-green-500/10 text-green-400 border-green-500/20' 
+                          : 'bg-white/5 text-white/40 border-white/10'
+                      }`}>
+                        {product.isActive ? 'Live' : 'Hidden'}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button 
+                          onClick={() => handleOpenModal(product)}
+                          className="p-2 bg-white/5 hover:bg-secondary/20 hover:text-secondary rounded-lg text-white/60 transition-colors"
+                          title="Edit Product"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+                        </button>
+                        <button 
+                          onClick={() => handleDelete(product.id)}
+                          className="p-2 bg-white/5 hover:bg-red-500/20 hover:text-red-400 rounded-lg text-white/60 transition-colors"
+                          title="Delete Product"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
-      </section>
+      </div>
 
-      {/* Product Modal */}
+      {/* Add/Edit Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => !saving && setIsModalOpen(false)} />
-          <div className="relative w-full max-w-3xl bg-white rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
-            
-            {/* Modal Header */}
-            <div className="p-6 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white rounded-t-2xl z-10">
-              <div>
-                <h2 className="text-lg font-semibold text-gray-900">
-                  {editingProduct ? 'Edit Product' : 'Add New Product'}
-                </h2>
-                <p className="text-xs text-gray-500 mt-0.5">
-                  {editingProduct ? 'Update the product details below' : 'Fill in the details to create a new product'}
-                </p>
-              </div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => !saving && setIsModalOpen(false)} />
+          
+          <div className="bg-[#1A1515] border border-white/10 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative z-10 animate-in zoom-in-95 fade-in duration-200 custom-scrollbar">
+            <div className="sticky top-0 bg-[#1A1515]/90 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between z-20">
+              <h2 className="text-xl font-serif text-white">
+                {editingProduct ? 'Edit Product' : 'Add New Product'}
+              </h2>
               <button 
-                onClick={() => !saving && setIsModalOpen(false)} 
-                className="p-2 hover:bg-gray-100 rounded-lg transition-all"
+                onClick={() => setIsModalOpen(false)}
                 disabled={saving}
+                className="p-2 text-white/40 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors disabled:opacity-50"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-6 space-y-6">
-              
-              {/* Product Name & Slug */}
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Product Name *</label>
-                  <input 
-                    required
-                    type="text" 
-                    value={formData.name}
-                    onChange={(e) => handleNameChange(e.target.value)}
-                    placeholder="e.g. Gold Filigree Necklace Set"
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:bg-white transition-all placeholder:text-gray-400"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                    URL Slug 
-                    <span className="text-xs text-gray-400 ml-2">auto-generated from name</span>
-                  </label>
-                  <input 
-                    required
-                    type="text" 
-                    value={formData.slug}
-                    onChange={(e) => setFormData({...formData, slug: e.target.value})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:bg-white font-mono transition-all placeholder:text-gray-400"
-                  />
-                </div>
-              </div>
-
-              {/* Category & SubCategory */}
-              <div className="bg-amber-50/50 border border-amber-200/50 rounded-lg p-4 space-y-4">
-                <p className="text-xs font-semibold text-amber-800 uppercase tracking-wider flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
-                  Category & Classification
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Category *</label>
-                    <select 
-                      value={formData.category}
-                      onChange={(e) => setFormData({...formData, category: e.target.value, subCategory: ''})}
-                      className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 transition-all"
-                    >
-                      <option value="">— Select Category —</option>
-                      {rootCategories.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Sub-Category</label>
-                    <select 
-                      value={formData.subCategory}
-                      onChange={(e) => setFormData({...formData, subCategory: e.target.value})}
-                      className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 transition-all"
-                    >
-                      <option value="">— None —</option>
-                      {formSubCategories.map(sub => (
-                        <option key={sub.id} value={sub.name}>{sub.name}</option>
-                      ))}
-                    </select>
-                    {formSubCategories.length === 0 && (
-                      <p className="text-[10px] text-gray-400 mt-1">No sub-categories for {formData.category}</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Specs: Purity, Weight, Stock */}
-              <div className="grid grid-cols-3 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Purity (KT)</label>
-                  <select 
-                    value={formData.goldPurity}
-                    onChange={(e) => setFormData({...formData, goldPurity: Number(e.target.value)})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 transition-all"
-                  >
-                    <option value={9}>9 KT</option>
-                    <option value={18}>18 KT</option>
-                    <option value={22}>22 KT</option>
-                    <option value={24}>24 KT</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Weight (grams) *</label>
-                  <input 
-                    required
-                    type="number" 
-                    step="0.001"
-                    value={formData.goldWeight}
-                    onChange={(e) => setFormData({...formData, goldWeight: Number(e.target.value)})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 transition-all"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Stock Count</label>
-                  <input 
-                    required
-                    type="number" 
-                    value={formData.stockCount}
-                    onChange={(e) => setFormData({...formData, stockCount: Number(e.target.value)})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Description */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Description</label>
-                <textarea 
-                  rows={3}
-                  value={formData.description}
-                  onChange={(e) => setFormData({...formData, description: e.target.value})}
-                  placeholder="Describe the jewellery piece..."
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:bg-white resize-none transition-all placeholder:text-gray-400"
-                />
-              </div>
-
-              {/* Images */}
-              <div className="bg-gray-50 p-5 rounded-lg border border-gray-200">
-                <label className="block text-sm font-bold text-gray-900 mb-1">Product Images</label>
-                <p className="text-xs text-gray-500 mb-4">Recommended size: <strong className="text-gray-700">1000x1000 pixels</strong> (Square). Max size: 5MB per image.</p>
-                
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center bg-white hover:bg-gray-50 transition-colors relative cursor-pointer min-w-[200px]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-400 mb-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
-                    <span className="text-xs font-medium text-blue-600 underline">Upload from computer</span>
-                    <input 
-                      type="file" 
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      disabled={uploadingImage}
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
-                    />
-                  </div>
-                  {uploadingImage && (
-                    <div className="flex items-center gap-2 text-sm text-blue-700 font-medium bg-blue-50 px-4 py-2 rounded-lg border border-blue-100">
-                      <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                      Uploading...
-                    </div>
-                  )}
-                </div>
-                
-                {formData.images.length > 0 && (
-                  <div className="flex gap-4 mt-2 flex-wrap">
-                    {formData.images.map((img, i) => (
-                      <div key={i} className="relative w-24 h-24 bg-white border border-gray-200 rounded-lg overflow-hidden group shadow-sm">
-                        <img src={img} alt="" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
-                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                          <button 
-                            type="button"
-                            onClick={() => handleRemoveImage(i)}
-                            className="bg-red-600 text-white p-2 rounded-lg text-xs font-bold hover:bg-red-700 shadow-lg transition-all"
-                            title="Delete Image"
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
-                          </button>
-                        </div>
-                        {i === 0 && <span className="absolute bottom-1 left-1 bg-black/70 text-white text-[9px] px-1.5 py-0.5 rounded font-medium">Cover</span>}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Active Toggle */}
-              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                <input 
-                  type="checkbox" 
-                  checked={formData.isActive}
-                  onChange={(e) => setFormData({...formData, isActive: e.target.checked})}
-                  className="w-4 h-4 accent-green-600"
-                  id="isActive"
-                />
-                <label htmlFor="isActive" className="text-sm text-gray-700 cursor-pointer">
-                  <span className="font-medium">Product is active</span>
-                  <span className="text-xs text-gray-400 ml-2">— visible to customers on the website</span>
-                </label>
-              </div>
-
-              {/* Status Message */}
+            <form onSubmit={handleSubmit} className="p-6">
               {saveStatus.msg && (
-                <div className={`p-3 rounded-lg text-sm font-medium text-center ${
-                  saveStatus.type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'
+                <div className={`mb-6 px-4 py-3 rounded-xl text-sm font-medium flex items-center gap-2 ${
+                  saveStatus.type === 'success' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'
                 }`}>
                   {saveStatus.msg}
                 </div>
               )}
 
-              {/* Form Actions */}
-              <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Left Col: Basic Info */}
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Product Name</label>
+                    <input 
+                      type="text" 
+                      required
+                      value={formData.name}
+                      onChange={(e) => handleNameChange(e.target.value)}
+                      className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors"
+                      placeholder="e.g. 22K Gold Antique Necklace"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">URL Slug</label>
+                    <input 
+                      type="text" 
+                      required
+                      value={formData.slug}
+                      onChange={(e) => setFormData({...formData, slug: e.target.value})}
+                      className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Description</label>
+                    <textarea 
+                      rows={4}
+                      value={formData.description}
+                      onChange={(e) => setFormData({...formData, description: e.target.value})}
+                      className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors resize-none custom-scrollbar"
+                      placeholder="Product details..."
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Category</label>
+                      <select 
+                        required
+                        value={formData.category}
+                        onChange={(e) => {
+                          setFormData({ ...formData, category: e.target.value, subCategory: '' });
+                        }}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary appearance-none"
+                      >
+                        <option value="">Select Category</option>
+                        {rootCategories.map(c => (
+                          <option key={c.id} value={c.name}>{c.name}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Subcategory</label>
+                      <select 
+                        value={formData.subCategory}
+                        onChange={(e) => setFormData({...formData, subCategory: e.target.value})}
+                        disabled={!formData.category}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary appearance-none disabled:opacity-50"
+                      >
+                        <option value="">None</option>
+                        {dbCategories.filter(c => {
+                          const parent = dbCategories.find(p => p.name === formData.category);
+                          return parent && c.parentId === parent.id;
+                        }).map(c => (
+                          <option key={c.id} value={c.name}>{c.name}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Col: Details & Images */}
+                <div className="space-y-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Gold Purity (K)</label>
+                      <select 
+                        value={formData.goldPurity}
+                        onChange={(e) => setFormData({...formData, goldPurity: Number(e.target.value)})}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary appearance-none"
+                      >
+                        {[0, 9, 18, 22, 24].map(k => (
+                          <option key={k} value={k}>{k === 0 ? 'N/A' : `${k}K`}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Weight (g)</label>
+                      <input 
+                        type="number" 
+                        step="0.01"
+                        value={formData.goldWeight}
+                        onChange={(e) => setFormData({...formData, goldWeight: Number(e.target.value)})}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Stock Count</label>
+                      <input 
+                        type="number" 
+                        required
+                        min="0"
+                        value={formData.stockCount}
+                        onChange={(e) => setFormData({...formData, stockCount: Number(e.target.value)})}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Status</label>
+                      <label className="flex items-center gap-3 bg-[#050202] border border-white/10 rounded-xl px-4 py-3 cursor-pointer select-none">
+                        <div className="relative">
+                          <input 
+                            type="checkbox" 
+                            className="sr-only peer"
+                            checked={formData.isActive}
+                            onChange={(e) => setFormData({...formData, isActive: e.target.checked})}
+                          />
+                          <div className="w-9 h-5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
+                        </div>
+                        <span className="text-sm font-medium text-white">{formData.isActive ? 'Active (Live)' : 'Hidden'}</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Product Images</label>
+                    
+                    <div className="grid grid-cols-3 gap-3 mb-4">
+                      {formData.images.map((img, i) => (
+                        <div key={i} className="aspect-square bg-black rounded-xl border border-white/10 relative overflow-hidden group">
+                          <img src={img} alt="" className="w-full h-full object-cover" />
+                          <button 
+                            type="button"
+                            onClick={() => handleRemoveImage(i)}
+                            className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-red-400 hover:text-red-300"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                          </button>
+                        </div>
+                      ))}
+                      
+                      {formData.images.length < 5 && (
+                        <label className="aspect-square bg-white/5 border border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-white/10 hover:border-secondary transition-all group">
+                          {uploadingImage ? (
+                            <div className="w-6 h-6 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
+                          ) : (
+                            <>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white/30 group-hover:text-secondary mb-2 transition-colors"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                              <span className="text-[10px] text-white/50 uppercase tracking-widest font-bold">Upload</span>
+                            </>
+                          )}
+                          <input 
+                            type="file" 
+                            accept="image/*" 
+                            className="hidden" 
+                            onChange={handleImageUpload}
+                            disabled={uploadingImage}
+                          />
+                        </label>
+                      )}
+                    </div>
+                    <p className="text-[10px] text-white/40 leading-relaxed">
+                      Recommended size: 1000x1000 pixels (Square). Max 5MB per image. First image is the main cover.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-white/10 flex justify-end gap-4">
                 <button 
                   type="button"
                   onClick={() => setIsModalOpen(false)}
                   disabled={saving}
-                  className="px-5 py-2.5 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-all disabled:opacity-50"
+                  className="px-6 py-3 rounded-lg text-sm font-bold text-white/70 hover:bg-white/10 uppercase tracking-widest transition-colors disabled:opacity-50"
                 >
                   Cancel
                 </button>
                 <button 
                   type="submit"
-                  disabled={saving || uploadingImage}
-                  className="px-6 py-2.5 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-all disabled:opacity-50 flex items-center gap-2"
+                  disabled={saving}
+                  className="bg-secondary text-[#050202] hover:bg-secondary/90 px-8 py-3 rounded-lg text-sm font-bold uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(179,139,63,0.3)] disabled:opacity-50 flex items-center gap-2"
                 >
                   {saving ? (
                     <>
-                      <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
+                      <div className="w-4 h-4 border-2 border-[#050202] border-t-transparent rounded-full animate-spin"></div>
                       Saving...
                     </>
                   ) : (
-                    editingProduct ? 'Save Changes' : 'Create Product'
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                      {editingProduct ? 'Save Changes' : 'Create Product'}
+                    </>
                   )}
                 </button>
               </div>

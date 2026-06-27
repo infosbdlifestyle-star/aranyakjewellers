@@ -63,7 +63,6 @@ export default function AdminPage() {
   const totalProducts = products.length;
   const activeProducts = products.filter(p => p.isActive).length;
   const outOfStock = products.filter(p => p.stockCount === 0).length;
-
   const rootCategories = categories.filter(c => !c.parentId);
 
   // Category breakdown
@@ -78,235 +77,150 @@ export default function AdminPage() {
   }));
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAFAF8]">
-      
-      {/* Top Bar */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-40">
-        <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
-              <Link href="/" className="p-2 hover:bg-gray-100 rounded-lg transition-all" title="Back to Website">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m15 18-6-6 6-6"/></svg>
-              </Link>
-              <div>
-                <h1 className="text-lg font-semibold text-gray-900">Admin Dashboard</h1>
-                <p className="text-xs text-gray-500">Welcome, {user.name}</p>
-              </div>
-            </div>
-            <span className="text-[10px] font-bold uppercase px-3 py-1 bg-gray-900 text-white rounded-full">{user.role}</span>
+    <main className="p-6 lg:p-10">
+      <div className="mb-8">
+        <h1 className="text-3xl font-serif font-light tracking-tight text-white/90">Dashboard <span className="text-secondary italic">Overview</span></h1>
+        <p className="text-sm text-white/50 mt-1">Manage your boutique&apos;s digital presence.</p>
+      </div>
+
+      {/* Stats Overview */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        <div className="bg-[#1A1515]/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-2xl relative overflow-hidden group hover:border-white/20 transition-all">
+          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           </div>
+          <p className="text-xs text-white/50 font-medium uppercase tracking-widest relative z-10">Total Products</p>
+          <p className="text-4xl font-bold text-white mt-3 relative z-10">{loading ? '...' : totalProducts}</p>
+        </div>
+
+        <div className="bg-[#1A1515]/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-2xl relative overflow-hidden group hover:border-secondary/30 transition-all">
+          <div className="absolute top-0 right-0 p-4 opacity-10 text-secondary group-hover:opacity-20 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          </div>
+          <p className="text-xs text-white/50 font-medium uppercase tracking-widest relative z-10">Active (Live)</p>
+          <p className="text-4xl font-bold text-secondary mt-3 relative z-10">{loading ? '...' : activeProducts}</p>
+        </div>
+
+        <div className="bg-[#1A1515]/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-2xl relative overflow-hidden group hover:border-red-500/30 transition-all">
+          <div className="absolute top-0 right-0 p-4 opacity-10 text-red-500 group-hover:opacity-20 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m15 9-6 6"/><path d="m9 9 6 6"/><rect width="18" height="18" x="3" y="3" rx="2"/></svg>
+          </div>
+          <p className="text-xs text-white/50 font-medium uppercase tracking-widest relative z-10">Out of Stock</p>
+          <p className="text-4xl font-bold text-red-400 mt-3 relative z-10">{loading ? '...' : outOfStock}</p>
+        </div>
+
+        <div className="bg-[#1A1515]/50 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-2xl relative overflow-hidden group hover:border-blue-500/30 transition-all">
+          <div className="absolute top-0 right-0 p-4 opacity-10 text-blue-500 group-hover:opacity-20 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
+          </div>
+          <p className="text-xs text-white/50 font-medium uppercase tracking-widest relative z-10">Categories</p>
+          <p className="text-4xl font-bold text-blue-400 mt-3 relative z-10">{loading ? '...' : rootCategories.length}</p>
         </div>
       </div>
 
-      <section className="flex-1 py-6">
-        <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
-
-          {/* Stats Overview */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
-              <p className="text-xs text-gray-500 font-medium">Total Products</p>
-              <p className="text-3xl font-bold text-gray-900 mt-2">{loading ? '...' : totalProducts}</p>
+      <div className="grid lg:grid-cols-3 gap-8">
+        
+        {/* Gold Rate Manager */}
+        <div className="lg:col-span-2 bg-[#1A1515]/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden flex flex-col">
+          <div className="p-6 border-b border-white/10 flex items-center justify-between">
+            <div>
+              <h2 className="text-lg font-serif font-medium text-white flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-secondary"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                Gold Rate Manager
+              </h2>
+              <p className="text-xs text-white/40 mt-1 uppercase tracking-wider">Update today&apos;s rates (per 10g)</p>
             </div>
-            <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
-              <p className="text-xs text-gray-500 font-medium">Active (Live)</p>
-              <p className="text-3xl font-bold text-green-600 mt-2">{loading ? '...' : activeProducts}</p>
-            </div>
-            <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
-              <p className="text-xs text-gray-500 font-medium">Out of Stock</p>
-              <p className="text-3xl font-bold text-red-500 mt-2">{loading ? '...' : outOfStock}</p>
-            </div>
-            <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
-              <p className="text-xs text-gray-500 font-medium">Categories</p>
-              <p className="text-3xl font-bold text-blue-600 mt-2">{loading ? '...' : rootCategories.length}</p>
-            </div>
+            {status.msg && (
+              <div className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest animate-in fade-in slide-in-from-top-2 ${
+                status.type === 'success' ? 'bg-secondary/20 text-secondary border border-secondary/30' : 'bg-red-500/20 text-red-400 border border-red-500/30'
+              }`}>
+                {status.msg}
+              </div>
+            )}
           </div>
-
-          <div className="grid lg:grid-cols-3 gap-6">
-            
-            {/* Gold Rate Manager */}
-            <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-              <div className="p-5 border-b border-gray-200">
-                <h2 className="text-sm font-semibold text-gray-900 flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-500"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                  Gold Rate Manager
-                </h2>
-                <p className="text-xs text-gray-500 mt-1">Update today&apos;s gold rates (per 10 grams)</p>
+          
+          <div className="p-6 flex-1">
+            {loading ? (
+              <div className="space-y-4 animate-pulse">
+                <div className="h-16 bg-white/5 rounded-xl" />
+                <div className="h-16 bg-white/5 rounded-xl" />
               </div>
-              
-              <div className="p-5">
-                {loading ? (
-                  <div className="space-y-4 animate-pulse">
-                    <div className="h-16 bg-gray-100 rounded-lg" />
-                    <div className="h-16 bg-gray-100 rounded-lg" />
-                  </div>
-                ) : (
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {[9, 18, 22, 24].map((purity) => {
-                      const currentRate = rates.find(r => r.purity === purity);
-                      return (
-                        <div key={purity} className="p-4 bg-gray-50 rounded-lg border border-gray-200 space-y-3">
-                          <div className="flex justify-between items-center">
-                            <span className="text-sm font-semibold text-gray-900">{purity}KT Gold</span>
-                            {currentRate && (
-                              <span className="text-[10px] text-gray-400">
-                                Updated: {new Date(currentRate.updatedAt).toLocaleDateString()}
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex gap-2">
-                            <div className="relative flex-1">
-                              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">₹</span>
-                              <input 
-                                type="number" 
-                                defaultValue={currentRate?.pricePer10g || 0}
-                                id={`purity-${purity}`}
-                                className="w-full bg-white border border-gray-200 rounded-lg pl-7 pr-4 py-2 text-sm outline-none focus:border-gray-400 transition-all"
-                              />
-                            </div>
-                            <button 
-                              disabled={updating}
-                              onClick={() => {
-                                const input = document.getElementById(`purity-${purity}`) as HTMLInputElement;
-                                handleUpdatePrice(purity, Number(input.value));
-                              }}
-                              className="bg-gray-900 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-gray-800 transition-all disabled:opacity-50 whitespace-nowrap"
-                            >
-                              Update
-                            </button>
-                          </div>
+            ) : (
+              <div className="grid md:grid-cols-2 gap-6">
+                {[9, 18, 22, 24].map((purity) => {
+                  const currentRate = rates.find(r => r.purity === purity);
+                  return (
+                    <div key={purity} className="p-5 bg-black/40 rounded-xl border border-white/5 space-y-4 group hover:border-secondary/30 transition-all shadow-inner">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-bold text-white/90 uppercase tracking-widest">{purity}KT Gold</span>
+                        {currentRate && (
+                          <span className="text-[10px] text-white/30 uppercase tracking-wider">
+                            {new Date(currentRate.updatedAt).toLocaleDateString()}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex gap-3">
+                        <div className="relative flex-1 group-hover:shadow-[0_0_15px_rgba(179,139,63,0.1)] transition-all rounded-lg">
+                          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary font-medium">₹</span>
+                          <input 
+                            type="number" 
+                            defaultValue={currentRate?.pricePer10g || 0}
+                            id={`purity-${purity}`}
+                            className="w-full bg-[#050202] border border-white/10 rounded-lg pl-9 pr-4 py-3 text-sm text-white outline-none focus:border-secondary transition-all"
+                          />
                         </div>
-                      );
-                    })}
-                  </div>
-                )}
-
-                {status.msg && (
-                  <div className={`mt-4 p-3 rounded-lg text-sm font-medium text-center ${
-                    status.type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'
-                  }`}>
-                    {status.msg}
-                  </div>
-                )}
+                        <button 
+                          disabled={updating}
+                          onClick={() => {
+                            const input = document.getElementById(`purity-${purity}`) as HTMLInputElement;
+                            handleUpdatePrice(purity, Number(input.value));
+                          }}
+                          className="bg-secondary/10 text-secondary border border-secondary/30 hover:bg-secondary hover:text-[#050202] px-5 py-3 rounded-lg text-xs font-bold uppercase tracking-widest transition-all disabled:opacity-50 whitespace-nowrap"
+                        >
+                          Update
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
+            )}
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="space-y-6">
+          <div className="bg-[#1A1515]/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+            <div className="p-6 border-b border-white/10">
+              <h2 className="text-sm font-semibold text-white/90 uppercase tracking-widest">Inventory Breakdown</h2>
+              <p className="text-[10px] text-white/40 mt-1 uppercase tracking-wider">Products per category</p>
             </div>
-
-            {/* Quick Actions */}
-            <div className="space-y-6">
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                <div className="p-5 border-b border-gray-200">
-                  <h2 className="text-sm font-semibold text-gray-900">Quick Actions</h2>
-                </div>
-                <div className="p-3 space-y-1">
-                  <Link href="/admin/products" className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-blue-600"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-                      </div>
-                      <div>
-                        <span className="text-sm font-medium text-gray-900">Product Management</span>
-                        <p className="text-[10px] text-gray-400">{totalProducts} products</p>
-                      </div>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-300 group-hover:text-gray-500 group-hover:translate-x-1 transition-all"><path d="m9 18 6-6-6-6"/></svg>
-                  </Link>
-
-                  <Link href="/admin/categories" className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-600"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
-                      </div>
-                      <div>
-                        <span className="text-sm font-medium text-gray-900">Category Management</span>
-                        <p className="text-[10px] text-gray-400">{rootCategories.length} categories</p>
-                      </div>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-300 group-hover:text-gray-500 group-hover:translate-x-1 transition-all"><path d="m9 18 6-6-6-6"/></svg>
-                  </Link>
-
-                  <Link href="/admin/banners" className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-purple-600"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-                      </div>
-                      <div>
-                        <span className="text-sm font-medium text-gray-900">Banner Management</span>
-                        <p className="text-[10px] text-gray-400">Manage carousel banners</p>
-                      </div>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-300 group-hover:text-gray-500 group-hover:translate-x-1 transition-all"><path d="m9 18 6-6-6-6"/></svg>
-                  </Link>
-
-                  <Link href="/admin/stores" className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-red-600"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                      </div>
-                      <div>
-                        <span className="text-sm font-medium text-gray-900">Stores Management</span>
-                        <p className="text-[10px] text-gray-400">Manage physical boutiques</p>
-                      </div>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-300 group-hover:text-gray-500 group-hover:translate-x-1 transition-all"><path d="m9 18 6-6-6-6"/></svg>
-                  </Link>
-
-                  <Link href="/admin/settings" className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-slate-600"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                      </div>
-                      <div>
-                        <span className="text-sm font-medium text-gray-900">Site Settings</span>
-                        <p className="text-[10px] text-gray-400">Manage global content</p>
-                      </div>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-300 group-hover:text-gray-500 group-hover:translate-x-1 transition-all"><path d="m9 18 6-6-6-6"/></svg>
-                  </Link>
-
-                  <Link href="/" className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-green-600"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                      </div>
-                      <span className="text-sm font-medium text-gray-900">View Live Website</span>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-300 group-hover:text-gray-500 group-hover:translate-x-1 transition-all"><path d="m9 18 6-6-6-6"/></svg>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Category Inventory Breakdown */}
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                <div className="p-5 border-b border-gray-200">
-                  <h2 className="text-sm font-semibold text-gray-900">Inventory by Category</h2>
-                  <p className="text-xs text-gray-500 mt-1">Products per category & subcategory</p>
-                </div>
-                <div className="p-3 space-y-1 max-h-[400px] overflow-y-auto">
-                  {categoryBreakdown.map((cat) => (
-                    <div key={cat.slug} className="p-3 rounded-lg hover:bg-gray-50 transition-all">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-900">{cat.name}</span>
-                        <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
-                          cat.count > 0 ? 'bg-amber-50 text-amber-700' : 'bg-gray-100 text-gray-400'
-                        }`}>{cat.count}</span>
-                      </div>
-                      {cat.subcategories.length > 0 && (
-                        <div className="mt-2 ml-4 space-y-1 border-l-2 border-gray-100 pl-3">
-                          {cat.subcategories.map((sub) => (
-                            <div key={sub.name} className="flex items-center justify-between py-0.5">
-                              <span className="text-[11px] text-gray-500">{sub.name}</span>
-                              <span className={`text-[10px] font-medium ${sub.count > 0 ? 'text-gray-700' : 'text-gray-300'}`}>{sub.count}</span>
-                            </div>
-                          ))}
+            <div className="p-4 space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar">
+              {categoryBreakdown.map((cat) => (
+                <div key={cat.slug} className="p-3 bg-black/20 rounded-xl border border-white/5 hover:border-white/10 transition-all">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-white/80 uppercase tracking-wider">{cat.name}</span>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                      cat.count > 0 ? 'bg-secondary/20 text-secondary border-secondary/30' : 'bg-white/5 text-white/40 border-white/10'
+                    }`}>{cat.count}</span>
+                  </div>
+                  {cat.subcategories.length > 0 && (
+                    <div className="mt-3 ml-2 space-y-2 border-l border-white/10 pl-3">
+                      {cat.subcategories.map((sub) => (
+                        <div key={sub.name} className="flex items-center justify-between">
+                          <span className="text-[10px] text-white/50 uppercase tracking-wider">{sub.name}</span>
+                          <span className={`text-[9px] font-bold ${sub.count > 0 ? 'text-white/70' : 'text-white/30'}`}>{sub.count}</span>
                         </div>
-                      )}
+                      ))}
                     </div>
-                  ))}
+                  )}
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
-      </section>
+
+      </div>
     </main>
   );
 }
