@@ -2,26 +2,25 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { Reveal } from '@/components/animations/Reveal';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'About Us | Aranyak Jewellers',
   description: 'Learn about Aranyak Jewellers — premium gold and diamond jewellery stores across Tripura.',
 };
 
 async function getSettings() {
-  const backendUrl = process.env.NODE_ENV === 'production' 
-    ? 'http://117.252.16.132:3001/api' 
-    : 'http://localhost:3001/api';
   try {
-    const res = await fetch(`${backendUrl}/settings`, { next: { revalidate: 60 } });
+    const controller = new AbortController();
+    setTimeout(() => controller.abort(), 5000);
+    const res = await fetch('http://117.252.16.132:3001/api/settings', { cache: 'no-store', signal: controller.signal });
     const data = res.ok ? await res.json() : [];
     const settingsMap: any = {};
     if (Array.isArray(data)) {
-      data.forEach((s: any) => {
-        settingsMap[s.key] = s.value;
-      });
+      data.forEach((s: any) => { settingsMap[s.key] = s.value; });
     }
     return settingsMap;
-  } catch (e) {
+  } catch {
     return {};
   }
 }

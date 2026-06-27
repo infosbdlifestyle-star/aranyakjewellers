@@ -1,19 +1,22 @@
 import { Metadata } from 'next';
 import { Reveal } from '@/components/animations/Reveal';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Our Stores | Aranyak Jewellers',
   description: 'Find Aranyak Jewellers showrooms near you in Tripura.',
 };
 
 async function getStoresAndSettings() {
-  const backendUrl = process.env.NODE_ENV === 'production' 
-    ? 'http://117.252.16.132:3001/api' 
-    : 'http://localhost:3001/api';
   try {
+    const controller = new AbortController();
+    setTimeout(() => controller.abort(), 5000);
+    const api = 'http://117.252.16.132:3001/api';
+    const opts = { cache: 'no-store' as const, signal: controller.signal };
     const [storesRes, settingsRes] = await Promise.all([
-      fetch(`${backendUrl}/stores?active=true`, { next: { revalidate: 60 } }),
-      fetch(`${backendUrl}/settings`, { next: { revalidate: 60 } })
+      fetch(`${api}/stores?active=true`, opts),
+      fetch(`${api}/settings`, opts)
     ]);
     
     const stores = storesRes.ok ? await storesRes.json() : [];
@@ -21,16 +24,15 @@ async function getStoresAndSettings() {
     
     const settings: any = {};
     if (Array.isArray(settingsData)) {
-      settingsData.forEach((s: any) => {
-        settings[s.key] = s.value;
-      });
+      settingsData.forEach((s: any) => { settings[s.key] = s.value; });
     }
 
     return { stores, settings };
-  } catch (e) {
+  } catch {
     return { stores: [], settings: {} };
   }
 }
+
 
 export default async function StoresPage() {
   const { stores, settings } = await getStoresAndSettings();
