@@ -246,7 +246,7 @@ export default function AdminProductsPage() {
                   placeholder="Search products by name, SKU..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg pl-10 pr-4 py-2.5 text-sm outline-none focus:border-gray-400 focus:bg-white transition-all"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-lg pl-10 pr-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:bg-white transition-all placeholder:text-gray-400"
                 />
               </div>
 
@@ -254,7 +254,7 @@ export default function AdminProductsPage() {
               <select
                 value={filterCategory}
                 onChange={(e) => { setFilterCategory(e.target.value); setFilterSubCategory('All'); }}
-                className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-gray-400 min-w-[160px]"
+                className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 min-w-[160px]"
               >
                 <option value="All">All Categories</option>
                 {CATEGORIES.map(c => (
@@ -267,7 +267,7 @@ export default function AdminProductsPage() {
                 value={filterSubCategory}
                 onChange={(e) => setFilterSubCategory(e.target.value)}
                 disabled={filterSubCategories.length === 0}
-                className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-gray-400 min-w-[180px] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 min-w-[180px] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <option value="All">All Sub-Categories</option>
                 {filterSubCategories.map(sub => (
@@ -448,7 +448,7 @@ export default function AdminProductsPage() {
                     value={formData.name}
                     onChange={(e) => handleNameChange(e.target.value)}
                     placeholder="e.g. Gold Filigree Necklace Set"
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-gray-400 focus:bg-white transition-all"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:bg-white transition-all placeholder:text-gray-400"
                   />
                 </div>
                 <div>
@@ -461,7 +461,7 @@ export default function AdminProductsPage() {
                     type="text" 
                     value={formData.slug}
                     onChange={(e) => setFormData({...formData, slug: e.target.value})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-gray-400 focus:bg-white font-mono text-gray-600 transition-all"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:bg-white font-mono transition-all placeholder:text-gray-400"
                   />
                 </div>
               </div>
@@ -478,7 +478,7 @@ export default function AdminProductsPage() {
                     <select 
                       value={formData.category}
                       onChange={(e) => setFormData({...formData, category: e.target.value, subCategory: ''})}
-                      className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-gray-400 transition-all"
+                      className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 transition-all"
                     >
                       {CATEGORIES.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
                     </select>
@@ -488,7 +488,7 @@ export default function AdminProductsPage() {
                     <select 
                       value={formData.subCategory}
                       onChange={(e) => setFormData({...formData, subCategory: e.target.value})}
-                      className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-gray-400 transition-all"
+                      className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 transition-all"
                     >
                       <option value="">— None —</option>
                       {formSubCategories.map(sub => (
@@ -509,7 +509,7 @@ export default function AdminProductsPage() {
                   <select 
                     value={formData.goldPurity}
                     onChange={(e) => setFormData({...formData, goldPurity: Number(e.target.value)})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-gray-400 transition-all"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 transition-all"
                   >
                     <option value={9}>9 KT</option>
                     <option value={18}>18 KT</option>
@@ -525,7 +525,7 @@ export default function AdminProductsPage() {
                     step="0.001"
                     value={formData.goldWeight}
                     onChange={(e) => setFormData({...formData, goldWeight: Number(e.target.value)})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-gray-400 transition-all"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 transition-all"
                   />
                 </div>
                 <div>
@@ -535,7 +535,7 @@ export default function AdminProductsPage() {
                     type="number" 
                     value={formData.stockCount}
                     onChange={(e) => setFormData({...formData, stockCount: Number(e.target.value)})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-gray-400 transition-all"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 transition-all"
                   />
                 </div>
               </div>
@@ -548,7 +548,7 @@ export default function AdminProductsPage() {
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
                   placeholder="Describe the jewellery piece..."
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-gray-400 focus:bg-white resize-none transition-all"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:bg-white resize-none transition-all placeholder:text-gray-400"
                 />
               </div>
 
@@ -562,7 +562,7 @@ export default function AdminProductsPage() {
                   type="text" 
                   value={formData.images.join(', ')}
                   onChange={(e) => setFormData({...formData, images: e.target.value.split(',').map(s => s.trim()).filter(Boolean)})}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-gray-400 focus:bg-white font-mono text-gray-600 transition-all"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:bg-white font-mono transition-all placeholder:text-gray-400"
                   placeholder="https://example.com/image1.jpg, https://..."
                 />
                 {formData.images.length > 0 && (
