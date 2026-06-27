@@ -46,10 +46,14 @@ async function getGlobalData() {
     ? 'http://117.252.16.132:3001/api' 
     : 'http://localhost:3001/api';
   try {
+    // 5-second timeout so the build never hangs if VPS is slow/down
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
     const [catRes, setRes] = await Promise.all([
-      fetch(`${backendUrl}/categories`, { next: { revalidate: 3600 } }),
-      fetch(`${backendUrl}/settings`, { next: { revalidate: 3600 } })
+      fetch(`${backendUrl}/categories`, { next: { revalidate: 3600 }, signal: controller.signal }),
+      fetch(`${backendUrl}/settings`, { next: { revalidate: 3600 }, signal: controller.signal })
     ]);
+    clearTimeout(timeout);
     const categories = catRes.ok ? await catRes.json() : [];
     const settingsArr = setRes.ok ? await setRes.json() : [];
     const settings: any = {};
@@ -58,6 +62,7 @@ async function getGlobalData() {
     }
     return { categories, settings };
   } catch (e) {
+    // Return empty - Header will use static CATEGORIES fallback
     return { categories: [], settings: {} };
   }
 }
