@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-
+import { CATEGORIES } from '@/constants/categories';
 
 const NAV_LINKS = [
   { name: 'About', href: '/about' },
@@ -23,7 +23,6 @@ const Header = ({ categories = [] }: { categories?: any[] }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change (resize)
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -32,6 +31,20 @@ const Header = ({ categories = [] }: { categories?: any[] }) => {
     }
     return () => { document.body.style.overflow = ''; };
   }, [isMobileMenuOpen]);
+
+  // Use backend categories if available, otherwise fall back to static CATEGORIES
+  const rootCategories = categories.length > 0
+    ? categories
+        .filter((c: any) => !c.parentId)
+        .map((cat: any) => ({
+          ...cat,
+          subcategories: categories.filter((c: any) => c.parentId === cat.id),
+        }))
+    : CATEGORIES;
+
+  const visibleCategories = rootCategories.filter(
+    (cat: any) => !HIDDEN_CATEGORIES.includes(cat.slug)
+  );
 
   return (
     <header className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${
@@ -62,8 +75,7 @@ const Header = ({ categories = [] }: { categories?: any[] }) => {
 
         {/* Navigation - Desktop */}
         <nav className="hidden lg:flex flex-1 justify-center items-center space-x-6 xl:space-x-8">
-          {/* Category Dropdowns — show ALL categories */}
-          {categories.filter(cat => !HIDDEN_CATEGORIES.includes(cat.slug)).map((cat) => (
+          {visibleCategories.map((cat: any) => (
             <div 
               key={cat.id}
               className="relative group py-4"
@@ -94,7 +106,6 @@ const Header = ({ categories = [] }: { categories?: any[] }) => {
             </div>
           ))}
 
-
           {/* Static nav links */}
           {NAV_LINKS.map((link) => (
             <Link
@@ -123,7 +134,7 @@ const Header = ({ categories = [] }: { categories?: any[] }) => {
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 top-20 bg-[#050202] z-[90] animate-in fade-in slide-in-from-top duration-300">
           <div className="flex flex-col h-[calc(100vh-5rem)] bg-[#050202] p-8 pb-32 space-y-6 overflow-y-auto">
-            {categories.filter(cat => !HIDDEN_CATEGORIES.includes(cat.slug)).map((cat) => (
+            {visibleCategories.map((cat: any) => (
               <div key={cat.id} className="space-y-3">
                 <Link 
                   href={`/category/${cat.slug}`}
@@ -150,7 +161,7 @@ const Header = ({ categories = [] }: { categories?: any[] }) => {
               </div>
             ))}
             
-            <div className="pt-6 border-t border-border space-y-4">
+            <div className="pt-6 border-t border-white/10 space-y-4">
               {NAV_LINKS.map((link) => (
                 <Link 
                   key={link.name}
