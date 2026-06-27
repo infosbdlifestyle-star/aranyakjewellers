@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function AdminProductsPage() {
-  const { user, token, isAuthenticated } = useAuth();
+  const { user, token, isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
   
   const [products, setProducts] = useState<any[]>([]);
@@ -37,12 +37,14 @@ export default function AdminProductsPage() {
   });
 
   useEffect(() => {
+    if (isLoading) return;
+    
     if (!isAuthenticated || (user?.role !== 'ADMIN' && user?.role !== 'SUPER_ADMIN')) {
       router.push('/login');
       return;
     }
     fetchProducts();
-  }, [isAuthenticated, user, router]);
+  }, [isAuthenticated, user, router, isLoading]);
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -177,7 +179,7 @@ export default function AdminProductsPage() {
     }
   };
 
-  if (!user || (user.role !== 'ADMIN' && user.role !== 'SUPER_ADMIN')) return null;
+  if (isLoading || !user || (user.role !== 'ADMIN' && user.role !== 'SUPER_ADMIN')) return null;
 
   // Get subcategories for current form category
   const formSubCategories = CATEGORIES.find(c => c.name === formData.category)?.subcategories || [];

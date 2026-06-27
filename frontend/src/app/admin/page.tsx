@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function AdminPage() {
-  const { user, token, isAuthenticated } = useAuth();
+  const { user, token, isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
   
   const [rates, setRates] = useState<any[]>([]);
@@ -18,12 +18,14 @@ export default function AdminPage() {
   const [status, setStatus] = useState({ type: '', msg: '' });
 
   useEffect(() => {
+    if (isLoading) return;
+    
     if (!isAuthenticated || (user?.role !== 'ADMIN' && user?.role !== 'SUPER_ADMIN')) {
       router.push('/login');
       return;
     }
     fetchData();
-  }, [isAuthenticated, user, router]);
+  }, [isAuthenticated, user, router, isLoading]);
 
   const fetchData = async () => {
     try {
@@ -53,7 +55,7 @@ export default function AdminPage() {
     }
   };
 
-  if (!user || (user.role !== 'ADMIN' && user.role !== 'SUPER_ADMIN')) return null;
+  if (isLoading || !user || (user.role !== 'ADMIN' && user.role !== 'SUPER_ADMIN')) return null;
 
   // Compute stats
   const totalProducts = products.length;
