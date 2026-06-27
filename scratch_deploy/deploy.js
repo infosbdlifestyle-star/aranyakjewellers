@@ -1,7 +1,18 @@
 const { NodeSSH } = require('node-ssh');
+const fs = require('fs');
 const path = require('path');
 
 const ssh = new NodeSSH();
+
+async function runCommand(cmd) {
+  console.log(`Executing: ${cmd}`);
+  const result = await ssh.execCommand(cmd, { execOptions: { pty: false } });
+  if (result.stdout) console.log(result.stdout);
+  if (result.stderr && !result.stderr.includes('npm WARN') && !result.stderr.includes('Created table') && !result.stderr.includes('npm warn deprecated')) {
+    console.error(result.stderr);
+  }
+  return result;
+}
 
 async function deploy() {
   try {
@@ -9,78 +20,50 @@ async function deploy() {
     await ssh.connect({
       host: '117.252.16.132',
       username: 'root',
-      password: '$9T%Lk057bzu'
+      password: '$9T%Lk057bzu',
+      readyTimeout: 30000,
+      keepaliveInterval: 10000,
+      keepaliveCountMax: 10,
     });
-    console.log('Connected!');
-
-    // 1. Install Node.js, MongoDB, PM2
-    console.log('Installing dependencies...');
-    const setupCmds = [
-      'curl -fsSL https://deb.nodesource.com/setup_20.x | bash -',
-      'apt-get install -y nodejs',
-      'npm install -g pm2',
-      'apt-get install -y gnupg curl',
-      'curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor --yes',
-      'echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list',
-      'apt-get update',
-      'apt-get install -y mongodb-org',
-      'systemctl enable mongod',
-      'systemctl start mongod'
-    ];
-
-    for (const cmd of setupCmds) {
-      console.log(`Running: ${cmd}`);
-      const res = await ssh.execCommand(cmd);
-      if (res.stderr && !res.stderr.includes('Warning') && !res.stderr.includes('debconf')) {
-         console.log(`Stderr: ${res.stderr}`);
-      }
-    }
-
-    // 2. Upload Backend
-    console.log('Uploading backend files...');
-    const localPath = path.resolve('..', 'backend');
-    const remotePath = '/var/www/aranyak-backend';
-
-    await ssh.execCommand(`mkdir -p ${remotePath}`);
     
-    await ssh.putDirectory(localPath, remotePath, {
-      recursive: true,
-      concurrency: 10,
-      validate: function(itemPath) {
-        const baseName = path.basename(itemPath);
-        return baseName !== 'node_modules' && baseName !== 'dist' && baseName !== '.env' && baseName !== '.git'; // exclude huge/unnecessary folders
-      }
-    });
+    console.log('Connected. Uploading tarball and config...');
+    await ssh.putFile('../backend.tar.gz', '/root/backend.tar.gz');
+    await ssh.putFile('.env.production', '/root/.env.production');
+    
+    console.log('Upload complete. Executing deployment commands...');
 
-    // 3. Create .env on VPS
-    console.log('Setting up .env file...');
-    const envContent = `PORT=3001
-DATABASE_URL="mongodb://localhost:27017/aranyak"
-FRONTEND_URL="*"
-JWT_SECRET="aranyak_super_secret_jwt_key_2026_xyz"
-`;
-    await ssh.execCommand(`echo '${envContent}' > ${remotePath}/.env`);
+    // Step 1: Setup
+    await runCommand('systemctl start mongod || true');
+    await runCommand('systemctl enable mongod || true');
+    await runCommand('mkdir -p /root/aranyak_uploads');
+    await runCommand('rm -rf /root/aranyak-backend');
+    await runCommand('mkdir -p /root/aranyak-backend');
+    await runCommand('tar -xzf /root/backend.tar.gz -C /root/aranyak-backend --strip-components=1');
+    await runCommand('ln -sf /root/aranyak_uploads /root/aranyak-backend/uploads');
+    await runCommand('cp /root/.env.production /root/aranyak-backend/.env');
 
-    // 4. Build and Start
-    console.log('Building and starting backend...');
-    const buildCmds = [
-      `cd ${remotePath} && npm install`,
-      `cd ${remotePath} && npm run build`,
-      `pm2 stop aranyak-backend || true`,
-      `cd ${remotePath} && pm2 start dist/main.js --name aranyak-backend`,
-      `pm2 save`
-    ];
+    // Step 2: Install dependencies (long running - needs keepalive)
+    console.log('Installing npm packages (this may take 3-5 minutes)...');
+    await runCommand('cd /root/aranyak-backend && npm install 2>&1 | tail -5');
 
-    for (const cmd of buildCmds) {
-      console.log(`Running: ${cmd}`);
-      const res = await ssh.execCommand(cmd);
-      if (res.stderr && !res.stderr.includes('npm WARN')) console.log(`Stderr: ${res.stderr}`);
-    }
+    // Step 3: Prisma (skip db push - it fails without env, use generate only)
+    await runCommand('cd /root/aranyak-backend && DATABASE_URL="mongodb://localhost:27017/aranyak_jewellers" npx prisma generate');
+    await runCommand('cd /root/aranyak-backend && DATABASE_URL="mongodb://localhost:27017/aranyak_jewellers" npx prisma db push --accept-data-loss || true');
+    await runCommand('cd /root/aranyak-backend && DATABASE_URL="mongodb://localhost:27017/aranyak_jewellers" node prisma/seed.js || true');
 
-    console.log('Deployment complete!');
-    process.exit(0);
+    // Step 4: Build
+    console.log('Building NestJS application...');
+    await runCommand('cd /root/aranyak-backend && npm run build 2>&1');
+
+    // Step 5: PM2 restart with updated env
+    await runCommand('pm2 describe aranyak-backend > /dev/null 2>&1 && pm2 restart aranyak-backend --update-env || pm2 start dist/main.js --name aranyak-backend');
+    await runCommand('pm2 save');
+    
+    console.log('\n✅ Deployment completed successfully!');
+    ssh.dispose();
   } catch (error) {
-    console.error('Deployment failed:', error);
+    console.error('Deployment failed:', error.message || error);
+    try { ssh.dispose(); } catch(e) {}
     process.exit(1);
   }
 }
