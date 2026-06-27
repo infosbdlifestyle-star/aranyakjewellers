@@ -21,15 +21,32 @@ export default function LoginPage() {
     setError('');
     
     try {
-      const data = await api.login(email, password);
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      
+      if (!res.ok) {
+        const errData = await res.json().catch(() => null);
+        setError(errData?.message || `Login failed (${res.status})`);
+        return;
+      }
+      
+      const data = await res.json();
       if (data.access_token) {
         login(data.access_token, data.user);
-        router.push('/account');
+        // Redirect admins to admin dashboard
+        if (data.user?.role === 'SUPER_ADMIN' || data.user?.role === 'ADMIN') {
+          router.push('/admin');
+        } else {
+          router.push('/');
+        }
       } else {
         setError(data.message || 'Invalid credentials');
       }
     } catch (err) {
-      setError('Failed to login. Please try again.');
+      setError('Network error. Please check your connection and try again.');
     } finally {
       setLoading(false);
     }
