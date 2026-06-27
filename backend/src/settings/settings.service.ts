@@ -23,7 +23,7 @@ export class SettingsService {
   }
 
   async upsertMany(settings: CreateSettingDto[]) {
-    const results = [];
+    const results: any[] = [];
     for (const setting of settings) {
       results.push(await this.upsert(setting));
     }
