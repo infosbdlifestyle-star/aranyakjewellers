@@ -6,14 +6,35 @@ export const metadata: Metadata = {
   description: 'Find Aranyak Jewellers showrooms near you in Tripura.',
 };
 
-const STORES = [
-  { name: 'Aranyak Jewellers – Agartala', address: 'M B B CHOWMUHANI (NEAR KAMAN CHOWMUHANI), AGARTALA, WEST TRIPURA, PIN-799001', phone: '+91-XXXXXXXXXX', hours: '10:00 AM – 8:00 PM' },
-  { name: 'Aranyak Jewellers – Dharmanagar', address: 'D N V ROAD, DHARMANAGAR, NORTH TRIPURA, PIN-799250', phone: '+91-XXXXXXXXXX', hours: '10:00 AM – 7:30 PM' },
-  { name: 'Aranyak Jewellers – Kailashahar', address: 'GIRLS SCHOOL ROAD, KAILASHAHAR, UNAKOTI TRIPURA, PIN-799277', phone: '+91-XXXXXXXXXX', hours: '10:00 AM – 7:30 PM' },
-  { name: 'Aranyak Jewellers – Khowai', address: 'SUBHASH PARK, KHOWAI TRIPURA, PIN-799201', phone: '+91-XXXXXXXXXX', hours: '10:00 AM – 7:30 PM' },
-];
+async function getStoresAndSettings() {
+  const backendUrl = process.env.NODE_ENV === 'production' 
+    ? 'http://117.252.16.132:3001/api' 
+    : 'http://localhost:3001/api';
+  try {
+    const [storesRes, settingsRes] = await Promise.all([
+      fetch(`${backendUrl}/stores?active=true`, { next: { revalidate: 60 } }),
+      fetch(`${backendUrl}/settings`, { next: { revalidate: 60 } })
+    ]);
+    
+    const stores = storesRes.ok ? await storesRes.json() : [];
+    const settingsData = settingsRes.ok ? await settingsRes.json() : [];
+    
+    const settings: any = {};
+    if (Array.isArray(settingsData)) {
+      settingsData.forEach((s: any) => {
+        settings[s.key] = s.value;
+      });
+    }
 
-export default function StoresPage() {
+    return { stores, settings };
+  } catch (e) {
+    return { stores: [], settings: {} };
+  }
+}
+
+export default async function StoresPage() {
+  const { stores, settings } = await getStoresAndSettings();
+  const contactPhone = settings['contact_phone'] || '+91XXXXXXXXXX';
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Hero Section */}
@@ -32,15 +53,15 @@ export default function StoresPage() {
       <section className="py-20 flex-1">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid md:grid-cols-2 gap-10">
-            {STORES.map((store, i) => (
-              <Reveal key={i} delay={i * 0.1}>
+            {stores.map((store: any, i: number) => (
+              <Reveal key={store.id} delay={i * 0.1}>
                 <div className="group bg-[#0A0505] border border-white/10 overflow-hidden flex flex-col sm:flex-row hover:border-secondary/40 transition-colors duration-700 relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                   {/* Store Image Placeholder */}
                   <div className="w-full sm:w-48 h-32 sm:h-auto bg-[#050202] flex items-center justify-center border-b sm:border-b-0 sm:border-r border-white/10 overflow-hidden relative">
                      <div className="absolute inset-0 bg-[url('/showroom.jpg')] bg-cover bg-center opacity-40 mix-blend-luminosity group-hover:scale-105 transition-transform duration-[2s] ease-out" />
                      <div className="text-white font-serif font-light text-5xl relative z-10 uppercase">
-                       {store.name.split('–')[1]?.trim()[0] || 'A'}
+                       {store.name.split('–')[1]?.trim()[0] || store.name.charAt(0)}
                      </div>
                   </div>
                   
@@ -57,14 +78,16 @@ export default function StoresPage() {
                       </p>
                       <p className="flex items-center gap-3 group-hover:text-white/80 transition-colors duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-secondary shrink-0"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        {store.hours}
+                        10:00 AM – 8:00 PM
                       </p>
                     </div>
-                    <div className="pt-4">
-                      <button className="text-[10px] font-bold tracking-[0.2em] uppercase text-white border-b border-white/20 pb-1 hover:text-secondary hover:border-secondary transition-all duration-300">
-                        Get Directions
-                      </button>
-                    </div>
+                    {store.mapUrl && (
+                      <div className="pt-4">
+                        <a href={store.mapUrl} target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold tracking-[0.2em] uppercase text-white border-b border-white/20 pb-1 hover:text-secondary hover:border-secondary transition-all duration-300">
+                          Get Directions
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </Reveal>
@@ -82,7 +105,7 @@ export default function StoresPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-6 pt-6">
             <a 
-              href="https://wa.me/91XXXXXXXXXX?text=I%20would%20like%20to%20book%20an%20appointment" 
+              href={`https://wa.me/${contactPhone.replace(/\D/g,'')}?text=I%20would%20like%20to%20book%20an%20appointment`} 
               target="_blank" 
               rel="noopener noreferrer"
               className="btn-luxury px-12 py-4 text-[9px] font-bold tracking-[0.4em] uppercase"
@@ -90,7 +113,7 @@ export default function StoresPage() {
               Book an Appointment
             </a>
             <a 
-              href="tel:+91XXXXXXXXXX"
+              href={`tel:${contactPhone}`}
               className="border border-white/20 px-12 py-4 text-[9px] font-bold tracking-[0.4em] uppercase hover:bg-white hover:text-[#050202] transition-colors duration-500"
             >
               Call Us Now

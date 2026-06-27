@@ -7,7 +7,27 @@ export const metadata: Metadata = {
   description: 'Learn about Aranyak Jewellers — premium gold and diamond jewellery stores across Tripura.',
 };
 
-export default function AboutPage() {
+async function getSettings() {
+  const backendUrl = process.env.NODE_ENV === 'production' 
+    ? 'http://117.252.16.132:3001/api' 
+    : 'http://localhost:3001/api';
+  try {
+    const res = await fetch(`${backendUrl}/settings`, { next: { revalidate: 60 } });
+    const data = res.ok ? await res.json() : [];
+    const settingsMap: any = {};
+    if (Array.isArray(data)) {
+      data.forEach((s: any) => {
+        settingsMap[s.key] = s.value;
+      });
+    }
+    return settingsMap;
+  } catch (e) {
+    return {};
+  }
+}
+
+export default async function AboutPage() {
+  const settings = await getSettings();
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Editorial Hero */}
@@ -63,10 +83,10 @@ export default function AboutPage() {
                 <div className="space-y-6">
                   <h2 className="text-4xl font-serif font-light">A Vision of <span className="font-editorial italic text-secondary">Purity</span></h2>
                   <p className="text-white/70 leading-relaxed tracking-wide font-light">
-                    Aranyak Jewellers is not just a destination for fine jewelry; it is an institution built on trust, artistry, and heritage. What began as a singular vision in 1995 has blossomed into Tripura&apos;s most prestigious jewelry house.
+                    {settings['about_p1'] || "Aranyak Jewellers is not just a destination for fine jewelry; it is an institution built on trust, artistry, and heritage. What began as a singular vision in 1995 has blossomed into Tripura's most prestigious jewelry house."}
                   </p>
                   <p className="text-white/70 leading-relaxed tracking-wide font-light">
-                    We believe that every piece of jewelry carries a soul. It is a silent witness to life&apos;s most profound moments—a wedding vow, a milestone anniversary, a gift of enduring love. Our master artisans, carrying centuries-old Bengali goldsmithing traditions, pour hundreds of hours into realizing these masterpieces.
+                    {settings['about_p2'] || "We believe that every piece of jewelry carries a soul. It is a silent witness to life's most profound moments—a wedding vow, a milestone anniversary, a gift of enduring love. Our master artisans, carrying centuries-old Bengali goldsmithing traditions, pour hundreds of hours into realizing these masterpieces."}
                   </p>
                 </div>
               </Reveal>

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { CATEGORIES } from '@/constants/categories';
+
 
 const NAV_LINKS = [
   { name: 'About', href: '/about' },
@@ -13,7 +13,7 @@ const NAV_LINKS = [
 // Categories to hide from the navigation menu
 const HIDDEN_CATEGORIES = ['costume-jewellery', 'offers-deals'];
 
-const Header = () => {
+const Header = ({ categories = [] }: { categories?: any[] }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -63,7 +63,7 @@ const Header = () => {
         {/* Navigation - Desktop */}
         <nav className="hidden lg:flex flex-1 justify-center items-center space-x-6 xl:space-x-8">
           {/* Category Dropdowns — show ALL categories */}
-          {CATEGORIES.filter(cat => !HIDDEN_CATEGORIES.includes(cat.slug)).map((cat) => (
+          {categories.filter(cat => !HIDDEN_CATEGORIES.includes(cat.slug)).map((cat) => (
             <div 
               key={cat.id}
               className="relative group py-4"
@@ -79,7 +79,7 @@ const Header = () => {
               {cat.subcategories && cat.subcategories.length > 0 && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-[#0A0505]/95 backdrop-blur-md p-6 shadow-2xl border border-white/10 transition-all duration-300 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-4 group-hover:translate-y-0 z-[100]">
                   <div className="grid grid-cols-1 gap-4">
-                    {cat.subcategories.map((sub) => (
+                    {cat.subcategories.map((sub: any) => (
                       <Link
                         key={sub.id}
                         href={`/category/${cat.slug}/${sub.slug}`}
@@ -123,7 +123,7 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 top-20 bg-[#050202] z-[90] animate-in fade-in slide-in-from-top duration-300">
           <div className="flex flex-col h-[calc(100vh-5rem)] bg-[#050202] p-8 pb-32 space-y-6 overflow-y-auto">
-            {CATEGORIES.filter(cat => !HIDDEN_CATEGORIES.includes(cat.slug)).map((cat) => (
+            {categories.filter(cat => !HIDDEN_CATEGORIES.includes(cat.slug)).map((cat) => (
               <div key={cat.id} className="space-y-3">
                 <Link 
                   href={`/category/${cat.slug}`}
@@ -135,7 +135,7 @@ const Header = () => {
                 </Link>
                 {cat.subcategories && cat.subcategories.length > 0 && (
                   <div className="grid grid-cols-2 gap-3 pl-4 border-l border-secondary/20">
-                    {cat.subcategories.map((sub) => (
+                    {cat.subcategories.map((sub: any) => (
                       <Link
                         key={sub.id}
                         href={`/category/${cat.slug}/${sub.slug}`}

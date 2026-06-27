@@ -13,6 +13,9 @@ import { WishlistModule } from './wishlist/wishlist.module';
 import { OrdersModule } from './orders/orders.module';
 import { BannerModule } from './banner/banner.module';
 import { GoldPriceModule } from './gold-price/gold-price.module';
+import { UploadModule } from './upload/upload.module';
+import { SettingsModule } from './settings/settings.module';
+import { StoresModule } from './stores/stores.module';
 
 @Module({
   imports: [
@@ -30,6 +33,9 @@ import { GoldPriceModule } from './gold-price/gold-price.module';
     OrdersModule,
     BannerModule,
     GoldPriceModule,
+    UploadModule,
+    SettingsModule,
+    StoresModule,
   ],
   controllers: [AppController],
   providers: [AppService],

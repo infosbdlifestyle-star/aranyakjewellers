@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         source: '/api/:path*',
         destination: 'http://117.252.16.132:3001/api/:path*', // Proxy to VPS backend
       },
+      {
+        source: '/uploads/:path*',
+        destination: 'http://117.252.16.132:3001/uploads/:path*', // Proxy uploads to VPS backend
+      },
     ];
   },
 };

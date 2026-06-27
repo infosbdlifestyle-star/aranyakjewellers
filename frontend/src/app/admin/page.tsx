@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
-import { CATEGORIES } from '@/constants/categories';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -13,6 +12,7 @@ export default function AdminPage() {
   
   const [rates, setRates] = useState<any[]>([]);
   const [products, setProducts] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [status, setStatus] = useState({ type: '', msg: '' });
@@ -29,12 +29,14 @@ export default function AdminPage() {
 
   const fetchData = async () => {
     try {
-      const [ratesData, productsData] = await Promise.all([
+      const [ratesData, productsData, categoriesData] = await Promise.all([
         api.getGoldPrices(),
-        api.getProducts()
+        api.getProducts(),
+        api.getCategories()
       ]);
       setRates(Array.isArray(ratesData) ? ratesData : []);
       setProducts(Array.isArray(productsData) ? productsData : []);
+      setCategories(Array.isArray(categoriesData) ? categoriesData : []);
     } catch { /* empty */ }
     setLoading(false);
   };
@@ -62,12 +64,14 @@ export default function AdminPage() {
   const activeProducts = products.filter(p => p.isActive).length;
   const outOfStock = products.filter(p => p.stockCount === 0).length;
 
+  const rootCategories = categories.filter(c => !c.parentId);
+
   // Category breakdown
-  const categoryBreakdown = CATEGORIES.map(cat => ({
+  const categoryBreakdown = rootCategories.map(cat => ({
     name: cat.name,
     slug: cat.slug,
     count: products.filter(p => p.category === cat.name).length,
-    subcategories: cat.subcategories?.map(sub => ({
+    subcategories: categories.filter(c => c.parentId === cat.id).map(sub => ({
       name: sub.name,
       count: products.filter(p => p.category === cat.name && p.subCategory === sub.name).length
     })) || []
@@ -113,7 +117,7 @@ export default function AdminPage() {
             </div>
             <div className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
               <p className="text-xs text-gray-500 font-medium">Categories</p>
-              <p className="text-3xl font-bold text-blue-600 mt-2">{CATEGORIES.length}</p>
+              <p className="text-3xl font-bold text-blue-600 mt-2">{loading ? '...' : rootCategories.length}</p>
             </div>
           </div>
 
@@ -205,6 +209,59 @@ export default function AdminPage() {
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-300 group-hover:text-gray-500 group-hover:translate-x-1 transition-all"><path d="m9 18 6-6-6-6"/></svg>
                   </Link>
+
+                  <Link href="/admin/categories" className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all group">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-600"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
+                      </div>
+                      <div>
+                        <span className="text-sm font-medium text-gray-900">Category Management</span>
+                        <p className="text-[10px] text-gray-400">{rootCategories.length} categories</p>
+                      </div>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-300 group-hover:text-gray-500 group-hover:translate-x-1 transition-all"><path d="m9 18 6-6-6-6"/></svg>
+                  </Link>
+
+                  <Link href="/admin/banners" className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all group">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-purple-600"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                      </div>
+                      <div>
+                        <span className="text-sm font-medium text-gray-900">Banner Management</span>
+                        <p className="text-[10px] text-gray-400">Manage carousel banners</p>
+                      </div>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-300 group-hover:text-gray-500 group-hover:translate-x-1 transition-all"><path d="m9 18 6-6-6-6"/></svg>
+                  </Link>
+
+                  <Link href="/admin/stores" className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all group">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-red-600"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      </div>
+                      <div>
+                        <span className="text-sm font-medium text-gray-900">Stores Management</span>
+                        <p className="text-[10px] text-gray-400">Manage physical boutiques</p>
+                      </div>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-300 group-hover:text-gray-500 group-hover:translate-x-1 transition-all"><path d="m9 18 6-6-6-6"/></svg>
+                  </Link>
+
+                  <Link href="/admin/settings" className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all group">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-slate-600"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                      </div>
+                      <div>
+                        <span className="text-sm font-medium text-gray-900">Site Settings</span>
+                        <p className="text-[10px] text-gray-400">Manage global content</p>
+                      </div>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-300 group-hover:text-gray-500 group-hover:translate-x-1 transition-all"><path d="m9 18 6-6-6-6"/></svg>
+                  </Link>
+
                   <Link href="/" className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all group">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center">

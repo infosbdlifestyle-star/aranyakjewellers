@@ -40,7 +40,7 @@ export class OrdersService {
     }
 
     // 2. Check Stock
-    for (const item of orderItems) {
+    for (const item of orderItems!) {
       const product = await this.prisma.product.findUnique({
         where: { id: item.productId },
       });
@@ -61,7 +61,7 @@ export class OrdersService {
         paymentStatus: 'PENDING',
         shippingAddress,
         items: {
-          create: orderItems.map((item) => ({
+          create: orderItems!.map((item) => ({
             productId: item.productId,
             quantity: item.quantity,
             price: item.price,
@@ -72,7 +72,7 @@ export class OrdersService {
     });
 
     // 4. Deduct Stock
-    for (const item of orderItems) {
+    for (const item of orderItems!) {
       await this.prisma.product.update({
         where: { id: item.productId },
         data: { stockCount: { decrement: item.quantity } },

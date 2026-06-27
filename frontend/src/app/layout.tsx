@@ -41,11 +41,34 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+async function getGlobalData() {
+  const backendUrl = process.env.NODE_ENV === 'production' 
+    ? 'http://117.252.16.132:3001/api' 
+    : 'http://localhost:3001/api';
+  try {
+    const [catRes, setRes] = await Promise.all([
+      fetch(`${backendUrl}/categories`, { next: { revalidate: 3600 } }),
+      fetch(`${backendUrl}/settings`, { next: { revalidate: 3600 } })
+    ]);
+    const categories = catRes.ok ? await catRes.json() : [];
+    const settingsArr = setRes.ok ? await setRes.json() : [];
+    const settings: any = {};
+    if (Array.isArray(settingsArr)) {
+      settingsArr.forEach((s: any) => { settings[s.key] = s.value; });
+    }
+    return { categories, settings };
+  } catch (e) {
+    return { categories: [], settings: {} };
+  }
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { categories, settings } = await getGlobalData();
+
   return (
     <html
       lang="en"
@@ -55,9 +78,9 @@ export default function RootLayout({
         <PageLoader />
         <SmoothScroll>
           <OfferBanner />
-          <Header />
+          <Header categories={categories} />
           {children}
-          <Footer />
+          <Footer categories={categories} settings={settings} />
         </SmoothScroll>
         <WhatsAppButton />
       </body>

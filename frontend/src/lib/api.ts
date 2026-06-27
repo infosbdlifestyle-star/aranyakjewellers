@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
+const API_URL = '/api';
 
 class ApiClient {
   private baseUrl: string;
@@ -40,6 +40,32 @@ class ApiClient {
     return res.json();
   }
 
+  async createCategory(token: string, data: any) {
+    const res = await fetch(`${this.baseUrl}/categories`, {
+      method: 'POST',
+      headers: this.getHeaders(token),
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  }
+
+  async updateCategory(token: string, id: string, data: any) {
+    const res = await fetch(`${this.baseUrl}/categories/${id}`, {
+      method: 'PUT',
+      headers: this.getHeaders(token),
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  }
+
+  async deleteCategory(token: string, id: string) {
+    const res = await fetch(`${this.baseUrl}/categories/${id}`, {
+      method: 'DELETE',
+      headers: this.getHeaders(token),
+    });
+    return res.json();
+  }
+
   // Gold Price
   async getGoldPrices() {
     const res = await fetch(`${this.baseUrl}/gold-price`);
@@ -49,6 +75,32 @@ class ApiClient {
   // Banners
   async getBanners() {
     const res = await fetch(`${this.baseUrl}/banners`);
+    return res.json();
+  }
+
+  async createBanner(token: string, data: any) {
+    const res = await fetch(`${this.baseUrl}/banners`, {
+      method: 'POST',
+      headers: this.getHeaders(token),
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  }
+
+  async updateBanner(token: string, id: string, data: any) {
+    const res = await fetch(`${this.baseUrl}/banners/${id}`, {
+      method: 'PUT',
+      headers: this.getHeaders(token),
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  }
+
+  async deleteBanner(token: string, id: string) {
+    const res = await fetch(`${this.baseUrl}/banners/${id}`, {
+      method: 'DELETE',
+      headers: this.getHeaders(token),
+    });
     return res.json();
   }
 
@@ -162,6 +214,24 @@ class ApiClient {
     const res = await fetch(`${this.baseUrl}/products/${id}`, {
       method: 'DELETE',
       headers: this.getHeaders(token),
+    });
+    return res.json();
+  }
+
+  // Uploads
+  async uploadImage(token: string, file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    // Note: Do not set Content-Type header when using FormData; 
+    // the browser will automatically set it to multipart/form-data with the correct boundary
+    const headers: HeadersInit = {};
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
+    const res = await fetch(`${this.baseUrl}/upload`, {
+      method: 'POST',
+      headers,
+      body: formData,
     });
     return res.json();
   }

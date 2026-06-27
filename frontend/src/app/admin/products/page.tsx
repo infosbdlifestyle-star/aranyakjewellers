@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
-import { CATEGORIES } from '@/constants/categories';
+
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -22,6 +22,9 @@ export default function AdminProductsPage() {
   const [filterCategory, setFilterCategory] = useState('All');
   const [filterSubCategory, setFilterSubCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  
+  const [dbCategories, setDbCategories] = useState<any[]>([]);
+  const [uploadingImage, setUploadingImage] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -44,7 +47,15 @@ export default function AdminProductsPage() {
       return;
     }
     fetchProducts();
+    fetchCategories();
   }, [isAuthenticated, user, router, isLoading]);
+
+  const fetchCategories = async () => {
+    try {
+      const data = await api.getCategories();
+      if (Array.isArray(data)) setDbCategories(data);
+    } catch { /* empty */ }
+  };
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -78,9 +89,11 @@ export default function AdminProductsPage() {
   // Get subcategories for current filter
   const filterSubCategories = useMemo(() => {
     if (filterCategory === 'All') return [];
-    const cat = CATEGORIES.find(c => c.name === filterCategory);
-    return cat?.subcategories || [];
-  }, [filterCategory]);
+    const cat = dbCategories.find(c => c.name === filterCategory);
+    if (!cat) return [];
+    // Assuming backend returns flat categories where parentId points to parent, or we just filter by parentId
+    return dbCategories.filter(c => c.parentId === cat.id);
+  }, [filterCategory, dbCategories]);
 
   // Stats
   const stats = useMemo(() => ({
@@ -135,6 +148,29 @@ export default function AdminProductsPage() {
     setFormData({...formData, name, slug});
   };
 
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0 || !token) return;
+    const file = e.target.files[0];
+    
+    setUploadingImage(true);
+    try {
+      const result = await api.uploadImage(token, file);
+      if (result.path) {
+        setFormData({ ...formData, images: [...formData.images, result.path] });
+      }
+    } catch (err) {
+      alert('Failed to upload image');
+    } finally {
+      setUploadingImage(false);
+    }
+  };
+
+  const handleRemoveImage = (index: number) => {
+    const newImages = [...formData.images];
+    newImages.splice(index, 1);
+    setFormData({ ...formData, images: newImages });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!token) return;
@@ -182,7 +218,13 @@ export default function AdminProductsPage() {
   if (isLoading || !user || (user.role !== 'ADMIN' && user.role !== 'SUPER_ADMIN')) return null;
 
   // Get subcategories for current form category
-  const formSubCategories = CATEGORIES.find(c => c.name === formData.category)?.subcategories || [];
+  const formSubCategories = useMemo(() => {
+    const cat = dbCategories.find(c => c.name === formData.category);
+    if (!cat) return [];
+    return dbCategories.filter(c => c.parentId === cat.id);
+  }, [formData.category, dbCategories]);
+  
+  const rootCategories = dbCategories.filter(c => !c.parentId);
 
   return (
     <main className="min-h-screen flex flex-col bg-[#FAFAF8]">
@@ -257,7 +299,7 @@ export default function AdminProductsPage() {
                 className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 min-w-[160px]"
               >
                 <option value="All">All Categories</option>
-                {CATEGORIES.map(c => (
+                {rootCategories.map(c => (
                   <option key={c.id} value={c.name}>{c.name}</option>
                 ))}
               </select>
@@ -480,7 +522,8 @@ export default function AdminProductsPage() {
                       onChange={(e) => setFormData({...formData, category: e.target.value, subCategory: ''})}
                       className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 transition-all"
                     >
-                      {CATEGORIES.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
+                      <option value="">— Select Category —</option>
+                      {rootCategories.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
                     </select>
                   </div>
                   <div>
@@ -553,23 +596,46 @@ export default function AdminProductsPage() {
               </div>
 
               {/* Images */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                  Image URLs 
-                  <span className="text-xs text-gray-400 ml-2">comma separated</span>
-                </label>
-                <input 
-                  type="text" 
-                  value={formData.images.join(', ')}
-                  onChange={(e) => setFormData({...formData, images: e.target.value.split(',').map(s => s.trim()).filter(Boolean)})}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-gray-400 focus:bg-white font-mono transition-all placeholder:text-gray-400"
-                  placeholder="https://example.com/image1.jpg, https://..."
-                />
+              <div className="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                <label className="block text-sm font-bold text-gray-900 mb-1">Product Images</label>
+                <p className="text-xs text-gray-500 mb-4">Recommended size: <strong className="text-gray-700">1000x1000 pixels</strong> (Square). Max size: 5MB per image.</p>
+                
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center bg-white hover:bg-gray-50 transition-colors relative cursor-pointer min-w-[200px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-400 mb-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                    <span className="text-xs font-medium text-blue-600 underline">Upload from computer</span>
+                    <input 
+                      type="file" 
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      disabled={uploadingImage}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
+                    />
+                  </div>
+                  {uploadingImage && (
+                    <div className="flex items-center gap-2 text-sm text-blue-700 font-medium bg-blue-50 px-4 py-2 rounded-lg border border-blue-100">
+                      <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                      Uploading...
+                    </div>
+                  )}
+                </div>
+                
                 {formData.images.length > 0 && (
-                  <div className="flex gap-2 mt-2 flex-wrap">
+                  <div className="flex gap-4 mt-2 flex-wrap">
                     {formData.images.map((img, i) => (
-                      <div key={i} className="w-12 h-12 bg-gray-100 border border-gray-200 rounded-lg overflow-hidden">
+                      <div key={i} className="relative w-24 h-24 bg-white border border-gray-200 rounded-lg overflow-hidden group shadow-sm">
                         <img src={img} alt="" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button 
+                            type="button"
+                            onClick={() => handleRemoveImage(i)}
+                            className="bg-red-600 text-white p-2 rounded-lg text-xs font-bold hover:bg-red-700 shadow-lg transition-all"
+                            title="Delete Image"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                          </button>
+                        </div>
+                        {i === 0 && <span className="absolute bottom-1 left-1 bg-black/70 text-white text-[9px] px-1.5 py-0.5 rounded font-medium">Cover</span>}
                       </div>
                     ))}
                   </div>
@@ -612,7 +678,7 @@ export default function AdminProductsPage() {
                 </button>
                 <button 
                   type="submit"
-                  disabled={saving}
+                  disabled={saving || uploadingImage}
                   className="px-6 py-2.5 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-all disabled:opacity-50 flex items-center gap-2"
                 >
                   {saving ? (

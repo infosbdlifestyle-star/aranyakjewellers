@@ -79,7 +79,7 @@ async function main() {
           where: { slug: subSlug },
           update: {},
           create: {
-            name: sub.name,
+            name: `${cat.name} ${sub.name}`,
             slug: subSlug,
             parentId: parent.id,
             isActive: true,
