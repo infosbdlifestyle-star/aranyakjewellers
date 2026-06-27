@@ -11,6 +11,7 @@ export default function AdminSettingsPage() {
   const [settings, setSettings] = useState<any>({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [status, setStatus] = useState({ type: '', msg: '' });
 
   useEffect(() => {
@@ -37,6 +38,23 @@ export default function AdminSettingsPage() {
       console.error(e);
     }
     setLoading(false);
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, settingKey: string) => {
+    if (!e.target.files || e.target.files.length === 0 || !token) return;
+    const file = e.target.files[0];
+    
+    setUploadingImage(true);
+    try {
+      const result = await api.uploadImage(token, file);
+      if (result.path) {
+        setSettings({ ...settings, [settingKey]: result.path });
+      }
+    } catch (err) {
+      alert('Failed to upload image');
+    } finally {
+      setUploadingImage(false);
+    }
   };
 
   const handleSave = async (e: React.FormEvent) => {
@@ -180,6 +198,102 @@ export default function AdminSettingsPage() {
                   className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors"
                   placeholder="100% BIS Hallmarked | Certified Diamonds"
                 />
+              </div>
+
+              <div className="pt-6 mt-6 border-t border-white/10 space-y-6">
+                <h3 className="text-sm font-bold text-white/70 uppercase tracking-widest mb-4">Homepage Images</h3>
+                
+                <div className="grid md:grid-cols-3 gap-6">
+                  {/* Editorial Break Image */}
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Editorial Break Image</label>
+                    {settings['home_editorial_image'] ? (
+                      <div className="relative h-32 bg-black rounded-xl border border-white/10 overflow-hidden group">
+                        <img src={settings['home_editorial_image']} alt="Preview" className="w-full h-full object-cover" />
+                        <button 
+                          type="button"
+                          onClick={() => setSettings({ ...settings, 'home_editorial_image': '' })}
+                          className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-red-400 hover:text-red-300"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                        </button>
+                      </div>
+                    ) : (
+                      <label className="h-32 bg-[#050202] border border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-white/5 hover:border-secondary transition-all group">
+                        {uploadingImage ? (
+                          <div className="w-6 h-6 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
+                        ) : (
+                          <>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white/30 group-hover:text-secondary mb-2 transition-colors"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                            <span className="text-[10px] text-white/50 uppercase tracking-widest font-bold">Upload</span>
+                          </>
+                        )}
+                        <input type="file" accept="image/*" className="hidden" onChange={(e) => handleImageUpload(e, 'home_editorial_image')} disabled={uploadingImage} />
+                      </label>
+                    )}
+                    <p className="text-[10px] text-white/40 mt-2">Replaces the necklace image.</p>
+                  </div>
+
+                  {/* Bridal Block Image */}
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Bridal Edit Image</label>
+                    {settings['home_bridal_image'] ? (
+                      <div className="relative h-32 bg-black rounded-xl border border-white/10 overflow-hidden group">
+                        <img src={settings['home_bridal_image']} alt="Preview" className="w-full h-full object-cover" />
+                        <button 
+                          type="button"
+                          onClick={() => setSettings({ ...settings, 'home_bridal_image': '' })}
+                          className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-red-400 hover:text-red-300"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                        </button>
+                      </div>
+                    ) : (
+                      <label className="h-32 bg-[#050202] border border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-white/5 hover:border-secondary transition-all group">
+                        {uploadingImage ? (
+                          <div className="w-6 h-6 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
+                        ) : (
+                          <>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white/30 group-hover:text-secondary mb-2 transition-colors"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                            <span className="text-[10px] text-white/50 uppercase tracking-widest font-bold">Upload</span>
+                          </>
+                        )}
+                        <input type="file" accept="image/*" className="hidden" onChange={(e) => handleImageUpload(e, 'home_bridal_image')} disabled={uploadingImage} />
+                      </label>
+                    )}
+                    <p className="text-[10px] text-white/40 mt-2">Replaces the bottom-right grid image.</p>
+                  </div>
+
+                  {/* Showroom CTA Image */}
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Showroom Hero Image</label>
+                    {settings['home_showroom_image'] ? (
+                      <div className="relative h-32 bg-black rounded-xl border border-white/10 overflow-hidden group">
+                        <img src={settings['home_showroom_image']} alt="Preview" className="w-full h-full object-cover" />
+                        <button 
+                          type="button"
+                          onClick={() => setSettings({ ...settings, 'home_showroom_image': '' })}
+                          className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-red-400 hover:text-red-300"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                        </button>
+                      </div>
+                    ) : (
+                      <label className="h-32 bg-[#050202] border border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-white/5 hover:border-secondary transition-all group">
+                        {uploadingImage ? (
+                          <div className="w-6 h-6 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
+                        ) : (
+                          <>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white/30 group-hover:text-secondary mb-2 transition-colors"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                            <span className="text-[10px] text-white/50 uppercase tracking-widest font-bold">Upload</span>
+                          </>
+                        )}
+                        <input type="file" accept="image/*" className="hidden" onChange={(e) => handleImageUpload(e, 'home_showroom_image')} disabled={uploadingImage} />
+                      </label>
+                    )}
+                    <p className="text-[10px] text-white/40 mt-2">Replaces the bottom showroom image.</p>
+                  </div>
+                </div>
               </div>
             </div>
 

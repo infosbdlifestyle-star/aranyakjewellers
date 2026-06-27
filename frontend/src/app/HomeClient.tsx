@@ -157,7 +157,7 @@ export default function HomeClient({ settings, categories, banners, goldRates }:
       <section className="h-[60vh] w-full relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[#050202]/30 z-10" />
         <Image 
-          src="/hero-necklace.png" 
+          src={settings['home_editorial_image'] || "/hero-necklace.png"} 
           alt="Aranyak Craftsmanship" 
           fill 
           className="object-cover object-center" 
@@ -201,7 +201,7 @@ export default function HomeClient({ settings, categories, banners, goldRates }:
 
             {/* Bottom Right Large */}
             <Link href="/collections" className="md:col-span-8 row-span-1 relative group overflow-hidden bg-[#0A0505] flex items-center justify-center p-12 border-l md:border-l-0 border-r border-b border-white/10 transition-all duration-1000">
-              <MouseParallaxImage src="/IMG_20260603_141113.png" alt="Bridal Edit" intensity={20} />
+              <MouseParallaxImage src={settings['home_bridal_image'] || "/IMG_20260603_141113.png"} alt="Bridal Edit" intensity={20} />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050202]/90 via-[#050202]/30 to-transparent" />
               <div className="relative z-10 text-center flex flex-col items-center justify-end h-full pb-8">
                 <span className="text-[9px] tracking-[0.5em] uppercase text-white/70 mb-6">The Heritage</span>
@@ -229,7 +229,7 @@ export default function HomeClient({ settings, categories, banners, goldRates }:
       <section className="relative py-28 overflow-hidden bg-[#050202] border-t border-white/10">
         <div className="absolute inset-0">
           <Image 
-            src="/showroom.jpg" 
+            src={settings['home_showroom_image'] || "/showroom.jpg"} 
             alt="Aranyak Jewellers Showroom" 
             fill 
             className="object-cover opacity-40 animate-slow-zoom"
