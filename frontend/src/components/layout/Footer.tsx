@@ -73,7 +73,7 @@ const Footer = ({ categories = [], settings = {} }: { categories?: any[], settin
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy" className="hover:text-white/70">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white/70">Terms of Service</Link>
-            <Link href="/login" className="hover:text-white/70">Admin Access</Link>
+            <Link href="/login" className="hover:text-white/70 inline-flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Admin Panel</Link>
           </div>
         </div>
       </div>

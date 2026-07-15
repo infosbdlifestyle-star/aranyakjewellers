@@ -138,6 +138,14 @@ export default function AdminProductsPage() {
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0 || !token) return;
     const file = e.target.files[0];
+
+    // Client-side 6MB validation
+    const MAX_SIZE = 6 * 1024 * 1024; // 6MB
+    if (file.size > MAX_SIZE) {
+      alert(`File too large (${(file.size / 1024 / 1024).toFixed(1)}MB). Maximum allowed size is 6MB per image.`);
+      e.target.value = '';
+      return;
+    }
     
     setUploadingImage(true);
     try {
@@ -149,6 +157,7 @@ export default function AdminProductsPage() {
       alert('Failed to upload image');
     } finally {
       setUploadingImage(false);
+      e.target.value = '';
     }
   };
 
@@ -542,7 +551,7 @@ export default function AdminProductsPage() {
                           )}
                           <input 
                             type="file" 
-                            accept="image/*" 
+                            accept="image/jpeg,image/png,image/webp" 
                             className="hidden" 
                             onChange={handleImageUpload}
                             disabled={uploadingImage}
@@ -551,7 +560,7 @@ export default function AdminProductsPage() {
                       )}
                     </div>
                     <p className="text-[10px] text-white/40 leading-relaxed">
-                      Recommended size: 1000x1000 pixels (Square). Max 5MB per image. First image is the main cover.
+                      📐 Recommended: 1000×1000px (Square) · Max 6MB per image · JPG, PNG, WebP · First image is the main cover.
                     </p>
                   </div>
                 </div>

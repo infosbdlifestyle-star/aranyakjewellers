@@ -70,6 +70,14 @@ export default function AdminBannersPage() {
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0 || !token) return;
     const file = e.target.files[0];
+
+    // Client-side 6MB validation
+    const MAX_SIZE = 6 * 1024 * 1024; // 6MB
+    if (file.size > MAX_SIZE) {
+      alert(`File too large (${(file.size / 1024 / 1024).toFixed(1)}MB). Maximum allowed size is 6MB.`);
+      e.target.value = '';
+      return;
+    }
     
     setUploadingImage(true);
     try {
@@ -81,6 +89,7 @@ export default function AdminBannersPage() {
       alert('Failed to upload image');
     } finally {
       setUploadingImage(false);
+      e.target.value = '';
     }
   };
 
@@ -308,13 +317,25 @@ export default function AdminBannersPage() {
                   {formData.imageUrl ? (
                     <div className="relative h-48 bg-black rounded-xl border border-white/10 overflow-hidden group">
                       <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" />
-                      <button 
-                        type="button"
-                        onClick={() => setFormData({ ...formData, imageUrl: '' })}
-                        className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-red-400 hover:text-red-300"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
-                      </button>
+                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <label className="p-2 bg-secondary/20 hover:bg-secondary/40 text-secondary rounded-lg cursor-pointer transition-colors" title="Change Image">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                          <input type="file" accept="image/jpeg,image/png,image/webp" className="hidden" onChange={handleImageUpload} disabled={uploadingImage} />
+                        </label>
+                        <button 
+                          type="button"
+                          onClick={() => setFormData({ ...formData, imageUrl: '' })}
+                          className="p-2 bg-red-500/20 hover:bg-red-500/40 text-red-400 rounded-lg transition-colors"
+                          title="Remove Image"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                        </button>
+                      </div>
+                      {uploadingImage && (
+                        <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+                          <div className="w-6 h-6 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <label className="h-48 bg-[#050202] border border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-white/5 hover:border-secondary transition-all group">
@@ -328,7 +349,7 @@ export default function AdminBannersPage() {
                       )}
                       <input 
                         type="file" 
-                        accept="image/*" 
+                        accept="image/jpeg,image/png,image/webp" 
                         className="hidden" 
                         onChange={handleImageUpload}
                         disabled={uploadingImage}
@@ -336,7 +357,7 @@ export default function AdminBannersPage() {
                     </label>
                   )}
                   <p className="text-[10px] text-white/40 mt-2 leading-relaxed">
-                    Recommended size: 1920x1080 pixels (Landscape). Max 5MB.
+                    📐 Recommended: 1920×1080px (Landscape) · Max 6MB · JPG, PNG, WebP
                   </p>
                 </div>
               </div>

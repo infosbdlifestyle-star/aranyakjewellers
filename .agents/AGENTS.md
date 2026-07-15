@@ -33,9 +33,9 @@ async rewrites() {
 5. Frontend renders it as `<img src="/uploads/filename.jpg">` which Next.js proxies securely.
 
 ### Image Sizes (Admin UI guidance)
-- **Category image**: 800×1200 px (Portrait), max 2MB
-- **Banner image**: 1920×1080 px (Landscape), max 5MB
-- **Product images**: 1000×1000 px (Square), max 5MB each
+- **Category image**: 800×1200 px (Portrait), max 6MB
+- **Banner image**: 1920×1080 px (Landscape), max 6MB
+- **Product images**: 1000×1000 px (Square), max 6MB each
 
 ---
 
