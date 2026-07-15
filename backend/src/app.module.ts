@@ -16,6 +16,8 @@ import { GoldPriceModule } from './gold-price/gold-price.module';
 import { UploadModule } from './upload/upload.module';
 import { SettingsModule } from './settings/settings.module';
 import { StoresModule } from './stores/stores.module';
+import { UsersModule } from './users/users.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -36,6 +38,8 @@ import { StoresModule } from './stores/stores.module';
     UploadModule,
     SettingsModule,
     StoresModule,
+    UsersModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

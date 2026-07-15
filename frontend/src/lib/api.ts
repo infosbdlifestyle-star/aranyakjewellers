@@ -105,11 +105,11 @@ class ApiClient {
   }
 
   // Auth
-  async login(email: string, password: string) {
+  async login(email: string, password: string, totpCode?: string) {
     const res = await fetch(`${this.baseUrl}/auth/login`, {
       method: 'POST',
       headers: this.getHeaders(),
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password, totpCode }),
     });
     return res.json();
   }
@@ -119,6 +119,51 @@ class ApiClient {
       method: 'POST',
       headers: this.getHeaders(),
       body: JSON.stringify(data),
+    });
+    return res.json();
+  }
+
+  // Auth - TOTP
+  async generateTotp(token: string) {
+    const res = await fetch(`${this.baseUrl}/auth/totp/generate`, {
+      method: 'POST',
+      headers: this.getHeaders(token),
+    });
+    return res.json();
+  }
+
+  async enableTotp(token: string, totpToken: string) {
+    const res = await fetch(`${this.baseUrl}/auth/totp/enable`, {
+      method: 'POST',
+      headers: this.getHeaders(token),
+      body: JSON.stringify({ token: totpToken }),
+    });
+    return res.json();
+  }
+
+  async disableTotp(token: string) {
+    const res = await fetch(`${this.baseUrl}/auth/totp/disable`, {
+      method: 'POST',
+      headers: this.getHeaders(token),
+    });
+    return res.json();
+  }
+
+  // Auth - Password Reset
+  async forgotPassword(email: string) {
+    const res = await fetch(`${this.baseUrl}/auth/forgot-password`, {
+      method: 'POST',
+      headers: this.getHeaders(),
+      body: JSON.stringify({ email }),
+    });
+    return res.json();
+  }
+
+  async resetPassword(token: string, password: string) {
+    const res = await fetch(`${this.baseUrl}/auth/reset-password`, {
+      method: 'POST',
+      headers: this.getHeaders(),
+      body: JSON.stringify({ token, password }),
     });
     return res.json();
   }
@@ -212,6 +257,40 @@ class ApiClient {
 
   async deleteProduct(token: string, id: string) {
     const res = await fetch(`${this.baseUrl}/products/${id}`, {
+      method: 'DELETE',
+      headers: this.getHeaders(token),
+    });
+    return res.json();
+  }
+
+  // Admin Users Management
+  async getUsers(token: string) {
+    const res = await fetch(`${this.baseUrl}/users`, {
+      headers: this.getHeaders(token),
+    });
+    return res.json();
+  }
+
+  async createUser(token: string, data: any) {
+    const res = await fetch(`${this.baseUrl}/users`, {
+      method: 'POST',
+      headers: this.getHeaders(token),
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  }
+
+  async updateUser(token: string, id: string, data: any) {
+    const res = await fetch(`${this.baseUrl}/users/${id}`, {
+      method: 'PUT',
+      headers: this.getHeaders(token),
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  }
+
+  async deleteUser(token: string, id: string) {
+    const res = await fetch(`${this.baseUrl}/users/${id}`, {
       method: 'DELETE',
       headers: this.getHeaders(token),
     });
