@@ -36,7 +36,7 @@ async function getStoresAndSettings() {
 
 export default async function StoresPage() {
   const { stores, settings } = await getStoresAndSettings();
-  const contactPhone = settings['contact_phone'] || '+91XXXXXXXXXX';
+  const contactPhone = settings['contact_phone'] || '+919436501506';
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Hero Section */}

@@ -13,7 +13,7 @@ const WhatsAppButton = () => {
 
   if (!isVisible) return null;
 
-  const phoneNumber = '91XXXXXXXXXX';
+  const phoneNumber = '919436501506';
   const message = encodeURIComponent('Hello! I would like to know more about your jewellery collections.');
 
   return (
