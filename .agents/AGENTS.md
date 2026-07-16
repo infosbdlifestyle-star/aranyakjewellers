@@ -114,7 +114,7 @@ async function getGlobalData() {
 - Live URLs: `https://aranyakjewellers.vercel.app` and `https://aranyakjewellers-xi.vercel.app`
 
 ### Backend Deployment (VPS)
-- **VPS IP**: `117.252.16.132`, user: `root`, SSH password: `$9T%Lk057bzu`
+- **VPS IP**: `117.252.16.132`, user: `root`, SSH password: `b&Doe2K46e%1`
 - **Upload persistence**: Uploaded files stored at `/root/aranyak_uploads/`, symlinked to `/root/aranyak-backend/uploads`.
 - **PM2 process name**: `aranyak-backend`
 

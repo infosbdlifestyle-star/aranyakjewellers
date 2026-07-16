@@ -2,7 +2,8 @@ import { Injectable, UnauthorizedException, Logger, NotFoundException } from '@n
 import { PrismaService } from '../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
-import { authenticator } from 'otplib';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { authenticator } = require('otplib');
 import * as qrcode from 'qrcode';
 import { MailService } from '../mail/mail.service';
 import { randomBytes } from 'crypto';
@@ -154,7 +155,7 @@ export class AuthService {
     // In a real app, this domain would be dynamic or from env.
     const resetUrl = `${process.env.FRONTEND_URL || 'https://aranyakjewellers.vercel.app'}/reset-password?token=${resetToken}`;
     
-    await this.mailService.sendPasswordResetEmail(user.email, resetUrl);
+    await this.mailService.sendPasswordResetEmail(user.email!, resetUrl);
 
     return { success: true, message: 'If email exists, a reset link was sent.' };
   }

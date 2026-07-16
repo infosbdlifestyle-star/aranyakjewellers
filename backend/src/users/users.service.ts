@@ -56,7 +56,7 @@ export class UsersService {
     });
 
     // Send welcome email with temp password
-    await this.mailService.sendWelcomeEmail(user.email, user.name, tempPassword);
+    await this.mailService.sendWelcomeEmail(user.email!, user.name!, tempPassword);
 
     return user;
   }

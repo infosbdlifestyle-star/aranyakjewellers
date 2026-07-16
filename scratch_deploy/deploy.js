@@ -20,7 +20,7 @@ async function deploy() {
     await ssh.connect({
       host: '117.252.16.132',
       username: 'root',
-      password: '$9T%Lk057bzu',
+      password: 'b&Doe2K46e%1',
       readyTimeout: 30000,
       keepaliveInterval: 10000,
       keepaliveCountMax: 10,
@@ -56,7 +56,7 @@ async function deploy() {
     await runCommand('cd /root/aranyak-backend && npm run build 2>&1');
 
     // Step 5: PM2 restart with updated env
-    await runCommand('pm2 describe aranyak-backend > /dev/null 2>&1 && pm2 restart aranyak-backend --update-env || pm2 start dist/main.js --name aranyak-backend');
+    await runCommand('cd /root/aranyak-backend && (pm2 describe aranyak-backend > /dev/null 2>&1 && pm2 restart aranyak-backend --update-env || pm2 start dist/src/main.js --name aranyak-backend)');
     await runCommand('pm2 save');
     
     console.log('\n✅ Deployment completed successfully!');
