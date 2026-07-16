@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
+import { api } from '@/lib/api';
 
 export default function AdminSettingsPage() {
   const { user, token, isAuthenticated, isLoading } = useAuth();

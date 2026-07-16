@@ -48,3 +48,6 @@ yarn-error.log*
 
 # Scratch/temp
 scratch_deps/
+
+.vercel
+.env*

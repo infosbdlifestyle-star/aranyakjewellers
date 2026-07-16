@@ -1,0 +1,195 @@
+// Aranyak Jewellers Prisma Schema
+// Reused and adapted from SBD_SOLUTION
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// --------------------------------------
+// USER MANAGEMENT
+// --------------------------------------
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  STAFF
+  USER
+}
+
+model User {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  email     String?   @unique
+  password  String?
+  mobile    String?   
+  name      String
+  role      Role      @default(USER)
+  googleId  String?   @unique
+  avatar    String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  
+  cart      Cart?
+  orders    Order[]
+  wishlist  Wishlist[]
+  addresses Address[] 
+}
+
+// --------------------------------------
+// MASTER DATA
+// --------------------------------------
+
+model GoldPrice {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  purity      Int      @unique // e.g. 22
+  pricePer10g Float
+  isActive    Boolean  @default(true)
+  updatedAt   DateTime @updatedAt
+}
+
+// --------------------------------------
+// PRODUCTS
+// --------------------------------------
+
+model Product {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  slug        String   @unique
+  description String?
+  
+  // Core Specs
+  goldPurity  Int      // 18, 22
+  goldWeight  Float    // grams
+  
+  diamondClarity String? // "VS1"
+  diamondCarat   Float?
+  
+  category    String   
+  subCategory String?
+  tags        String[] 
+  
+  // Media
+  images      String[] 
+  coverImage  String?  
+  
+  isActive    Boolean  @default(true)
+  stockCount  Int      @default(0)
+  sku         String?  @unique
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  cartItems   CartItem[]
+  orderItems  OrderItem[]
+  wishlistedBy Wishlist[]
+
+  @@index([category, isActive])
+}
+
+model Category {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String   @unique
+  slug        String   @unique
+  parentId    String?  @db.ObjectId // For nesting
+  imageUrl    String?
+  description String?
+  isActive    Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// --------------------------------------
+// E-COMMERCE CORE
+// --------------------------------------
+
+model Cart {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String?    @unique @db.ObjectId 
+  user      User?      @relation(fields: [userId], references: [id])
+  items     CartItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  cartId    String   @db.ObjectId
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId String   @db.ObjectId
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int      @default(1)
+  addedAt   DateTime @default(now())
+}
+
+model Wishlist {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+  productId String   @db.ObjectId
+  product   Product  @relation(fields: [productId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+}
+
+model Order {
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String?     @db.ObjectId
+  user            User?       @relation(fields: [userId], references: [id])
+  items           OrderItem[]
+  totalAmount     Float
+  status          String      @default("PENDING")
+  paymentStatus   String      @default("PENDING")
+  shippingAddress AddressType
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  orderId   String  @db.ObjectId
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String  @db.ObjectId
+  product   Product @relation(fields: [productId], references: [id])
+  name      String  
+  quantity  Int
+  price     Float   
+}
+
+type AddressType {
+  fullName  String
+  street    String
+  city      String
+  state     String
+  zip       String
+  phone     String
+}
+
+model Address {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+  fullName  String
+  street    String
+  city      String
+  state     String
+  zip       String
+  phone     String
+  isDefault Boolean  @default(false)
+}
+
+model Banner {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl       String
+  link           String?
+  title          String?
+  isActive       Boolean  @default(true)
+  order          Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
