@@ -40,12 +40,11 @@ export default async function StoresPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Hero Section */}
-      <section className="relative py-28 md:py-36 bg-[#050202] text-white text-center overflow-hidden border-b border-white/10">
+      <section className="relative py-28 md:py-36 px-6 md:px-12 bg-[#050202] text-white text-left overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] opacity-10 mix-blend-luminosity" />
-        <div className="relative z-10">
+        <div className="relative z-10 container mx-auto max-w-7xl">
           <h1 className="text-5xl md:text-7xl font-serif font-light mb-8 tracking-tight">Our Showrooms</h1>
-          <div className="flex items-center justify-center space-x-4">
-            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-secondary" />
+          <div className="flex items-center justify-start space-x-4">
             <p className="text-xs tracking-[0.4em] uppercase text-white/80 font-bold">Experience Luxury Across Tripura</p>
             <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-secondary" />
           </div>

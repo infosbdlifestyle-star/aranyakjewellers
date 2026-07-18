@@ -34,13 +34,15 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Hero */}
-      <section className="py-28 md:py-36 relative bg-[#050202] text-white text-center border-b border-white/10 overflow-hidden">
+      <section className="py-28 md:py-36 px-6 md:px-12 relative bg-[#050202] text-white text-left border-b border-white/10 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
         <div className="absolute inset-0 silk-texture opacity-20 mix-blend-overlay" />
-        <Reveal>
-          <h1 className="text-5xl md:text-7xl font-serif font-light mb-6">Get in Touch</h1>
-          <p className="text-[10px] tracking-[0.5em] uppercase text-white/50 font-bold">We&apos;d love to hear from you</p>
-        </Reveal>
+        <div className="relative z-10 container mx-auto max-w-7xl">
+          <Reveal>
+            <h1 className="text-5xl md:text-7xl font-serif font-light mb-6">Get in Touch</h1>
+            <p className="text-[10px] tracking-[0.5em] uppercase text-white/50 font-bold">We&apos;d love to hear from you</p>
+          </Reveal>
+        </div>
       </section>
 
       {/* Contact Cards */}

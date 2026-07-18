@@ -12,17 +12,17 @@ export default function CollectionsPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Page Hero */}
-      <section className="relative py-28 md:py-36 px-6 text-center bg-[#050202] text-white overflow-hidden border-b border-white/10">
+      <section className="relative py-28 md:py-36 px-6 md:px-12 text-left bg-[#050202] text-white overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity animate-slow-zoom" />
-        <div className="relative z-10">
+        <div className="relative z-10 container mx-auto max-w-7xl">
           <Reveal y={40}>
-            <p className="text-[10px] tracking-[0.6em] uppercase text-secondary mb-8 font-bold">The Archives</p>
+            <p className="text-[10px] tracking-[0.6em] uppercase text-secondary mb-4 font-bold">The Archives</p>
           </Reveal>
           <Reveal delay={0.1} y={40}>
             <h1 className="text-6xl md:text-8xl font-serif font-light mb-8 tracking-tight drop-shadow-xl">Our <span className="font-editorial italic text-white/90">Collections</span></h1>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="w-[1px] h-24 bg-gradient-to-b from-secondary to-transparent mx-auto mt-12" />
+            <div className="w-[1px] h-24 bg-gradient-to-b from-secondary to-transparent mt-8" />
           </Reveal>
         </div>
       </section>

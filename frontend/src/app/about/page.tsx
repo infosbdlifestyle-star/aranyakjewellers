@@ -30,18 +30,20 @@ export default async function AboutPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
       {/* Editorial Hero */}
-      <section className="py-28 md:py-36 px-6 text-center relative overflow-hidden">
+      <section className="py-28 md:py-36 px-6 md:px-12 text-left relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
         <div className="absolute inset-0 silk-texture opacity-20 mix-blend-overlay" />
-        <Reveal y={40}>
-          <p className="text-[9px] font-bold tracking-[0.6em] uppercase text-white/50 mb-8 relative z-10">Est. 1995</p>
-        </Reveal>
-        <Reveal delay={0.1} y={40}>
-          <h1 className="text-6xl md:text-8xl font-serif font-light mb-8 tracking-tight relative z-10">Our <span className="font-editorial italic">Legacy</span></h1>
-        </Reveal>
-        <Reveal delay={0.2}>
-          <div className="w-[1px] h-24 bg-gradient-to-b from-secondary to-transparent mx-auto relative z-10" />
-        </Reveal>
+        <div className="relative z-10 container mx-auto max-w-7xl">
+          <Reveal y={40}>
+            <p className="text-[9px] font-bold tracking-[0.6em] uppercase text-white/50 mb-4">Est. 1995</p>
+          </Reveal>
+          <Reveal delay={0.1} y={40}>
+            <h1 className="text-6xl md:text-8xl font-serif font-light mb-8 tracking-tight">Our <span className="font-editorial italic">Legacy</span></h1>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="w-[1px] h-24 bg-gradient-to-b from-secondary to-transparent mt-8" />
+          </Reveal>
+        </div>
       </section>
 
       {/* Story Section - Asymmetrical Magazine Layout */}
