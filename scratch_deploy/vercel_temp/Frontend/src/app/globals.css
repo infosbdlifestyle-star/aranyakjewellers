@@ -1,0 +1,328 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #050202;
+    --foreground: #ffffff;
+    --primary: #CBA135; /* Champagne Gold */
+    --primary-foreground: #050202;
+    --secondary: #E5D3B3; /* Lighter Gold Accent */
+    --secondary-foreground: #050202;
+    --accent: #2A0A0A; /* Deepest Wine / Charcoal */
+    --accent-foreground: #ffffff;
+    --ivory: #ffffff; /* Using pure white for contrasts against dark bg */
+    --muted: #1A1A1A;
+    --muted-foreground: #a1a1aa;
+    --card: #0A0505;
+    --card-foreground: #ffffff;
+    --border: #27272a;
+    --input: #27272a;
+    --ring: #CBA135;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --primary: #CBA135;
+    --primary-foreground: #0a0a0a;
+    --secondary: #2A0A0A;
+    --secondary-foreground: #ffffff;
+    --accent: #E5D3B3;
+    --accent-foreground: #0a0a0a;
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
+    --card: #121212;
+    --card-foreground: #ededed;
+    --border: #27272a;
+    --input: #27272a;
+    --ring: #CBA135;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-ivory: var(--ivory);
+  --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-cormorant);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), sans-serif;
+  overflow-x: clip; /* Fixes mobile horizontal scroll while preserving smooth vertical scroll */
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-cormorant), serif;
+  letter-spacing: -0.01em;
+}
+
+/* Premium Typography */
+.font-editorial {
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* Text Balancer for Headlines */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Glassmorphism utility - Dark Theme Default */
+.glass {
+  background: rgba(10, 5, 5, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dark .glass {
+  background: rgba(10, 10, 10, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Luxury Gradients & Textures */
+.gold-gradient {
+  background: linear-gradient(135deg, #A67C00 0%, #E5D3B3 25%, #CBA135 50%, #E5D3B3 75%, #A67C00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: shine 6s linear infinite;
+}
+
+.burgundy-gradient {
+  background: linear-gradient(135deg, #1A0505 0%, #2A0A0A 50%, #1A0505 100%);
+}
+
+/* Silk texture - local SVG pattern */
+.silk-texture {
+  position: relative;
+}
+
+.silk-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.02) 0px,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.01) 0px,
+      rgba(255, 255, 255, 0.01) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.luxury-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-shimmer::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 55%
+  );
+  transform: rotate(45deg);
+  animation: shimmer-swipe 5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes shimmer-swipe {
+  0% { transform: translate(-100%, -100%) rotate(45deg); }
+  20%, 100% { transform: translate(100%, 100%) rotate(45deg); }
+}
+
+.gold-foil-border {
+  position: relative;
+}
+
+.gold-foil-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, #9C793F, #E5D3B3, #CBA135, #E5D3B3, #7A5B2B) border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Textured Deep Color Button */
+.btn-luxury {
+  background-color: var(--primary);
+  color: var(--secondary);
+  border: 1px solid rgba(203, 161, 53, 0.3); /* border-secondary/30 */
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-out;
+}
+
+.btn-luxury::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(203, 161, 53, 0.05) 0px,
+      rgba(203, 161, 53, 0.05) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(203, 161, 53, 0.03) 0px,
+      rgba(203, 161, 53, 0.03) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.btn-luxury:hover {
+  background-color: var(--secondary);
+  color: var(--primary);
+  box-shadow: 0 0 20px rgba(203, 161, 53, 0.2);
+}
+
+.btn-luxury:hover::before {
+  opacity: 0;
+}
+
+/* Hover underline effect */
+.hover-underline-gold {
+  position: relative;
+}
+.hover-underline-gold::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 50%;
+  background-color: var(--secondary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+}
+.hover-underline-gold:hover::after {
+  width: 100%;
+}
+
+/* Animations */
+@keyframes shine {
+  to { background-position: 200% center; }
+}
+
+@keyframes slow-zoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+.animate-slow-zoom {
+  animation: slow-zoom 25s ease-in-out infinite alternate;
+}
+
+/* Scroll Indicator */
+@keyframes fill-down {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  50.1% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+.animate-fill-down {
+  animation: fill-down 2.5s infinite cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 50s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+}
+
+/* Interaction fixes */
+.no-select {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Touch Device Hover Fix */
+@media (hover: none) {
+  .hover-underline-gold:hover::after {
+    width: 0 !important;
+  }
+  .group:hover .group-hover\:scale-105 {
+    transform: none !important;
+  }
+  .group:hover .group-hover\:opacity-100 {
+    opacity: 0 !important; /* Depending on default state */
+  }
+}
+
+/* Text Mask Reveal Utils */
+.mask-clip {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.animate-in {
+  animation: fadeIn 0.4s ease-out, slideInFromTop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromTop {
+  from { transform: translateY(-15px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
