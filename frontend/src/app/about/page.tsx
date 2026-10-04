@@ -35,7 +35,7 @@ export default async function AboutPage() {
         <div className="absolute inset-0 silk-texture opacity-20 mix-blend-overlay" />
         <div className="relative z-10 container mx-auto max-w-7xl">
           <Reveal y={40}>
-            <p className="text-[9px] font-bold tracking-[0.6em] uppercase text-white/50 mb-4">Est. 1995</p>
+            <p className="text-[9px] font-bold tracking-[0.6em] uppercase text-white/50 mb-4">Est. 2005</p>
           </Reveal>
           <Reveal delay={0.1} y={40}>
             <h1 className="text-6xl md:text-8xl font-serif font-light mb-8 tracking-tight">Our <span className="font-editorial italic">Legacy</span></h1>
@@ -81,7 +81,7 @@ export default async function AboutPage() {
                 <div className="space-y-6">
                   <h2 className="text-4xl font-serif font-light">A Vision of <span className="font-editorial italic text-secondary">Purity</span></h2>
                   <p className="text-white/70 leading-relaxed tracking-wide font-light">
-                    {settings['about_p1'] || "Aranyak Jewellers is not just a destination for fine jewelry; it is an institution built on trust, artistry, and heritage. What began as a singular vision in 1995 has blossomed into Tripura's most prestigious jewelry house."}
+                    {settings['about_p1'] || "Aranyak Jewellers is not just a destination for fine jewelry; it is an institution built on trust, artistry, and heritage. What began as a singular vision in 2005 has blossomed into Tripura's most prestigious jewelry house."}
                   </p>
                   <p className="text-white/70 leading-relaxed tracking-wide font-light">
                     {settings['about_p2'] || "We believe that every piece of jewelry carries a soul. It is a silent witness to life's most profound moments—a wedding vow, a milestone anniversary, a gift of enduring love. Our master artisans, carrying centuries-old Bengali goldsmithing traditions, pour hundreds of hours into realizing these masterpieces."}

@@ -154,7 +154,7 @@ export default function HomeClient({ settings, categories, banners, goldRates }:
             <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#0A0505]/80 backdrop-blur-md border border-[#CBA135]/40 mb-8 shadow-2xl">
               <span className="w-1.5 h-1.5 rounded-full bg-[#CBA135] animate-pulse" />
               <span className="text-secondary text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase">
-                EST. 1995 • TRIPURA'S FINEST JEWELLER
+                EST. 2005 • TRIPURA'S FINEST JEWELLER
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#CBA135] animate-pulse" />
             </div>

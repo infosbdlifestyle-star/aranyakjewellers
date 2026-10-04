@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   keywords: ["Aranyak Jewellers", "Jewellery in Tripura", "Gold Jewellery", "Diamond Rings", "Silver Ornaments", "Astrological Stones", "Bengali Jewellery", "Agartala Jewellery"],
   openGraph: {
     title: "Aranyak Jewellers | Premium Gold & Diamond Jewellery",
-    description: "Legacy of Excellence Since 1995. Handcrafted masterpieces and certified purity.",
+    description: "Legacy of Excellence Since 2005. Handcrafted masterpieces and certified purity.",
     url: "https://aranyakjewellers.com",
     siteName: "Aranyak Jewellers",
     images: [{ url: "/hero-banner.png", width: 1200, height: 630 }],
