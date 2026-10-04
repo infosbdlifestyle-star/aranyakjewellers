@@ -78,7 +78,7 @@ const TESTIMONIALS = [
 
 // Brand Statistics
 const STATS = [
-  { label: 'Years of Heritage', value: '25+' },
+  { label: 'Years of Heritage', value: '21+' },
   { label: 'BIS Hallmarked Gold', value: '100%' },
   { label: 'Happy Families Served', value: '50,000+' },
   { label: 'Flagship Showrooms', value: '3+' }
@@ -175,7 +175,7 @@ export default function HomeClient({ settings, categories, banners, goldRates }:
           {/* Subtitle Narrative */}
           <Reveal delay={0.4} y={30}>
             <p className="mt-8 text-xs sm:text-sm md:text-base text-white/80 font-light tracking-widest max-w-2xl mx-auto leading-relaxed uppercase">
-              Curating handcrafted gold, certified diamonds, and sacred astrological gemstones with 25+ years of master craftsmanship.
+              Curating handcrafted gold, certified diamonds, and sacred astrological gemstones with 21+ years of master craftsmanship.
             </p>
           </Reveal>
 
@@ -250,7 +250,7 @@ export default function HomeClient({ settings, categories, banners, goldRates }:
           <div className="animate-marquee flex items-center">
             {[...Array(4)].map((_, i) => (
               <div key={i} className="flex items-center space-x-10 mx-8">
-                {(settings['marquee_text'] || '100% BIS 916 Hallmarked Gold | Certified IGI Diamonds | 25+ Years Legacy | Transparent Exchange Policy | Multiple Showrooms in Tripura').split('|').map((text, j) => (
+                {(settings['marquee_text'] || '100% BIS 916 Hallmarked Gold | Certified IGI Diamonds | 21+ Years Legacy | Transparent Exchange Policy | Multiple Showrooms in Tripura').split('|').map((text, j) => (
                   <React.Fragment key={j}>
                     <span className="text-xs tracking-[0.2em] font-bold text-white uppercase">{text.trim()}</span>
                     <span className="text-[#CBA135] text-xs">✦</span>

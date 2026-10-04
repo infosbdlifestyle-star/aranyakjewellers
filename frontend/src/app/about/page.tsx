@@ -99,7 +99,7 @@ export default async function AboutPage() {
                   </div>
                   <div className="p-8 hover:bg-white/[0.02] transition-colors duration-500">
                     <div className="text-sm font-editorial text-white/40 mb-8">II</div>
-                    <h3 className="text-[10px] font-bold tracking-[0.3em] uppercase mb-3 text-white">25+ Years of Trust</h3>
+                    <h3 className="text-[10px] font-bold tracking-[0.3em] uppercase mb-3 text-white">21+ Years of Trust</h3>
                     <p className="text-xs text-white/50 leading-relaxed font-light">A generational legacy of uncompromising quality.</p>
                   </div>
                   <div className="p-8 hover:bg-white/[0.02] transition-colors duration-500">
