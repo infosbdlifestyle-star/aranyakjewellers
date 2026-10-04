@@ -20,6 +20,8 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://aranyakjewellers.com'),
+  alternates: { canonical: '/' },
   title: "Aranyak Jewellers | Premium Gold & Diamond Jewellery in Tripura",
   description: "Discover exquisite gold, diamond, and silver jewellery at Aranyak Jewellers. Multiple stores across Tripura offering the finest craftsmanship and authentic astrological stones.",
   keywords: ["Aranyak Jewellers", "Jewellery in Tripura", "Gold Jewellery", "Diamond Rings", "Silver Ornaments", "Astrological Stones", "Bengali Jewellery", "Agartala Jewellery"],
@@ -76,6 +78,43 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${cormorant.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "JewelryStore",
+              "name": "Aranyak Jewellers",
+              "url": "https://aranyakjewellers.com",
+              "logo": "https://aranyakjewellers.com/logo.png",
+              "image": "https://aranyakjewellers.com/hero-banner.png",
+              "description": "Premium gold, diamond, silver jewellery and astrological stones store in Tripura, India. Established in 2005 with multiple showrooms across the state.",
+              "foundingDate": "2005",
+              "telephone": "+91-9436501506",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "M B B Chowmuhani",
+                "addressLocality": "Agartala",
+                "addressRegion": "Tripura",
+                "postalCode": "799001",
+                "addressCountry": "IN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "23.8315",
+                "longitude": "91.2868"
+              },
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "10:00",
+                "closes": "20:00"
+              },
+              "priceRange": "₹₹₹",
+              "sameAs": []
+            })
+          }}
+        />
         <PageLoader />
         <SmoothScroll>
           <Header categories={categories} />

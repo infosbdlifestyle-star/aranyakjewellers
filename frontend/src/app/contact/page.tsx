@@ -4,6 +4,7 @@ import { Reveal } from '@/components/animations/Reveal';
 export const metadata: Metadata = {
   title: 'Contact Us | Aranyak Jewellers',
   description: 'Get in touch with Aranyak Jewellers. Visit our showrooms in Tripura or reach us via phone and WhatsApp.',
+  alternates: { canonical: '/contact' },
 };
 
 const CONTACT_INFO = [

@@ -6,6 +6,7 @@ import { Reveal } from '@/components/animations/Reveal';
 export const metadata: Metadata = {
   title: 'All Collections | Aranyak Jewellers',
   description: 'Browse all Gold, Diamond, Silver jewellery and Astrological Stones at Aranyak Jewellers, Tripura.',
+  alternates: { canonical: '/collections' },
 };
 
 export default function CollectionsPage() {

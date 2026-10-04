@@ -7,6 +7,7 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'About Us | Aranyak Jewellers',
   description: 'Learn about Aranyak Jewellers — premium gold and diamond jewellery stores across Tripura.',
+  alternates: { canonical: '/about' },
 };
 
 async function getSettings() {

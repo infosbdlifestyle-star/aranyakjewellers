@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'Our Stores | Aranyak Jewellers',
   description: 'Find Aranyak Jewellers showrooms near you in Tripura.',
+  alternates: { canonical: '/stores' },
 };
 
 async function getStoresAndSettings() {

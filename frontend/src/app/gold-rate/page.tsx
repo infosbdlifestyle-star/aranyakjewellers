@@ -5,6 +5,7 @@ import { Reveal } from '@/components/animations/Reveal';
 export const metadata: Metadata = {
   title: "Today's Gold Rate | Aranyak Jewellers",
   description: 'Check today\'s gold rate at Aranyak Jewellers, Tripura. Updated daily for 22K, 18K, and 24K gold.',
+  alternates: { canonical: '/gold-rate' },
 };
 
 export default function GoldRatePage() {

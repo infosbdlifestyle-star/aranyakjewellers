@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'Aranyak Jewellers | Timeless Elegance',
   description: 'Premium gold and diamond jewellery stores across Tripura.',
+  alternates: { canonical: '/' },
 };
 
 async function getSiteData() {
