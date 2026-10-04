@@ -147,7 +147,7 @@ export default function HomeClient({ settings, categories, banners, goldRates }:
         <div className="absolute inset-0 bg-gradient-to-t from-[#050202] via-[#050202]/50 to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#050202]/80 via-transparent to-[#050202]/80 pointer-events-none" />
         
-        <div className="relative z-10 w-full px-6 max-w-6xl flex flex-col items-center text-center pt-24 pb-16">
+        <div className="relative z-10 w-full px-6 max-w-6xl flex flex-col items-center text-center pt-24 pb-36">
           
           {/* Est. Luxury Seal Badge */}
           <Reveal y={20} duration={1}>
@@ -199,7 +199,7 @@ export default function HomeClient({ settings, categories, banners, goldRates }:
         </div>
 
         {/* Minimal Animated Scroll Indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center z-10">
           <span className="text-[8px] font-bold tracking-[0.4em] uppercase text-white/40 mb-3">Scroll</span>
           <div className="w-[1px] h-16 bg-white/10 relative overflow-hidden">
             <motion.div 
@@ -252,7 +252,7 @@ export default function HomeClient({ settings, categories, banners, goldRates }:
               <div key={i} className="flex items-center space-x-10 mx-8">
                 {(settings['marquee_text'] || '100% BIS 916 Hallmarked Gold | Certified IGI Diamonds | 25+ Years Legacy | Transparent Exchange Policy | Multiple Showrooms in Tripura').split('|').map((text, j) => (
                   <React.Fragment key={j}>
-                    <span className="text-[10px] tracking-[0.3em] font-bold text-white/70 uppercase">{text.trim()}</span>
+                    <span className="text-xs tracking-[0.2em] font-bold text-white uppercase">{text.trim()}</span>
                     <span className="text-[#CBA135] text-xs">✦</span>
                   </React.Fragment>
                 ))}
