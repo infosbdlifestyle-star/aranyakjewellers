@@ -69,7 +69,7 @@ export default async function AboutPage() {
               <Reveal delay={0.2} x={-30}>
                 <div className="hidden md:block absolute -right-16 bottom-16 bg-[#050202] p-10 max-w-xs z-20 border border-white/10 shadow-2xl">
                   <p className="font-editorial text-3xl leading-snug text-white relative z-10">
-                    &ldquo;Preserving traditions while defining Tripura&apos;s elegance for over a quarter of a century.&rdquo;
+                    &ldquo;Preserving traditions while defining Tripura&apos;s elegance for over two decades.&rdquo;
                   </p>
                   <p className="mt-8 text-[9px] font-bold tracking-[0.4em] uppercase text-white/50 relative z-10">&mdash; The Founder</p>
                 </div>
