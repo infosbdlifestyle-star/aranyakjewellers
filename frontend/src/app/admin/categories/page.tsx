@@ -95,7 +95,7 @@ export default function AdminCategoriesPage() {
         setFormData({ ...formData, imageUrl: result.path });
       }
     } catch (err) {
-      alert('Failed to upload image');
+      alert('Failed to upload image: ' + (err.message || 'Unknown error. Check file size.'));
     } finally {
       setUploadingImage(false);
       e.target.value = '';
@@ -363,7 +363,7 @@ export default function AdminCategoriesPage() {
                       </label>
                     )}
                     <p className="text-[10px] text-white/40 mt-2 leading-relaxed">
-                      📐 Recommended: 800×1200px (Portrait) · Max 6MB · JPG, PNG, WebP
+                      📐 Recommended: 800×1200px (Portrait) · Max 4MB · JPG, PNG, WebP
                     </p>
                   </div>
                 </div>

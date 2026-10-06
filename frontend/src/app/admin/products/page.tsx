@@ -154,7 +154,7 @@ export default function AdminProductsPage() {
         setFormData({ ...formData, images: [...formData.images, result.path] });
       }
     } catch (err) {
-      alert('Failed to upload image');
+      alert('Failed to upload image: ' + (err.message || 'Unknown error. Check file size.'));
     } finally {
       setUploadingImage(false);
       e.target.value = '';
@@ -560,7 +560,7 @@ export default function AdminProductsPage() {
                       )}
                     </div>
                     <p className="text-[10px] text-white/40 leading-relaxed">
-                      📐 Recommended: 1000×1000px (Square) · Max 6MB per image · JPG, PNG, WebP · First image is the main cover.
+                      📐 Recommended: 1000×1000px (Square) · Max 4MB per image · JPG, PNG, WebP · First image is the main cover.
                     </p>
                   </div>
                 </div>
