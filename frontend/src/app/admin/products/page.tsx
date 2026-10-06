@@ -57,7 +57,7 @@ export default function AdminProductsPage() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const data = await api.getProducts();
+      const data = await api.getAdminProducts();
       setProducts(Array.isArray(data) ? data : []);
     } catch { /* empty */ }
     setLoading(false);

@@ -97,9 +97,13 @@ export default function HomeClient({ settings, categories, banners, goldRates }:
   const yParallaxGrid = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const opacityParallax = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  // Normalize display categories
-  const displayCategories = categories && categories.length >= 3 
-    ? categories.slice(0, 4).map((c, i) => ({
+  // Normalize display categories — filter to root categories only (no parentId)
+  const HIDDEN_SLUGS_HOME = ['costume-jewellery', 'offers-deals'];
+  const rootCats = Array.isArray(categories)
+    ? categories.filter((c: any) => !c.parentId && !HIDDEN_SLUGS_HOME.includes(c.slug))
+    : [];
+  const displayCategories = rootCats.length >= 3
+    ? rootCats.slice(0, 4).map((c: any, i: number) => ({
         id: c.id || `cat-${i}`,
         name: c.name,
         slug: c.slug,

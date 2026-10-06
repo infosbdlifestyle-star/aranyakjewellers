@@ -5,40 +5,88 @@ import Link from 'next/link';
 import { CATEGORIES } from '@/constants/categories';
 import { useParams } from 'next/navigation';
 import { Reveal } from '@/components/animations/Reveal';
-import { api } from '@/lib/api';
 
 export default function SubCategoryPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const subSlug = params?.subSlug as string;
 
-  const category = CATEGORIES.find(c => c.slug === slug);
-  const subCategory = category?.subcategories?.find(s => s.slug === subSlug);
+  const staticCategory = CATEGORIES.find(c => c.slug === slug);
+  const staticSubCategory = staticCategory?.subcategories?.find(s => s.slug === subSlug);
 
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState<any>(null);
+  const [subCategory, setSubCategory] = useState<any>(null);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    if (category && subCategory) {
-      fetchProducts();
-    }
-  }, [category, subCategory]);
+    if (!slug || !subSlug) return;
+    initPage();
+  }, [slug, subSlug]);
 
-  const fetchProducts = async () => {
+  const initPage = async () => {
+    setLoading(true);
     try {
-      const filters: Record<string, string> = {};
-      if (category?.name) filters.category = category.name;
-      if (subCategory?.name) filters.subCategory = subCategory.name;
-      const data = await api.getProducts(filters);
+      const res = await fetch(`/api/categories`);
+      if (!res.ok) throw new Error('Failed to fetch categories');
+      const allCats: any[] = await res.json();
+
+      const parent = allCats.find((c: any) => c.slug === slug && !c.parentId);
+      const sub = parent ? allCats.find((c: any) => c.slug === subSlug && c.parentId === parent.id) : null;
+
+      if (parent && sub) {
+        setCategory(parent);
+        setSubCategory(sub);
+        await fetchProducts(parent.name, sub.name);
+      } else if (staticCategory && staticSubCategory) {
+        // Fallback to static
+        setCategory(staticCategory);
+        setSubCategory(staticSubCategory);
+        await fetchProducts(staticCategory.name, staticSubCategory.name);
+      } else if (parent) {
+        // Parent found but no matching sub — try static sub by subSlug
+        const statSub = staticCategory?.subcategories?.find(s => s.slug === subSlug);
+        setCategory(parent);
+        if (statSub) {
+          setSubCategory(statSub);
+          await fetchProducts(parent.name, statSub.name);
+        } else {
+          setNotFound(true);
+          setLoading(false);
+        }
+      } else {
+        setNotFound(true);
+        setLoading(false);
+      }
+    } catch {
+      // Fallback to static on error
+      if (staticCategory && staticSubCategory) {
+        setCategory(staticCategory);
+        setSubCategory(staticSubCategory);
+        await fetchProducts(staticCategory.name, staticSubCategory.name);
+      } else {
+        setNotFound(true);
+        setLoading(false);
+      }
+    }
+  };
+
+  const fetchProducts = async (categoryName: string, subCategoryName: string) => {
+    try {
+      const p = new URLSearchParams({ category: categoryName, subCategory: subCategoryName });
+      const res = await fetch(`/api/products?${p.toString()}`);
+      if (!res.ok) throw new Error('Failed to fetch products');
+      const data = await res.json();
       setProducts(Array.isArray(data) ? data : []);
-    } catch (err) {
-      console.error(err);
+    } catch {
+      setProducts([]);
     } finally {
       setLoading(false);
     }
   };
 
-  if (!category || !subCategory) {
+  if (notFound) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-[#050202] text-white">
         <div className="text-center">
@@ -50,6 +98,9 @@ export default function SubCategoryPage() {
       </main>
     );
   }
+
+  const displayCatName = category?.name || staticCategory?.name || slug.replace(/-/g, ' ');
+  const displaySubName = subCategory?.name || staticSubCategory?.name || subSlug.replace(/-/g, ' ');
 
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white overflow-hidden">
@@ -64,7 +115,7 @@ export default function SubCategoryPage() {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
           <Reveal>
             <span className="text-[30vw] font-serif font-light text-white/[0.06] select-none leading-none transform translate-y-12">
-              {subCategory.name[0]}
+              {displaySubName[0]}
             </span>
           </Reveal>
         </div>
@@ -72,14 +123,14 @@ export default function SubCategoryPage() {
         <div className="relative z-10 text-center px-6 mt-16">
           <Reveal y={30}>
             <p className="text-[9px] font-bold tracking-[0.6em] uppercase text-secondary mb-8">
-              {category.name} Collection
+              {displayCatName} Collection
             </p>
           </Reveal>
           
           <div className="mask-clip">
             <Reveal delay={0.1} y={60} duration={1}>
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-light text-white leading-tight tracking-tight mb-8">
-                The <span className="font-editorial italic text-secondary/90">{subCategory.name}</span>
+                The <span className="font-editorial italic text-secondary/90">{displaySubName}</span>
               </h1>
             </Reveal>
           </div>
@@ -102,10 +153,10 @@ export default function SubCategoryPage() {
                   <div className="group cursor-pointer">
                     <div className="relative aspect-[4/5] bg-[#0A0505] overflow-hidden mb-6 border border-white/10 group-hover:border-secondary/30 transition-colors duration-500">
                       {p.images && p.images[0] ? (
-                        <img 
-                          src={p.images[0]} 
-                          alt={p.name} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+                        <img
+                          src={p.images[0]}
+                          alt={p.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-white/10 font-serif text-6xl">
@@ -113,9 +164,17 @@ export default function SubCategoryPage() {
                         </div>
                       )}
                       <div className="absolute inset-0 bg-white/0 group-hover:bg-white/[0.02] transition-colors duration-500" />
+                      {p.pricing?.finalPrice > 0 && (
+                        <div className="absolute top-3 right-3 bg-[#050202]/90 border border-secondary/40 px-2.5 py-1">
+                          <span className="text-[10px] font-bold text-secondary">₹{p.pricing.finalPrice.toLocaleString('en-IN')}</span>
+                        </div>
+                      )}
                     </div>
                     <div className="text-center space-y-2">
-                      <p className="text-[9px] uppercase tracking-widest text-secondary font-bold">{p.goldPurity}KT • {p.goldWeight}g</p>
+                      <p className="text-[9px] uppercase tracking-widest text-secondary font-bold">
+                        {p.goldPurity > 0 ? `${p.goldPurity}KT` : 'Fine Jewellery'}
+                        {p.goldWeight > 0 ? ` • ${p.goldWeight}g` : ''}
+                      </p>
                       <h3 className="text-xl font-serif font-light text-white">{p.name}</h3>
                       <p className="text-xs text-white/40 max-w-xs mx-auto line-clamp-2">{p.description || "An exquisite piece crafted with mastery."}</p>
                     </div>
@@ -136,7 +195,7 @@ export default function SubCategoryPage() {
               </Reveal>
               <Reveal delay={0.2} y={40}>
                 <p className="text-sm text-white/50 leading-loose tracking-wide font-light max-w-2xl mx-auto mb-16">
-                  Our master artisans are currently handcrafting the next generation of masterpieces for the {subCategory.name} collection. Each piece is meticulously designed to reflect the pure elegance and heritage of Aranyak Jewellers.
+                  Our master artisans are currently handcrafting the next generation of masterpieces for the {displaySubName} collection. Each piece is meticulously designed to reflect the pure elegance and heritage of Aranyak Jewellers.
                 </p>
               </Reveal>
             </div>
@@ -144,8 +203,8 @@ export default function SubCategoryPage() {
 
           <Reveal delay={0.3} y={40}>
              <div className="mt-24 text-center">
-               <Link href={`/category/${category.slug}`} className="text-[10px] font-bold tracking-[0.3em] uppercase text-white hover-underline-gold pb-1">
-                 Return to {category.name}
+               <Link href={`/category/${slug}`} className="text-[10px] font-bold tracking-[0.3em] uppercase text-white hover-underline-gold pb-1">
+                 Return to {displayCatName}
                </Link>
              </div>
           </Reveal>

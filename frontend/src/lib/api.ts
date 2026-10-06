@@ -29,6 +29,16 @@ class ApiClient {
     }
   }
 
+  async getAdminProducts() {
+    try {
+      const res = await fetch(`${this.baseUrl}/products?includeInactive=true&take=500`);
+      if (!res.ok) return [];
+      return await res.json();
+    } catch {
+      return [];
+    }
+  }
+
   async getProduct(slugOrId: string) {
     try {
       const res = await fetch(`${this.baseUrl}/products/${slugOrId}`);

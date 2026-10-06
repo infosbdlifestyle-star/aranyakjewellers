@@ -5,34 +5,78 @@ import Link from 'next/link';
 import { CATEGORIES } from '@/constants/categories';
 import { useParams } from 'next/navigation';
 import { Reveal } from '@/components/animations/Reveal';
-import { api } from '@/lib/api';
 
 export default function CategoryPage() {
   const params = useParams();
   const slug = params?.slug as string;
 
-  const category = CATEGORIES.find(c => c.slug === slug);
+  // Try static categories first, then backend
+  const staticCategory = CATEGORIES.find(c => c.slug === slug);
+
   const [products, setProducts] = useState<any[]>([]);
+  const [dbCategory, setDbCategory] = useState<any>(null);
+  const [subCategories, setSubCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [catLoading, setCatLoading] = useState(true);
 
+  // Fetch categories from backend to get the real category name and subcategories
   useEffect(() => {
-    if (category) {
-      fetchProducts();
-    }
-  }, [category]);
+    if (!slug) return;
+    fetchCategoryData();
+  }, [slug]);
 
-  const fetchProducts = async () => {
+  const fetchCategoryData = async () => {
+    setCatLoading(true);
     try {
-      const filters: Record<string, string> = {};
-      if (category?.name) filters.category = category.name;
-      const data = await api.getProducts(filters);
+      const res = await fetch(`/api/categories`);
+      if (!res.ok) throw new Error('Failed to fetch categories');
+      const allCats: any[] = await res.json();
+
+      // Find the parent category matching this slug
+      const parent = allCats.find((c: any) => c.slug === slug && !c.parentId);
+      if (parent) {
+        setDbCategory(parent);
+        const children = allCats.filter((c: any) => c.parentId === parent.id);
+        setSubCategories(children);
+        // Fetch products for this category by its name
+        await fetchProducts(parent.name, null);
+      } else {
+        // Fallback: use static category name
+        const staticCat = CATEGORIES.find(c => c.slug === slug);
+        if (staticCat) {
+          await fetchProducts(staticCat.name, null);
+        }
+        setSubCategories(staticCategory?.subcategories || []);
+      }
+    } catch {
+      // On error, use static fallback
+      if (staticCategory) {
+        await fetchProducts(staticCategory.name, null);
+      }
+      setSubCategories(staticCategory?.subcategories || []);
+    } finally {
+      setCatLoading(false);
+    }
+  };
+
+  const fetchProducts = async (categoryName: string, subCategoryName: string | null) => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams({ category: categoryName });
+      if (subCategoryName) params.set('subCategory', subCategoryName);
+      const res = await fetch(`/api/products?${params.toString()}`);
+      if (!res.ok) throw new Error('Failed to fetch products');
+      const data = await res.json();
       setProducts(Array.isArray(data) ? data : []);
-    } catch (err) {
-      console.error(err);
+    } catch {
+      setProducts([]);
     } finally {
       setLoading(false);
     }
   };
+
+  const displayName = dbCategory?.name || staticCategory?.name || slug.replace(/-/g, ' ');
+  const displaySubcats = subCategories.length > 0 ? subCategories : (staticCategory?.subcategories || []);
 
   return (
     <main className="min-h-screen flex flex-col bg-[#050202] text-white">
@@ -46,7 +90,7 @@ export default function CategoryPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-light mb-8 tracking-tight capitalize">
-              {category?.name || slug.replace(/-/g, ' ')}
+              {displayName}
             </h1>
           </Reveal>
         </div>
@@ -54,30 +98,43 @@ export default function CategoryPage() {
 
       <section className="py-24 flex-1">
         <div className="container mx-auto px-6 max-w-7xl">
-          {category?.subcategories && category.subcategories.length > 0 ? (
+          {catLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 animate-pulse">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="aspect-[4/5] bg-white/5" />
+              ))}
+            </div>
+          ) : displaySubcats.length > 0 ? (
             <>
               <Reveal>
                 <div className="text-center mb-24">
                   <p className="text-white/50 max-w-2xl mx-auto leading-relaxed font-light tracking-wide text-sm">
-                    Discover our exquisite range of {category.name.toLowerCase()} jewellery, handcrafted by master artisans with the finest materials and BIS Hallmark certification. Select a chapter below to explore.
+                    Discover our exquisite range of {displayName.toLowerCase()} jewellery, handcrafted by master artisans with the finest materials and BIS Hallmark certification. Select a chapter below to explore.
                   </p>
                 </div>
               </Reveal>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {category.subcategories.map((sub, i) => (
-                  <Reveal key={sub.id} delay={i * 0.1} y={40}>
+                {displaySubcats.map((sub: any, i: number) => (
+                  <Reveal key={sub.id || i} delay={i * 0.1} y={40}>
                     <Link
                       href={`/category/${slug}/${sub.slug}`}
                       className="group relative aspect-square overflow-hidden bg-[#0A0505] border border-white/10 hover:border-secondary/30 transition-all duration-500 flex flex-col items-center justify-center p-8 text-center"
                     >
+                      {sub.imageUrl && (
+                        <img
+                          src={sub.imageUrl}
+                          alt={sub.name}
+                          className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-500"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#050202]/80 pointer-events-none" />
                       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                      <div className="text-7xl font-serif font-light text-white/[0.06] group-hover:text-white/[0.1] group-hover:scale-110 transition-all duration-700 mb-6">
+                      <div className="relative z-10 text-7xl font-serif font-light text-white/[0.06] group-hover:text-white/[0.1] group-hover:scale-110 transition-all duration-700 mb-6">
                         {sub.name[0]}
                       </div>
-                      <h3 className="text-2xl font-serif font-light text-white mb-4">{sub.name}</h3>
-                      <div className="w-8 h-[1px] bg-white/20 group-hover:bg-secondary group-hover:w-16 transition-all duration-500 mb-4" />
-                      <p className="text-[9px] tracking-[0.3em] font-bold uppercase text-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500">Explore Collection</p>
-                      
+                      <h3 className="relative z-10 text-2xl font-serif font-light text-white mb-4">{sub.name}</h3>
+                      <div className="relative z-10 w-8 h-[1px] bg-white/20 group-hover:bg-secondary group-hover:w-16 transition-all duration-500 mb-4" />
+                      <p className="relative z-10 text-[9px] tracking-[0.3em] font-bold uppercase text-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500">Explore Collection</p>
                       {/* Decorative border */}
                       <div className="absolute inset-4 border border-white/0 group-hover:border-white/5 transition-all duration-700 pointer-events-none" />
                     </Link>
@@ -101,10 +158,10 @@ export default function CategoryPage() {
                       <div className="group cursor-pointer">
                         <div className="relative aspect-[4/5] bg-[#0A0505] overflow-hidden mb-6 border border-white/10 group-hover:border-secondary/30 transition-colors duration-500">
                           {p.images && p.images[0] ? (
-                            <img 
-                              src={p.images[0]} 
-                              alt={p.name} 
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+                            <img
+                              src={p.images[0]}
+                              alt={p.name}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-white/10 font-serif text-6xl">
@@ -112,10 +169,21 @@ export default function CategoryPage() {
                             </div>
                           )}
                           <div className="absolute inset-0 bg-white/0 group-hover:bg-white/[0.02] transition-colors duration-500" />
+                          {p.pricing?.finalPrice > 0 && (
+                            <div className="absolute top-3 right-3 bg-[#050202]/90 border border-secondary/40 px-2.5 py-1">
+                              <span className="text-[10px] font-bold text-secondary">₹{p.pricing.finalPrice.toLocaleString('en-IN')}</span>
+                            </div>
+                          )}
                         </div>
                         <div className="text-center space-y-2">
-                          <p className="text-[9px] uppercase tracking-widest text-secondary font-bold">{p.goldPurity}KT • {p.goldWeight}g</p>
+                          <p className="text-[9px] uppercase tracking-widest text-secondary font-bold">
+                            {p.goldPurity > 0 ? `${p.goldPurity}KT` : 'Fine Jewellery'}
+                            {p.goldWeight > 0 ? ` • ${p.goldWeight}g` : ''}
+                          </p>
                           <h3 className="text-xl font-serif font-light text-white">{p.name}</h3>
+                          {p.description && (
+                            <p className="text-xs text-white/40 max-w-xs mx-auto line-clamp-2">{p.description}</p>
+                          )}
                         </div>
                       </div>
                     </Reveal>
