@@ -42,8 +42,9 @@ export class ProductsService {
     search?: string;
     skip?: number;
     take?: number;
+    includeInactive?: boolean;
   }) {
-    const where: any = { isActive: true };
+    const where: any = filters?.includeInactive ? {} : { isActive: true };
 
     if (filters?.category) {
       where.category = filters.category;
