@@ -140,9 +140,9 @@ export default function AdminProductsPage() {
     const file = e.target.files[0];
 
     // Client-side 6MB validation
-    const MAX_SIZE = 6 * 1024 * 1024; // 6MB
+    const MAX_SIZE = 4 * 1024 * 1024; // 4MB
     if (file.size > MAX_SIZE) {
-      alert(`File too large (${(file.size / 1024 / 1024).toFixed(1)}MB). Maximum allowed size is 6MB per image.`);
+      alert(`File too large (${(file.size / 1024 / 1024).toFixed(1)}MB). Maximum allowed size is 4MB per image.`);
       e.target.value = '';
       return;
     }

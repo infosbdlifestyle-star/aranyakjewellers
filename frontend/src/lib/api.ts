@@ -332,6 +332,12 @@ class ApiClient {
       headers,
       body: formData,
     });
+    
+    if (!res.ok) {
+      console.error(`Upload failed with status ${res.status}`);
+      throw new Error(`Upload failed (${res.status})`);
+    }
+    
     return res.json();
   }
 }

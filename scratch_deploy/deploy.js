@@ -39,6 +39,7 @@ async function deploy() {
     await runCommand('rm -rf /root/aranyak-backend');
     await runCommand('mkdir -p /root/aranyak-backend');
     await runCommand('tar -xzf /root/backend.tar.gz -C /root/aranyak-backend --strip-components=1');
+    await runCommand('rm -rf /root/aranyak-backend/uploads');
     await runCommand('ln -sf /root/aranyak_uploads /root/aranyak-backend/uploads');
     await runCommand('cp /root/.env.production /root/aranyak-backend/.env');
 
