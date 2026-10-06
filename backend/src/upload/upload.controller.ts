@@ -29,12 +29,6 @@ export class UploadController {
           callback(null, filename);
         },
       }),
-      fileFilter: (req, file, callback) => {
-        if (!file.mimetype.match(/\/(jpg|jpeg|png|gif|webp)$/)) {
-          return callback(new BadRequestException('Only image files are allowed!'), false);
-        }
-        callback(null, true);
-      },
       limits: {
         fileSize: 6 * 1024 * 1024, // 6MB
       },
