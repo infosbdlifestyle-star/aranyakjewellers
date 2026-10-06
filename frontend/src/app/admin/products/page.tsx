@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
+import { CATEGORIES } from '@/constants/categories';
 
 export default function AdminProductsPage() {
   const { user, token, isAuthenticated, isLoading } = useAuth();
@@ -85,8 +86,11 @@ export default function AdminProductsPage() {
   const filterSubCategories = useMemo(() => {
     if (filterCategory === 'All') return [];
     const cat = dbCategories.find(c => c.name === filterCategory);
-    if (!cat) return [];
-    return dbCategories.filter(c => c.parentId === cat.id);
+    const dbSubs = cat ? dbCategories.filter(c => c.parentId === cat.id) : [];
+    if (dbSubs.length > 0) return dbSubs;
+    // Fallback to static CATEGORIES
+    const staticCat = CATEGORIES.find(c => c.name === filterCategory);
+    return (staticCat?.subcategories || []);
   }, [filterCategory, dbCategories]);
 
   const rootCategories = dbCategories.filter(c => !c.parentId);
@@ -455,12 +459,21 @@ export default function AdminProductsPage() {
                         className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary appearance-none disabled:opacity-50"
                       >
                         <option value="">None</option>
-                        {dbCategories.filter(c => {
+                        {(() => {
+                          // Try DB subcategories first
                           const parent = dbCategories.find(p => p.name === formData.category);
-                          return parent && c.parentId === parent.id;
-                        }).map(c => (
-                          <option key={c.id} value={c.name}>{c.name}</option>
-                        ))}
+                          const dbSubs = parent ? dbCategories.filter(c => c.parentId === parent.id) : [];
+                          if (dbSubs.length > 0) {
+                            return dbSubs.map(c => (
+                              <option key={c.id} value={c.name}>{c.name}</option>
+                            ));
+                          }
+                          // Fallback to static CATEGORIES
+                          const staticCat = CATEGORIES.find(c => c.name === formData.category);
+                          return (staticCat?.subcategories || []).map(c => (
+                            <option key={c.id} value={c.name}>{c.name}</option>
+                          ));
+                        })()}
                       </select>
                     </div>
                   </div>
