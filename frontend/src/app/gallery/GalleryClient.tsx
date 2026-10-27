@@ -106,7 +106,7 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
       </section>
 
       {/* 2. Category Filter Tabs with Sliding Animated Pill */}
-      <section className="sticky top-20 z-40 bg-[#FAF7F0]/95 backdrop-blur-md border-b border-[#DED2C1] py-4 px-6 shadow-sm">
+      <section className="sticky top-[124px] sm:top-[128px] md:top-[130px] z-20 bg-[#FAF7F0]/95 backdrop-blur-md border-b border-[#DED2C1] py-4 px-6 shadow-sm">
         <div className="container mx-auto max-w-7xl flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar space-x-2 sm:space-x-3">
           {GALLERY_CATEGORIES.map((cat) => {
             const isActive = activeTab === cat.id;

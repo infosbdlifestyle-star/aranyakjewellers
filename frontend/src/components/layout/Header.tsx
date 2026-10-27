@@ -16,7 +16,7 @@ const NAV_LINKS = [
 ];
 
 // Categories to hide from the navigation menu
-const HIDDEN_CATEGORIES = ['costume-jewellery', 'offers-deals', 'astrological-stones'];
+const HIDDEN_CATEGORIES = ['costume-jewellery', 'offers-deals'];
 
 const Header = ({ 
   categories = [], 
@@ -60,7 +60,7 @@ const Header = ({
 
   return (
     <div className="sticky top-0 z-50 w-full shadow-lg">
-      <header className={`w-full border-b transition-all duration-500 ${
+      <header className={`relative z-30 w-full border-b transition-all duration-500 ${
         isScrolled 
           ? 'bg-[#211813]/98 backdrop-blur-md border-[#D6B15D]/30 shadow-2xl' 
           : 'bg-[#211813]/95 backdrop-blur-md border-[#D6B15D]/20'
@@ -92,33 +92,75 @@ const Header = ({
         </Link>
 
         {/* Navigation - Desktop */}
-        <nav className="hidden lg:flex flex-1 justify-center items-center space-x-5 xl:space-x-7">
+        <nav className="hidden lg:flex flex-1 justify-center items-center space-x-3 xl:space-x-5 h-full">
           {visibleCategories.map((cat: any) => (
             <div 
               key={cat.id}
-              className="relative group py-4"
+              className="relative group h-full flex items-center px-2 xl:px-3"
             >
               <Link 
                 href={`/category/${cat.slug}`}
-                className="text-[10px] xl:text-xs font-bold text-[#FFF8EC] hover:text-[#D6B15D] transition-colors uppercase tracking-[0.2em] pb-1 relative"
+                className="text-[10px] xl:text-xs font-bold text-[#FFF8EC] group-hover:text-[#D6B15D] transition-colors uppercase tracking-[0.18em] py-2 relative flex items-center gap-1"
               >
-                {cat.name}
+                <span>{cat.name}</span>
+                {cat.subcategories && cat.subcategories.length > 0 && (
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="9" 
+                    height="9" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    className="text-[#D6B15D]/60 group-hover:text-[#D6B15D] group-hover:rotate-180 transition-transform duration-300"
+                  >
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                )}
               </Link>
 
               {/* Luxury Animated Dropdown for subcategories */}
               {cat.subcategories && cat.subcategories.length > 0 && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-[#211813]/98 backdrop-blur-xl p-5 shadow-2xl border border-[#D6B15D]/35 transition-all duration-300 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-3 group-hover:translate-y-0 z-[100] rounded-b-xl overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-[2px] before:bg-gradient-to-r before:from-transparent before:via-[#D6B15D] before:to-transparent">
-                  <div className="grid grid-cols-1 gap-2">
+                <div 
+                  className={`absolute top-full left-1/2 -translate-x-1/2 ${
+                    cat.subcategories.length > 6 
+                      ? 'w-[360px] sm:w-[400px]' 
+                      : 'w-64'
+                  } bg-[#0A0505]/98 backdrop-blur-2xl p-4 shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-[#D6B15D]/40 transition-all duration-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-1 group-hover:translate-y-0 z-50 rounded-b-xl max-h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar`}
+                >
+                  {/* Invisible Hit Buffer Bridge (prevents mouseout disconnect) */}
+                  <div className="absolute -top-3 left-0 right-0 h-3 bg-transparent pointer-events-auto" />
+                  
+                  {/* Top Golden Accent Highlight Line */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#D6B15D] to-transparent" />
+
+                  {/* Dropdown Header Info */}
+                  <div className="pb-2.5 mb-2.5 border-b border-[#D6B15D]/20 flex items-center justify-between">
+                    <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[#D6B15D]">
+                      {cat.name} Jewellery
+                    </span>
+                    <Link
+                      href={`/category/${cat.slug}`}
+                      className="text-[9px] font-semibold text-[#FFF8EC]/60 hover:text-[#D6B15D] tracking-wider uppercase transition-colors"
+                    >
+                      View All →
+                    </Link>
+                  </div>
+
+                  {/* Subcategory Grid */}
+                  <div className={`grid ${cat.subcategories.length > 6 ? 'grid-cols-2 gap-x-3 gap-y-1' : 'grid-cols-1 gap-1'}`}>
                     {cat.subcategories.map((sub: any) => (
                       <Link
                         key={sub.id}
                         href={`/category/${cat.slug}/${sub.slug}`}
-                        className="group/item flex items-center justify-between text-[11px] font-semibold text-[#FFF8EC] hover:text-[#D6B15D] transition-all duration-300 py-1.5 uppercase tracking-widest border-b border-[#D6B15D]/15 pb-2"
+                        className="group/item flex items-center justify-between text-[11px] font-semibold text-[#FFF8EC] hover:text-[#D6B15D] hover:bg-[#D6B15D]/10 rounded-md transition-all duration-200 px-2.5 py-1.5 uppercase tracking-wider"
                       >
-                        <span className="group-hover/item:translate-x-2 transition-transform duration-300">
+                        <span className="group-hover/item:translate-x-1 transition-transform duration-200 line-clamp-1">
                           {sub.name}
                         </span>
-                        <span className="opacity-0 group-hover/item:opacity-100 text-[#D6B15D] text-[10px] transition-opacity duration-300">
+                        <span className="opacity-0 group-hover/item:opacity-100 text-[#D6B15D] text-[9px] transition-opacity duration-200">
                           ✧
                         </span>
                       </Link>
@@ -129,12 +171,74 @@ const Header = ({
             </div>
           ))}
 
-          {/* Static nav links */}
-          {NAV_LINKS.map((link) => (
+          {/* Gallery with Luxury Dropdown */}
+          <div className="relative group h-full flex items-center px-2 xl:px-3">
+            <Link
+              href="/gallery"
+              className="text-[10px] xl:text-xs font-bold uppercase tracking-[0.18em] py-2 transition-colors text-[#FFF8EC] group-hover:text-[#D6B15D] flex items-center gap-1"
+            >
+              <span>Gallery</span>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="9" 
+                height="9" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+                className="text-[#D6B15D]/60 group-hover:text-[#D6B15D] group-hover:rotate-180 transition-transform duration-300"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </Link>
+
+            <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-[#0A0505]/98 backdrop-blur-2xl p-4 shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-[#D6B15D]/40 transition-all duration-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-1 group-hover:translate-y-0 z-50 rounded-b-xl">
+              <div className="absolute -top-3 left-0 right-0 h-3 bg-transparent pointer-events-auto" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#D6B15D] to-transparent" />
+              <div className="pb-2.5 mb-2.5 border-b border-[#D6B15D]/20 flex items-center justify-between">
+                <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[#D6B15D]">
+                  Master Gallery
+                </span>
+                <Link
+                  href="/gallery"
+                  className="text-[9px] font-semibold text-[#FFF8EC]/60 hover:text-[#D6B15D] tracking-wider uppercase transition-colors"
+                >
+                  Portfolio →
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 gap-1">
+                {[
+                  { name: 'All Masterpieces', href: '/gallery' },
+                  { name: '22K Fine Gold', href: '/gallery' },
+                  { name: 'Pure 925 Silver', href: '/gallery' },
+                  { name: 'Certified Diamonds', href: '/gallery' },
+                  { name: 'Bridal Trousseau', href: '/gallery' },
+                ].map((item, idx) => (
+                  <Link
+                    key={idx}
+                    href={item.href}
+                    className="group/item flex items-center justify-between text-[11px] font-semibold text-[#FFF8EC] hover:text-[#D6B15D] hover:bg-[#D6B15D]/10 rounded-md transition-all duration-200 px-2.5 py-1.5 uppercase tracking-wider"
+                  >
+                    <span className="group-hover/item:translate-x-1 transition-transform duration-200">
+                      {item.name}
+                    </span>
+                    <span className="opacity-0 group-hover/item:opacity-100 text-[#D6B15D] text-[9px] transition-opacity duration-200">
+                      ✧
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Remaining Static nav links (About, Stores, Contact) */}
+          {NAV_LINKS.filter(l => l.name !== 'Gallery').map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-[10px] xl:text-xs font-bold uppercase tracking-[0.2em] pb-1 transition-colors text-[#FFF8EC] hover:text-[#D6B15D]"
+              className="text-[10px] xl:text-xs font-bold uppercase tracking-[0.18em] py-2 transition-colors text-[#FFF8EC] hover:text-[#D6B15D] px-2 xl:px-3"
             >
               {link.name}
             </Link>
@@ -194,9 +298,9 @@ const Header = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:hidden fixed inset-0 top-20 bg-[#211813] z-[90] overflow-y-auto"
+            className="lg:hidden fixed inset-x-0 bottom-0 top-[124px] sm:top-[128px] md:top-[130px] bg-[#211813] z-[90] overflow-y-auto"
           >
-            <div className="flex flex-col min-h-[calc(100vh-5rem)] bg-[#211813] p-8 pb-32 space-y-6">
+            <div className="flex flex-col min-h-[calc(100vh-124px)] bg-[#211813] p-8 pb-32 space-y-6">
               {isAuthenticated ? (
                 <div className="grid grid-cols-2 gap-2 mb-2">
                   <Link

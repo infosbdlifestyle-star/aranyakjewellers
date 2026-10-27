@@ -190,7 +190,7 @@ export default function StoresClient({
       </section>
 
       {/* Interactive Location Filter Tabs */}
-      <section className="sticky top-20 z-30 bg-[#FAF7F0]/95 backdrop-blur-md border-b border-[#DED2C1] py-4 px-6 shadow-sm">
+      <section className="sticky top-[124px] sm:top-[128px] md:top-[130px] z-20 bg-[#FAF7F0]/95 backdrop-blur-md border-b border-[#DED2C1] py-4 px-6 shadow-sm">
         <div className="container mx-auto max-w-5xl flex items-center justify-center overflow-x-auto no-scrollbar space-x-2 sm:space-x-3">
           {TABS.map((tab) => {
             const isActive = activeTab === tab.id;

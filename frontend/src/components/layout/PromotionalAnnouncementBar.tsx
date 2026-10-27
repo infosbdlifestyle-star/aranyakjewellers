@@ -136,7 +136,7 @@ export default function PromotionalAnnouncementBar({
       <aside 
         role="region"
         aria-label="Promotional Offers Continuous Ticker"
-        className={`offers-marquee-container relative w-full h-11 sm:h-12 md:h-[50px] bg-gradient-to-r from-[#D4A745] via-[#D9AF4D] to-[#D4A745] border-t border-[#C49A45]/40 border-b border-[#B8872D]/60 shadow-[0_3px_12px_rgba(33,23,19,0.10)] flex items-center overflow-hidden select-none z-40 ${className}`}
+        className={`offers-marquee-container relative w-full h-11 sm:h-12 md:h-[50px] bg-gradient-to-r from-[#D4A745] via-[#D9AF4D] to-[#D4A745] border-t border-[#C49A45]/40 border-b border-[#B8872D]/60 shadow-[0_3px_12px_rgba(33,23,19,0.10)] flex items-center overflow-hidden select-none z-10 ${className}`}
       >
         {/* Left & Right luxury gradient masks */}
         <div 
