@@ -275,68 +275,17 @@ export default function HomeClient({
           </div>
         )}
         
-        <div className="relative z-10 w-full px-6 max-w-6xl flex flex-col items-center text-center pt-20 pb-20">
-          
-          {/* Top Pill Badge */}
-          <Reveal y={20} duration={1}>
-            <div className="relative inline-flex items-center space-x-3 px-5 py-2 rounded-full bg-[#211813]/85 backdrop-blur-md border border-[#D6B15D]/50 mb-8 shadow-xl">
-              <SparkleGlint className="absolute -top-2 -right-2" size={16} delay={0.5} />
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D6B15D] animate-pulse" />
-              <span className="text-[#D6B15D] text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase">
-                • EST. 2005 • TRIPURA'S FINEST JEWELLER •
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D6B15D] animate-pulse" />
-            </div>
-          </Reveal>
-          
-          {/* Main Headline with Kinetic Masked Text Reveal */}
-          <h1 className="text-5xl sm:text-7xl md:text-9xl lg:text-[10rem] font-serif font-light text-[#FFF8EB] leading-[0.88] tracking-tight drop-shadow-2xl">
-            <TextReveal delay={0.1} duration={1.1}>
-              Timeless
-            </TextReveal>
-            <br />
-            <TextReveal delay={0.25} duration={1.2}>
-              <span className="font-editorial gold-gradient italic inline-block mt-2 sm:mt-4 drop-shadow-[0_4px_30px_rgba(196,154,69,0.35)]">
-                Elegance
-              </span>
-            </TextReveal>
-          </h1>
-
-          {/* Subtitle Narrative */}
-          <Reveal delay={0.4} y={30}>
-            <p className="mt-8 text-xs sm:text-sm md:text-base text-[#E5D7C5] font-normal tracking-[0.18em] max-w-3xl mx-auto leading-relaxed uppercase drop-shadow-md">
-              CURATING HANDCRAFTED GOLD, CERTIFIED DIAMONDS, AND SACRED ASTROLOGICAL GEMSTONES WITH 21+ YEARS OF MASTER CRAFTSMANSHIP.
-            </p>
-          </Reveal>
-
-          {/* Two CTA Buttons */}
-          <Reveal delay={0.6} y={30}>
-            <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-center gap-5 sm:gap-8">
-              <Link 
-                href="/collections" 
-                className="btn-luxury px-10 py-4 text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase rounded-none glow-gold transition-all duration-500 hover:scale-105"
-              >
-                EXPLORE HIGH JEWELLERY
-              </Link>
-              <Link 
-                href="/stores" 
-                className="px-10 py-4 text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase text-[#FFF8EB] hover:text-[#211813] bg-[#211813]/70 hover:bg-[#D6B15D] backdrop-blur-md border border-[#DED2C1]/40 hover:border-[#D6B15D] transition-all duration-500 hover:scale-105 shadow-lg"
-              >
-                FIND BOUTIQUE SHOWROOMS
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Bottom "SCROLL" Indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 pointer-events-none opacity-80 animate-bounce">
-          <span className="text-[9px] font-bold tracking-[0.35em] uppercase text-[#D6B15D]">
-            SCROLL
-          </span>
-          <svg width="14" height="16" viewBox="0 0 24 24" fill="none" stroke="#D6B15D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <polyline points="19 12 12 19 5 12"></polyline>
-          </svg>
+        {/* Centered Brand Name Title */}
+        <div className="relative z-10 w-full px-6 max-w-7xl flex items-center justify-center text-center py-24 sm:py-32">
+          <motion.h1
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="font-serif font-light text-[#C49A45] text-4xl sm:text-6xl md:text-7xl lg:text-[84px] xl:text-[96px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.24em] uppercase leading-tight sm:leading-none select-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)]"
+            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9), 0 0 35px rgba(196,154,69,0.25)" }}
+          >
+            AARANYAK JEWELLERS
+          </motion.h1>
         </div>
       </section>
 
