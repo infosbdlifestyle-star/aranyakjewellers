@@ -7,35 +7,53 @@ interface PromotionalAnnouncementBarProps {
   className?: string;
 }
 
-// All verified promotional offers matching the 7 original cards and brand highlights
+/**
+ * Strips all emojis, pictographs, symbols, and variation selectors from a string
+ * while preserving Bengali script (U+0980-U+09FF), English, numbers, rupee ₹, and standard punctuation.
+ */
+export function removeEmojis(text: string): string {
+  if (!text) return "";
+  return text
+    // Strip Extended_Pictographic, Emoji_Presentation, and symbol presentation blocks
+    .replace(/[\p{Extended_Pictographic}\p{Emoji_Presentation}\uFE0F\u200D\u20E3\u2600-\u26FF\u2700-\u27BF]/gu, '')
+    // Normalize spaces and trim
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// All verified promotional offers matching the 7 original cards and brand highlights — 100% emoji-free
 const CORE_PROMOTIONAL_OFFERS: string[] = [
-  "🌸 আরণ্যক জুয়েলার্স বিশেষ পুজো অফার ২০২৬",
-  "🪙 সোনার গয়না: ১০০০/- টাকা ছাড় প্রতিগ্রাম সোনার গয়না কেনাকাটায় (₹1000 OFF/GM)",
-  "♻️ পুরোনো গয়না পরিবর্তন: ১০০% মূল্য হলমার্কযুক্ত পুরোনো গয়নার পরিবর্তে (ZERO LOSS EXCHANGE)",
-  "💎 হীরের গয়না: ১০০% ছাড় হীরের গয়নার মজুরিতে (100% FREE MAKING)",
-  "🥈 রুপোর গয়না: ২৫% ছাড় রূপোর গয়নার MRP-র ওপর (25% FLAT DISCOUNT)",
-  "📺 প্রতিদিন লাকি ড্র: প্রতিদিনের লাকি ড্র-তে হোম অ্যাপ্লায়েন্স (DAILY PRIZES)",
-  "🎁 নিশ্চিত উপহার: নিশ্চিত উপহার প্রতি কেনাকাটায় (FREE GIFTS)",
-  "🛵 মেগা লাকি ড্র: MEGA LUCKY DRAW ৩টি স্কুটি (3X SCOOTY BUMPER)",
-  "📍 ত্রিপুরা শোরুম: আগরতলা • ধর্মনগর • কৈলাশহর • খোয়াই"
+  "আরণ্যক জুয়েলার্স বিশেষ পুজো অফার ২০২৬",
+  "সোনার গয়না: ১০০০/- টাকা ছাড় প্রতিগ্রাম সোনার গয়না কেনাকাটায় (₹1000 OFF/GM)",
+  "পুরোনো গয়না পরিবর্তন: ১০০% মূল্য হলমার্কযুক্ত পুরোনো গয়নার পরিবর্তে (ZERO LOSS EXCHANGE)",
+  "হীরের গয়না: ১০০% ছাড় হীরের গয়নার মজুরিতে (100% FREE MAKING)",
+  "রুপোর গয়না: ২৫% ছাড় রূপোর গয়নার MRP-র ওপর (25% FLAT DISCOUNT)",
+  "প্রতিদিন লাকি ড্র: প্রতিদিনের লাকি ড্র-তে হোম অ্যাপ্লায়েন্স (DAILY PRIZES)",
+  "নিশ্চিত উপহার: নিশ্চিত উপহার প্রতি কেনাকাটায় (FREE GIFTS)",
+  "মেগা লাকি ড্র: MEGA LUCKY DRAW ৩টি স্কুটি (3X SCOOTY BUMPER)",
+  "ত্রিপুরা শোরুম: আগরতলা • ধর্মনগর • কৈলাশহর • খোয়াই"
 ];
 
 export default function PromotionalAnnouncementBar({
   marqueeText,
   className = ""
 }: PromotionalAnnouncementBarProps) {
-  // Parse dynamic settings text or use verified complete offer list
+  // Parse dynamic settings text or use verified complete offer list, strictly sanitized
   const messages = useMemo(() => {
+    let rawList = CORE_PROMOTIONAL_OFFERS;
     if (marqueeText && typeof marqueeText === 'string' && marqueeText.includes('|')) {
       const split = marqueeText
         .split('|')
         .map(s => s.trim())
         .filter(Boolean);
       if (split.length >= 3) {
-        return split;
+        rawList = split;
       }
     }
-    return CORE_PROMOTIONAL_OFFERS;
+    // Deep sanitize every message to guarantee zero emojis appear now or in future updates
+    return rawList
+      .map(msg => removeEmojis(msg))
+      .filter(Boolean);
   }, [marqueeText]);
 
   return (
@@ -107,10 +125,10 @@ export default function PromotionalAnnouncementBar({
                   {msg}
                 </span>
                 <span 
-                  className="mx-4 sm:mx-6 text-[#211713]/70 text-xs sm:text-sm font-serif select-none" 
+                  className="mx-4 sm:mx-6 text-[#211713]/60 text-xs sm:text-sm select-none" 
                   aria-hidden="true"
                 >
-                  ✦
+                  —
                 </span>
               </div>
             ))}
@@ -124,10 +142,10 @@ export default function PromotionalAnnouncementBar({
                   {msg}
                 </span>
                 <span 
-                  className="mx-4 sm:mx-6 text-[#211713]/70 text-xs sm:text-sm font-serif select-none" 
+                  className="mx-4 sm:mx-6 text-[#211713]/60 text-xs sm:text-sm select-none" 
                   aria-hidden="true"
                 >
-                  ✦
+                  —
                 </span>
               </div>
             ))}
