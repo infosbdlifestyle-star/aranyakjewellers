@@ -697,7 +697,713 @@ export const VERIFIED_PRODUCTS: ProductItem[] = [
       finalPrice: 7500,
       components: { goldValue: 4600, makingCharges: 2600, gst: 220 }
     }
-  }
+  },
+
+  // ==========================================
+  // GOOGLE DRIVE OFFICIAL IMPORTS (GOLD & SILVER)
+  // ==========================================
+  {
+    id: "gdrive-gld-1",
+    name: "Handcrafted 22K Gold Filigree Bala Bangles Pair",
+    slug: "gold-bala-filigree-pair",
+    description: "An exceptional pair of traditional Bengali 22K BIS hallmarked gold Balas adorned with intricate Mayur peacock filigree and polished wire craftsmanship.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Bangles",
+    subCategorySlug: "bangles",
+    goldPurity: 22,
+    goldWeight: 36.4,
+    tags: ["22KT BIS 916", "Traditional Bala", "Bridal", "Bengali Karigari"],
+    images: ["/uploads/gold-bala-filigree-pair-1.webp", "/uploads/gold-bala-filigree-pair-2.webp", "/uploads/gold-bala-filigree-pair-3.webp", "/uploads/gold-bala-filigree-pair-4.webp"],
+    coverImage: "/uploads/gold-bala-filigree-pair-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-BAN-011",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 275000,
+      components: {
+        goldValue: 247500,
+        makingCharges: 19250,
+        gst: 8250
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-2",
+    name: "22K Gold Floral Filigree Ratanchoor Bracelet",
+    slug: "gold-ratanchoor-bracelet",
+    description: "Grand royal 22K gold Ratanchoor hand ornament featuring an elaborate blooming lotus medallion with delicate connecting gold link chains.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Bracelets",
+    subCategorySlug: "bracelets",
+    goldPurity: 22,
+    goldWeight: 24.8,
+    tags: ["Ratanchoor", "Hathphool", "Bridal Luxury", "22KT Gold"],
+    images: ["/uploads/gold-ratanchoor-bracelet-1.webp", "/uploads/gold-ratanchoor-bracelet-2.webp", "/uploads/gold-ratanchoor-bracelet-3.webp"],
+    coverImage: "/uploads/gold-ratanchoor-bracelet-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-BRA-012",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 188000,
+      components: {
+        goldValue: 169200,
+        makingCharges: 13160,
+        gst: 5640
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-3",
+    name: "Vintage 22K Gold Filigree Jhumka Drop Earrings",
+    slug: "gold-filigree-jhumkas-vintage",
+    description: "Handcrafted vintage 22K gold chandelier jhumka drop earrings featuring multi-tiered bell motifs and cascading gold droplets.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Eartops",
+    subCategorySlug: "eartops",
+    goldPurity: 22,
+    goldWeight: 16.5,
+    tags: ["Jhumkas", "22KT BIS 916", "Filigree", "Festive Sparkle"],
+    images: ["/uploads/gold-filigree-jhumkas-vintage-1.webp", "/uploads/gold-filigree-jhumkas-vintage-2.webp", "/uploads/gold-filigree-jhumkas-vintage-3.webp"],
+    coverImage: "/uploads/gold-filigree-jhumkas-vintage-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-EAR-013",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 126000,
+      components: {
+        goldValue: 113400,
+        makingCharges: 8820,
+        gst: 3780
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-4",
+    name: "Royal 22K Gold Dome Filigree Cocktail Ring",
+    slug: "gold-dome-cocktail-ring",
+    description: "Majestic royal dome filigree cocktail ring in 22K hallmarked gold, sculpted with an intricate openwork floral dome and beaded borders.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Lady's Rings",
+    subCategorySlug: "ladys-rings",
+    goldPurity: 22,
+    goldWeight: 9.8,
+    tags: ["Cocktail Ring", "22KT Gold", "Floral Dome", "Statement Jewel"],
+    images: ["/uploads/gold-dome-cocktail-ring-1.webp", "/uploads/gold-dome-cocktail-ring-2.webp", "/uploads/gold-dome-cocktail-ring-3.webp"],
+    coverImage: "/uploads/gold-dome-cocktail-ring-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-LAD-014",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 76000,
+      components: {
+        goldValue: 68400,
+        makingCharges: 5320,
+        gst: 2280
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-5",
+    name: "Opulent 22K Gold Floral Bridal Choker & Jhumkas Set",
+    slug: "gold-floral-bridal-choker-set",
+    description: "Opulent 22K gold bridal choker necklace set featuring cascading floral medallions, embossed leaf borders, and matching royal jhumka earrings.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Necklace Sets",
+    subCategorySlug: "necklace-sets",
+    goldPurity: 22,
+    goldWeight: 48.6,
+    tags: ["Bridal Choker", "22KT BIS 916", "Royal Trousseau", "Complete Set"],
+    images: ["/uploads/gold-floral-bridal-choker-set-1.webp", "/uploads/gold-floral-bridal-choker-set-2.webp", "/uploads/gold-floral-bridal-choker-set-3.webp", "/uploads/gold-floral-bridal-choker-set-4.webp"],
+    coverImage: "/uploads/gold-floral-bridal-choker-set-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-NEC-015",
+    isActive: true,
+    isFeatured: true,
+    pricing: {
+      finalPrice: 368000,
+      components: {
+        goldValue: 331200,
+        makingCharges: 25760,
+        gst: 11040
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-6",
+    name: "Grand Royal 22K Gold Bridal Trousseau Choker Set",
+    slug: "gold-royal-bridal-trousseau-choker",
+    description: "Regal Bengali bridal trousseau choker set sculpted with layered gold lace and traditional Nakshi scrollwork, paired with ornate chandelier earrings.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Necklace Sets",
+    subCategorySlug: "necklace-sets",
+    goldPurity: 22,
+    goldWeight: 52.2,
+    tags: ["Heritage Bridal", "Royal Choker", "22KT Gold", "Masterpiece"],
+    images: ["/uploads/gold-royal-bridal-trousseau-choker-1.webp", "/uploads/gold-royal-bridal-trousseau-choker-2.webp", "/uploads/gold-royal-bridal-trousseau-choker-3.webp", "/uploads/gold-royal-bridal-trousseau-choker-4.webp"],
+    coverImage: "/uploads/gold-royal-bridal-trousseau-choker-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-NEC-016",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 395000,
+      components: {
+        goldValue: 355500,
+        makingCharges: 27650,
+        gst: 11850
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-7",
+    name: "Sculpted 22K Gold Chur Bangles Pair",
+    slug: "gold-carved-chur-bangles-pair",
+    description: "Heavy pair of broad 22K gold Chur bangles showcasing deeply hand-chased floral scrollwork and solid die-stamped hinge closures.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Bangles",
+    subCategorySlug: "bangles",
+    goldPurity: 22,
+    goldWeight: 42.0,
+    tags: ["Chur Bangles", "22KT BIS 916", "Traditional Gold", "Heavy Kadas"],
+    images: ["/uploads/gold-carved-chur-bangles-pair-1.webp", "/uploads/gold-carved-chur-bangles-pair-2.webp", "/uploads/gold-carved-chur-bangles-pair-3.webp"],
+    coverImage: "/uploads/gold-carved-chur-bangles-pair-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-BAN-017",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 318000,
+      components: {
+        goldValue: 286200,
+        makingCharges: 22260,
+        gst: 9540
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-8",
+    name: "Heritage Peacock 22K Gold Filigree Necklace Set",
+    slug: "gold-peacock-filigree-necklace-set",
+    description: "Centuries-old Bengali filigree gold necklace set highlighting twin peacock terminals, delicate floral links, and matching peacock dangle earrings.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Necklace Sets",
+    subCategorySlug: "necklace-sets",
+    goldPurity: 22,
+    goldWeight: 34.5,
+    tags: ["Peacock Art", "Filigree", "22KT Gold", "Necklace Set"],
+    images: ["/uploads/gold-peacock-filigree-necklace-set-1.webp", "/uploads/gold-peacock-filigree-necklace-set-2.webp", "/uploads/gold-peacock-filigree-necklace-set-3.webp"],
+    coverImage: "/uploads/gold-peacock-filigree-necklace-set-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-NEC-018",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 262000,
+      components: {
+        goldValue: 235800,
+        makingCharges: 18340,
+        gst: 7860
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-9",
+    name: "Artisanal 22K Gold Chandelier Statement Earrings",
+    slug: "gold-chandelier-earrings-pair",
+    description: "Artisanal 22K gold statement chandelier earrings designed with tiered filigree arches and swaying gold fringe droplets.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Eartops",
+    subCategorySlug: "eartops",
+    goldPurity: 22,
+    goldWeight: 14.8,
+    tags: ["Chandeliers", "Evening Elegance", "22KT Gold", "Drop Earrings"],
+    images: ["/uploads/gold-chandelier-earrings-pair-1.webp", "/uploads/gold-chandelier-earrings-pair-2.webp", "/uploads/gold-chandelier-earrings-pair-3.webp"],
+    coverImage: "/uploads/gold-chandelier-earrings-pair-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-EAR-019",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 114000,
+      components: {
+        goldValue: 102600,
+        makingCharges: 7980,
+        gst: 3420
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-10",
+    name: "Traditional 22K Gold Chandbali Crescent Earrings",
+    slug: "gold-chandbali-crescent-earrings",
+    description: "Timeless 22K gold Chandbali crescent earrings showcasing blooming flower centers and rhythmic tassel fringe beads.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Eartops",
+    subCategorySlug: "eartops",
+    goldPurity: 22,
+    goldWeight: 18.2,
+    tags: ["Chandbali", "Crescent Moon", "22KT BIS 916", "Festive Elegance"],
+    images: ["/uploads/gold-chandbali-crescent-earrings-1.webp", "/uploads/gold-chandbali-crescent-earrings-2.webp", "/uploads/gold-chandbali-crescent-earrings-3.webp", "/uploads/gold-chandbali-crescent-earrings-4.webp"],
+    coverImage: "/uploads/gold-chandbali-crescent-earrings-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-EAR-020",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 139000,
+      components: {
+        goldValue: 125100,
+        makingCharges: 9730,
+        gst: 4170
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-11",
+    name: "Engraved Peacock 22K Gold Pendant & Chain Set",
+    slug: "gold-peacock-pendant-chain-set",
+    description: "Exquisite 22K gold filigree medallion pendant featuring a dancing peacock crest and dangling bell tassel, suspended on an heirloom link chain.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Pendant Sets",
+    subCategorySlug: "pendant-sets",
+    goldPurity: 22,
+    goldWeight: 15.6,
+    tags: ["Pendant Set", "22KT Gold", "Peacock Medallion", "Daily Heritage"],
+    images: ["/uploads/gold-peacock-pendant-chain-set-1.webp", "/uploads/gold-peacock-pendant-chain-set-2.webp", "/uploads/gold-peacock-pendant-chain-set-3.webp"],
+    coverImage: "/uploads/gold-peacock-pendant-chain-set-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-PEN-021",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 119000,
+      components: {
+        goldValue: 107100,
+        makingCharges: 8330,
+        gst: 3570
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-12",
+    name: "Radiant Sunlight 22K Gold Bridal Necklace",
+    slug: "gold-radiant-bridal-necklace",
+    description: "Sunburst-inspired 22K gold bridal necklace sculpted with radiating filigree rays and polished gold spears that frame the neckline.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Necklace Sets",
+    subCategorySlug: "necklace-sets",
+    goldPurity: 22,
+    goldWeight: 38.0,
+    tags: ["Sunburst", "Bridal Luxury", "22KT BIS 916", "Royal Trousseau"],
+    images: ["/uploads/gold-radiant-bridal-necklace-1.webp", "/uploads/gold-radiant-bridal-necklace-2.webp", "/uploads/gold-radiant-bridal-necklace-3.webp"],
+    coverImage: "/uploads/gold-radiant-bridal-necklace-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-NEC-022",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 288000,
+      components: {
+        goldValue: 259200,
+        makingCharges: 20160,
+        gst: 8640
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-13",
+    name: "Heirloom 22K Gold Grand Bridal Choker & Earrings",
+    slug: "gold-grand-bridal-choker-set",
+    description: "Monumental 22K gold bridal choker with dense filigree latticework, cascading dewdrop tassels, and matching grand earrings.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Necklace Sets",
+    subCategorySlug: "necklace-sets",
+    goldPurity: 22,
+    goldWeight: 56.5,
+    tags: ["Grand Bridal", "22KT Gold", "Choker Set", "Imperial Trousseau"],
+    images: ["/uploads/gold-grand-bridal-choker-set-1.webp", "/uploads/gold-grand-bridal-choker-set-2.webp", "/uploads/gold-grand-bridal-choker-set-3.webp"],
+    coverImage: "/uploads/gold-grand-bridal-choker-set-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-NEC-023",
+    isActive: true,
+    isFeatured: true,
+    pricing: {
+      finalPrice: 428000,
+      components: {
+        goldValue: 385200,
+        makingCharges: 29960,
+        gst: 12840
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-14",
+    name: "Sculpted 22K Gold Filigree Necklace & Earring Set",
+    slug: "gold-sculpted-filigree-necklace-set",
+    description: "Delicately sculpted 22K gold necklace set featuring curving ribbon filigree and sparkling flower cluster pendants.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Necklace Sets",
+    subCategorySlug: "necklace-sets",
+    goldPurity: 22,
+    goldWeight: 32.8,
+    tags: ["Sculpted Gold", "Necklace Set", "22KT BIS 916", "Fine Filigree"],
+    images: ["/uploads/gold-sculpted-filigree-necklace-set-1.webp", "/uploads/gold-sculpted-filigree-necklace-set-2.webp", "/uploads/gold-sculpted-filigree-necklace-set-3.webp"],
+    coverImage: "/uploads/gold-sculpted-filigree-necklace-set-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-NEC-024",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 249000,
+      components: {
+        goldValue: 224100,
+        makingCharges: 17430,
+        gst: 7470
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-15",
+    name: "Grand Layered 22K Gold Sitahar Haar & Jhumkas",
+    slug: "gold-royal-layered-sitahar-haar",
+    description: "Multi-strand long royal 22K gold Sitahar haar with triple medallions, hand-carved floral links, and matching chandelier jhumkas.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Necklace Sets",
+    subCategorySlug: "necklace-sets",
+    goldPurity: 22,
+    goldWeight: 58.4,
+    tags: ["Sitahar", "Long Haar", "22KT Gold", "Royal Bengal Bridal"],
+    images: ["/uploads/gold-royal-layered-sitahar-haar-1.webp", "/uploads/gold-royal-layered-sitahar-haar-2.webp", "/uploads/gold-royal-layered-sitahar-haar-3.webp", "/uploads/gold-royal-layered-sitahar-haar-4.webp"],
+    coverImage: "/uploads/gold-royal-layered-sitahar-haar-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-NEC-025",
+    isActive: true,
+    isFeatured: true,
+    pricing: {
+      finalPrice: 442000,
+      components: {
+        goldValue: 397800,
+        makingCharges: 30940,
+        gst: 13260
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-16",
+    name: "Heavy 22K Gold Nakshi Floral Bangles Pair",
+    slug: "gold-heavy-nakshi-bangles-pair",
+    description: "Opulent pair of 22K gold Nakshi bridal bangles embossed with sacred floral vines and scalloped imperial borders.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Bangles",
+    subCategorySlug: "bangles",
+    goldPurity: 22,
+    goldWeight: 44.6,
+    tags: ["Nakshi", "Bridal Bangles", "22KT BIS 916", "Heirloom Bala"],
+    images: ["/uploads/gold-heavy-nakshi-bangles-pair-1.webp", "/uploads/gold-heavy-nakshi-bangles-pair-2.webp", "/uploads/gold-heavy-nakshi-bangles-pair-3.webp"],
+    coverImage: "/uploads/gold-heavy-nakshi-bangles-pair-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-BAN-026",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 338000,
+      components: {
+        goldValue: 304200,
+        makingCharges: 23660,
+        gst: 10140
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-17",
+    name: "Aesthetic 22K Gold Floral Pendant & Earrings Set",
+    slug: "gold-floral-pendant-earrings-set",
+    description: "Graceful 22K gold floral pendant and matching drop earrings set accented with multi-strand bead tassels and polished gold floret.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Pendant Sets",
+    subCategorySlug: "pendant-sets",
+    goldPurity: 22,
+    goldWeight: 16.2,
+    tags: ["Pendant Set", "Floral Art", "22KT Gold", "Matching Earrings"],
+    images: ["/uploads/gold-floral-pendant-earrings-set-1.webp", "/uploads/gold-floral-pendant-earrings-set-2.webp", "/uploads/gold-floral-pendant-earrings-set-3.webp", "/uploads/gold-floral-pendant-earrings-set-4.webp"],
+    coverImage: "/uploads/gold-floral-pendant-earrings-set-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-PEN-027",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 124000,
+      components: {
+        goldValue: 111600,
+        makingCharges: 8680,
+        gst: 3720
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-18",
+    name: "Cascading Leaf 22K Gold Filigree Necklace Set",
+    slug: "gold-filigree-leaf-necklace-set",
+    description: "Contemporary 22K gold necklace and earring set featuring alternating satin-finish and polished filigree leaves.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Necklace Sets",
+    subCategorySlug: "necklace-sets",
+    goldPurity: 22,
+    goldWeight: 28.5,
+    tags: ["Leaf Motifs", "Modern Filigree", "22KT Gold", "Necklace Set"],
+    images: ["/uploads/gold-filigree-leaf-necklace-set-1.webp", "/uploads/gold-filigree-leaf-necklace-set-2.webp"],
+    coverImage: "/uploads/gold-filigree-leaf-necklace-set-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-NEC-028",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 216000,
+      components: {
+        goldValue: 194400,
+        makingCharges: 15120,
+        gst: 6480
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-19",
+    name: "Traditional Bengali 22K Gold Noa Bandha Bangles",
+    slug: "gold-noa-bandha-bridal-bangles",
+    description: "Sacred Bengali wedding 22K gold-embossed Noa Bandha bangles paired with hand-cut white conch Sankha and red Pola bracelets.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Noa",
+    subCategorySlug: "noa",
+    goldPurity: 22,
+    goldWeight: 12.5,
+    tags: ["Noa Bandha", "Sankha Pola", "Bengali Bridal", "Sacred Gold"],
+    images: ["/uploads/gold-noa-bandha-bridal-bangles-1.webp", "/uploads/gold-noa-bandha-bridal-bangles-2.webp"],
+    coverImage: "/uploads/gold-noa-bandha-bridal-bangles-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-NOA-029",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 96000,
+      components: {
+        goldValue: 86400,
+        makingCharges: 6720,
+        gst: 2880
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-20",
+    name: "Sacred Lotus 22K Gold Bridal Necklace Set",
+    slug: "gold-regal-lotus-necklace-set",
+    description: "Regal 22K gold necklace set inspired by sacred pond lotuses, featuring hand-textured petal crescents and matching floral ear-hangers.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Necklace Sets",
+    subCategorySlug: "necklace-sets",
+    goldPurity: 22,
+    goldWeight: 35.8,
+    tags: ["Sacred Lotus", "22KT Gold", "Necklace Set", "Heritage"],
+    images: ["/uploads/gold-regal-lotus-necklace-set-1.webp", "/uploads/gold-regal-lotus-necklace-set-2.webp", "/uploads/gold-regal-lotus-necklace-set-3.webp"],
+    coverImage: "/uploads/gold-regal-lotus-necklace-set-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-NEC-030",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 272000,
+      components: {
+        goldValue: 244800,
+        makingCharges: 19040,
+        gst: 8160
+      }
+    }
+  },
+  {
+    id: "gdrive-gld-21",
+    name: "Triple-Strand 22K Gold Peacock Sitahar Haar",
+    slug: "gold-peacock-triple-sitahar-haar",
+    description: "Masterpiece triple-strand 22K gold Sitahar necklace with hand-engraved peacock shoulders and graduated temple bead chains.",
+    category: "Gold",
+    categorySlug: "gold",
+    subCategory: "Necklace Sets",
+    subCategorySlug: "necklace-sets",
+    goldPurity: 22,
+    goldWeight: 62.0,
+    tags: ["Triple Sitahar", "Peacock Haar", "22KT BIS 916", "Heirloom"],
+    images: ["/uploads/gold-peacock-triple-sitahar-haar-1.webp", "/uploads/gold-peacock-triple-sitahar-haar-2.webp", "/uploads/gold-peacock-triple-sitahar-haar-3.webp"],
+    coverImage: "/uploads/gold-peacock-triple-sitahar-haar-1.webp",
+    stockCount: 3,
+    sku: "AR-GLD-NEC-031",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 469000,
+      components: {
+        goldValue: 422100,
+        makingCharges: 32830,
+        gst: 14070
+      }
+    }
+  },
+  {
+    id: "gdrive-slv-1",
+    name: "Pure Handcrafted Silver Filigree Sitahar Necklace",
+    slug: "silver-filigree-sitahar-diya",
+    description: "Pure 92.5 handcrafted fine silver filigree sitahar necklace, sculpted with traditional Bengali lace art and centered with sacred emerald and ruby enamel.",
+    category: "Silver",
+    categorySlug: "silver",
+    subCategory: "Necklaces",
+    subCategorySlug: "necklaces",
+    goldPurity: 925,
+    goldWeight: 85.0,
+    tags: ["Pure Silver 925", "Filigree Sitahar", "Handcrafted", "Heritage"],
+    images: ["/uploads/silver-filigree-sitahar-diya-1.webp", "/uploads/silver-filigree-sitahar-diya-2.webp", "/uploads/silver-filigree-sitahar-diya-3.webp"],
+    coverImage: "/uploads/silver-filigree-sitahar-diya-1.webp",
+    stockCount: 3,
+    sku: "AR-SLV-NEC-011",
+    isActive: true,
+    isFeatured: true,
+    pricing: {
+      finalPrice: 22500,
+      components: {
+        goldValue: 20250,
+        makingCharges: 1575,
+        gst: 675
+      }
+    }
+  },
+  {
+    id: "gdrive-slv-2",
+    name: "Royal Silver Heritage Sitahar on Heirloom Chest",
+    slug: "silver-royal-necklace-heirloom-box",
+    description: "Royal antique silver sitahar necklace draped with tiered silver bells and floral filigree medallion, crafted in pure hallmarked silver.",
+    category: "Silver",
+    categorySlug: "silver",
+    subCategory: "Necklaces",
+    subCategorySlug: "necklaces",
+    goldPurity: 925,
+    goldWeight: 92.0,
+    tags: ["925 Silver", "Royal Sitahar", "Heirloom Collection", "Handcrafted"],
+    images: ["/uploads/silver-royal-necklace-heirloom-box-1.webp", "/uploads/silver-royal-necklace-heirloom-box-2.webp", "/uploads/silver-royal-necklace-heirloom-box-3.webp", "/uploads/silver-royal-necklace-heirloom-box-4.webp"],
+    coverImage: "/uploads/silver-royal-necklace-heirloom-box-1.webp",
+    stockCount: 3,
+    sku: "AR-SLV-NEC-012",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 24800,
+      components: {
+        goldValue: 22320,
+        makingCharges: 1736,
+        gst: 744
+      }
+    }
+  },
+  {
+    id: "gdrive-slv-3",
+    name: "Pure Silver Enamel Necklace & Jhumkas Set",
+    slug: "silver-enamel-necklace-earrings-set",
+    description: "Fine 92.5 silver necklace and matching chandelier jhumkas set detailed with royal blue and green Meenakari enamel artwork.",
+    category: "Silver",
+    categorySlug: "silver",
+    subCategory: "Necklaces",
+    subCategorySlug: "necklaces",
+    goldPurity: 925,
+    goldWeight: 68.0,
+    tags: ["Silver Meenakari", "Necklace Set", "925 Fine Silver", "Enamel"],
+    images: ["/uploads/silver-enamel-necklace-earrings-set-1.webp", "/uploads/silver-enamel-necklace-earrings-set-2.webp"],
+    coverImage: "/uploads/silver-enamel-necklace-earrings-set-1.webp",
+    stockCount: 3,
+    sku: "AR-SLV-NEC-013",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 18500,
+      components: {
+        goldValue: 16650,
+        makingCharges: 1295,
+        gst: 555
+      }
+    }
+  },
+  {
+    id: "gdrive-slv-4",
+    name: "Pure Handcrafted Silver Makara Lion-Head Kadas Pair",
+    slug: "silver-makara-lion-kadas-pair",
+    description: "Handcrafted pair of heavy pure silver Makara kadas featuring sculpted lion-head terminals, hand-chased scales, and ruby enamel accents.",
+    category: "Silver",
+    categorySlug: "silver",
+    subCategory: "Bangles",
+    subCategorySlug: "bangles",
+    goldPurity: 925,
+    goldWeight: 110.0,
+    tags: ["Makara Kadas", "925 Silver", "Heavy Bangles", "Lion Head"],
+    images: ["/uploads/silver-makara-lion-kadas-pair-1.webp", "/uploads/silver-makara-lion-kadas-pair-2.webp", "/uploads/silver-makara-lion-kadas-pair-3.webp", "/uploads/silver-makara-lion-kadas-pair-4.webp"],
+    coverImage: "/uploads/silver-makara-lion-kadas-pair-1.webp",
+    stockCount: 3,
+    sku: "AR-SLV-BAN-014",
+    isActive: true,
+    isFeatured: true,
+    pricing: {
+      finalPrice: 28500,
+      components: {
+        goldValue: 25650,
+        makingCharges: 1995,
+        gst: 855
+      }
+    }
+  },
+  {
+    id: "gdrive-slv-5",
+    name: "Heirloom Pure Silver Traditional Saree Necklace",
+    slug: "silver-traditional-necklace-saree",
+    description: "Heirloom pure silver traditional festive necklace showcasing triple-tiered filigree arches and shimmering silver droplet tassels.",
+    category: "Silver",
+    categorySlug: "silver",
+    subCategory: "Necklaces",
+    subCategorySlug: "necklaces",
+    goldPurity: 925,
+    goldWeight: 76.0,
+    tags: ["Traditional Silver", "925 Silver", "Festive Necklace", "Tripura Craft"],
+    images: ["/uploads/silver-traditional-necklace-saree-1.webp", "/uploads/silver-traditional-necklace-saree-2.webp"],
+    coverImage: "/uploads/silver-traditional-necklace-saree-1.webp",
+    stockCount: 3,
+    sku: "AR-SLV-NEC-015",
+    isActive: true,
+    isFeatured: false,
+    pricing: {
+      finalPrice: 20400,
+      components: {
+        goldValue: 18360,
+        makingCharges: 1428,
+        gst: 612
+      }
+    }
+  },
 ];
 
 /**

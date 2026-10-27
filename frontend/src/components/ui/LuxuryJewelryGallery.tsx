@@ -8,10 +8,12 @@ export interface JewelryItem {
   id: string;
   title: string;
   category?: string;
+  metal?: string;
   purity: string;
   imageUrl: string;
   description: string;
   tag?: string;
+  productSlug?: string;
   price?: number;
   weight?: number;
 }
