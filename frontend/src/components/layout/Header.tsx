@@ -16,7 +16,7 @@ const NAV_LINKS = [
 ];
 
 // Categories to hide from the navigation menu
-const HIDDEN_CATEGORIES = ['costume-jewellery', 'offers-deals'];
+const HIDDEN_CATEGORIES = ['costume-jewellery', 'offers-deals', 'astrological-stones'];
 
 const Header = ({ 
   categories = [], 
@@ -92,11 +92,11 @@ const Header = ({
         </Link>
 
         {/* Navigation - Desktop */}
-        <nav className="hidden lg:flex flex-1 justify-center items-center space-x-3 xl:space-x-5 h-full">
+        <nav className="hidden lg:flex flex-1 justify-center items-center space-x-4 xl:space-x-7 h-full">
           {visibleCategories.map((cat: any) => (
             <div 
               key={cat.id}
-              className="relative group h-full flex items-center px-2 xl:px-3"
+              className="relative group h-full flex items-center px-2.5 xl:px-4"
             >
               <Link 
                 href={`/category/${cat.slug}`}

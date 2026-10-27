@@ -158,7 +158,7 @@ export default function CareGuideClient() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/80 via-transparent to-transparent opacity-80" />
                   <div className="absolute bottom-6 left-6 text-[#FFF8EC]">
                     <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D6B15D] block mb-1">Chapter 03</span>
-                    <h3 className="text-xl font-serif">Emeralds, Rubies & Astrological Gems</h3>
+                    <h3 className="text-xl font-serif">Precious Emeralds & Rubies</h3>
                   </div>
                 </div>
               </MagneticCard>

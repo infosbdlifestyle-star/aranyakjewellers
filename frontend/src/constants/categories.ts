@@ -51,18 +51,6 @@ export const CATEGORIES: Category[] = [
     ],
   },
   {
-    id: "astrological-stones",
-    name: "Astrological Stones",
-    slug: "astrological-stones",
-    imageUrl: "/hero-necklace.png",
-    subcategories: [
-      { id: "stone-nila", name: "Nila (Blue Sapphire)", slug: "nila", imageUrl: "/hero-necklace.png" },
-      { id: "stone-opal", name: "Opal", slug: "opal", imageUrl: "/hero-necklace.png" },
-      { id: "stone-emerald", name: "Emerald (Panna)", slug: "emerald", imageUrl: "/hero-necklace.png" },
-      { id: "stone-ruby", name: "Ruby (Manik)", slug: "ruby", imageUrl: "/hero-necklace.png" },
-    ],
-  },
-  {
     id: "costume-jewellery",
     name: "Costume Jewellery",
     slug: "costume-jewellery",

@@ -11,6 +11,20 @@ const nextConfig: NextConfig = {
   },
   // Optimize for Vercel deployment
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: '/category/astrological-stones',
+        destination: '/collections',
+        permanent: false,
+      },
+      {
+        source: '/category/astrological-stones/:path*',
+        destination: '/collections',
+        permanent: false,
+      },
+    ];
+  },
   async rewrites() {
     const backend = process.env.BACKEND_URL || 'http://117.252.16.132:3001';
     return [

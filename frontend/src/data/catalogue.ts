@@ -8,9 +8,9 @@ export interface ProductItem {
   name: string;
   slug: string;
   description: string;
-  category: 'Gold' | 'Diamond' | 'Silver' | 'Astrological Stones';
+  category: 'Gold' | 'Diamond' | 'Silver';
   subCategory: string;
-  categorySlug: 'gold' | 'diamond' | 'silver' | 'astrological-stones';
+  categorySlug: 'gold' | 'diamond' | 'silver';
   subCategorySlug: string;
   goldPurity: number; // 22, 18, or 925 for silver
   goldWeight: number; // in grams

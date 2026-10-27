@@ -57,14 +57,6 @@ const CATEGORY_METAS: Record<string, CategoryMeta> = {
     hallmarkText: "92.5 Hallmarked Sterling Silver • Premium Anti-Tarnish E-Coating • Hand-Engraved",
     purityBanner: "Official Silver Purity: 92.5% Pure Sterling Silver",
     heroImage: "/silver_luxury_necklace.jpg",
-  },
-  "astrological-stones": {
-    title: "Astrological Gemstones",
-    subtitle: "Unheated, untreated natural astrological gemstones certified by recognized gemological institutes.",
-    badge: "Certified Gemstones",
-    hallmarkText: "100% Natural & Untreated • Certified by Govt Recognized Gemological Labs",
-    purityBanner: "Planetary Gemstones with Certificate of Authenticity",
-    heroImage: "/stone_sapphire_nila.jpg",
   }
 };
 
@@ -73,8 +65,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
   
   // Normalized key
   const categoryKey = normSlug.includes('diamond') ? 'diamond' :
-                      normSlug.includes('silver') ? 'silver' :
-                      normSlug.includes('stone') ? 'astrological-stones' : 'gold';
+                      normSlug.includes('silver') ? 'silver' : 'gold';
 
   const meta = CATEGORY_METAS[categoryKey] || {
     title: `${categorySlug.charAt(0).toUpperCase() + categorySlug.slice(1)} Collection`,

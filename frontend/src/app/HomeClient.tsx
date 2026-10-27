@@ -55,10 +55,10 @@ const FALLBACK_CATEGORIES = [
   },
   {
     id: 'cat-4',
-    name: 'Temple & Antique',
-    slug: 'astrological-stones',
-    imageUrl: '/IMG_20260603_141113.png',
-    tagline: 'Sacred Iconography & Artisanal Craft',
+    name: 'Pure 925 Silver',
+    slug: 'silver',
+    imageUrl: '/silver_luxury_necklace.jpg',
+    tagline: 'Artisanal Filigree & Auspicious Silverware',
     span: 'md:col-span-8'
   }
 ];
@@ -73,7 +73,7 @@ const TESTIMONIALS = [
     tag: "Verified Bridal Buyer"
   },
   {
-    quote: "The finest destination in Tripura for authentic astrological gems and certified diamonds. Their staff is extremely knowledgeable and welcoming.",
+    quote: "The finest destination in Tripura for authentic heirloom jewellery and certified diamonds. Their staff is extremely knowledgeable and welcoming.",
     author: "Dr. Subhashish Debbarma",
     location: "Udaipur",
     rating: 5,
@@ -192,10 +192,10 @@ export default function HomeClient({
     },
     {
       id: 'cat-4',
-      name: 'Temple & Antique',
-      slug: 'astrological-stones',
+      name: 'Pure 925 Silver',
+      slug: 'silver',
       imageUrl: liveMediaMap['top_picks_artisanal_craft'] || '/uploads/cat_antique_silver_heritage.webp',
-      tagline: 'Sacred Iconography & Artisanal Craft',
+      tagline: 'Artisanal Filigree & Auspicious Silverware',
       span: 'md:col-span-8'
     }
   ];
@@ -563,7 +563,7 @@ export default function HomeClient({
                 { num: "I", title: "Guaranteed Purity", desc: "100% BIS 916 Hallmarked gold with laser-engraved authenticity certification." },
                 { num: "II", title: "Master Artisans", desc: "Handcrafted by legacy jewelers carrying generations of Bengali goldsmith technique." },
                 { num: "III", title: "Lifetime Trust", desc: "Transparent exchange rates, fair gold value, and full buy-back guarantees." },
-                { num: "IV", title: "Curated Luxury", desc: "Bespoke bridal sets, daily elegance wear, and certified astrological gemstones." }
+                { num: "IV", title: "Curated Luxury", desc: "Bespoke bridal sets, daily elegance wear, and mastercrafted silver ornaments." }
               ].map((item, i) => (
                 <Reveal key={i} delay={0.1 * i} y={30}>
                   <div className="group border-r border-b border-[#DED2C1] p-10 bg-[#FFFDF8] hover:bg-white transition-all duration-500 h-full flex flex-col justify-between shadow-sm">

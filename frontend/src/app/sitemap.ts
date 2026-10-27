@@ -17,7 +17,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/category/gold`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/category/diamond`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/category/silver`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/category/astrological-stones`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
   ];
 
   let dynamicPages: MetadataRoute.Sitemap = [];
@@ -35,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const categories = Array.isArray(data) ? data : (data.data || []);
       
       categories.forEach((cat: any) => {
-        if (cat.slug) {
+        if (cat.slug && !cat.slug.includes('astrological-stones') && cat.slug !== 'costume-jewellery' && cat.slug !== 'offers-deals') {
            dynamicPages.push({
              url: `${baseUrl}/category/${cat.slug}`,
              lastModified: new Date(),

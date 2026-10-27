@@ -186,8 +186,8 @@ All API calls go through `src/lib/api.ts`. Use `api.methodName()` functions. Nev
 
 ### Static Categories (always keep up to date)
 File: `frontend/src/constants/categories.ts`
-Contains: Gold (with 10 subcategories), Diamond (4), Silver (4), Astrological Stones (4), Costume Jewellery, Offers & Deals.
-Hidden from menu: `['costume-jewellery', 'offers-deals']`
+Contains: Gold (with 10 subcategories), Diamond (4), Silver (5), Costume Jewellery, Offers & Deals.
+Hidden from menu: `['costume-jewellery', 'offers-deals', 'astrological-stones']`
 
 ---
 
