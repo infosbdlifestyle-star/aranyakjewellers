@@ -131,12 +131,6 @@ export function LuxuryJewelryGallery({
                   <h3 className="text-xl font-serif font-light text-[#FFF8EC] group-hover:text-[#E0BD72] transition-colors mb-2 line-clamp-1">
                     {item.title}
                   </h3>
-                  
-                  {item.price ? (
-                    <p className="text-sm font-bold text-[#D6B15D] font-serif mb-2">
-                      ₹{Number(item.price).toLocaleString('en-IN')}
-                    </p>
-                  ) : null}
 
                   <div className="inline-flex items-center space-x-2 text-[9px] font-bold tracking-[0.25em] uppercase text-[#E5D9C8] group-hover:text-[#FFF8EC] transition-colors">
                     <span>Inspect Fine Detail</span>
@@ -224,11 +218,9 @@ export function LuxuryJewelryGallery({
                     {selectedItem.title}
                   </h2>
 
-                  {selectedItem.price ? (
-                    <p className="text-2xl font-serif font-bold text-[#D6B15D] mb-4">
-                      ₹{Number(selectedItem.price).toLocaleString('en-IN')}
-                    </p>
-                  ) : null}
+                  <p className="text-xs tracking-[0.25em] font-semibold text-[#D6B15D] uppercase mb-4">
+                    Price On Request
+                  </p>
 
                   <p className="text-xs sm:text-sm text-[#E5D9C8] leading-relaxed font-light mb-6">
                     {selectedItem.description}

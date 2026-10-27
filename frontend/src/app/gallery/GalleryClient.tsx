@@ -1,13 +1,31 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TextReveal, SparkleGlint } from '@/components/animations/LuxuryMotion';
 import { LuxuryJewelryGallery } from '@/components/ui/LuxuryJewelryGallery';
 import { MASTER_GALLERY_ITEMS, GALLERY_CATEGORIES, MasterGalleryItem } from '@/data/gallery';
+import { api } from '@/lib/api';
 
 export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<string, string> }) {
   const [activeTab, setActiveTab] = useState<string>('all');
+  const [backendItems, setBackendItems] = useState<any[]>([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchGallery = async () => {
+      try {
+        const data = await api.getGalleryItems();
+        if (isMounted && Array.isArray(data) && data.length > 0) {
+          setBackendItems(data.filter((item: any) => item.isActive));
+        }
+      } catch {
+        /* fallback to static */
+      }
+    };
+    fetchGallery();
+    return () => { isMounted = false; };
+  }, []);
 
   // Dynamically map gallery items from backend Media Manager if overrides exist
   const keyToMediaMap: Record<string, string> = {
@@ -20,6 +38,21 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
   };
 
   const dynamicGalleryItems = useMemo(() => {
+    if (backendItems.length > 0) {
+      return backendItems.map((item) => ({
+        id: item.id,
+        title: item.title,
+        subtitle: item.subtitle || '',
+        category: item.category,
+        imageUrl: item.imageUrl,
+        metal: item.metal || 'gold',
+        purity: item.purity || '22K',
+        description: item.description || '',
+        tags: item.tags || [],
+        isFeatured: Boolean(item.isFeatured),
+      }));
+    }
+
     return MASTER_GALLERY_ITEMS.map((item) => {
       const mediaKey = keyToMediaMap[item.id];
       if (mediaKey && mediaMap[mediaKey]) {
@@ -27,7 +60,7 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
       }
       return item;
     });
-  }, [mediaMap]);
+  }, [backendItems, mediaMap]);
 
   const filteredItems = useMemo(() => {
     return dynamicGalleryItems.filter((item) => {

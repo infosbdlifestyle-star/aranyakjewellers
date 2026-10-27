@@ -90,7 +90,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState<string>(initialSubCategorySlug || 'all');
-  const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'weight-desc' | 'name'>('featured');
+  const [sortBy, setSortBy] = useState<'featured' | 'weight-desc' | 'name'>('featured');
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
   const [imageErrorMap, setImageErrorMap] = useState<Record<string, boolean>>({});
 
@@ -227,12 +227,6 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
     }
 
     return [...result].sort((a, b) => {
-      if (sortBy === 'price-asc') {
-        return (a.pricing?.finalPrice || 0) - (b.pricing?.finalPrice || 0);
-      }
-      if (sortBy === 'price-desc') {
-        return (b.pricing?.finalPrice || 0) - (a.pricing?.finalPrice || 0);
-      }
       if (sortBy === 'weight-desc') {
         return (b.goldWeight || 0) - (a.goldWeight || 0);
       }
@@ -353,9 +347,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
               className="text-xs font-semibold bg-[#FFFDF8] border border-[#DED2C1] rounded-lg px-3 py-1.5 text-[#211813] focus:outline-none focus:border-[#8A5A12] cursor-pointer"
             >
               <option value="featured">Featured First</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="weight-desc">Weight: Highest</option>
+              <option value="weight-desc">Gold Weight: Highest</option>
               <option value="name">Alphabetical</option>
             </select>
           </div>
@@ -522,30 +514,21 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                               </p>
                             </div>
 
-                            {/* Price & Action Row */}
+                            {/* Inquiry Action Row */}
                             <div className="pt-3 border-t border-[#DED2C1]/60 flex items-center justify-between">
-                              <div>
-                                {p.pricing?.finalPrice ? (
-                                  <div>
-                                    <span className="text-[10px] text-[#70440C] uppercase tracking-wider block font-medium">Estimated Value</span>
-                                    <span className="text-base font-serif font-bold text-[#211813]">
-                                      ₹{p.pricing.finalPrice.toLocaleString('en-IN')}
-                                    </span>
-                                  </div>
-                                ) : (
-                                  <div>
-                                    <span className="text-[10px] text-[#70440C] uppercase tracking-wider block font-medium">Price on Inquiry</span>
-                                    <span className="text-xs font-serif font-bold text-[#8A5A12]">Daily Gold Linked</span>
-                                  </div>
-                                )}
+                              <div className="flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45] animate-pulse" />
+                                <span className="text-[10px] text-[#70440C] uppercase tracking-[0.2em] font-semibold">
+                                  Price on Request
+                                </span>
                               </div>
 
                               <div className="flex items-center gap-2">
                                 <a
-                                  href={`https://wa.me/919436501506?text=${encodeURIComponent(`Hello Aranyak Jewellers, I would like to inquire about ${p.name} (SKU: ${p.sku}). Please share pricing and availability.`)}`}
+                                  href={`https://wa.me/919436501506?text=${encodeURIComponent(`Hello Aranyak Jewellers, I would like to inquire about ${p.name} (SKU: ${p.sku}). Please share availability and details.`)}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="w-8 h-8 rounded-full bg-[#211813] hover:bg-[#211813] text-[#E0BD72] flex items-center justify-center border border-[#C49A45]/40 transition-colors"
+                                  className="w-8 h-8 rounded-full bg-[#211813] hover:bg-[#8A5A12] text-[#E0BD72] hover:text-[#FFF8EC] flex items-center justify-center border border-[#C49A45]/40 transition-colors"
                                   title="Inquire on WhatsApp"
                                 >
                                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -663,14 +646,12 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                       <span className="text-emerald-400 font-serif">In Stock & Verified</span>
                     </div>
 
-                    {selectedProduct.pricing?.finalPrice && (
-                      <div>
-                        <span className="text-[#E5D9C8]/70 uppercase tracking-widest block text-[9px]">Approx. Value</span>
-                        <span className="text-[#E0BD72] font-serif font-bold text-sm">
-                          ₹{selectedProduct.pricing.finalPrice.toLocaleString('en-IN')}
-                        </span>
-                      </div>
-                    )}
+                    <div>
+                      <span className="text-[#E5D9C8]/70 uppercase tracking-widest block text-[9px]">Pricing</span>
+                      <span className="text-[#E0BD72] font-serif font-bold text-xs tracking-wider uppercase">
+                        Price On Request
+                      </span>
+                    </div>
                   </div>
                 </div>
 

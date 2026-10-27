@@ -23,6 +23,10 @@ export default function AdminCategoriesPage() {
     slug: '',
     description: '',
     imageUrl: '',
+    bannerUrl: '',
+    isFeatured: false,
+    seoTitle: '',
+    seoDescription: '',
     isActive: true,
   });
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -54,6 +58,10 @@ export default function AdminCategoriesPage() {
         slug: category.slug,
         description: category.description || '',
         imageUrl: category.imageUrl || '',
+        bannerUrl: category.bannerUrl || '',
+        isFeatured: Boolean(category.isFeatured),
+        seoTitle: category.seoTitle || '',
+        seoDescription: category.seoDescription || '',
         isActive: category.isActive,
       });
     } else {
@@ -63,6 +71,10 @@ export default function AdminCategoriesPage() {
         slug: '',
         description: '',
         imageUrl: '',
+        bannerUrl: '',
+        isFeatured: false,
+        seoTitle: '',
+        seoDescription: '',
         isActive: true,
       });
     }
@@ -195,7 +207,10 @@ export default function AdminCategoriesPage() {
                           )}
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-white/90 truncate">{c.name}</p>
+                          <div className="flex items-center gap-2">
+                            <p className="text-sm font-medium text-white/90 truncate">{c.name}</p>
+                            {c.isFeatured && <span className="text-[9px] bg-secondary/20 text-secondary px-1.5 py-0.5 rounded font-bold uppercase tracking-wider border border-secondary/30">✦ Featured</span>}
+                          </div>
                           {c.description && <p className="text-[10px] text-white/40 truncate max-w-[250px] mt-0.5">{c.description}</p>}
                         </div>
                       </div>
@@ -306,6 +321,54 @@ export default function AdminCategoriesPage() {
                     className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors resize-none custom-scrollbar"
                     placeholder="Short description for this category..."
                   />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Category Banner (Wide Showcase)</label>
+                    <input 
+                      type="text"
+                      value={formData.bannerUrl}
+                      onChange={(e) => setFormData({...formData, bannerUrl: e.target.value})}
+                      placeholder="/uploads/banner.webp"
+                      className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-secondary transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Featured Flag</label>
+                    <label className="flex items-center gap-3 bg-[#050202] border border-white/10 rounded-xl px-4 py-2 cursor-pointer select-none">
+                      <input 
+                        type="checkbox"
+                        checked={formData.isFeatured}
+                        onChange={(e) => setFormData({...formData, isFeatured: e.target.checked})}
+                        className="w-4 h-4 rounded border-white/20 text-secondary focus:ring-0 bg-[#050202]"
+                      />
+                      <span className="text-xs text-white/80">Show in Featured Collections</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">SEO Title (Optional)</label>
+                    <input 
+                      type="text"
+                      value={formData.seoTitle}
+                      onChange={(e) => setFormData({...formData, seoTitle: e.target.value})}
+                      placeholder="e.g. Pure 22K Gold Jewellery Collection | Aranyak"
+                      className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-secondary transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">SEO Description (Optional)</label>
+                    <input 
+                      type="text"
+                      value={formData.seoDescription}
+                      onChange={(e) => setFormData({...formData, seoDescription: e.target.value})}
+                      placeholder="Meta description for search engines..."
+                      className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-secondary transition-colors"
+                    />
+                  </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">

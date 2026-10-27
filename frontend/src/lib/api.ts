@@ -235,6 +235,39 @@ class ApiClient {
   async getGoldPrices() { return this.get('/gold-rates', []); }
   async updateGoldPrice(token: string, purity: number, pricePer10g: number) { return this.put(`/gold-rates/${purity}`, token, { pricePer10g }); }
   async resetLiveGoldPrices() { return this.post('/gold-rates/reset', undefined, {}); }
+
+  // Promotional Offers
+  async getOffers(placement?: string) {
+    const query = placement ? `?placement=${encodeURIComponent(placement)}` : '';
+    return this.get(`/offers${query}`, []);
+  }
+  async getOffersAdmin(token: string) { return this.get('/offers/admin/all', token, []); }
+  async createOffer(token: string, data: any) { return this.post('/offers', token, data); }
+  async updateOffer(token: string, id: string, data: any) { return this.put(`/offers/${id}`, token, data); }
+  async deleteOffer(token: string, id: string) { return this.del(`/offers/${id}`, token); }
+  async reorderOffers(token: string, items: { id: string; order: number }[]) { return this.put('/offers/reorder', token, { items }); }
+
+  // Announcement Ticker
+  async getTickerMessages() { return this.get('/ticker', []); }
+  async getTickerMessagesAdmin(token: string) { return this.get('/ticker/admin/all', token, []); }
+  async createTickerMessage(token: string, data: any) { return this.post('/ticker', token, data); }
+  async updateTickerMessage(token: string, id: string, data: any) { return this.put(`/ticker/${id}`, token, data); }
+  async deleteTickerMessage(token: string, id: string) { return this.del(`/ticker/${id}`, token); }
+  async reorderTickerMessages(token: string, items: { id: string; order: number }[]) { return this.put('/ticker/reorder', token, { items }); }
+
+  // Master Gallery
+  async getGalleryItems(category?: string, metal?: string) {
+    const params = new URLSearchParams();
+    if (category) params.append('category', category);
+    if (metal) params.append('metal', metal);
+    const qs = params.toString() ? `?${params.toString()}` : '';
+    return this.get(`/gallery${qs}`, []);
+  }
+  async getGalleryItemsAdmin(token: string) { return this.get('/gallery/admin/all', token, []); }
+  async createGalleryItem(token: string, data: any) { return this.post('/gallery', token, data); }
+  async updateGalleryItem(token: string, id: string, data: any) { return this.put(`/gallery/${id}`, token, data); }
+  async deleteGalleryItem(token: string, id: string) { return this.del(`/gallery/${id}`, token); }
+  async reorderGalleryItems(token: string, items: { id: string; order: number }[]) { return this.put('/gallery/reorder', token, { items }); }
 }
 
 export const api = new ApiClient();

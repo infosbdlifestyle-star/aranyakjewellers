@@ -14,7 +14,7 @@ import {
 } from '@/components/animations/LuxuryMotion';
 import { MouseParallaxImage } from '@/components/ui/MouseParallaxImage';
 import TopPicksCoverFlow from '@/components/home/TopPicksCoverFlow';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useMemo } from 'react';
 import React from 'react';
 import { api } from '@/lib/api';
 
@@ -112,19 +112,21 @@ export default function HomeClient({
   const [liveSettings, setLiveSettings] = useState<Record<string, string>>(initialSettings || {});
   const [liveMediaMap, setLiveMediaMap] = useState<Record<string, string>>(initialMediaMap || {});
   const [liveStoresCount, setLiveStoresCount] = useState<number>(storesCount || 4);
+  const [liveOffers, setLiveOffers] = useState<any[]>([]);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     const fetchLiveData = async () => {
       try {
-        const [rates, bans, cats, sets, stores, media] = await Promise.all([
+        const [rates, bans, cats, sets, stores, media, offers] = await Promise.all([
           api.getGoldPrices(),
           api.getBanners(),
           api.getCategories(),
           api.getSettings(),
           api.getStores(),
-          api.getMediaMap()
+          api.getMediaMap(),
+          api.getOffers('cards')
         ]);
         if (Array.isArray(rates) && rates.length > 0) setLiveGoldRates(rates);
         if (Array.isArray(bans) && bans.length > 0) setLiveBanners(bans);
@@ -133,6 +135,9 @@ export default function HomeClient({
         if (media && typeof media === 'object') setLiveMediaMap(media);
         if (Array.isArray(stores) && stores.length >= 4) {
           setLiveStoresCount(stores.length);
+        }
+        if (Array.isArray(offers) && offers.length > 0) {
+          setLiveOffers(offers);
         }
       } catch { /* empty */ }
     };
@@ -222,74 +227,209 @@ export default function HomeClient({
   const rate22k = getRate(22, 72500);
   const rate18k = getRate(18, 59300);
 
+  // Dynamic Hero Configuration
+  const heroConfig = useMemo(() => {
+    if (liveSettings['homepage_hero_config']) {
+      try {
+        const parsed = JSON.parse(liveSettings['homepage_hero_config']);
+        return {
+          brandTitle: parsed.brandTitle || 'ARANYAK JEWELLERS',
+          tagline: parsed.tagline || 'Timeless Elegance & Royal Heritage',
+          imageUrl: parsed.imageUrl || '',
+          height: parsed.height || '64vh',
+          alignment: parsed.alignment || 'center',
+          overlayDarkness: parsed.overlayDarkness || '60',
+        };
+      } catch { /* empty */ }
+    }
+    return {
+      brandTitle: 'ARANYAK JEWELLERS',
+      tagline: 'Timeless Elegance & Royal Heritage',
+      imageUrl: '',
+      height: '64vh',
+      alignment: 'center',
+      overlayDarkness: '60',
+    };
+  }, [liveSettings]);
+
+  // Dynamic Section Visibility
+  const enabledSections = useMemo(() => {
+    const map: Record<string, boolean> = {
+      hero: true,
+      ticker: true,
+      offers: true,
+      top_picks: true,
+      philosophy_stats: true,
+      craftsmanship: true,
+      collections: true,
+      high_jewellery: true,
+      rates_showroom: true,
+      testimonials: true,
+      instagram: true,
+    };
+    if (liveSettings['homepage_sections_config']) {
+      try {
+        const parsed = JSON.parse(liveSettings['homepage_sections_config']);
+        if (Array.isArray(parsed)) {
+          parsed.forEach((s: any) => {
+            if (s.id && typeof s.enabled === 'boolean') {
+              map[s.id] = s.enabled;
+            }
+          });
+        }
+      } catch { /* empty */ }
+    }
+    return map;
+  }, [liveSettings]);
+
+  // Dynamic Testimonials
+  const dynamicTestimonials = useMemo(() => {
+    if (liveSettings['homepage_testimonials']) {
+      try {
+        const parsed = JSON.parse(liveSettings['homepage_testimonials']);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      } catch { /* empty */ }
+    }
+    return TESTIMONIALS;
+  }, [liveSettings]);
+
+  // Dynamic Brand Stats
+  const dynamicStats = useMemo(() => {
+    if (liveSettings['homepage_stats']) {
+      try {
+        const parsed = JSON.parse(liveSettings['homepage_stats']);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      } catch { /* empty */ }
+    }
+    return STATS;
+  }, [liveSettings]);
+
+  // Dynamic Offers
+  const displayOffers = useMemo(() => {
+    if (liveOffers.length > 0) {
+      return liveOffers.map(o => ({
+        title: `${o.titleBn}${o.titleEn ? ` (${o.titleEn})` : ''}`,
+        desc: o.descBn || o.descEn || '',
+        tag: o.tag,
+        highlight: Boolean(o.highlight)
+      }));
+    }
+    return [
+      { 
+        title: 'সোনার গয়না (Gold Jewellery)', 
+        desc: '১০০০/- টাকা ছাড় প্রতিগ্রাম সোনার গয়না কেনাকাটায়', 
+        tag: '₹1000 OFF/GM' 
+      },
+      { 
+        title: 'পুরোনো গয়না পরিবর্তন (Exchange)', 
+        desc: '১০০% মূল্য হলমার্ক যুক্ত পুরোনো গয়নার পরিবর্তে', 
+        tag: 'ZERO LOSS EXCHANGE' 
+      },
+      { 
+        title: 'হীরের গয়না (Diamond Jewellery)', 
+        desc: '১০০% ছাড় হীরের গয়নার মজুরিতে', 
+        tag: '100% FREE MAKING' 
+      },
+      { 
+        title: 'রুপোর গয়না (Silver Ornaments)', 
+        desc: '২৫% ছাড় রূপোর গয়নার MRP-র উপর', 
+        tag: '25% FLAT DISCOUNT' 
+      },
+      { 
+        title: 'প্রতিদিন লাকি ড্র (Daily Lucky Draw)', 
+        desc: 'প্রতিদিন লাকি ড্র-তে হোম অ্যাপ্লায়েন্স', 
+        tag: 'DAILY PRIZES' 
+      },
+      { 
+        title: 'নিশ্চিত উপহার (Assured Gifts)', 
+        desc: 'নিশ্চিত উপহার প্রতি কেনাকাটায়', 
+        tag: 'FREE GIFTS' 
+      },
+      { 
+        title: 'মেগা লাকি ড্র (Mega Lucky Draw)', 
+        desc: 'MEGA LUCKY DRAW ৩টি স্কুটি', 
+        tag: '3X SCOOTY BUMPER',
+        highlight: true 
+      },
+    ];
+  }, [liveOffers]);
+
   return (
     <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C] selection:bg-[#D6B15D] selection:text-[#211813]" ref={containerRef}>
       
       {/* 1. Full-Screen Luxury "Timeless Elegance" Hero Section */}
-      <section className="relative min-h-[58vh] sm:min-h-[64vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#211813]" aria-label="Hero Section">
-        <motion.div 
-          className="absolute inset-0"
-          initial={{ scale: 1.15 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-          style={{ y: yParallax, opacity: opacityParallax }}
-        >
-          <Image 
-            src={liveMediaMap['home_hero_banner'] || (liveBanners && liveBanners.length > 0 ? liveBanners[0].imageUrl : (initialBanners && initialBanners.length > 0 ? initialBanners[0].imageUrl : "/uploads/hero_timeless_elegance.webp"))} 
-            alt="Aranyak Jewellers Masterpiece Collection" 
-            fill
-            className="object-cover animate-slow-zoom no-select opacity-70"
-            priority
-          />
-        </motion.div>
-        
-        {/* Multi-layered Warm Espresso & Gold Ambient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/60 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/85 via-transparent to-[#211813]/85 pointer-events-none" />
-        
-        {/* Floating Gold Dust Particles */}
-        {mounted && (
-          <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-[#D6B15D] rounded-full blur-[1px] mix-blend-screen"
-                initial={{ 
-                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
-                  y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
-                  opacity: Math.random() * 0.5 + 0.2
-                }}
-                animate={{
-                  y: [null, Math.random() * -200 - 100],
-                  x: [null, Math.random() * 100 - 50],
-                  opacity: [null, 0],
-                }}
-                transition={{
-                  duration: Math.random() * 10 + 10,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              />
-            ))}
-          </div>
-        )}
-        
-        {/* Centered Brand Name Title */}
-        <div className="relative z-10 w-full px-6 max-w-6xl flex items-center justify-center text-center py-16 sm:py-20 md:py-24">
-          <motion.h1
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-light text-[#C49A45] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)]"
-            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9), 0 0 35px rgba(196,154,69,0.22)" }}
+      {enabledSections.hero && (
+        <section className="relative min-h-[58vh] sm:min-h-[64vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#211813]" aria-label="Hero Section">
+          <motion.div 
+            className="absolute inset-0"
+            initial={{ scale: 1.15 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+            style={{ y: yParallax, opacity: opacityParallax }}
           >
-            ARANYAK JEWELLERS
-          </motion.h1>
-        </div>
-      </section>
+            <Image 
+              src={heroConfig.imageUrl || liveMediaMap['home_hero_banner'] || (liveBanners && liveBanners.length > 0 ? liveBanners[0].imageUrl : (initialBanners && initialBanners.length > 0 ? initialBanners[0].imageUrl : "/uploads/hero_timeless_elegance.webp"))} 
+              alt="Aranyak Jewellers Masterpiece Collection" 
+              fill
+              className="object-cover animate-slow-zoom no-select opacity-70"
+              priority
+            />
+          </motion.div>
+          
+          {/* Multi-layered Warm Espresso & Gold Ambient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/60 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/85 via-transparent to-[#211813]/85 pointer-events-none" />
+          
+          {/* Floating Gold Dust Particles */}
+          {mounted && (
+            <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
+              {[...Array(20)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-[#D6B15D] rounded-full blur-[1px] mix-blend-screen"
+                  initial={{ 
+                    x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
+                    y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
+                    opacity: Math.random() * 0.5 + 0.2
+                  }}
+                  animate={{
+                    y: [null, Math.random() * -200 - 100],
+                    x: [null, Math.random() * 100 - 50],
+                    opacity: [null, 0],
+                  }}
+                  transition={{
+                    duration: Math.random() * 10 + 10,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                />
+              ))}
+            </div>
+          )}
+          
+          {/* Centered Brand Name Title */}
+          <div className="relative z-10 w-full px-6 max-w-6xl flex flex-col items-center justify-center text-center py-16 sm:py-20 md:py-24">
+            <motion.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="font-serif font-light text-[#C49A45] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)]"
+              style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9), 0 0 35px rgba(196,154,69,0.22)" }}
+            >
+              {heroConfig.brandTitle || "ARANYAK JEWELLERS"}
+            </motion.h1>
+            {heroConfig.tagline && (
+              <p className="text-xs sm:text-sm text-[#E5D7C5] tracking-[0.25em] uppercase mt-4 font-light drop-shadow">
+                {heroConfig.tagline}
+              </p>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* 2.5 Special Festive & Wedding Offers Grid */}
-      <section className="pt-12 md:pt-16 pb-12 md:pb-16 bg-gradient-to-b from-[#211813] via-[#211813] to-[#211813] relative overflow-hidden text-[#FFF8EB] border-b border-[#DED2C1]/15">
+      {enabledSections.offers && (
+        <section className="pt-12 md:pt-16 pb-12 md:pb-16 bg-gradient-to-b from-[#211813] via-[#211813] to-[#211813] relative overflow-hidden text-[#FFF8EB] border-b border-[#DED2C1]/15">
         <div className="absolute inset-0 bg-radial-gold opacity-20 pointer-events-none" />
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-12">
@@ -324,44 +464,7 @@ export default function HomeClient({
           </div>
 
           <StaggerContainer staggerDelay={0.09} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { 
-                title: 'সোনার গয়না (Gold Jewellery)', 
-                desc: '১০০০/- টাকা ছাড় প্রতিগ্রাম সোনার গয়না কেনাকাটায়', 
-                tag: '₹1000 OFF/GM' 
-              },
-              { 
-                title: 'পুরোনো গয়না পরিবর্তন (Exchange)', 
-                desc: '১০০% মূল্য হলমার্ক যুক্ত পুরোনো গয়নার পরিবর্তে', 
-                tag: 'ZERO LOSS EXCHANGE' 
-              },
-              { 
-                title: 'হীরের গয়না (Diamond Jewellery)', 
-                desc: '১০০% ছাড় হীরের গয়নার মজুরিতে', 
-                tag: '100% FREE MAKING' 
-              },
-              { 
-                title: 'রুপোর গয়না (Silver Ornaments)', 
-                desc: '২৫% ছাড় রূপোর গয়নার MRP-র উপর', 
-                tag: '25% FLAT DISCOUNT' 
-              },
-              { 
-                title: 'প্রতিদিন লাকি ড্র (Daily Lucky Draw)', 
-                desc: 'প্রতিদিন লাকি ড্র-তে হোম অ্যাপ্লায়েন্স', 
-                tag: 'DAILY PRIZES' 
-              },
-              { 
-                title: 'নিশ্চিত উপহার (Assured Gifts)', 
-                desc: 'নিশ্চিত উপহার প্রতি কেনাকাটায়', 
-                tag: 'FREE GIFTS' 
-              },
-              { 
-                title: 'মেগা লাকি ড্র (Mega Lucky Draw)', 
-                desc: 'MEGA LUCKY DRAW ৩টি স্কুটি', 
-                tag: '3X SCOOTY BUMPER',
-                highlight: true 
-              },
-            ].map((item, idx) => (
+            {displayOffers.map((item: any, idx: number) => (
               <StaggerItem 
                 key={idx} 
                 y={35} 
@@ -410,12 +513,14 @@ export default function HomeClient({
           </div>
         </div>
       </section>
+      )}
 
-{/* 3.5 Animated 3D Cover-Flow "Top Picks" Luxury Showcase */}
-      <TopPicksCoverFlow />
+      {/* 3.5 Animated 3D Cover-Flow "Top Picks" Luxury Showcase */}
+      {enabledSections.top_picks && <TopPicksCoverFlow />}
 
       {/* 4. The Aranyak Heritage & Brand Stats Section */}
-      <section className="py-24 md:py-36 bg-[#FAF7F0] text-[#76551C] relative z-20 overflow-hidden border-b border-[#DED2C1] bg-radial-gold">
+      {enabledSections.philosophy_stats && (
+        <section className="py-24 md:py-36 bg-[#FAF7F0] text-[#76551C] relative z-20 overflow-hidden border-b border-[#DED2C1] bg-radial-gold">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
             
@@ -480,7 +585,7 @@ export default function HomeClient({
 
           {/* Stats Bar */}
           <div className="mt-24 pt-16 border-t border-[#DED2C1] grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {STATS.map(stat => stat.label.includes('Showroom') ? { ...stat, value: `${liveStoresCount}` } : stat).map((stat, idx) => (
+            {dynamicStats.map((stat: any) => stat.label.includes('Showroom') ? { ...stat, value: `${liveStoresCount}` } : stat).map((stat: any, idx: number) => (
               <MagneticCard key={idx} tiltAmount={4} glareOpacity={0.12}>
                 <div className="p-6 sm:p-8 bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#D6B15D]/70 transition-all duration-300 rounded-xl shadow-sm h-full flex flex-col justify-center">
                   <p className="text-4xl md:text-5xl font-serif font-light text-[#8A5A12] mb-2">{stat.value}</p>
@@ -491,55 +596,59 @@ export default function HomeClient({
           </div>
         </div>
       </section>
+      )}
 
       {/* 5. Craftsmanship Video Showcase */}
-      <section className="h-[75vh] w-full relative overflow-hidden border-b border-[#DED2C1]/20 group bg-[#211813]">
-        <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/95 via-[#211813]/60 to-[#211813]/85 z-10 transition-opacity duration-700" />
-        
-        {/* Silent Autoplay Video Background */}
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          poster={liveMediaMap['home_craftsmanship_image'] || liveSettings['home_craftsmanship_image'] || "/uploads/craftsmanship_poster.webp"}
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        >
-          <source src="/videos/craftsmanship-artisan.mp4" type="video/mp4" />
-        </video>
+      {enabledSections.craftsmanship && (
+        <section className="h-[75vh] w-full relative overflow-hidden border-b border-[#DED2C1]/20 group bg-[#211813]">
+          <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/95 via-[#211813]/60 to-[#211813]/85 z-10 transition-opacity duration-700" />
+          
+          {/* Silent Autoplay Video Background */}
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            poster={liveMediaMap['home_craftsmanship_image'] || liveSettings['home_craftsmanship_image'] || "/uploads/craftsmanship_poster.webp"}
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          >
+            <source src="/videos/craftsmanship-artisan.mp4" type="video/mp4" />
+          </video>
 
-        <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6 pointer-events-none">
-          <Reveal>
-            <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#D6B15D] mb-6 block drop-shadow-md">
-              Behind the Art
-            </span>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-serif font-light tracking-wide leading-tight max-w-4xl drop-shadow-2xl">
-              <span className="text-[#FFF8EB]">The Essence of</span>{" "}
-              <span className="font-editorial gold-gradient italic">Craftsmanship</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-6 text-[#E5D7C5] font-light tracking-wide max-w-2xl mx-auto text-sm md:text-base drop-shadow-md">
-              Watch as raw gold and unpolished stones are meticulously transformed into breathtaking masterpieces by our legacy artisans.
-            </p>
-          </Reveal>
-          <Reveal delay={0.3}>
-            <div className="mt-10 pointer-events-auto">
-              <Link 
-                href="/about" 
-                className="group flex items-center space-x-4 px-8 py-3.5 bg-[#D6B15D] hover:bg-[#A77C32] text-[#211813] hover:text-[#FFF8EB] border border-[#A77C32] text-[10px] font-bold tracking-[0.35em] uppercase transition-all duration-500 shadow-lg"
-              >
-                <span>Discover Our Heritage</span>
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+          <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6 pointer-events-none">
+            <Reveal>
+              <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#D6B15D] mb-6 block drop-shadow-md">
+                Behind the Art
+              </span>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="text-4xl sm:text-6xl md:text-7xl font-serif font-light tracking-wide leading-tight max-w-4xl drop-shadow-2xl">
+                <span className="text-[#FFF8EB]">The Essence of</span>{" "}
+                <span className="font-editorial gold-gradient italic">Craftsmanship</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-6 text-[#E5D7C5] font-light tracking-wide max-w-2xl mx-auto text-sm md:text-base drop-shadow-md">
+                Watch as raw gold and unpolished stones are meticulously transformed into breathtaking masterpieces by our legacy artisans.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <div className="mt-10 pointer-events-auto">
+                <Link 
+                  href="/about" 
+                  className="group flex items-center space-x-4 px-8 py-3.5 bg-[#D6B15D] hover:bg-[#A77C32] text-[#211813] hover:text-[#FFF8EB] border border-[#A77C32] text-[10px] font-bold tracking-[0.35em] uppercase transition-all duration-500 shadow-lg"
+                >
+                  <span>Discover Our Heritage</span>
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* 6. Curated High Jewellery Collections (Interactive Grid) */}
-      <section className="py-24 md:py-36 bg-[#FFFDF8] border-b border-[#DED2C1] relative overflow-hidden">
+      {enabledSections.collections && (
+        <section className="py-24 md:py-36 bg-[#FFFDF8] border-b border-[#DED2C1] relative overflow-hidden">
         <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
           
           <div className="text-center mb-20 md:mb-32">
@@ -627,9 +736,11 @@ export default function HomeClient({
           </div>
         </div>
       </section>
+      )}
 
       {/* Master Gallery Teaser Showcase */}
-      <section className="py-24 md:py-32 bg-[#F0E7D8] border-b border-[#DED2C1] relative overflow-hidden bg-radial-gold">
+      {enabledSections.high_jewellery && (
+        <section className="py-24 md:py-32 bg-[#F0E7D8] border-b border-[#DED2C1] relative overflow-hidden bg-radial-gold">
         <div className="w-full max-w-screen-2xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
           
           {/* Left Column: Text & CTA Button */}
@@ -769,9 +880,11 @@ export default function HomeClient({
 
         </div>
       </section>
+      )}
 
       {/* Instagram Official Lookbook & Feed Showcase */}
-      <section className="py-24 bg-[#FFFDF8] border-b border-[#DED2C1] relative overflow-hidden">
+      {enabledSections.instagram && (
+        <section className="py-24 bg-[#FFFDF8] border-b border-[#DED2C1] relative overflow-hidden">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <Reveal>
@@ -856,60 +969,64 @@ export default function HomeClient({
           </div>
         </div>
       </section>
+      )}
 
       {/* 7. Client Testimonials & Stories of Trust */}
-      <section className="py-24 md:py-32 bg-[#F0E7D8] border-b border-[#DED2C1] relative overflow-hidden">
-        <div className="container mx-auto px-6 max-w-7xl relative z-10">
-          
-          <div className="text-center mb-16 md:mb-24">
-            <Reveal>
-              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#966719] mb-3 block">
-                Voices of Trust
-              </span>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#211813]">
-                Cherished <span className="font-editorial gold-gradient italic text-[#8A5A12]">Stories</span>
-              </h3>
-            </Reveal>
-          </div>
+      {enabledSections.testimonials && (
+        <section className="py-24 md:py-32 bg-[#F0E7D8] border-b border-[#DED2C1] relative overflow-hidden">
+          <div className="container mx-auto px-6 max-w-7xl relative z-10">
+            
+            <div className="text-center mb-16 md:mb-24">
+              <Reveal>
+                <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#966719] mb-3 block">
+                  Voices of Trust
+                </span>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#211813]">
+                  Cherished <span className="font-editorial gold-gradient italic text-[#8A5A12]">Stories</span>
+                </h3>
+              </Reveal>
+            </div>
 
-          <StaggerContainer staggerDelay={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {TESTIMONIALS.map((t, idx) => (
-              <StaggerItem key={idx} y={30} className="h-full">
-                <MagneticCard tiltIntensity={4} className="h-full rounded-xl">
-                  <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 sm:p-10 flex flex-col justify-between h-full hover:border-[#D6B15D]/70 transition-all duration-500 shadow-sm hover:shadow-lg rounded-xl">
-                    <div>
-                      {/* Stars with Subtle Stagger */}
-                      <div className="flex items-center space-x-1.5 text-[#8A5A12] mb-6">
-                        {[...Array(t.rating)].map((_, i) => (
-                          <span key={i} className="text-base font-bold drop-shadow-sm">★</span>
-                        ))}
-                      </div>
-                      <p className="text-sm text-[#40352F] font-normal leading-[1.8] italic mb-8">
-                        &ldquo;{t.quote}&rdquo;
-                      </p>
-                    </div>
-
-                    <div className="pt-6 border-t border-[#DED2C1] flex items-center justify-between">
+            <StaggerContainer staggerDelay={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {dynamicTestimonials.map((t: any, idx: number) => (
+                <StaggerItem key={idx} y={30} className="h-full">
+                  <MagneticCard tiltIntensity={4} className="h-full rounded-xl">
+                    <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 sm:p-10 flex flex-col justify-between h-full hover:border-[#D6B15D]/70 transition-all duration-500 shadow-sm hover:shadow-lg rounded-xl">
                       <div>
-                        <h4 className="text-base font-serif font-bold text-[#211813]">{t.author}</h4>
-                        <p className="text-[11px] text-[#70440C] uppercase tracking-wider font-semibold">{t.location}</p>
+                        {/* Stars with Subtle Stagger */}
+                        <div className="flex items-center space-x-1.5 text-[#8A5A12] mb-6">
+                          {[...Array(t.rating || 5)].map((_, i) => (
+                            <span key={i} className="text-base font-bold drop-shadow-sm">★</span>
+                          ))}
+                        </div>
+                        <p className="text-sm text-[#40352F] font-normal leading-[1.8] italic mb-8">
+                          &ldquo;{t.quote}&rdquo;
+                        </p>
                       </div>
-                      <span className="text-[10px] font-bold tracking-wider uppercase text-[#8A5A12] bg-[#8A5A12]/10 border border-[#8A5A12]/30 px-3 py-1 rounded-sm">
-                        {t.tag}
-                      </span>
+
+                      <div className="pt-6 border-t border-[#DED2C1] flex items-center justify-between">
+                        <div>
+                          <h4 className="text-base font-serif font-bold text-[#211813]">{t.author}</h4>
+                          <p className="text-[11px] text-[#70440C] uppercase tracking-wider font-semibold">{t.location}</p>
+                        </div>
+                        <span className="text-[10px] font-bold tracking-wider uppercase text-[#8A5A12] bg-[#8A5A12]/10 border border-[#8A5A12]/30 px-3 py-1 rounded-sm">
+                          {t.tag}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </MagneticCard>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
+                  </MagneticCard>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </section>
+      )}
 
       {/* 8. Showroom Editorial CTA Section */}
-      <section className="relative py-32 overflow-hidden bg-[#211813] border-t border-[#DED2C1]/20">
+      {enabledSections.rates_showroom && (
+        <section className="relative py-32 overflow-hidden bg-[#211813] border-t border-[#DED2C1]/20">
         <div className="absolute inset-0">
           <Image 
             src={liveMediaMap['home_showroom_image'] || liveSettings['home_showroom_image'] || initialSettings['home_showroom_image'] || "/showroom.jpg"} 
@@ -956,6 +1073,7 @@ export default function HomeClient({
           </Reveal>
         </div>
       </section>
+      )}
 
     </main>
   );

@@ -65,19 +65,35 @@ model GoldPrice {
 model Product {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
+  nameBn      String?
   slug        String   @unique
   description String?
+  descriptionBn String?
   
   // Core Specs
-  goldPurity  Int      // 18, 22
+  goldPurity  Int      // 18, 22, 24
   goldWeight  Float    // grams
   
-  diamondClarity String? // "VS1"
+  diamondClarity String? // "VS1", "VVS1", "SI"
   diamondCarat   Float?
+  diamondCut     String?
+  diamondColor   String?
   
   category    String   
   subCategory String?
   tags        String[] 
+  
+  // Flexible Jewellery Details
+  metalType    String   @default("GOLD") // "GOLD", "DIAMOND", "SILVER", "PLATINUM", "GEMSTONE"
+  grossWeight  Float?
+  stoneWeight  Float?
+  stoneDetails String?
+  priceType    String   @default("CALCULATED") // "FIXED", "CALCULATED", "INQUIRE"
+  fixedPrice   Float?
+  makingCharge Float?
+  stockStatus  String   @default("IN_STOCK") // "IN_STOCK", "MADE_TO_ORDER", "OUT_OF_STOCK"
+  isFeatured   Boolean  @default(false)
+  isNewArrival Boolean  @default(false)
   
   // Media
   images      String[] 
@@ -95,19 +111,24 @@ model Product {
   wishlistedBy Wishlist[]
 
   @@index([category, isActive])
+  @@index([isFeatured, isActive])
 }
 
 model Category {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String   @unique
-  slug        String   @unique
-  parentId    String?  @db.ObjectId // For nesting
-  imageUrl    String?
-  description String?
-  isActive    Boolean  @default(true)
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String   @unique
+  slug           String   @unique
+  parentId       String?  @db.ObjectId // For nesting
+  imageUrl       String?
+  bannerUrl      String?
+  description    String?
+  isFeatured     Boolean  @default(false)
+  seoTitle       String?
+  seoDescription String?
+  isActive       Boolean  @default(true)
+  order          Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 // --------------------------------------
@@ -224,7 +245,6 @@ model Store {
   updatedAt DateTime @updatedAt
 }
 
-
 model WebsiteMedia {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   key           String   @unique
@@ -240,4 +260,70 @@ model WebsiteMedia {
   updatedAt     DateTime @updatedAt
 
   @@index([section, isActive])
+}
+
+// --------------------------------------
+// PROMOTIONAL OFFERS & ANNOUNCEMENTS
+// --------------------------------------
+
+model PromotionalOffer {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  titleEn       String
+  titleBn       String
+  descEn        String?
+  descBn        String?
+  tag           String    // e.g. "₹1000 OFF/GM", "ZERO LOSS EXCHANGE"
+  badge         String?   // e.g. "Festive", "Exclusive", "Bumper"
+  icon          String?   // e.g. "coins", "diamond", "percent", "gift", "sparkles"
+  imageUrl      String?
+  discountValue String?   // e.g. "1000", "25%"
+  discountType  String?   // "FLAT", "PERCENT", "FREE_MAKING", "GIFT"
+  terms         String?
+  startDate     DateTime?
+  endDate       DateTime?
+  placement     String    @default("both") // "cards", "ticker", "both"
+  highlight     Boolean   @default(false)
+  isActive      Boolean   @default(true)
+  order         Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([isActive, order])
+}
+
+model TickerMessage {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  textBn         String
+  textEn         String?
+  linkedOfferId  String?   @db.ObjectId
+  startDate      DateTime?
+  endDate        DateTime?
+  speed          Int       @default(40)
+  direction      String    @default("rtl")
+  separator      String    @default("—")
+  isActive       Boolean   @default(true)
+  order          Int       @default(0)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([isActive, order])
+}
+
+model GalleryItem {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  subtitle    String?
+  description String?
+  imageUrl    String
+  category    String   // "bridal", "necklaces", "bangles", "solitaires", "silver", "heritage", "showrooms"
+  metal       String?  // "gold", "silver", "diamond", "gemstone"
+  purity      String?  // "22K", "18K", "925"
+  tags        String[]
+  isFeatured  Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category, isActive, order])
 }

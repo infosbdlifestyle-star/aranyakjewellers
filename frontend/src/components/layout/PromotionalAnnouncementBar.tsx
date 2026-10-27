@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
+import { api } from '@/lib/api';
 
 interface PromotionalAnnouncementBarProps {
   marqueeText?: string;
@@ -38,8 +39,39 @@ export default function PromotionalAnnouncementBar({
   marqueeText,
   className = ""
 }: PromotionalAnnouncementBarProps) {
+  const [dynamicTicker, setDynamicTicker] = useState<any[]>([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchTicker = async () => {
+      try {
+        const data = await api.getTickerMessages();
+        if (isMounted && Array.isArray(data) && data.length > 0) {
+          setDynamicTicker(data);
+        }
+      } catch {
+        /* fallback to static */
+      }
+    };
+    fetchTicker();
+    return () => { isMounted = false; };
+  }, []);
+
   // Parse dynamic settings text or use verified complete offer list, strictly sanitized
-  const messages = useMemo(() => {
+  const { messages, separator, durationSec } = useMemo(() => {
+    if (dynamicTicker.length > 0) {
+      const activeMsgs = dynamicTicker.filter(t => t.isActive);
+      if (activeMsgs.length > 0) {
+        const sep = activeMsgs[0]?.separator || '—';
+        const speed = activeMsgs[0]?.speed || 40;
+        const msgList = activeMsgs.map(t => {
+          const text = t.textBn + (t.textEn ? ` (${t.textEn})` : '');
+          return removeEmojis(text);
+        }).filter(Boolean);
+        return { messages: msgList, separator: sep, durationSec: speed };
+      }
+    }
+
     let rawList = CORE_PROMOTIONAL_OFFERS;
     if (marqueeText && typeof marqueeText === 'string' && marqueeText.includes('|')) {
       const split = marqueeText
@@ -51,10 +83,11 @@ export default function PromotionalAnnouncementBar({
       }
     }
     // Deep sanitize every message to guarantee zero emojis appear now or in future updates
-    return rawList
+    const cleaned = rawList
       .map(msg => removeEmojis(msg))
       .filter(Boolean);
-  }, [marqueeText]);
+    return { messages: cleaned, separator: '—', durationSec: 40 };
+  }, [marqueeText, dynamicTicker]);
 
   return (
     <>
@@ -84,8 +117,8 @@ export default function PromotionalAnnouncementBar({
           display: flex !important;
           width: max-content !important;
           will-change: transform;
-          animation: continuousOffersScroll 40s linear infinite !important;
-          -webkit-animation: continuousOffersScroll 40s linear infinite !important;
+          animation: continuousOffersScroll ${durationSec}s linear infinite !important;
+          -webkit-animation: continuousOffersScroll ${durationSec}s linear infinite !important;
         }
         .offers-marquee-container:hover .offers-marquee-track,
         .offers-marquee-track:hover {
@@ -128,7 +161,7 @@ export default function PromotionalAnnouncementBar({
                   className="mx-4 sm:mx-6 text-[#211713]/60 text-xs sm:text-sm select-none" 
                   aria-hidden="true"
                 >
-                  —
+                  {separator}
                 </span>
               </div>
             ))}
@@ -145,7 +178,7 @@ export default function PromotionalAnnouncementBar({
                   className="mx-4 sm:mx-6 text-[#211713]/60 text-xs sm:text-sm select-none" 
                   aria-hidden="true"
                 >
-                  —
+                  {separator}
                 </span>
               </div>
             ))}

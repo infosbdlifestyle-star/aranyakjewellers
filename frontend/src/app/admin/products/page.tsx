@@ -28,14 +28,26 @@ export default function AdminProductsPage() {
 
   const [formData, setFormData] = useState({
     name: '',
+    nameBn: '',
     slug: '',
     description: '',
+    descriptionBn: '',
     price: 0,
+    priceType: 'CALCULATED',
+    fixedPrice: 0,
+    makingCharge: 0,
+    metalType: 'gold',
     goldPurity: 22,
     goldWeight: 0,
+    grossWeight: 0,
+    stoneWeight: 0,
+    stoneDetails: '',
     category: 'Gold',
     subCategory: '',
+    stockStatus: 'IN_STOCK',
     stockCount: 1,
+    isFeatured: false,
+    isNewArrival: false,
     isActive: true,
     images: [] as string[]
   });
@@ -100,14 +112,26 @@ export default function AdminProductsPage() {
       setEditingProduct(product);
       setFormData({
         name: product.name,
+        nameBn: product.nameBn || '',
         slug: product.slug,
         description: product.description || '',
+        descriptionBn: product.descriptionBn || '',
         price: product.price || 0,
+        priceType: product.priceType || 'CALCULATED',
+        fixedPrice: product.fixedPrice || 0,
+        makingCharge: product.makingCharge || 0,
+        metalType: product.metalType || 'gold',
         goldPurity: product.goldPurity || 22,
         goldWeight: product.goldWeight || 0,
+        grossWeight: product.grossWeight || 0,
+        stoneWeight: product.stoneWeight || 0,
+        stoneDetails: product.stoneDetails || '',
         category: product.category,
         subCategory: product.subCategory || '',
+        stockStatus: product.stockStatus || 'IN_STOCK',
         stockCount: product.stockCount,
+        isFeatured: Boolean(product.isFeatured),
+        isNewArrival: Boolean(product.isNewArrival),
         isActive: product.isActive,
         images: product.images || []
       });
@@ -115,14 +139,26 @@ export default function AdminProductsPage() {
       setEditingProduct(null);
       setFormData({
         name: '',
+        nameBn: '',
         slug: '',
         description: '',
+        descriptionBn: '',
         price: 0,
+        priceType: 'CALCULATED',
+        fixedPrice: 0,
+        makingCharge: 0,
+        metalType: 'gold',
         goldPurity: 22,
         goldWeight: 0,
+        grossWeight: 0,
+        stoneWeight: 0,
+        stoneDetails: '',
         category: 'Gold',
         subCategory: '',
+        stockStatus: 'IN_STOCK',
         stockCount: 1,
+        isFeatured: false,
+        isNewArrival: false,
         isActive: true,
         images: []
       });
@@ -407,53 +443,77 @@ export default function AdminProductsPage() {
 
               <div className="grid md:grid-cols-2 gap-8">
                 {/* Left Col: Basic Info */}
-                <div className="space-y-6">
-                  <div>
-                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Product Name</label>
-                    <input 
-                      type="text" 
-                      required
-                      value={formData.name}
-                      onChange={(e) => handleNameChange(e.target.value)}
-                      className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors"
-                      placeholder="e.g. 22K Gold Antique Necklace"
-                    />
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Product Name (EN) *</label>
+                      <input 
+                        type="text" 
+                        required
+                        value={formData.name}
+                        onChange={(e) => handleNameChange(e.target.value)}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-secondary transition-colors"
+                        placeholder="e.g. 22K Gold Antique Necklace"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-secondary uppercase tracking-widest mb-1.5">Bengali Name</label>
+                      <input 
+                        type="text" 
+                        value={formData.nameBn}
+                        onChange={(e) => setFormData({...formData, nameBn: e.target.value})}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-secondary transition-colors"
+                        placeholder="e.g. ২২ ক্যারেট রাজকীয় গোল্ড নেকলেস"
+                      />
+                    </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">URL Slug</label>
+                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">URL Slug</label>
                     <input 
                       type="text" 
                       required
                       value={formData.slug}
                       onChange={(e) => setFormData({...formData, slug: e.target.value})}
-                      className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors"
+                      className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-secondary transition-colors"
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Description</label>
-                    <textarea 
-                      rows={4}
-                      value={formData.description}
-                      onChange={(e) => setFormData({...formData, description: e.target.value})}
-                      className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors resize-none custom-scrollbar"
-                      placeholder="Product details..."
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Category</label>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Description (EN)</label>
+                      <textarea 
+                        rows={3}
+                        value={formData.description}
+                        onChange={(e) => setFormData({...formData, description: e.target.value})}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-2 text-xs text-white outline-none focus:border-secondary transition-colors resize-none"
+                        placeholder="Product specifications..."
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-secondary uppercase tracking-widest mb-1.5">Description (BN)</label>
+                      <textarea 
+                        rows={3}
+                        value={formData.descriptionBn}
+                        onChange={(e) => setFormData({...formData, descriptionBn: e.target.value})}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-2 text-xs text-white outline-none focus:border-secondary transition-colors resize-none"
+                        placeholder="বাংলা বিবরণ..."
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-3">
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Category *</label>
                       <select 
                         required
                         value={formData.category}
                         onChange={(e) => {
                           setFormData({ ...formData, category: e.target.value, subCategory: '' });
                         }}
-                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary appearance-none"
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-secondary"
                       >
-                        <option value="">Select Category</option>
+                        <option value="">Select</option>
                         {rootCategories.map(c => (
                           <option key={c.id} value={c.name}>{c.name}</option>
                         ))}
@@ -461,12 +521,12 @@ export default function AdminProductsPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Subcategory</label>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Subcategory</label>
                       <select 
                         value={formData.subCategory}
                         onChange={(e) => setFormData({...formData, subCategory: e.target.value})}
                         disabled={!formData.category}
-                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary appearance-none disabled:opacity-50"
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-secondary disabled:opacity-50"
                       >
                         <option value="">None</option>
                         {dbCategories.filter(c => {
@@ -477,77 +537,183 @@ export default function AdminProductsPage() {
                         ))}
                       </select>
                     </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Metal Type</label>
+                      <select 
+                        value={formData.metalType}
+                        onChange={(e) => setFormData({...formData, metalType: e.target.value})}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-secondary"
+                      >
+                        <option value="gold">Gold</option>
+                        <option value="silver">Silver</option>
+                        <option value="diamond">Diamond</option>
+                        <option value="platinum">Platinum</option>
+                        <option value="gemstone">Gemstone</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 pt-1">
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Stone Details (Optional)</label>
+                      <input 
+                        type="text" 
+                        value={formData.stoneDetails}
+                        onChange={(e) => setFormData({...formData, stoneDetails: e.target.value})}
+                        placeholder="e.g. VVS-EF Diamond 0.85ct, Ruby"
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-secondary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Stone Wt (ct/g)</label>
+                      <input 
+                        type="number" 
+                        step="0.01"
+                        value={formData.stoneWeight || ''}
+                        onChange={(e) => setFormData({...formData, stoneWeight: Number(e.target.value)})}
+                        placeholder="0.0"
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-secondary"
+                      />
+                    </div>
                   </div>
                 </div>
 
                 {/* Right Col: Details & Images */}
-                <div className="space-y-6">
-                  <div>
-                    <label className="block text-xs font-bold text-secondary uppercase tracking-widest mb-2">Price (₹ INR)</label>
-                    <input 
-                      type="number" 
-                      step="1"
-                      min="0"
-                      value={formData.price || ''}
-                      onChange={(e) => setFormData({...formData, price: Number(e.target.value)})}
-                      className="w-full bg-[#050202] border border-secondary/40 rounded-xl px-4 py-3 text-sm text-secondary font-bold placeholder-white/30 outline-none focus:border-secondary transition-colors"
-                      placeholder="e.g. 78500 (Set 0 for market-rate calculation)"
-                    />
-                    <p className="text-[10px] text-white/40 mt-1">Leave as 0 if price is dynamically computed from daily gold rate.</p>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                      <label className="block text-xs font-bold text-secondary uppercase tracking-widest mb-1.5">Price Mode</label>
+                      <select 
+                        value={formData.priceType}
+                        onChange={(e) => setFormData({...formData, priceType: e.target.value})}
+                        className="w-full bg-[#050202] border border-secondary/40 rounded-xl px-3 py-2.5 text-xs text-secondary font-bold outline-none focus:border-secondary"
+                      >
+                        <option value="CALCULATED">Dynamic Rate</option>
+                        <option value="FIXED">Fixed Price</option>
+                        <option value="INQUIRE">Price On Request</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-secondary uppercase tracking-widest mb-1.5">Fixed Price (₹)</label>
+                      <input 
+                        type="number" 
+                        step="1"
+                        min="0"
+                        value={formData.price || ''}
+                        onChange={(e) => setFormData({...formData, price: Number(e.target.value), fixedPrice: Number(e.target.value)})}
+                        className="w-full bg-[#050202] border border-secondary/40 rounded-xl px-3 py-2.5 text-xs text-secondary font-bold placeholder-white/30 outline-none focus:border-secondary"
+                        placeholder="0"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Making (₹/g)</label>
+                      <input 
+                        type="number" 
+                        step="1"
+                        min="0"
+                        value={formData.makingCharge || ''}
+                        onChange={(e) => setFormData({...formData, makingCharge: Number(e.target.value)})}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-secondary"
+                        placeholder="0"
+                      />
+                    </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-3 gap-3">
                     <div>
-                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Gold Purity (K)</label>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Gold Purity (K)</label>
                       <select 
                         value={formData.goldPurity}
                         onChange={(e) => setFormData({...formData, goldPurity: Number(e.target.value)})}
-                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary appearance-none"
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-secondary"
                       >
-                        {[0, 9, 18, 22, 24].map(k => (
+                        {[0, 9, 14, 18, 22, 24].map(k => (
                           <option key={k} value={k}>{k === 0 ? 'N/A' : `${k}K`}</option>
                         ))}
                       </select>
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Weight (g)</label>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Net Wt (g)</label>
                       <input 
                         type="number" 
                         step="0.01"
-                        value={formData.goldWeight}
+                        value={formData.goldWeight || ''}
                         onChange={(e) => setFormData({...formData, goldWeight: Number(e.target.value)})}
-                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors"
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-secondary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Gross Wt (g)</label>
+                      <input 
+                        type="number" 
+                        step="0.01"
+                        value={formData.grossWeight || ''}
+                        onChange={(e) => setFormData({...formData, grossWeight: Number(e.target.value)})}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-secondary"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Stock Count</label>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Stock Status</label>
+                      <select 
+                        value={formData.stockStatus}
+                        onChange={(e) => setFormData({...formData, stockStatus: e.target.value})}
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-secondary"
+                      >
+                        <option value="IN_STOCK">In Stock</option>
+                        <option value="MADE_TO_ORDER">Made To Order</option>
+                        <option value="OUT_OF_STOCK">Out of Stock</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-1.5">Stock Quantity</label>
                       <input 
                         type="number" 
                         required
                         min="0"
                         value={formData.stockCount}
                         onChange={(e) => setFormData({...formData, stockCount: Number(e.target.value)})}
-                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary transition-colors"
+                        className="w-full bg-[#050202] border border-white/10 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-secondary"
                       />
                     </div>
-                    <div>
-                      <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Status</label>
-                      <label className="flex items-center gap-3 bg-[#050202] border border-white/10 rounded-xl px-4 py-3 cursor-pointer select-none">
-                        <div className="relative">
-                          <input 
-                            type="checkbox" 
-                            className="sr-only peer"
-                            checked={formData.isActive}
-                            onChange={(e) => setFormData({...formData, isActive: e.target.checked})}
-                          />
-                          <div className="w-9 h-5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
-                        </div>
-                        <span className="text-sm font-medium text-white">{formData.isActive ? 'Active (Live)' : 'Hidden'}</span>
-                      </label>
-                    </div>
+                  </div>
+
+                  {/* Highlights / Badges */}
+                  <div className="flex items-center gap-4 pt-1">
+                    <label className="flex items-center gap-2 cursor-pointer text-xs text-white/80">
+                      <input 
+                        type="checkbox"
+                        checked={formData.isFeatured}
+                        onChange={(e) => setFormData({...formData, isFeatured: e.target.checked})}
+                        className="w-4 h-4 rounded border-white/20 text-secondary focus:ring-0 bg-[#050202]"
+                      />
+                      <span>Featured</span>
+                    </label>
+
+                    <label className="flex items-center gap-2 cursor-pointer text-xs text-white/80">
+                      <input 
+                        type="checkbox"
+                        checked={formData.isNewArrival}
+                        onChange={(e) => setFormData({...formData, isNewArrival: e.target.checked})}
+                        className="w-4 h-4 rounded border-white/20 text-secondary focus:ring-0 bg-[#050202]"
+                      />
+                      <span>New Arrival</span>
+                    </label>
+
+                    <label className="flex items-center gap-2 cursor-pointer text-xs text-white/80">
+                      <input 
+                        type="checkbox"
+                        checked={formData.isActive}
+                        onChange={(e) => setFormData({...formData, isActive: e.target.checked})}
+                        className="w-4 h-4 rounded border-white/20 text-secondary focus:ring-0 bg-[#050202]"
+                      />
+                      <span>Active</span>
+                    </label>
                   </div>
 
                   <div>

@@ -19,6 +19,9 @@ import { StoresModule } from './stores/stores.module';
 import { UsersModule } from './users/users.module';
 import { MailModule } from './mail/mail.module';
 import { MediaModule } from './media/media.module';
+import { OffersModule } from './offers/offers.module';
+import { TickerModule } from './ticker/ticker.module';
+import { GalleryModule } from './gallery/gallery.module';
 
 @Module({
   imports: [
@@ -42,6 +45,9 @@ import { MediaModule } from './media/media.module';
     UsersModule,
     MailModule,
     MediaModule,
+    OffersModule,
+    TickerModule,
+    GalleryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

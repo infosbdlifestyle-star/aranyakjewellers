@@ -16,11 +16,32 @@ export class ProductsService {
       data.sku = `ARK-${prefix}-${timestamp}-${random}`;
     }
 
+    // Parse numeric fields safely
+    if (typeof data.goldPurity === 'string') data.goldPurity = parseInt(data.goldPurity, 10) || 22;
+    if (typeof data.goldWeight === 'string') data.goldWeight = parseFloat(data.goldWeight) || 0;
+    if (typeof data.diamondCarat === 'string') data.diamondCarat = parseFloat(data.diamondCarat) || null;
+    if (typeof data.fixedPrice === 'string') data.fixedPrice = parseFloat(data.fixedPrice) || null;
+    if (typeof data.grossWeight === 'string') data.grossWeight = parseFloat(data.grossWeight) || null;
+    if (typeof data.stoneWeight === 'string') data.stoneWeight = parseFloat(data.stoneWeight) || null;
+    if (typeof data.makingCharge === 'string') data.makingCharge = parseFloat(data.makingCharge) || null;
+    if (typeof data.stockCount === 'string') data.stockCount = parseInt(data.stockCount, 10) || 0;
+
     return this.prisma.product.create({ data });
   }
 
   async updateProduct(id: string, data: any) {
     await this.findOne(id);
+
+    // Parse numeric fields safely
+    if (typeof data.goldPurity === 'string') data.goldPurity = parseInt(data.goldPurity, 10) || 22;
+    if (typeof data.goldWeight === 'string') data.goldWeight = parseFloat(data.goldWeight) || 0;
+    if (typeof data.diamondCarat === 'string') data.diamondCarat = parseFloat(data.diamondCarat) || null;
+    if (typeof data.fixedPrice === 'string') data.fixedPrice = parseFloat(data.fixedPrice) || null;
+    if (typeof data.grossWeight === 'string') data.grossWeight = parseFloat(data.grossWeight) || null;
+    if (typeof data.stoneWeight === 'string') data.stoneWeight = parseFloat(data.stoneWeight) || null;
+    if (typeof data.makingCharge === 'string') data.makingCharge = parseFloat(data.makingCharge) || null;
+    if (typeof data.stockCount === 'string') data.stockCount = parseInt(data.stockCount, 10) || 0;
+
     return this.prisma.product.update({
       where: { id },
       data,
@@ -43,6 +64,8 @@ export class ProductsService {
     skip?: number;
     take?: number;
     includeInactive?: boolean;
+    isFeatured?: boolean;
+    metalType?: string;
   }) {
     const where: any = filters?.includeInactive ? {} : { isActive: true };
 
@@ -62,10 +85,20 @@ export class ProductsService {
       where.goldPurity = filters.purity;
     }
 
+    if (filters?.isFeatured !== undefined) {
+      where.isFeatured = filters.isFeatured;
+    }
+
+    if (filters?.metalType) {
+      where.metalType = filters.metalType;
+    }
+
     if (filters?.search) {
       where.OR = [
         { name: { contains: filters.search, mode: 'insensitive' } },
+        { nameBn: { contains: filters.search, mode: 'insensitive' } },
         { description: { contains: filters.search, mode: 'insensitive' } },
+        { sku: { contains: filters.search, mode: 'insensitive' } },
       ];
     }
 
@@ -74,7 +107,7 @@ export class ProductsService {
       where,
       skip: filters?.skip || 0,
       take: filters?.take || 100,
-      orderBy: { createdAt: 'desc' },
+      orderBy: [{ isFeatured: 'desc' }, { createdAt: 'desc' }],
     });
 
     if (products.length === 0) return [];
@@ -120,7 +153,9 @@ export class ProductsService {
       });
     }
 
-    if (!product) throw new NotFoundException('Product not found');
+    if (!product) {
+      throw new NotFoundException(`Product not found: ${slugOrId}`);
+    }
 
     // Fetch gold rate for single product pricing
     const goldRate = await this.prisma.goldPrice.findUnique({
@@ -130,11 +165,33 @@ export class ProductsService {
     return this.calculatePricing(product, goldRate?.pricePer10g || 0);
   }
 
-  // Dynamic pricing: Gold rate × weight + making charges + GST
+  // Dynamic pricing: Gold rate × weight + making charges + GST or Fixed Price
   private calculatePricing(product: any, goldRate: number) {
     try {
-      const goldValue = (goldRate / 10) * product.goldWeight;
-      const makingChargePercent = 12; // 12% default making charges
+      if (product.priceType === 'FIXED' && product.fixedPrice) {
+        return {
+          ...product,
+          pricing: {
+            validAsOf: new Date(),
+            priceType: 'FIXED',
+            finalPrice: Math.round(product.fixedPrice),
+          },
+        };
+      }
+
+      if (product.priceType === 'INQUIRE') {
+        return {
+          ...product,
+          pricing: {
+            validAsOf: new Date(),
+            priceType: 'INQUIRE',
+            finalPrice: null,
+          },
+        };
+      }
+
+      const goldValue = (goldRate / 10) * (product.goldWeight || 0);
+      const makingChargePercent = product.makingCharge || 12; // custom or 12% default
       const makingCharges = (goldValue * makingChargePercent) / 100;
       const taxableValue = goldValue + makingCharges;
       const gst = (taxableValue * 3) / 100; // 3% GST on gold
@@ -144,6 +201,7 @@ export class ProductsService {
         ...product,
         pricing: {
           validAsOf: new Date(),
+          priceType: 'CALCULATED',
           goldRate,
           components: {
             goldValue: Math.round(goldValue),
