@@ -7,7 +7,7 @@ async function restart() {
     await ssh.connect({
       host: '117.252.16.132',
       username: 'root',
-      password: '$9T%Lk057bzu',
+      password: '$9Tbb&Doe2K46e%1',
       readyTimeout: 30000,
     });
     

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
+import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
 
 export default function AdminStoresPage() {
@@ -27,11 +28,10 @@ export default function AdminStoresPage() {
   }, [isAuthenticated, user, router, isLoading]);
 
   const fetchStores = async () => {
+    setLoading(true);
     try {
-      const res = await fetch('/api/stores');
-      if (res.ok) {
-        setStores(await res.json());
-      }
+      const data = await api.getStores();
+      setStores(Array.isArray(data) ? data.sort((a, b) => a.order - b.order) : []);
     } catch (e) {
       console.error(e);
     }
@@ -44,49 +44,36 @@ export default function AdminStoresPage() {
     setSaving(true);
     setSaveStatus({type: '', msg: ''});
 
-    const payload = { ...formData };
-    const method = isEditing ? 'PUT' : 'POST';
-    const url = isEditing ? `/api/stores/${formData.id}` : '/api/stores';
+    const payload = {
+      name: formData.name,
+      address: formData.address,
+      phone: formData.phone,
+      mapUrl: formData.mapUrl,
+      isActive: formData.isActive,
+      order: Number(formData.order)
+    };
 
     try {
-      const res = await fetch(url, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          name: payload.name,
-          address: payload.address,
-          phone: payload.phone,
-          mapUrl: payload.mapUrl,
-          isActive: payload.isActive,
-          order: Number(payload.order)
-        })
-      });
-      if (res.ok) {
-        setSaveStatus({type: 'success', msg: isEditing ? '✓ Store updated!' : '✓ Store added!'});
-        fetchStores();
-        setTimeout(() => setShowModal(false), 1000);
+      if (isEditing) {
+        await api.updateStore(token, formData.id, payload);
+        setSaveStatus({type: 'success', msg: '✓ Store updated successfully!'});
       } else {
-        setSaveStatus({type: 'error', msg: '✗ Failed to save store.'});
+        await api.createStore(token, payload);
+        setSaveStatus({type: 'success', msg: '✓ Store created successfully!'});
       }
+      fetchStores();
+      setTimeout(() => setShowModal(false), 1000);
     } catch (err) {
-      setSaveStatus({type: 'error', msg: '✗ Network error.'});
+      setSaveStatus({type: 'error', msg: '✗ Failed to save store.'});
     }
     setSaving(false);
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this store?')) return;
+    if (!token || !confirm('Are you sure you want to delete this store?')) return;
     try {
-      const res = await fetch(`/api/stores/${id}`, {
-        method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      if (res.ok) {
-        fetchStores();
-      }
+      await api.deleteStore(token, id);
+      fetchStores();
     } catch (e) {
       console.error(e);
     }

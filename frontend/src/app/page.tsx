@@ -1,43 +1,42 @@
 import HomeClient from './HomeClient';
 import { Metadata } from 'next';
+import { api } from '@/lib/api';
 
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Aranyak Jewellers | Timeless Elegance',
-  description: 'Premium gold and diamond jewellery stores across Tripura.',
-  alternates: { canonical: '/' },
+  description: 'Premium gold and diamond jewellery stores across Tripura in Agartala, Dharmanagar, Kailashahar, and Khowai.',
 };
 
 async function getSiteData() {
   try {
     const controller = new AbortController();
-    setTimeout(() => controller.abort(), 5000);
-    const api = 'http://117.252.16.132:3001/api';
-    const opts = { cache: 'no-store' as const, signal: controller.signal };
-    const [settingsRes, categoriesRes, bannersRes, goldRes] = await Promise.all([
-      fetch(`${api}/settings`, opts),
-      fetch(`${api}/categories`, opts),
-      fetch(`${api}/banners`, opts),
-      fetch(`${api}/gold-price`, opts)
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    const [settings, categories, banners, goldRates, stores, mediaMap] = await Promise.all([
+      api.getSettings(),
+      api.getCategories(),
+      api.getBanners(),
+      api.getGoldPrices(),
+      api.getStores(),
+      api.getMediaMap(),
     ]);
+    clearTimeout(timeout);
 
-    const settings = settingsRes.ok ? await settingsRes.json() : [];
-    const categories = categoriesRes.ok ? await categoriesRes.json() : [];
-    const banners = bannersRes.ok ? await bannersRes.json() : [];
-    const goldRates = goldRes.ok ? await goldRes.json() : [];
+    const storeCount = Array.isArray(stores) && stores.length >= 4 ? stores.length : 4;
 
-    const settingsMap: any = {};
-    if (Array.isArray(settings)) {
-      settings.forEach((s: any) => { settingsMap[s.key] = s.value; });
-    }
-
-    return { settings: settingsMap, categories, banners, goldRates };
+    return { 
+      settings: settings || {}, 
+      categories: categories || [], 
+      banners: banners || [], 
+      goldRates: goldRates || [],
+      storesCount: storeCount,
+      mediaMap: mediaMap || {},
+    };
   } catch {
-    return { settings: {}, categories: [], banners: [], goldRates: [] };
+    return { settings: {}, categories: [], banners: [], goldRates: [], storesCount: 4, mediaMap: {} };
   }
 }
-
 
 export default async function HomePage() {
   const data = await getSiteData();

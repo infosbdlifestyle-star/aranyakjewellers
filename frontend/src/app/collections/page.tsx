@@ -1,147 +1,145 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Reveal } from '@/components/animations/Reveal';
 import { CATEGORIES } from '@/constants/categories';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Reveal } from '@/components/animations/Reveal';
+import { 
+  TextReveal, 
+  MagneticCard, 
+  ExpandingDivider, 
+  SparkleGlint 
+} from '@/components/animations/LuxuryMotion';
+import { api } from '@/lib/api';
 
-// Hidden from collections page
-const HIDDEN_SLUGS = ['costume-jewellery', 'offers-deals'];
+const DEFAULT_CATEGORY_IMAGES: Record<string, string> = {
+  gold: '/hero-banner.png',
+  diamond: '/hero-necklace.png',
+  silver: '/IMG_20260603_135005.png',
+  'costume-jewellery': '/IMG_20260603_141414.png',
+  'offers-deals': '/bridal-edit.png'
+};
 
 export default function CollectionsPage() {
-  const [categories, setCategories] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState<any[]>([]);
 
   useEffect(() => {
-    fetchCategories();
+    const fetchProducts = async () => {
+      try {
+        const data = await api.getProducts();
+        if (Array.isArray(data)) setProducts(data);
+      } catch { /* empty */ }
+    };
+    fetchProducts();
   }, []);
 
-  const fetchCategories = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch('/api/categories');
-      if (!res.ok) throw new Error('Failed');
-      const all: any[] = await res.json();
-      // Get root categories only (no parentId), exclude hidden slugs
-      const roots = all
-        .filter(c => !c.parentId && !HIDDEN_SLUGS.includes(c.slug) && c.isActive !== false)
-        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-
-      if (roots.length > 0) {
-        // Attach subcategories from API data
-        const withSubs = roots.map(cat => ({
-          ...cat,
-          subcategories: all.filter(c => c.parentId === cat.id && c.isActive !== false)
-        }));
-        setCategories(withSubs);
-      } else {
-        // Fallback to static
-        setCategories(CATEGORIES.filter(c => !HIDDEN_SLUGS.includes(c.slug)));
-      }
-    } catch {
-      setCategories(CATEGORIES.filter(c => !HIDDEN_SLUGS.includes(c.slug)));
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <main className="min-h-screen flex flex-col bg-[#050202] text-white">
+    <main className="min-h-screen flex flex-col bg-[#F8F4EC] text-[#30231D]">
       {/* Page Hero */}
-      <section className="relative py-28 md:py-36 px-6 md:px-12 text-left bg-[#050202] text-white overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity animate-slow-zoom" />
+      <section className="relative py-28 md:py-36 px-6 md:px-12 text-left bg-[#211713] text-[#F8F1E5] overflow-hidden border-b border-[#DED2C1]/20">
+        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-15 mix-blend-luminosity animate-slow-zoom" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#211713] via-[#211713]/60 to-transparent pointer-events-none" />
+        
         <div className="relative z-10 container mx-auto max-w-7xl">
-          <Reveal y={40}>
-            <p className="text-[10px] tracking-[0.6em] uppercase text-secondary mb-4 font-bold">The Archives</p>
+          <Reveal y={30}>
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#30231D] border border-[#C49A45]/40 mb-5 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45] animate-pulse" />
+              <span className="text-[10px] tracking-[0.5em] uppercase text-[#C49A45] font-bold">The Archives</span>
+            </div>
           </Reveal>
-          <Reveal delay={0.1} y={40}>
-            <h1 className="text-6xl md:text-8xl font-serif font-light mb-8 tracking-tight drop-shadow-xl">Our <span className="font-editorial italic text-white/90">Collections</span></h1>
+          
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-light mb-6 tracking-tight drop-shadow-2xl text-[#F8F1E5]">
+            <TextReveal delay={0.1} duration={1}>
+              Our
+            </TextReveal>{" "}
+            <TextReveal delay={0.25} duration={1.1}>
+              <span className="font-editorial italic gold-gradient">Collections</span>
+            </TextReveal>
+          </h1>
+
+          <Reveal delay={0.3} y={20}>
+            <p className="text-xs sm:text-sm text-[#D4C5B2] font-normal tracking-[0.2em] max-w-xl uppercase leading-relaxed">
+              Timeless chapters of Bengali heritage, hallmarked bullion purity, and precision-cut solitaires.
+            </p>
           </Reveal>
         </div>
       </section>
 
       {/* Staggered Zig-Zag Layout */}
-      <section className="py-24">
-        {loading ? (
-          <div className="container mx-auto px-6 max-w-7xl space-y-24">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="flex gap-16 items-center animate-pulse">
-                <div className="w-1/2 aspect-[4/5] bg-white/5" />
-                <div className="w-1/2 space-y-4">
-                  <div className="h-4 bg-white/5 w-1/3" />
-                  <div className="h-12 bg-white/5 w-2/3" />
-                  <div className="h-20 bg-white/5 w-full" />
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="container mx-auto px-6 max-w-7xl space-y-24 md:space-y-32">
-            {categories.map((cat, idx) => {
-              const isEven = idx % 2 === 0;
-              return (
-                <div key={cat.id} className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-16 md:gap-24 items-center`}>
+      <section className="py-24 bg-[#F8F4EC]">
+        <div className="container mx-auto px-6 max-w-7xl space-y-28 md:space-y-36">
+          {CATEGORIES.map((cat, idx) => {
+            const isEven = idx % 2 === 0;
+            const matchingProduct = products.find(p => p.category && p.category.toLowerCase() === cat.name.toLowerCase() && p.images && p.images[0]);
+            const imageSrc = (matchingProduct?.images && matchingProduct.images[0]) || DEFAULT_CATEGORY_IMAGES[cat.slug] || '/hero-banner.png';
+
+            return (
+              <div key={cat.id}>
+                <div className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-16 md:gap-24 items-center`}>
                   
-                  {/* Image/Visual Area */}
+                  {/* Image/Visual Area with Magnetic Tilt & Specular Lighting */}
                   <div className="w-full md:w-1/2 relative">
-                    <Reveal y={40}>
-                      <div className="relative aspect-[4/5] bg-[#0A0505] flex items-center justify-center p-12 overflow-hidden group">
-                        {/* Category image if available */}
-                        {cat.imageUrl && (
-                          <img
-                            src={cat.imageUrl}
-                            alt={cat.name}
-                            className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
+                    <Reveal y={40} duration={0.9}>
+                      <MagneticCard tiltIntensity={6} className="rounded-2xl">
+                        <div className="relative aspect-[4/5] bg-[#211713] flex items-center justify-center overflow-hidden group border border-[#DED2C1] hover:border-[#C49A45]/80 transition-all duration-700 shadow-xl rounded-2xl">
+                          <Image 
+                            src={imageSrc} 
+                            alt={`${cat.name} Luxury Collection - Aranyak Jewellers`} 
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-cover group-hover:scale-108 transition-transform duration-[1.2s] ease-out opacity-90 group-hover:opacity-100" 
                           />
-                        )}
-                        <div className="absolute inset-0 bg-white/0 group-hover:bg-white/[0.02] transition-colors duration-700" />
-                        <div className="text-[15rem] font-serif font-light text-white/[0.03] group-hover:text-white/[0.05] transition-colors duration-1000 select-none transform group-hover:scale-105 relative z-10">
-                          {cat.name[0]}
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#211713] via-[#211713]/30 to-transparent pointer-events-none" />
+                          
+                          {/* Inner Decorative Golden Inset Frame */}
+                          <div className="absolute inset-6 border border-[#DED2C1]/40 group-hover:border-[#C49A45]/70 transition-colors duration-700 pointer-events-none rounded-lg" />
+                          
+                          {/* Corner Glint */}
+                          <SparkleGlint className="absolute top-8 right-8 z-30" size={18} delay={idx * 0.4} />
                         </div>
-                        
-                        {/* Decorative Frame */}
-                        <div className="absolute inset-6 border border-white/10 group-hover:border-secondary/30 transition-colors duration-700 pointer-events-none" />
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border border-white/5 scale-[0.85] group-hover:scale-95 transition-transform duration-1000 pointer-events-none" />
-                      </div>
+                      </MagneticCard>
                     </Reveal>
                     
-                    {/* Floating Number */}
-                    <Reveal delay={0.2} x={isEven ? -40 : 40}>
-                      <div className={`absolute top-1/2 -translate-y-1/2 ${isEven ? '-left-12' : '-right-12'} hidden md:block mix-blend-difference z-20`}>
-                        <span className="text-[8rem] font-editorial text-white/50">0{idx + 1}</span>
-                      </div>
-                    </Reveal>
+                    {/* Floating Luxury Chapter Number */}
+                    <div className={`absolute top-1/2 -translate-y-1/2 ${isEven ? '-left-10 lg:-left-16' : '-right-10 lg:-right-16'} hidden md:block z-20 pointer-events-none`}>
+                      <span className="text-[7rem] lg:text-[9rem] font-editorial text-[#C49A45]/20 select-none drop-shadow-sm">
+                        0{idx + 1}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Content Area */}
                   <div className={`w-full md:w-1/2 flex flex-col ${isEven ? 'md:items-start' : 'md:items-end md:text-right'}`}>
                     <Reveal delay={0.1} y={30}>
-                      <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-secondary mb-6 block">
-                        Chapter {idx + 1}
-                      </span>
-                      <h2 className="text-5xl md:text-6xl font-serif font-light text-white mb-10">
+                      <div className="inline-flex items-center space-x-2 text-[10px] font-bold tracking-[0.4em] uppercase text-[#A77C32] mb-4">
+                        <span>Chapter 0{idx + 1}</span>
+                        <span>•</span>
+                        <span>Bespoke Edition</span>
+                      </div>
+                      <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#30231D] mb-8 leading-tight">
                         {cat.name}
                       </h2>
                     </Reveal>
                     
                     <Reveal delay={0.2} y={30}>
-                      {cat.subcategories && cat.subcategories.length > 0 ? (
-                        <div className={`space-y-4 mb-12 w-full ${isEven ? 'text-left' : 'text-right'}`}>
-                          {cat.subcategories.map((sub: any) => (
+                      {cat.subcategories ? (
+                        <div className={`space-y-3.5 mb-10 w-full ${isEven ? 'text-left' : 'text-right'}`}>
+                          {cat.subcategories.map((sub) => (
                             <Link
                               key={sub.id}
                               href={`/category/${cat.slug}/${sub.slug}`}
-                              className={`flex items-center gap-4 text-sm text-white/60 hover:text-white transition-colors duration-300 group/link ${isEven ? 'justify-start' : 'justify-end'} py-1`}
+                              className={`flex items-center gap-3 text-sm text-[#74665A] hover:text-[#C49A45] transition-colors duration-300 group/link ${isEven ? 'justify-start' : 'justify-end'} py-1`}
                             >
-                              {isEven && <span className="w-0 group-hover/link:w-6 h-[1px] bg-secondary transition-all duration-300" />}
-                              <span className="tracking-wide uppercase text-[10px] font-bold">{sub.name}</span>
-                              {!isEven && <span className="w-0 group-hover/link:w-6 h-[1px] bg-secondary transition-all duration-300" />}
+                              {isEven && <span className="w-0 group-hover/link:w-6 h-[1.5px] bg-[#C49A45] transition-all duration-300" />}
+                              <span className="tracking-widest uppercase text-[11px] font-bold">{sub.name}</span>
+                              {!isEven && <span className="w-0 group-hover/link:w-6 h-[1.5px] bg-[#C49A45] transition-all duration-300" />}
                             </Link>
                           ))}
                         </div>
                       ) : (
-                        <p className="text-sm text-white/70 leading-relaxed font-light max-w-md mb-12">
-                          {cat.description || `Immerse yourself in our masterfully crafted ${cat.name.toLowerCase()} pieces, where traditional techniques meet contemporary sophistication.`}
+                        <p className="text-sm md:text-base text-[#74665A] leading-relaxed font-normal max-w-md mb-10">
+                          Immerse yourself in our masterfully crafted {cat.name.toLowerCase()} pieces, where traditional techniques meet contemporary sophistication.
                         </p>
                       )}
                     </Reveal>
@@ -149,17 +147,23 @@ export default function CollectionsPage() {
                     <Reveal delay={0.3} y={30}>
                       <Link
                         href={`/category/${cat.slug}`}
-                        className="inline-flex items-center space-x-4 text-[10px] font-bold tracking-[0.3em] uppercase text-white group/btn"
+                        className="inline-flex items-center space-x-3 btn-luxury px-8 py-3.5 text-[10px] font-bold tracking-[0.35em] uppercase shadow-md hover:scale-105 transition-all"
                       >
-                        <span className="hover-underline-gold pb-1 border-b border-secondary/50 hover:border-secondary">Explore {cat.name}</span>
+                        <span>Explore {cat.name}</span>
+                        <span>→</span>
                       </Link>
                     </Reveal>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        )}
+
+                {/* Subtle Expanding Hairline Divider Between Chapters */}
+                {idx < CATEGORIES.length - 1 && (
+                  <ExpandingDivider className="mt-24 md:mt-32" />
+                )}
+              </div>
+            );
+          })}
+        </div>
       </section>
     </main>
   );

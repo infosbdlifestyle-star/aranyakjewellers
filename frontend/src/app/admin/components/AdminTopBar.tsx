@@ -17,8 +17,12 @@ export default function AdminTopBar() {
         </span>
       </div>
 
-      <div className="hidden lg:flex items-center gap-2">
-        {/* Breadcrumb space or contextual title could go here */}
+      <div className="hidden lg:flex items-center gap-3">
+        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-500/10 via-yellow-500/10 to-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold shadow-inner">
+          <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+          <span className="text-[11px] font-bold tracking-wider uppercase">Live Market Rates:</span>
+          <span className="text-white font-mono font-bold">24KT • 22KT • 18KT Active</span>
+        </div>
       </div>
 
       <div className="flex items-center gap-6 ml-auto">

@@ -1,207 +1,366 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Reveal } from '@/components/animations/Reveal';
+import { TextReveal, SparkleGlint } from '@/components/animations/LuxuryMotion';
+import { api } from '@/lib/api';
+import { LuxuryJewelryGallery } from '@/components/ui/LuxuryJewelryGallery';
 
-const FILTER_TABS = [
-  { id: 'all', label: 'All Masterpieces' },
-  { id: 'Gold', label: 'Fine Gold 22K' },
-  { id: 'Diamond', label: 'Certified Diamonds' },
-  { id: 'Silver', label: 'Silver' },
-  { id: 'Astrological Stones', label: 'Astrological Stones' },
+interface GalleryItem {
+  id: string;
+  title: string;
+  category: 'bridal' | 'gold' | 'diamond' | 'temple' | 'earrings' | 'silver';
+  purity: string;
+  imageUrl: string;
+  description: string;
+  tag: string;
+}
+
+const GALLERY_ITEMS: GalleryItem[] = [
+  {
+    "id": "g-master-1",
+    "title": "Heritage Paisley Filigree Drop Earrings",
+    "category": "earrings",
+    "purity": "22K BIS 916",
+    "imageUrl": "/master_gallery_earring_drop.jpg",
+    "description": "Handcrafted traditional gold drop earrings with delicate leaf motifs and intricate filigree paisley art.",
+    "tag": "Master Gallery • Bespoke"
+  },
+  {
+    "id": "g-master-2",
+    "title": "Royal Regal Bridal Gold Necklace Set",
+    "category": "bridal",
+    "purity": "22K BIS 916",
+    "imageUrl": "/master_gallery_royal_set.jpg",
+    "description": "Exquisite bridal trousseau choker set featuring cascading leaf filigree, matching earrings, and statement ring.",
+    "tag": "Master Gallery • Royal"
+  },
+  {
+    "id": "g-master-3",
+    "title": "Artisanal Peacock & Leaf Gold Choker",
+    "category": "gold",
+    "purity": "22K BIS 916",
+    "imageUrl": "/master_gallery_necklace_closeup.jpg",
+    "description": "Master craftsmanship highlighting hand-engraved peacock curves and solid gold filigree work.",
+    "tag": "Master Gallery • Heritage"
+  },
+  {
+    "id": "g-master-4",
+    "title": "Bengali Heirloom Wooden Box Jewellery Set",
+    "category": "temple",
+    "purity": "22K BIS 916",
+    "imageUrl": "/master_gallery_heirloom_box.jpg",
+    "description": "Traditional Bengali wedding keepsake featuring handcrafted gold earrings, ring, and vintage velvet box.",
+    "tag": "Master Gallery • Heirloom"
+  },
+  {
+    "id": "g-master-5",
+    "title": "Vintage Floral Carved Gold Earring Set",
+    "category": "earrings",
+    "purity": "22K BIS 916",
+    "imageUrl": "/master_gallery_vintage_earrings.jpg",
+    "description": "Classic handcrafted gold earrings showcasing intricate floral filigree and timeless elegance.",
+    "tag": "Master Gallery • Classic"
+  },
+  {
+    "id": "g-1",
+    "title": "Royal Heritage Bridal Choker",
+    "category": "bridal",
+    "purity": "22K BIS 916",
+    "imageUrl": "/bridal-edit.png",
+    "description": "Hand-carved royal bridal choker adorned with delicate pearls and intricate gold filigree.",
+    "tag": "Bespoke Bridal"
+  },
+  {
+    "id": "g-2",
+    "title": "Imperial Solitaire & Ruby Necklace",
+    "category": "diamond",
+    "purity": "VVS-VS Certified",
+    "imageUrl": "/hero-necklace.png",
+    "description": "Precision-cut certified diamonds accented by deep vivid Burmese rubies.",
+    "tag": "Haute Joaillerie"
+  },
+  {
+    "id": "g-3",
+    "title": "Artisanal Temple Jhumka Earrings",
+    "category": "earrings",
+    "purity": "22K BIS 916",
+    "imageUrl": "/featured-earrings.png",
+    "description": "Traditional Bengali Jhumkas with cascading gold beads and floral ear cuffs.",
+    "tag": "Heritage Art"
+  },
+  {
+    "id": "g-4",
+    "title": "Sacred Iconography Nakshi Kada",
+    "category": "temple",
+    "purity": "22K BIS 916",
+    "imageUrl": "/IMG_20260603_123905.png",
+    "description": "Solid gold temple bangles embossed with sacred divine motifs by master jewelers.",
+    "tag": "Antique Collection"
+  },
+  {
+    "id": "g-5",
+    "title": "Filigree Gold Craft Neckpiece",
+    "category": "gold",
+    "purity": "22K BIS 916",
+    "imageUrl": "/IMG_20260603_125336.png",
+    "description": "Exquisite lightweight gold neckpiece crafted using centuries-old filigree technique.",
+    "tag": "Classic Gold"
+  },
+  {
+    "id": "g-6",
+    "title": "Emerald & Diamond Cocktail Ring",
+    "category": "diamond",
+    "purity": "VVS Solitaire",
+    "imageUrl": "/IMG_20260603_125514.png",
+    "description": "High-clarity solitaire diamond encircled by natural emerald halos.",
+    "tag": "Collector Series"
+  },
+  {
+    "id": "g-7",
+    "title": "Grand Bengali Sitahar Haar",
+    "category": "bridal",
+    "purity": "22K BIS 916",
+    "imageUrl": "/IMG_20260603_130220.png",
+    "description": "Long traditional layered Sitahar necklace designed for wedding trousseaus.",
+    "tag": "Royal Bridal"
+  },
+  {
+    "id": "g-8",
+    "title": "Antiquity Peacock Gold Pendant",
+    "category": "temple",
+    "purity": "22K BIS 916",
+    "imageUrl": "/IMG_20260603_130343.png",
+    "description": "Antique finish gold medallion featuring regal peacock engravings.",
+    "tag": "Temple Heritage"
+  },
+  {
+    "id": "g-9",
+    "title": "Minimalist Solitaire Pendant Set",
+    "category": "diamond",
+    "purity": "IGI Certified",
+    "imageUrl": "/IMG_20260603_130513.png",
+    "description": "Timeless single-stone diamond pendant with matching studs in platinum setting.",
+    "tag": "Everyday Luxury"
+  },
+  {
+    "id": "g-10",
+    "title": "Nakshi Carved Gold Bridal Set",
+    "category": "bridal",
+    "purity": "22K BIS 916",
+    "imageUrl": "/IMG_20260603_130625.png",
+    "description": "Heavy traditional bridal necklace featuring intricate Nakshi relief work.",
+    "tag": "Bespoke Trousseau"
+  },
+  {
+    "id": "g-11",
+    "title": "Contemporary Diamond Choker",
+    "category": "diamond",
+    "purity": "GIA Certified",
+    "imageUrl": "/IMG_20260603_130726.png",
+    "description": "Sleek multi-row diamond choker designed for red-carpet elegance.",
+    "tag": "Modern Craft"
+  },
+  {
+    "id": "g-12",
+    "title": "Bridal Matha Patti & Nath Collection",
+    "category": "bridal",
+    "purity": "22K BIS 916",
+    "imageUrl": "/IMG_20260603_132136.png",
+    "description": "Complete royal head ornament set crafted with pearls and hallmarked gold.",
+    "tag": "Bridal Essentials"
+  },
+  {
+    "id": "g-13",
+    "title": "Floral Cascading Drop Earrings",
+    "category": "earrings",
+    "purity": "22K BIS 916",
+    "imageUrl": "/IMG_20260603_132405.png",
+    "description": "Graceful floral drop earrings with polished gold drops and satin finish.",
+    "tag": "Fine Ornaments"
+  },
+  {
+    "id": "g-14",
+    "title": "Vintage Polki Kundan Necklace",
+    "category": "bridal",
+    "purity": "22K BIS 916",
+    "imageUrl": "/IMG_20260603_132847.png",
+    "description": "Uncut diamond Polki necklace set with ruby drops and green enamel work.",
+    "tag": "Kundan Edition"
+  },
+  {
+    "id": "g-15",
+    "title": "Classic Gold Bala Bangles",
+    "category": "gold",
+    "purity": "22K BIS 916",
+    "imageUrl": "/IMG_20260603_133127.png",
+    "description": "Pair of traditional Bengali gold Balas with intricate leaf motifs.",
+    "tag": "Traditional Bala"
+  },
+  {
+    "id": "g-silver-1",
+    "title": "Heritage Silver Filigree Diya Necklace",
+    "category": "silver",
+    "purity": "92.5 Fine Silver",
+    "imageUrl": "/uploads/lookbook_heritage_filigree.webp",
+    "description": "Master filigree necklace accented with delicate floral enamel, captured against natural stone with a traditional diya flame.",
+    "tag": "Pure Silver • Heritage"
+  },
+  {
+    "id": "g-silver-2",
+    "title": "Handcrafted Silver Makara Kadas (Pair)",
+    "category": "silver",
+    "purity": "92.5 Fine Silver",
+    "imageUrl": "/uploads/lookbook_silver_bangles.webp",
+    "description": "Intricately chased silver kadas featuring royal lion-head makara terminals and vibrant multi-colored enamel gems.",
+    "tag": "Pure Silver • Kadas"
+  },
+  {
+    "id": "g-silver-3",
+    "title": "Royal Silver Conch Haar on Silk",
+    "category": "silver",
+    "purity": "92.5 Fine Silver",
+    "imageUrl": "/uploads/lookbook_bridal_sitahar.webp",
+    "description": "Multi-link festive silver haar with tiered conch patterns and floral medallion centerpiece on Kanjeevaram silk.",
+    "tag": "Pure Silver • Haar"
+  },
+  {
+    "id": "g-silver-4",
+    "title": "Silver Chandbali & Jhumka Bridal Set",
+    "category": "silver",
+    "purity": "92.5 Fine Silver",
+    "imageUrl": "/uploads/lookbook_filigree_jhumkas.webp",
+    "description": "Matching silver necklace and ornate chandelier jhumkas resting on an antique carved heirloom casket.",
+    "tag": "Pure Silver • Set"
+  }
 ];
 
-export default function GalleryClient() {
+const CATEGORIES = [
+  { id: 'all', label: 'All Masterpieces' },
+  { id: 'bridal', label: 'Bridal Trousseau' },
+  { id: 'gold', label: 'Fine Gold 22K' },
+  { id: 'diamond', label: 'Certified Diamonds' },
+  { id: 'silver', label: 'Pure Silver Heritage' },
+  { id: 'temple', label: 'Temple & Antique' },
+  { id: 'earrings', label: 'Earrings & Rings' }
+];
+
+export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<string, string> }) {
   const [activeTab, setActiveTab] = useState<string>('all');
-  const [selectedItem, setSelectedItem] = useState<any | null>(null);
+  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
   const [products, setProducts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+
+  // Dynamically map gallery items from backend Media Manager
+  const keyToMediaMap: Record<string, string> = {
+    'g-master-1': 'gallery_earring_drop',
+    'g-master-2': 'gallery_royal_set',
+    'g-master-3': 'gallery_necklace_closeup',
+    'g-master-4': 'gallery_heirloom_box',
+    'g-1': 'home_bridal_image',
+    'g-2': 'home_editorial_image',
+  };
+
+  const dynamicGalleryItems = GALLERY_ITEMS.map((item) => {
+    const mediaKey = keyToMediaMap[item.id];
+    if (mediaKey && mediaMap[mediaKey]) {
+      return { ...item, imageUrl: mediaMap[mediaKey] };
+    }
+    return item;
+  });
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await api.getProducts();
+        if (Array.isArray(data) && data.length > 0) {
+          setProducts(data);
+        }
+      } catch { /* empty */ }
+    };
     fetchProducts();
   }, []);
 
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch('/api/products?take=100');
-      if (!res.ok) throw new Error('Failed to fetch');
-      const data = await res.json();
-      setProducts(Array.isArray(data) ? data : []);
-    } catch {
-      setProducts([]);
-    } finally {
-      setLoading(false);
+  const filteredItems = useMemo(() => {
+    let base = dynamicGalleryItems;
+    if (products.length > 0) {
+      const dynamicItems: GalleryItem[] = products.map((p: any) => ({
+        id: p.id,
+        title: p.name,
+        category: (p.category?.toLowerCase().includes('diamond') ? 'diamond' :
+                   p.category?.toLowerCase().includes('silver') ? 'silver' :
+                   p.subCategory?.toLowerCase().includes('ear') ? 'earrings' :
+                   p.subCategory?.toLowerCase().includes('necklace') || p.name?.toLowerCase().includes('bridal') ? 'bridal' : 'gold') as any,
+        purity: p.goldPurity ? `${p.goldPurity}K Gold` : 'BIS 916',
+        imageUrl: (p.images && p.images[0]) || '/hero-banner.png',
+        description: p.description || 'Masterpiece jewellery created with legacy craftsmanship.',
+        tag: p.subCategory || p.category || 'High Jewellery'
+      }));
+      base = dynamicItems;
     }
-  };
-
-  const filteredProducts = activeTab === 'all'
-    ? products
-    : products.filter(p => p.category === activeTab);
-
-  const visibleTabs = FILTER_TABS.filter(tab => 
-    tab.id === 'all' || products.some(p => p.category === tab.id)
-  );
+    return activeTab === 'all' ? base : base.filter(item => item.category === activeTab);
+  }, [products, activeTab]);
 
   return (
-    <main className="min-h-screen bg-[#050202] text-white selection:bg-[#CBA135] selection:text-[#050202]">
+    <main className="min-h-screen bg-[#F8F4EC] text-[#30231D] selection:bg-[#C49A45] selection:text-[#211713]">
       
       {/* 1. Header Banner */}
-      <section className="relative py-24 sm:py-32 bg-[#050202] border-b border-white/10 bg-radial-gold-top overflow-hidden text-center px-6">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050202]/80 via-transparent to-[#050202] pointer-events-none" />
+      <section className="relative py-24 sm:py-32 bg-[#211713] border-b border-[#DED2C1]/20 overflow-hidden text-center px-6">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#211713]/90 via-transparent to-[#211713] pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto">
-          <Reveal y={20}>
-            <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#0A0505] border border-[#CBA135]/40 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#CBA135] animate-pulse" />
-              <span className="text-secondary text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase">
-                ARANYAK MASTER GALLERY
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#CBA135] animate-pulse" />
-            </div>
-          </Reveal>
+          <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#30231D] border border-[#C49A45]/40 mb-6 shadow-xl">
+            <SparkleGlint color="#C49A45" size={12}>
+              <span className="text-[#C49A45]">✧</span>
+            </SparkleGlint>
+            <span className="text-[#C49A45] text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase">
+              ARANYAK MASTER GALLERY
+            </span>
+            <SparkleGlint color="#C49A45" size={12}>
+              <span className="text-[#C49A45]">✧</span>
+            </SparkleGlint>
+          </div>
 
-          <Reveal delay={0.1}>
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-white tracking-tight leading-none mb-6">
-              Haute <span className="font-editorial gold-gradient italic">Jewellery</span> Portfolio
-            </h1>
-          </Reveal>
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#F8F1E5] tracking-tight leading-none mb-6">
+            <TextReveal text="Haute" /> <span className="font-editorial gold-gradient italic">Jewellery</span> <TextReveal text="Portfolio" />
+          </h1>
 
-          <Reveal delay={0.2}>
-            <p className="text-xs sm:text-sm text-white/70 tracking-widest max-w-2xl mx-auto leading-relaxed uppercase font-light">
-              Explore our comprehensive archive of handcrafted gold, certified solitaires, and royal bridal trousseau masterpieces.
-            </p>
-          </Reveal>
+          <p className="text-xs sm:text-sm text-[#D4C5B2] tracking-widest max-w-2xl mx-auto leading-relaxed uppercase font-normal">
+            Explore our comprehensive archive of handcrafted gold, certified solitaires, and royal bridal trousseau masterpieces.
+          </p>
         </div>
       </section>
 
-      {/* 2. Category Filter Tabs */}
-      {!loading && visibleTabs.length > 1 && (
-        <section className="sticky top-20 z-40 bg-[#050202]/90 backdrop-blur-md border-b border-white/10 py-5 px-6">
-          <div className="container mx-auto max-w-7xl flex items-center justify-center overflow-x-auto no-scrollbar space-x-2 sm:space-x-3">
-            {visibleTabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className="relative px-5 py-2.5 text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase whitespace-nowrap transition-colors duration-300 rounded-none overflow-hidden"
-              >
-                {activeTab === tab.id && (
-                  <motion.div 
-                    layoutId="activeGalleryTabPill"
-                    className="absolute inset-0 bg-[#CBA135] shadow-lg z-0"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                <span className={`relative z-10 transition-colors duration-300 ${
-                  activeTab === tab.id ? 'text-[#050202]' : 'text-white/70 hover:text-white'
-                }`}>
-                  {tab.label}
-                </span>
-              </button>
-            ))}
-          </div>
-        </section>
-      )}
+      {/* 2. Category Filter Tabs with Sliding Animated Pill */}
+      <section className="sticky top-20 z-40 bg-[#F0E7D8]/95 backdrop-blur-md border-b border-[#DED2C1] py-5 px-6 shadow-sm">
+        <div className="container mx-auto max-w-7xl flex items-center justify-center overflow-x-auto no-scrollbar space-x-2 sm:space-x-3">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveTab(cat.id)}
+              className="relative px-5 py-2.5 text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase whitespace-nowrap transition-colors duration-300 rounded-none overflow-hidden"
+            >
+              {activeTab === cat.id && (
+                <motion.div 
+                  layoutId="activeGalleryTabPill"
+                  className="absolute inset-0 bg-[#C49A45] shadow-md z-0"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className={`relative z-10 transition-colors duration-300 ${
+                activeTab === cat.id ? 'text-[#211713]' : 'text-[#74665A] hover:text-[#30231D]'
+              }`}>
+                {cat.label}
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
 
-      {/* 3. Gallery Grid */}
+      {/* 3. Luxury Master Gallery with Interactive Hover-to-Zoom Lens */}
       <section className="py-16 sm:py-24 px-6 container mx-auto max-w-[1400px]">
-        {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 animate-pulse">
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="aspect-[4/5] bg-white/5" />
-            ))}
-          </div>
-        ) : filteredProducts.length === 0 ? (
-          <div className="text-center py-24 space-y-6">
-            <div className="text-secondary text-5xl">✧</div>
-            <h2 className="text-3xl font-serif font-light text-white">
-              {products.length === 0 ? 'Gallery Coming Soon' : 'No items in this category'}
-            </h2>
-            <p className="text-white/50 max-w-md mx-auto text-sm font-light leading-relaxed">
-              {products.length === 0 
-                ? 'Our master artisans are preparing stunning jewellery for the gallery. Visit our showroom to see our full collection.'
-                : 'Try selecting a different category or view all masterpieces.'}
-            </p>
-            {products.length > 0 && (
-              <button
-                onClick={() => setActiveTab('all')}
-                className="btn-luxury px-8 py-3 text-[10px] font-bold tracking-[0.35em] uppercase mt-4"
-              >
-                View All Masterpieces
-              </button>
-            )}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
-            <AnimatePresence mode="popLayout">
-              {filteredProducts.map((item) => (
-                <motion.div
-                  key={item.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.92, y: 15 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.92, y: 15 }}
-                  transition={{ 
-                    duration: 0.35, 
-                    ease: [0.16, 1, 0.3, 1],
-                    layout: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
-                  }}
-                  onClick={() => setSelectedItem(item)}
-                  className="group relative bg-[#0A0505] border border-white/10 hover:border-[#CBA135]/60 overflow-hidden cursor-pointer gold-border-glow transition-all duration-500 shadow-xl"
-                >
-                  {/* Image Wrapper */}
-                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#050202]">
-                    {item.images && item.images[0] ? (
-                      <img
-                        src={item.images[0]}
-                        alt={item.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-white/10 font-serif text-6xl">
-                        {item.name[0]}
-                      </div>
-                    )}
-                    {/* Dark Vignette Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#050202] via-[#050202]/20 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
-
-                    {/* Top Purity Badge */}
-                    <div className="absolute top-4 left-4 z-10">
-                      <span className="text-[9px] font-bold tracking-widest uppercase text-[#CBA135] bg-[#050202]/85 backdrop-blur-md border border-[#CBA135]/40 px-3 py-1">
-                        {item.goldPurity > 0 ? `${item.goldPurity}K BIS` : item.category}
-                      </span>
-                    </div>
-
-                    {/* Price badge if available */}
-                    {item.pricing?.finalPrice > 0 && (
-                      <div className="absolute top-4 right-4 z-10">
-                        <span className="text-[9px] font-bold tracking-widest uppercase text-white bg-[#050202]/85 backdrop-blur-md border border-white/20 px-2.5 py-1">
-                          ₹{item.pricing.finalPrice.toLocaleString('en-IN')}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Bottom Info Overlay */}
-                    <div className="absolute bottom-0 inset-x-0 p-6 z-10 flex flex-col justify-end transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                      <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-[#E5D3B3] mb-1">
-                        {item.subCategory || item.category}
-                      </span>
-                      <h3 className="text-xl font-serif font-light text-white group-hover:text-[#E5D3B3] transition-colors mb-2">
-                        {item.name}
-                      </h3>
-                      <div className="inline-flex items-center space-x-2 text-[9px] font-bold tracking-[0.25em] uppercase text-white/60 group-hover:text-white transition-colors">
-                        <span>View Masterpiece</span>
-                        <span className="text-[#CBA135]">→</span>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-        )}
+        <LuxuryJewelryGallery items={filteredItems} enableHoverZoom={true} aspectRatio="4/5" />
       </section>
 
       {/* 4. Interactive Lightbox Modal */}
@@ -213,7 +372,7 @@ export default function GalleryClient() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             onClick={() => setSelectedItem(null)}
-            className="fixed inset-0 z-[100] bg-[#050202]/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
+            className="fixed inset-0 z-[100] bg-[#211713]/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
           >
             <motion.div 
               initial={{ scale: 0.92, y: 15, opacity: 0 }}
@@ -221,71 +380,45 @@ export default function GalleryClient() {
               exit={{ scale: 0.92, y: 15, opacity: 0 }}
               transition={{ type: "spring", stiffness: 350, damping: 28 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-[#0A0505] border border-[#CBA135]/40 max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl glow-gold"
+              className="relative bg-[#211713] border border-[#C49A45]/40 max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl"
             >
               {/* Close Button */}
               <button 
                 onClick={() => setSelectedItem(null)}
-                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-[#050202]/80 border border-white/20 flex items-center justify-center text-white hover:text-[#CBA135] transition-colors"
+                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-[#30231D] border border-[#DED2C1]/30 flex items-center justify-center text-[#F8F1E5] hover:text-[#C49A45] transition-colors"
                 aria-label="Close detail modal"
               >
                 ✕
               </button>
 
               {/* Modal Image */}
-              <div className="relative aspect-[4/5] md:aspect-auto w-full min-h-[350px] bg-[#050202]">
-                {selectedItem.images && selectedItem.images[0] ? (
-                  <img
-                    src={selectedItem.images[0]}
-                    alt={selectedItem.name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-white/10 font-serif text-8xl">
-                    {selectedItem.name[0]}
-                  </div>
-                )}
+              <div className="relative aspect-[4/5] md:aspect-auto w-full min-h-[350px] bg-[#30231D]">
+                <Image 
+                  src={selectedItem.imageUrl} 
+                  alt={selectedItem.title} 
+                  fill 
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover" 
+                />
               </div>
 
               {/* Modal Details */}
               <div className="p-8 sm:p-12 flex flex-col justify-between space-y-6">
                 <div>
-                  <div className="inline-block px-3 py-1 bg-[#CBA135]/10 border border-[#CBA135]/40 text-[#CBA135] text-[10px] font-bold tracking-[0.25em] uppercase mb-4">
-                    {selectedItem.goldPurity > 0 ? `${selectedItem.goldPurity}K BIS Hallmarked` : selectedItem.category}
+                  <div className="inline-block px-3 py-1 bg-[#C49A45]/15 border border-[#C49A45]/40 text-[#C49A45] text-[10px] font-bold tracking-[0.25em] uppercase mb-4">
+                    {selectedItem.purity}
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-serif font-light text-white mb-4">
-                    {selectedItem.name}
+                  <h2 className="text-3xl sm:text-4xl font-serif font-light text-[#F8F1E5] mb-4">
+                    {selectedItem.title}
                   </h2>
-                  <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light mb-6">
-                    {selectedItem.description || "An exquisite piece crafted with mastery by Aranyak Jewellers."}
+                  <p className="text-xs sm:text-sm text-[#D4C5B2] leading-relaxed font-light mb-6">
+                    {selectedItem.description}
                   </p>
-
-                  {/* Product Details */}
-                  <div className="space-y-2 text-xs text-white/50">
-                    {selectedItem.goldWeight > 0 && (
-                      <div className="flex justify-between">
-                        <span className="uppercase tracking-widest font-bold">Weight</span>
-                        <span>{selectedItem.goldWeight}g</span>
-                      </div>
-                    )}
-                    {selectedItem.sku && (
-                      <div className="flex justify-between">
-                        <span className="uppercase tracking-widest font-bold">SKU</span>
-                        <span className="font-mono">{selectedItem.sku}</span>
-                      </div>
-                    )}
-                    {selectedItem.pricing?.finalPrice > 0 && (
-                      <div className="flex justify-between text-secondary">
-                        <span className="uppercase tracking-widest font-bold">Est. Price</span>
-                        <span className="font-semibold">₹{selectedItem.pricing.finalPrice.toLocaleString('en-IN')}</span>
-                      </div>
-                    )}
-                  </div>
                 </div>
 
-                <div className="space-y-4 pt-6 border-t border-white/10">
+                <div className="space-y-4 pt-6 border-t border-[#DED2C1]/20">
                   <a 
-                    href={`https://wa.me/919436501506?text=${encodeURIComponent(`Hello Aranyak Jewellers, I am interested in viewing/purchasing: ${selectedItem.name} (${selectedItem.goldPurity > 0 ? `${selectedItem.goldPurity}K` : selectedItem.category}${selectedItem.sku ? ', SKU: ' + selectedItem.sku : ''})`)}`}
+                    href={`https://wa.me/919436501506?text=${encodeURIComponent(`Hello Aranyak Jewellers, I am interested in viewing/purchasing: ${selectedItem.title} (${selectedItem.purity})`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full btn-luxury py-4 text-center block text-[10px] font-bold tracking-[0.35em] uppercase"
@@ -295,7 +428,7 @@ export default function GalleryClient() {
                   <Link 
                     href="/stores"
                     onClick={() => setSelectedItem(null)}
-                    className="w-full py-4 text-center block text-[10px] font-bold tracking-[0.35em] uppercase text-white bg-white/5 hover:bg-white/10 border border-white/20 transition-colors"
+                    className="w-full py-4 text-center block text-[10px] font-bold tracking-[0.35em] uppercase text-[#F8F1E5] bg-[#30231D] hover:bg-[#30231D]/80 border border-[#DED2C1]/30 transition-colors"
                   >
                     Find In Showroom
                   </Link>

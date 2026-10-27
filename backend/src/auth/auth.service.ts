@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException, Logger, NotFoundException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, Logger, NotFoundException, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
@@ -184,5 +184,122 @@ export class AuthService {
     });
 
     return { success: true, message: 'Password reset successfully' };
+  }
+
+  // --- Profile & Address Management ---
+
+  async getProfile(userId: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        mobile: true,
+        role: true,
+        totpEnabled: true,
+        createdAt: true,
+        addresses: true,
+      },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
+  }
+
+  async updateProfile(
+    userId: string,
+    data: { name?: string; mobile?: string; currentPassword?: string; newPassword?: string },
+  ) {
+    const user = await this.prisma.user.findUnique({ where: { id: userId } });
+    if (!user) throw new NotFoundException('User not found');
+
+    const updateData: any = {};
+    if (data.name) updateData.name = data.name.trim();
+    if (data.mobile !== undefined) updateData.mobile = data.mobile ? data.mobile.trim() : null;
+
+    if (data.newPassword) {
+      if (!data.currentPassword) {
+        throw new BadRequestException('Current password is required to set a new password');
+      }
+      const isMatch = await bcrypt.compare(data.currentPassword, user.password || '');
+      if (!isMatch) {
+        throw new BadRequestException('Current password does not match');
+      }
+      updateData.password = await bcrypt.hash(data.newPassword, 10);
+    }
+
+    const updated = await this.prisma.user.update({
+      where: { id: userId },
+      data: updateData,
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        mobile: true,
+        role: true,
+        totpEnabled: true,
+        createdAt: true,
+        addresses: true,
+      },
+    });
+
+    return updated;
+  }
+
+  async addAddress(
+    userId: string,
+    address: { fullName: string; street: string; city: string; state: string; zip: string; phone: string; isDefault?: boolean },
+  ) {
+    if (address.isDefault) {
+      await this.prisma.address.updateMany({
+        where: { userId },
+        data: { isDefault: false },
+      });
+    }
+
+    return this.prisma.address.create({
+      data: {
+        userId,
+        fullName: address.fullName.trim(),
+        street: address.street.trim(),
+        city: address.city.trim(),
+        state: address.state.trim(),
+        zip: address.zip.trim(),
+        phone: address.phone.trim(),
+        isDefault: address.isDefault ?? false,
+      },
+    });
+  }
+
+  async deleteAddress(userId: string, addressId: string) {
+    const existing = await this.prisma.address.findFirst({
+      where: { id: addressId, userId },
+    });
+    if (!existing) throw new NotFoundException('Address not found');
+
+    await this.prisma.address.delete({
+      where: { id: addressId },
+    });
+    return { success: true };
+  }
+
+  async setDefaultAddress(userId: string, addressId: string) {
+    const existing = await this.prisma.address.findFirst({
+      where: { id: addressId, userId },
+    });
+    if (!existing) throw new NotFoundException('Address not found');
+
+    await this.prisma.address.updateMany({
+      where: { userId },
+      data: { isDefault: false },
+    });
+
+    return this.prisma.address.update({
+      where: { id: addressId },
+      data: { isDefault: true },
+    });
   }
 }

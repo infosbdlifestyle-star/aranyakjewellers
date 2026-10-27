@@ -18,7 +18,7 @@ export function PageLoader() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[10000] bg-[#050202] flex items-center justify-center overflow-hidden"
+          className="fixed inset-0 z-[10000] bg-[#211713] flex items-center justify-center overflow-hidden"
           initial={{ opacity: 1 }}
           exit={{ y: "-100%", opacity: 0 }}
           transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1] }}
@@ -34,13 +34,13 @@ export function PageLoader() {
               animate={{ height: "auto" }}
               transition={{ duration: 1.5, ease: "easeOut" }}
             >
-              <h1 className="text-4xl md:text-6xl font-serif font-light text-secondary tracking-[0.2em] uppercase">
+              <h1 className="text-4xl md:text-6xl font-serif font-light text-[#C49A45] tracking-[0.2em] uppercase">
                 Aranyak
               </h1>
             </motion.div>
             
             <motion.div
-              className="w-[1px] h-12 bg-secondary/50 mt-8"
+              className="w-[1px] h-12 bg-[#C49A45]/50 mt-8"
               initial={{ scaleY: 0 }}
               animate={{ scaleY: 1 }}
               transition={{ delay: 0.8, duration: 1 }}

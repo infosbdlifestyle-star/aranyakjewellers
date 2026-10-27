@@ -2,6 +2,9 @@ import {
   Controller,
   Post,
   Get,
+  Put,
+  Delete,
+  Param,
   Body,
   UnauthorizedException,
   UseGuards,
@@ -61,12 +64,42 @@ export class AuthController {
     return this.authService.resetPassword(body.token, body.password);
   }
 
-  // --- Profile ---
+  // --- Profile & Address Management ---
 
   @Get('me')
   @UseGuards(JwtAuthGuard)
   async getProfile(@Request() req) {
-    return req.user;
+    return this.authService.getProfile(req.user.userId);
+  }
+
+  @Put('me')
+  @UseGuards(JwtAuthGuard)
+  async updateProfile(
+    @Request() req,
+    @Body() body: { name?: string; mobile?: string; currentPassword?: string; newPassword?: string },
+  ) {
+    return this.authService.updateProfile(req.user.userId, body);
+  }
+
+  @Post('addresses')
+  @UseGuards(JwtAuthGuard)
+  async addAddress(
+    @Request() req,
+    @Body() body: { fullName: string; street: string; city: string; state: string; zip: string; phone: string; isDefault?: boolean },
+  ) {
+    return this.authService.addAddress(req.user.userId, body);
+  }
+
+  @Delete('addresses/:id')
+  @UseGuards(JwtAuthGuard)
+  async deleteAddress(@Request() req, @Param('id') id: string) {
+    return this.authService.deleteAddress(req.user.userId, id);
+  }
+
+  @Put('addresses/:id/default')
+  @UseGuards(JwtAuthGuard)
+  async setDefaultAddress(@Request() req, @Param('id') id: string) {
+    return this.authService.setDefaultAddress(req.user.userId, id);
   }
 
   @Get('ping')

@@ -1,10 +1,11 @@
 "use client";
 
+export const dynamic = 'force-dynamic';
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
-import { CATEGORIES } from '@/constants/categories';
 
 export default function AdminProductsPage() {
   const { user, token, isAuthenticated, isLoading } = useAuth();
@@ -29,6 +30,7 @@ export default function AdminProductsPage() {
     name: '',
     slug: '',
     description: '',
+    price: 0,
     goldPurity: 22,
     goldWeight: 0,
     category: 'Gold',
@@ -58,7 +60,7 @@ export default function AdminProductsPage() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const data = await api.getAdminProducts();
+      const data = await api.getProducts();
       setProducts(Array.isArray(data) ? data : []);
     } catch { /* empty */ }
     setLoading(false);
@@ -86,11 +88,8 @@ export default function AdminProductsPage() {
   const filterSubCategories = useMemo(() => {
     if (filterCategory === 'All') return [];
     const cat = dbCategories.find(c => c.name === filterCategory);
-    const dbSubs = cat ? dbCategories.filter(c => c.parentId === cat.id) : [];
-    if (dbSubs.length > 0) return dbSubs;
-    // Fallback to static CATEGORIES
-    const staticCat = CATEGORIES.find(c => c.name === filterCategory);
-    return (staticCat?.subcategories || []);
+    if (!cat) return [];
+    return dbCategories.filter(c => c.parentId === cat.id);
   }, [filterCategory, dbCategories]);
 
   const rootCategories = dbCategories.filter(c => !c.parentId);
@@ -103,8 +102,9 @@ export default function AdminProductsPage() {
         name: product.name,
         slug: product.slug,
         description: product.description || '',
-        goldPurity: product.goldPurity,
-        goldWeight: product.goldWeight,
+        price: product.price || 0,
+        goldPurity: product.goldPurity || 22,
+        goldWeight: product.goldWeight || 0,
         category: product.category,
         subCategory: product.subCategory || '',
         stockCount: product.stockCount,
@@ -117,6 +117,7 @@ export default function AdminProductsPage() {
         name: '',
         slug: '',
         description: '',
+        price: 0,
         goldPurity: 22,
         goldWeight: 0,
         category: 'Gold',
@@ -140,25 +141,29 @@ export default function AdminProductsPage() {
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files || e.target.files.length === 0 || !token) return;
+    if (!e.target.files || e.target.files.length === 0) return;
     const file = e.target.files[0];
+    const authToken = token || (typeof window !== 'undefined' ? localStorage.getItem('aranyak_token') || localStorage.getItem('token') || '' : '');
 
-    // Client-side 6MB validation
-    const MAX_SIZE = 4 * 1024 * 1024; // 4MB
+    // Client-side 15MB validation
+    const MAX_SIZE = 15 * 1024 * 1024; // 15MB
     if (file.size > MAX_SIZE) {
-      alert(`File too large (${(file.size / 1024 / 1024).toFixed(1)}MB). Maximum allowed size is 4MB per image.`);
+      alert(`File too large (${(file.size / 1024 / 1024).toFixed(1)}MB). Maximum allowed size is 15MB per image.`);
       e.target.value = '';
       return;
     }
     
     setUploadingImage(true);
     try {
-      const result = await api.uploadImage(token, file);
-      if (result.path) {
-        setFormData({ ...formData, images: [...formData.images, result.path] });
+      const result = await api.uploadImage(authToken, file);
+      if (result && result.path) {
+        setFormData(prev => ({ ...prev, images: [...prev.images, result.path] }));
+      } else {
+        alert(result?.message || result?.error || 'Failed to upload image to server.');
       }
-    } catch (err) {
-      alert('Failed to upload image: ' + (err.message || 'Unknown error. Check file size.'));
+    } catch (err: any) {
+      console.error('Image upload error:', err);
+      alert('Failed to upload image. Please check your network or login session.');
     } finally {
       setUploadingImage(false);
       e.target.value = '';
@@ -173,16 +178,16 @@ export default function AdminProductsPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!token) return;
+    const authToken = token || (typeof window !== 'undefined' ? localStorage.getItem('aranyak_token') || localStorage.getItem('token') || '' : '');
     setSaving(true);
     setSaveStatus({type: '', msg: ''});
 
     try {
       if (editingProduct) {
-        await api.updateProduct(token, editingProduct.id, formData);
+        await api.updateProduct(authToken, editingProduct.id, formData);
         setSaveStatus({type: 'success', msg: '✓ Product updated successfully!'});
       } else {
-        await api.createProduct(token, formData);
+        await api.createProduct(authToken, formData);
         setSaveStatus({type: 'success', msg: '✓ Product created successfully!'});
       }
       fetchProducts();
@@ -195,9 +200,10 @@ export default function AdminProductsPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!token || !confirm('Are you sure you want to delete this product? This cannot be undone.')) return;
+    const authToken = token || (typeof window !== 'undefined' ? localStorage.getItem('aranyak_token') || localStorage.getItem('token') || '' : '');
+    if (!confirm('Are you sure you want to delete this product? This cannot be undone.')) return;
     try {
-      await api.deleteProduct(token, id);
+      await api.deleteProduct(authToken, id);
       fetchProducts();
     } catch (err) {
       alert('Failed to delete product');
@@ -275,6 +281,7 @@ export default function AdminProductsPage() {
                 <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Product</th>
                 <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">SKU</th>
                 <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Category</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Price (₹)</th>
                 <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Weight (g)</th>
                 <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Stock</th>
                 <th className="px-6 py-4 text-[10px] font-bold text-white/50 uppercase tracking-widest">Status</th>
@@ -284,7 +291,7 @@ export default function AdminProductsPage() {
             <tbody className="divide-y divide-white/5">
               {loading ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-10 text-center text-sm text-white/50">
+                  <td colSpan={8} className="px-6 py-10 text-center text-sm text-white/50">
                     <div className="animate-pulse flex flex-col items-center gap-3">
                       <div className="w-8 h-8 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
                       Loading inventory...
@@ -293,7 +300,7 @@ export default function AdminProductsPage() {
                 </tr>
               ) : filteredProducts.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-16 text-center text-white/40">
+                  <td colSpan={8} className="px-6 py-16 text-center text-white/40">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="mx-auto mb-4 opacity-50"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 14 3-3 3 3"/><path d="M12 11v6"/></svg>
                     <p className="text-sm">No products found matching your criteria.</p>
                   </td>
@@ -322,6 +329,9 @@ export default function AdminProductsPage() {
                     <td className="px-6 py-4">
                       <p className="text-xs text-white/80">{product.category}</p>
                       {product.subCategory && <p className="text-[10px] text-white/40">{product.subCategory}</p>}
+                    </td>
+                    <td className="px-6 py-4 text-xs font-bold text-secondary">
+                      {product.price ? `₹${Number(product.price).toLocaleString('en-IN')}` : 'Market Rate'}
                     </td>
                     <td className="px-6 py-4 text-xs text-white/70">
                       {product.goldWeight ? `${product.goldWeight}g` : '-'}
@@ -459,21 +469,12 @@ export default function AdminProductsPage() {
                         className="w-full bg-[#050202] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-secondary appearance-none disabled:opacity-50"
                       >
                         <option value="">None</option>
-                        {(() => {
-                          // Try DB subcategories first
+                        {dbCategories.filter(c => {
                           const parent = dbCategories.find(p => p.name === formData.category);
-                          const dbSubs = parent ? dbCategories.filter(c => c.parentId === parent.id) : [];
-                          if (dbSubs.length > 0) {
-                            return dbSubs.map(c => (
-                              <option key={c.id} value={c.name}>{c.name}</option>
-                            ));
-                          }
-                          // Fallback to static CATEGORIES
-                          const staticCat = CATEGORIES.find(c => c.name === formData.category);
-                          return (staticCat?.subcategories || []).map(c => (
-                            <option key={c.id} value={c.name}>{c.name}</option>
-                          ));
-                        })()}
+                          return parent && c.parentId === parent.id;
+                        }).map(c => (
+                          <option key={c.id} value={c.name}>{c.name}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -481,6 +482,20 @@ export default function AdminProductsPage() {
 
                 {/* Right Col: Details & Images */}
                 <div className="space-y-6">
+                  <div>
+                    <label className="block text-xs font-bold text-secondary uppercase tracking-widest mb-2">Price (₹ INR)</label>
+                    <input 
+                      type="number" 
+                      step="1"
+                      min="0"
+                      value={formData.price || ''}
+                      onChange={(e) => setFormData({...formData, price: Number(e.target.value)})}
+                      className="w-full bg-[#050202] border border-secondary/40 rounded-xl px-4 py-3 text-sm text-secondary font-bold placeholder-white/30 outline-none focus:border-secondary transition-colors"
+                      placeholder="e.g. 78500 (Set 0 for market-rate calculation)"
+                    />
+                    <p className="text-[10px] text-white/40 mt-1">Leave as 0 if price is dynamically computed from daily gold rate.</p>
+                  </div>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-white/50 uppercase tracking-widest mb-2">Gold Purity (K)</label>
@@ -572,8 +587,30 @@ export default function AdminProductsPage() {
                         </label>
                       )}
                     </div>
-                    <p className="text-[10px] text-white/40 leading-relaxed">
-                      📐 Recommended: 1000×1000px (Square) · Max 4MB per image · JPG, PNG, WebP · First image is the main cover.
+                    <div className="mt-3 flex gap-2">
+                      <input
+                        type="text"
+                        id="customImageUrlInput"
+                        placeholder="Or paste image URL / path (e.g. /hero-necklace.png)..."
+                        className="flex-1 bg-[#050202] border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-white/30 outline-none focus:border-secondary transition-colors"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const input = document.getElementById('customImageUrlInput') as HTMLInputElement;
+                          if (input && input.value.trim()) {
+                            setFormData(prev => ({ ...prev, images: [...prev.images, input.value.trim()] }));
+                            input.value = '';
+                          }
+                        }}
+                        className="bg-white/10 hover:bg-secondary/20 hover:text-secondary text-white/80 px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors"
+                      >
+                        + Add URL
+                      </button>
+                    </div>
+
+                    <p className="text-[10px] text-white/40 mt-2 leading-relaxed">
+                      📐 Recommended: 1000×1000px (Square) · Max 6MB per image · JPG, PNG, WebP · First image is the main cover.
                     </p>
                   </div>
                 </div>

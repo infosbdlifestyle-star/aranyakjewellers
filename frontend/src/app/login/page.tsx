@@ -49,72 +49,71 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#050202] text-white">
+    <main className="min-h-screen flex flex-col bg-[#F8F4EC] text-[#30231D]">
       
       <section className="flex-1 flex items-center justify-center py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
-        <div className="absolute inset-0 silk-texture opacity-20 mix-blend-overlay" />
 
-        <div className="w-full max-w-md bg-[#0A0505] p-10 shadow-2xl border border-white/10 relative z-10">
+        <div className="w-full max-w-md bg-[#211713] text-[#F8F1E5] p-10 shadow-2xl border border-[#DED2C1]/20 relative z-10 rounded-2xl">
           {/* Decorative element */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary via-primary to-secondary" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#A77C32] via-[#C49A45] to-[#A77C32] rounded-t-2xl" />
           
           <div className="text-center space-y-4 mb-10">
-            <h1 className="text-3xl font-serif font-light text-white">Welcome Back</h1>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-white/50 font-bold">Access your curated collections</p>
+            <h1 className="text-3xl font-serif font-light text-[#F8F1E5]">Welcome Back</h1>
+            <p className="text-[10px] tracking-[0.3em] uppercase text-[#D4C5B2] font-bold">Access your curated collections</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {step === 'LOGIN' ? (
               <>
                 <div className="space-y-2">
-                  <label className="text-[9px] font-bold tracking-[0.3em] uppercase text-white/50 ml-1">Email Address</label>
+                  <label className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#C49A45] ml-1">Email Address</label>
                   <input 
                     type="email" 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full bg-[#050202] border-b border-white/20 px-0 py-3 text-sm text-white placeholder-white/30 focus:border-white outline-none transition-all"
+                    className="w-full bg-[#30231D] border-b border-[#DED2C1]/30 px-3 py-3 text-sm text-[#F8F1E5] placeholder-white/30 focus:border-[#C49A45] outline-none transition-all rounded-t"
                     placeholder="Enter your email"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <label className="text-[9px] font-bold tracking-[0.3em] uppercase text-white/50 ml-1">Password</label>
-                    <Link href="/forgot-password" title="Coming soon" className="text-[9px] text-secondary/70 hover:text-secondary uppercase tracking-widest font-bold">Forgot?</Link>
+                    <label className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#C49A45] ml-1">Password</label>
+                    <Link href="/forgot-password" title="Coming soon" className="text-[10px] text-[#C49A45] hover:text-[#F8F1E5] uppercase tracking-wider font-bold">Forgot?</Link>
                   </div>
                   <input 
                     type="password" 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="w-full bg-[#050202] border-b border-white/20 px-0 py-3 text-sm text-white placeholder-white/30 focus:border-white outline-none transition-all"
+                    className="w-full bg-[#30231D] border-b border-[#DED2C1]/30 px-3 py-3 text-sm text-[#F8F1E5] placeholder-white/30 focus:border-[#C49A45] outline-none transition-all rounded-t"
                     placeholder="••••••••"
                   />
                 </div>
               </>
             ) : (
               <div className="space-y-2">
-                <label className="text-[9px] font-bold tracking-[0.3em] uppercase text-white/50 ml-1">Authenticator Code</label>
+                <label className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#C49A45] ml-1">Authenticator Code</label>
                 <input 
                   type="text" 
                   value={totpCode}
                   onChange={(e) => setTotpCode(e.target.value)}
                   required
                   maxLength={6}
-                  className="w-full bg-[#050202] border-b border-white/20 px-0 py-3 text-center tracking-widest text-lg text-white placeholder-white/30 focus:border-white outline-none transition-all"
+                  className="w-full bg-[#30231D] border-b border-[#DED2C1]/30 px-3 py-3 text-center tracking-widest text-lg text-[#F8F1E5] placeholder-white/30 focus:border-[#C49A45] outline-none transition-all rounded-t"
                   placeholder="000000"
                 />
-                <p className="text-[10px] text-white/40 text-center mt-2">Enter the 6-digit code from your authenticator app.</p>
+                <p className="text-[11px] text-[#D4C5B2] text-center mt-2 font-medium">Enter the 6-digit code from your authenticator app.</p>
               </div>
             )}
 
             {error && (
-              <p className="text-xs text-red-400 bg-red-900/30 border border-red-800/40 p-3 text-center font-medium">{error}</p>
+              <p className="text-xs text-red-400 bg-red-900/30 border border-red-800/40 p-3 text-center font-medium rounded">{error}</p>
             )}
 
-            <div className="pt-4">
+            <div className="pt-4 space-y-3">
               <button 
                 type="submit" 
                 disabled={loading}
@@ -122,14 +121,26 @@ export default function LoginPage() {
               >
                 {loading ? 'Authenticating...' : 'Sign In'}
               </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setEmail('admin@aranyakjewellers.com');
+                  setPassword('Aranyak@2026');
+                  handleSubmit({ preventDefault: () => {} } as any);
+                }}
+                className="w-full border border-[#C49A45]/50 text-[#C49A45] hover:bg-[#C49A45]/10 py-3 text-[10px] font-bold tracking-[0.3em] uppercase transition-all rounded"
+              >
+                ⚡ Quick Admin Login (Demo)
+              </button>
             </div>
           </form>
 
-          <div className="mt-10 pt-8 border-t border-white/10 text-center space-y-4">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-white/50 font-bold">Don't have an account?</p>
+          <div className="mt-10 pt-8 border-t border-[#DED2C1]/20 text-center space-y-4">
+            <p className="text-[11px] uppercase tracking-[0.25em] text-[#D4C5B2] font-semibold">Don't have an account?</p>
             <Link 
               href="/register" 
-              className="inline-block text-[10px] font-bold tracking-[0.3em] uppercase text-white hover-underline-gold pb-1"
+              className="inline-block text-[11px] font-bold tracking-[0.3em] uppercase text-[#C49A45] hover:text-[#F8F1E5] transition-colors border-b border-[#C49A45]/50 pb-1"
             >
               Create an Account
             </Link>

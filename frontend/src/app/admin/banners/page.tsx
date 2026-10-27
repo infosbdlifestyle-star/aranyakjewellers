@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = 'force-dynamic';
+
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
@@ -68,25 +70,29 @@ export default function AdminBannersPage() {
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files || e.target.files.length === 0 || !token) return;
+    if (!e.target.files || e.target.files.length === 0) return;
     const file = e.target.files[0];
+    const authToken = token || (typeof window !== 'undefined' ? localStorage.getItem('aranyak_token') || localStorage.getItem('token') || '' : '');
 
-    // Client-side 6MB validation
-    const MAX_SIZE = 4 * 1024 * 1024; // 4MB
+    // Client-side 15MB validation
+    const MAX_SIZE = 15 * 1024 * 1024; // 15MB
     if (file.size > MAX_SIZE) {
-      alert(`File too large (${(file.size / 1024 / 1024).toFixed(1)}MB). Maximum allowed size is 4MB.`);
+      alert(`File too large (${(file.size / 1024 / 1024).toFixed(1)}MB). Maximum allowed size is 15MB.`);
       e.target.value = '';
       return;
     }
     
     setUploadingImage(true);
     try {
-      const result = await api.uploadImage(token, file);
-      if (result.path) {
-        setFormData({ ...formData, imageUrl: result.path });
+      const result = await api.uploadImage(authToken, file);
+      if (result && result.path) {
+        setFormData(prev => ({ ...prev, imageUrl: result.path }));
+      } else {
+        alert(result?.message || result?.error || 'Failed to upload image to server.');
       }
     } catch (err) {
-      alert('Failed to upload image: ' + (err.message || 'Unknown error. Check file size.'));
+      console.error('Banner image upload error:', err);
+      alert('Failed to upload banner image.');
     } finally {
       setUploadingImage(false);
       e.target.value = '';
@@ -95,7 +101,7 @@ export default function AdminBannersPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!token) return;
+    const authToken = token || (typeof window !== 'undefined' ? localStorage.getItem('aranyak_token') || localStorage.getItem('token') || '' : '');
     if (!formData.imageUrl) {
       setSaveStatus({type: 'error', msg: 'Banner image is required.'});
       return;
@@ -105,10 +111,10 @@ export default function AdminBannersPage() {
     setSaveStatus({type: '', msg: ''});
     try {
       if (editingBanner) {
-        await api.updateBanner(token, editingBanner.id, formData);
+        await api.updateBanner(authToken, editingBanner.id, formData);
         setSaveStatus({type: 'success', msg: '✓ Banner updated successfully!'});
       } else {
-        await api.createBanner(token, formData);
+        await api.createBanner(authToken, formData);
         setSaveStatus({type: 'success', msg: '✓ Banner created successfully!'});
       }
       fetchBanners();
@@ -121,9 +127,10 @@ export default function AdminBannersPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!token || !confirm('Are you sure you want to delete this banner?')) return;
+    const authToken = token || (typeof window !== 'undefined' ? localStorage.getItem('aranyak_token') || localStorage.getItem('token') || '' : '');
+    if (!confirm('Are you sure you want to delete this banner?')) return;
     try {
-      await api.deleteBanner(token, id);
+      await api.deleteBanner(authToken, id);
       fetchBanners();
     } catch {
       alert('Failed to delete banner');
@@ -357,7 +364,7 @@ export default function AdminBannersPage() {
                     </label>
                   )}
                   <p className="text-[10px] text-white/40 mt-2 leading-relaxed">
-                    📐 Recommended: 1920×1080px (Landscape) · Max 4MB · JPG, PNG, WebP
+                    📐 Recommended: 1920×1080px (Landscape) · Max 6MB · JPG, PNG, WebP
                   </p>
                 </div>
               </div>

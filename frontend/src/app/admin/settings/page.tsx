@@ -26,15 +26,8 @@ export default function AdminSettingsPage() {
 
   const fetchSettings = async () => {
     try {
-      const res = await fetch('/api/settings');
-      if (res.ok) {
-        const data = await res.json();
-        const settingsMap: any = {};
-        data.forEach((s: any) => {
-          settingsMap[s.key] = s.value;
-        });
-        setSettings(settingsMap);
-      }
+      const data = await api.getSettings();
+      setSettings(data || {});
     } catch (e) {
       console.error(e);
     }
@@ -42,47 +35,44 @@ export default function AdminSettingsPage() {
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, settingKey: string) => {
-    if (!e.target.files || e.target.files.length === 0 || !token) return;
+    if (!e.target.files || e.target.files.length === 0) return;
     const file = e.target.files[0];
+    const authToken = token || (typeof window !== 'undefined' ? localStorage.getItem('aranyak_token') || localStorage.getItem('token') || '' : '');
+
+    // Client-side 15MB validation
+    const MAX_SIZE = 15 * 1024 * 1024; // 15MB
+    if (file.size > MAX_SIZE) {
+      alert(`File too large (${(file.size / 1024 / 1024).toFixed(1)}MB). Maximum allowed size is 15MB.`);
+      e.target.value = '';
+      return;
+    }
     
     setUploadingImage(true);
     try {
-      const result = await api.uploadImage(token, file);
-      if (result.path) {
-        setSettings({ ...settings, [settingKey]: result.path });
+      const result = await api.uploadImage(authToken, file);
+      if (result && result.path) {
+        setSettings((prev: any) => ({ ...prev, [settingKey]: result.path }));
+      } else {
+        alert(result?.message || result?.error || 'Failed to upload image.');
       }
     } catch (err) {
-      alert('Failed to upload image');
+      console.error('Settings image upload error:', err);
+      alert('Failed to upload image.');
     } finally {
       setUploadingImage(false);
+      e.target.value = '';
     }
   };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!token) return;
+    const authToken = token || (typeof window !== 'undefined' ? localStorage.getItem('aranyak_token') || localStorage.getItem('token') || '' : '');
     setSaving(true);
     setStatus({ type: '', msg: '' });
 
-    const payload = Object.keys(settings).map(key => ({
-      key,
-      value: settings[key]
-    }));
-
     try {
-      const res = await fetch('/api/settings/bulk', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(payload)
-      });
-      if (res.ok) {
-        setStatus({ type: 'success', msg: '✓ Settings saved successfully!' });
-      } else {
-        setStatus({ type: 'error', msg: '✗ Failed to save settings.' });
-      }
+      await api.updateSettings(authToken, settings);
+      setStatus({ type: 'success', msg: '✓ Settings saved successfully!' });
     } catch (err) {
       setStatus({ type: 'error', msg: '✗ Network error occurred.' });
     }

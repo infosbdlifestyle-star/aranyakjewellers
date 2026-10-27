@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { API_URL } from '@/lib/api';
 
 export const dynamic = 'force-dynamic';
 
@@ -23,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 3000);
-    const res = await fetch('http://117.252.16.132:3001/api/categories', {
+    const res = await fetch(`${API_URL}/categories`, {
       cache: 'no-store',
       signal: controller.signal
     });

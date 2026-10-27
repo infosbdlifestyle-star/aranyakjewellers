@@ -13,7 +13,7 @@ async function test() {
     });
     
     console.log('✅ Connected! Running test command...');
-    const result = await ssh.execCommand('whoami && uptime && pm2 list');
+    const result = await ssh.execCommand('cd /root/aranyak-backend && pm2 start dist/main.js --name aranyak-backend && pm2 save && pm2 list');
     console.log(result.stdout);
     if (result.stderr) console.error(result.stderr);
     

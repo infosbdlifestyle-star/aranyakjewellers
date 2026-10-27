@@ -18,6 +18,7 @@ import { SettingsModule } from './settings/settings.module';
 import { StoresModule } from './stores/stores.module';
 import { UsersModule } from './users/users.module';
 import { MailModule } from './mail/mail.module';
+import { MediaModule } from './media/media.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { MailModule } from './mail/mail.module';
     StoresModule,
     UsersModule,
     MailModule,
+    MediaModule,
   ],
   controllers: [AppController],
   providers: [AppService],

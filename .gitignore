@@ -51,3 +51,8 @@ scratch_deps/
 
 .vercel
 .env*
+
+backend.tar.gz
+downloaded_assets/
+afData.txt
+gdrive_*.html

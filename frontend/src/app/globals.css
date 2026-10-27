@@ -2,41 +2,41 @@
 
 @layer base {
   :root {
-    --background: #050202;
-    --foreground: #ffffff;
-    --primary: #CBA135; /* Champagne Gold */
-    --primary-foreground: #050202;
-    --secondary: #E5D3B3; /* Lighter Gold Accent */
-    --secondary-foreground: #050202;
-    --accent: #2A0A0A; /* Deepest Wine / Charcoal */
-    --accent-foreground: #ffffff;
-    --ivory: #ffffff; /* Using pure white for contrasts against dark bg */
-    --muted: #1A1A1A;
-    --muted-foreground: #a1a1aa;
-    --card: #0A0505;
-    --card-foreground: #ffffff;
-    --border: #27272a;
-    --input: #27272a;
-    --ring: #CBA135;
+    --background: #F8F4EC; /* Primary background: Warm ivory */
+    --foreground: #30231D; /* Primary text on light: Deep brown */
+    --primary: #C49A45; /* Primary gold accent: Champagne gold */
+    --primary-foreground: #F8F1E5; /* Primary text on dark: Warm ivory */
+    --secondary: #A77C32; /* Secondary gold accent: Muted antique gold */
+    --secondary-foreground: #F8F1E5;
+    --accent: #F0E7D8; /* Secondary background: Soft champagne */
+    --accent-foreground: #30231D;
+    --ivory: #F8F4EC;
+    --muted: #E8DDCC; /* Alternate section background: Light beige */
+    --muted-foreground: #74665A; /* Secondary text on light: Warm taupe */
+    --card: #F8F4EC;
+    --card-foreground: #30231D;
+    --border: #DED2C1; /* Borders and dividers: Subtle warm beige */
+    --input: #DED2C1;
+    --ring: #C49A45;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #CBA135;
-    --primary-foreground: #0a0a0a;
-    --secondary: #2A0A0A;
-    --secondary-foreground: #ffffff;
-    --accent: #E5D3B3;
-    --accent-foreground: #0a0a0a;
-    --muted: #27272a;
-    --muted-foreground: #a1a1aa;
-    --card: #121212;
-    --card-foreground: #ededed;
-    --border: #27272a;
-    --input: #27272a;
-    --ring: #CBA135;
+    --background: #F8F4EC; /* Maintain consistent luxury warm ivory base */
+    --foreground: #30231D;
+    --primary: #C49A45;
+    --primary-foreground: #F8F1E5;
+    --secondary: #A77C32;
+    --secondary-foreground: #F8F1E5;
+    --accent: #F0E7D8;
+    --accent-foreground: #30231D;
+    --muted: #E8DDCC;
+    --muted-foreground: #74665A;
+    --card: #F8F4EC;
+    --card-foreground: #30231D;
+    --border: #DED2C1;
+    --input: #DED2C1;
+    --ring: #C49A45;
   }
 }
 
@@ -50,6 +50,21 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-ivory: var(--ivory);
+
+  /* Exact Design Tokens */
+  --color-ivory-warm: #F8F4EC;
+  --color-champagne-soft: #F0E7D8;
+  --color-beige-light: #E8DDCC;
+  --color-espresso-deep: #211713;
+  --color-charcoal-warm: #30231D;
+  --color-gold-champagne: #C49A45;
+  --color-gold-antique: #A77C32;
+  --color-brown-deep: #30231D;
+  --color-taupe-warm: #74665A;
+  --color-ivory-light: #F8F1E5;
+  --color-beige-soft: #D4C5B2;
+  --color-beige-border: #DED2C1;
+
   --font-sans: var(--font-geist-sans);
   --font-serif: var(--font-cormorant);
 }
@@ -60,11 +75,13 @@ body {
   font-family: var(--font-geist-sans), sans-serif;
   overflow-x: clip; /* Fixes mobile horizontal scroll while preserving smooth vertical scroll */
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-cormorant), serif;
   letter-spacing: -0.01em;
+  color: inherit;
 }
 
 /* Premium Typography */
@@ -74,6 +91,48 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
 
+/* Consistent Luxury Typography Utilities */
+.text-brown-deep {
+  color: #30231D !important;
+}
+
+.text-taupe-warm {
+  color: #74665A !important;
+}
+
+.text-ivory-light {
+  color: #F8F1E5 !important;
+}
+
+.text-beige-soft {
+  color: #D4C5B2 !important;
+}
+
+.text-gold-champagne {
+  color: #C49A45 !important;
+}
+
+.text-gold-antique {
+  color: #A77C32 !important;
+}
+
+/* Backward-compatible luxury classes mapped to new tokens */
+.text-luxury-ink {
+  color: #30231D !important;
+}
+
+.text-luxury-charcoal {
+  color: #30231D !important;
+}
+
+.text-luxury-body {
+  color: #74665A !important;
+}
+
+.text-luxury-muted {
+  color: #74665A !important;
+}
+
 /* Text Balancer for Headlines */
 .text-balance {
   text-wrap: balance;
@@ -81,28 +140,32 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Glassmorphism utility - Dark Theme Default */
 .glass {
-  background: rgba(10, 5, 5, 0.7);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .dark .glass {
   background: rgba(10, 10, 10, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Luxury Gradients & Textures */
 .gold-gradient {
-  background: linear-gradient(135deg, #A67C00 0%, #E5D3B3 25%, #CBA135 50%, #E5D3B3 75%, #A67C00 100%);
+  background: linear-gradient(135deg, #A77C32 0%, #D8AF5A 30%, #C49A45 60%, #E7C880 85%, #A77C32 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% auto;
   animation: shine 6s linear infinite;
 }
 
+.espresso-gradient {
+  background: linear-gradient(135deg, #211713 0%, #30231D 50%, #211713 100%);
+}
+
 .burgundy-gradient {
-  background: linear-gradient(135deg, #1A0505 0%, #2A0A0A 50%, #1A0505 100%);
+  background: linear-gradient(135deg, #2A1713 0%, #3A231D 50%, #2A1713 100%);
 }
 
 /* Silk texture - local SVG pattern */
@@ -117,15 +180,15 @@ h1, h2, h3, h4, h5, h6 {
   background-image: 
     repeating-linear-gradient(
       0deg,
-      rgba(255, 255, 255, 0.02) 0px,
-      rgba(255, 255, 255, 0.02) 1px,
+      rgba(248, 241, 229, 0.02) 0px,
+      rgba(248, 241, 229, 0.02) 1px,
       transparent 1px,
       transparent 4px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.01) 0px,
-      rgba(255, 255, 255, 0.01) 1px,
+      rgba(248, 241, 229, 0.01) 0px,
+      rgba(248, 241, 229, 0.01) 1px,
       transparent 1px,
       transparent 4px
     );
@@ -169,53 +232,41 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   inset: 0;
   border: 1px solid transparent;
-  background: linear-gradient(135deg, #9C793F, #E5D3B3, #CBA135, #E5D3B3, #7A5B2B) border-box;
+  background: linear-gradient(135deg, #A77C32, #F0E7D8, #C49A45, #F0E7D8, #8C6524) border-box;
   mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
 }
 
-/* Textured Deep Color Button */
+/* Primary Luxury Button */
 .btn-luxury {
-  background-color: var(--primary);
-  color: var(--secondary);
-  border: 1px solid rgba(203, 161, 53, 0.3); /* border-secondary/30 */
+  background-color: #C49A45;
+  color: #211713;
+  border: 1px solid #A77C32;
   position: relative;
   overflow: hidden;
-  transition: all 0.5s ease-out;
-}
-
-.btn-luxury::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: 
-    repeating-linear-gradient(
-      0deg,
-      rgba(203, 161, 53, 0.05) 0px,
-      rgba(203, 161, 53, 0.05) 1px,
-      transparent 1px,
-      transparent 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(203, 161, 53, 0.03) 0px,
-      rgba(203, 161, 53, 0.03) 1px,
-      transparent 1px,
-      transparent 4px
-    );
-  opacity: 0.8;
-  pointer-events: none;
+  font-weight: 700;
+  transition: all 0.4s ease-out;
 }
 
 .btn-luxury:hover {
-  background-color: var(--secondary);
-  color: var(--primary);
-  box-shadow: 0 0 20px rgba(203, 161, 53, 0.2);
+  background-color: #A77C32;
+  color: #F8F1E5;
+  box-shadow: 0 4px 20px rgba(196, 154, 69, 0.25);
 }
 
-.btn-luxury:hover::before {
-  opacity: 0;
+/* Secondary Luxury Button (Outline) */
+.btn-luxury-outline {
+  background-color: transparent;
+  color: #F8F1E5;
+  border: 1px solid #DED2C1;
+  transition: all 0.4s ease-out;
+}
+
+.btn-luxury-outline:hover {
+  background-color: rgba(248, 244, 236, 0.12);
+  border-color: #C49A45;
+  color: #C49A45;
 }
 
 /* Hover underline effect */
@@ -229,7 +280,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 1px;
   bottom: -2px;
   left: 50%;
-  background-color: var(--secondary);
+  background-color: #C49A45;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
 }
@@ -263,18 +314,6 @@ h1, h2, h3, h4, h5, h6 {
   animation: fill-down 2.5s infinite cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  animation: marquee 100s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -282,11 +321,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0505;
+  background: #211713;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary);
+  background: #C49A45;
 }
 
 /* Interaction fixes */
@@ -304,7 +343,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: none !important;
   }
   .group:hover .group-hover\:opacity-100 {
-    opacity: 0 !important; /* Depending on default state */
+    opacity: 0 !important;
   }
 }
 
@@ -329,28 +368,64 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Luxury Glow & Glass Utilities */
 .glow-gold {
-  box-shadow: 0 0 35px rgba(203, 161, 53, 0.18);
+  box-shadow: 0 0 25px rgba(196, 154, 69, 0.16);
 }
 
 .glow-gold-sm {
-  box-shadow: 0 0 15px rgba(203, 161, 53, 0.25);
+  box-shadow: 0 0 12px rgba(196, 154, 69, 0.2);
 }
 
 .gold-border-glow {
-  border: 1px solid rgba(203, 161, 53, 0.25);
-  transition: all 0.5s ease;
+  border: 1px solid rgba(196, 154, 69, 0.25);
+  transition: all 0.4s ease;
 }
 
 .gold-border-glow:hover {
-  border-color: rgba(229, 211, 179, 0.6);
-  box-shadow: 0 0 25px rgba(203, 161, 53, 0.2);
+  border-color: rgba(196, 154, 69, 0.6);
+  box-shadow: 0 4px 20px rgba(196, 154, 69, 0.15);
 }
 
 .bg-radial-gold {
-  background: radial-gradient(circle at 50% 50%, rgba(203, 161, 53, 0.12) 0%, rgba(5, 2, 2, 0) 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(196, 154, 69, 0.08) 0%, rgba(33, 23, 19, 0) 70%);
 }
 
 .bg-radial-gold-top {
-  background: radial-gradient(circle at 50% 0%, rgba(203, 161, 53, 0.15) 0%, rgba(5, 2, 2, 0) 65%);
+  background: radial-gradient(circle at 50% 0%, rgba(196, 154, 69, 0.12) 0%, rgba(33, 23, 19, 0) 65%);
+}
+
+/* Refined Soft Gemstone Glow Utilities */
+.glow-ruby {
+  box-shadow: 0 4px 20px rgba(167, 124, 50, 0.15);
+}
+.glow-emerald {
+  box-shadow: 0 4px 20px rgba(167, 124, 50, 0.15);
+}
+.glow-sapphire {
+  box-shadow: 0 4px 20px rgba(167, 124, 50, 0.15);
+}
+.glow-amber {
+  box-shadow: 0 4px 20px rgba(196, 154, 69, 0.2);
+}
+
+/* Subtle Warm Accent Gradients */
+.text-gradient-rose {
+  background: linear-gradient(135deg, #A77C32 0%, #C49A45 50%, #8C6524 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #A77C32 0%, #C49A45 50%, #8C6524 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #A77C32 0%, #C49A45 50%, #8C6524 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-gradient-gold {
+  background: linear-gradient(135deg, #C49A45 0%, #E7C880 50%, #A77C32 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 

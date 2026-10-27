@@ -10,11 +10,12 @@ interface RevealProps {
   duration?: number;
   y?: number;
   x?: number;
+  className?: string;
 }
 
-export const Reveal = ({ children, width = "fit-content", delay = 0, duration = 0.5, y = 20, x = 0 }: RevealProps) => {
+export const Reveal = ({ children, width = "fit-content", delay = 0, duration = 0.5, y = 20, x = 0, className = "" }: RevealProps) => {
   return (
-    <div style={{ position: "relative", width }}>
+    <div className={className} style={{ position: "relative", width, height: width === "100%" ? "100%" : undefined }}>
       <motion.div
         variants={{
           hidden: { opacity: 0, y, x, visibility: "hidden" as any },
@@ -24,7 +25,7 @@ export const Reveal = ({ children, width = "fit-content", delay = 0, duration = 
         whileInView="visible"
         transition={{ duration, delay, ease: "easeOut" }}
         viewport={{ once: true, margin: "-50px" }}
-        style={{ pointerEvents: "auto" }}
+        style={{ pointerEvents: "auto", width: width === "100%" ? "100%" : undefined, height: width === "100%" ? "100%" : undefined }}
       >
         {children}
       </motion.div>

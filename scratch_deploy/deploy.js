@@ -39,6 +39,9 @@ async function deploy() {
     await runCommand('rm -rf /root/aranyak-backend');
     await runCommand('mkdir -p /root/aranyak-backend');
     await runCommand('tar -xzf /root/backend.tar.gz -C /root/aranyak-backend --strip-components=1');
+
+    await runCommand('cp -rf /root/aranyak-backend/uploads/* /root/aranyak_uploads/ || true');
+
     await runCommand('rm -rf /root/aranyak-backend/uploads');
     await runCommand('ln -sf /root/aranyak_uploads /root/aranyak-backend/uploads');
     await runCommand('cp /root/.env.production /root/aranyak-backend/.env');
@@ -57,7 +60,7 @@ async function deploy() {
     await runCommand('cd /root/aranyak-backend && npm run build 2>&1');
 
     // Step 5: PM2 restart with updated env
-    await runCommand('cd /root/aranyak-backend && (pm2 describe aranyak-backend > /dev/null 2>&1 && pm2 restart aranyak-backend --update-env || pm2 start dist/src/main.js --name aranyak-backend)');
+    await runCommand('cd /root/aranyak-backend && (pm2 describe aranyak-backend > /dev/null 2>&1 && pm2 restart aranyak-backend --update-env || pm2 start dist/main.js --name aranyak-backend)');
     await runCommand('pm2 save');
     
     console.log('\n✅ Deployment completed successfully!');

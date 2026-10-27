@@ -1,35 +1,26 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  compress: true,
   images: {
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      { protocol: 'https', hostname: '**' },
+      { protocol: 'http', hostname: '**' }
+    ]
   },
+  // Optimize for Vercel deployment
   poweredByHeader: false,
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          { key: 'X-DNS-Prefetch-Control', value: 'on' },
-          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'X-Frame-Options', value: 'DENY' },
-          { key: 'X-XSS-Protection', value: '1; mode=block' },
-          { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
-        ],
-      },
-    ];
-  },
   async rewrites() {
+    const backend = process.env.BACKEND_URL || 'http://117.252.16.132:3001';
     return [
       {
         source: '/api/:path*',
-        destination: 'http://117.252.16.132:3001/api/:path*',
+        destination: `${backend}/api/:path*`,
       },
       {
         source: '/uploads/:path*',
-        destination: 'http://117.252.16.132:3001/uploads/:path*',
+        destination: `${backend}/uploads/:path*`,
       },
     ];
   },

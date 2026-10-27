@@ -44,9 +44,11 @@ export function MouseParallaxImage({ src, alt, className = "", intensity = 20 }:
         style={{ x: smoothX, y: smoothY }}
       >
         <Image 
+          key={src}
           src={src} 
-          alt={alt} 
-          fill 
+          alt={alt || "Aranyak Jewellers Fine Showcase"} 
+          fill
+          sizes="100vw"
           className="object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" 
         />
       </motion.div>

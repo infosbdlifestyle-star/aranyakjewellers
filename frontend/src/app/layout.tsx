@@ -21,13 +21,12 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://aranyakjewellers.com'),
-  alternates: { canonical: '/' },
   title: "Aranyak Jewellers | Premium Gold & Diamond Jewellery in Tripura",
-  description: "Discover exquisite gold, diamond, and silver jewellery at Aranyak Jewellers. Multiple stores across Tripura offering the finest craftsmanship and authentic astrological stones.",
-  keywords: ["Aranyak Jewellers", "Jewellery in Tripura", "Gold Jewellery", "Diamond Rings", "Silver Ornaments", "Astrological Stones", "Bengali Jewellery", "Agartala Jewellery"],
+  description: "Discover exquisite gold, diamond, and silver jewellery at Aranyak Jewellers. Multiple stores across Tripura offering the finest craftsmanship and authentic jewellery.",
+  keywords: ["Aranyak Jewellers", "Jewellery in Tripura", "Gold Jewellery", "Diamond Rings", "Silver Ornaments", "Bengali Jewellery", "Agartala Jewellery"],
   openGraph: {
     title: "Aranyak Jewellers | Premium Gold & Diamond Jewellery",
-    description: "Legacy of Excellence Since 2005. Handcrafted masterpieces and certified purity.",
+    description: "Legacy of Excellence Since 1995. Handcrafted masterpieces and certified purity.",
     url: "https://aranyakjewellers.com",
     siteName: "Aranyak Jewellers",
     images: [{ url: "/hero-banner.png", width: 1200, height: 630 }],
@@ -42,28 +41,23 @@ export const metadata: Metadata = {
   },
 };
 
+import { api } from '@/lib/api';
+
 async function getGlobalData() {
-  const backendUrl = 'http://117.252.16.132:3001/api';
   try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000);
-    const [catRes, setRes] = await Promise.all([
-      fetch(`${backendUrl}/categories`, { cache: 'no-store', signal: controller.signal }),
-      fetch(`${backendUrl}/settings`, { cache: 'no-store', signal: controller.signal })
+    const [categories, settings] = await Promise.all([
+      api.getCategories(),
+      api.getSettings()
     ]);
-    clearTimeout(timeout);
-    const categories = catRes.ok ? await catRes.json() : [];
-    const settingsArr = setRes.ok ? await setRes.json() : [];
-    const settings: any = {};
-    if (Array.isArray(settingsArr)) {
-      settingsArr.forEach((s: any) => { settings[s.key] = s.value; });
-    }
-    return { categories, settings };
+    return { categories: categories || [], settings: settings || {} };
   } catch {
-    // Return empty — Header will use static CATEGORIES fallback
     return { categories: [], settings: {} };
   }
 }
+
+import { AuthProvider } from "@/context/AuthContext";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ScrollProgressBar } from "@/components/animations/LuxuryMotion";
 
 export default async function RootLayout({
   children,
@@ -75,53 +69,20 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${cormorant.variable} antialiased`}
+      className={`${geistSans.variable} ${cormorant.variable} antialiased lg:cursor-none`}
     >
       <body className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "JewelryStore",
-              "name": "Aranyak Jewellers",
-              "url": "https://aranyakjewellers.com",
-              "logo": "https://aranyakjewellers.com/logo.png",
-              "image": "https://aranyakjewellers.com/hero-banner.png",
-              "description": "Premium gold, diamond, silver jewellery and astrological stones store in Tripura, India. Established in 2005 with multiple showrooms across the state.",
-              "foundingDate": "2005",
-              "telephone": "+91-9436501506",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "M B B Chowmuhani",
-                "addressLocality": "Agartala",
-                "addressRegion": "Tripura",
-                "postalCode": "799001",
-                "addressCountry": "IN"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "23.8315",
-                "longitude": "91.2868"
-              },
-              "openingHoursSpecification": {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                "opens": "10:00",
-                "closes": "20:00"
-              },
-              "priceRange": "₹₹₹",
-              "sameAs": []
-            })
-          }}
-        />
-        <PageLoader />
-        <SmoothScroll>
-          <Header categories={categories} />
-          {children}
-          <Footer categories={categories} settings={settings} />
-        </SmoothScroll>
-        <WhatsAppButton />
+        <ScrollProgressBar />
+        <CustomCursor />
+        <AuthProvider>
+          <PageLoader />
+          <SmoothScroll>
+            <Header categories={categories} />
+            {children}
+            <Footer categories={categories} settings={settings} />
+          </SmoothScroll>
+          <WhatsAppButton />
+        </AuthProvider>
       </body>
     </html>
   );

@@ -31,46 +31,45 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#050202] text-white">
+    <main className="min-h-screen flex flex-col bg-[#F8F4EC] text-[#30231D]">
       <section className="flex-1 flex items-center justify-center py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
-        <div className="absolute inset-0 silk-texture opacity-20 mix-blend-overlay" />
 
-        <div className="w-full max-w-md bg-[#0A0505] p-10 shadow-2xl border border-white/10 relative z-10">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary via-primary to-secondary" />
+        <div className="w-full max-w-md bg-[#211713] text-[#F8F1E5] p-10 shadow-2xl border border-[#DED2C1]/20 relative z-10 rounded-2xl">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#A77C32] via-[#C49A45] to-[#A77C32] rounded-t-2xl" />
           
           <div className="text-center space-y-4 mb-10">
-            <h1 className="text-3xl font-serif font-light text-white">Reset Password</h1>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-white/50 font-bold">We will send you a reset link</p>
+            <h1 className="text-3xl font-serif font-light text-[#F8F1E5]">Reset Password</h1>
+            <p className="text-[10px] tracking-[0.3em] uppercase text-[#D4C5B2] font-bold">We will send you a reset link</p>
           </div>
 
           {message ? (
             <div className="text-center space-y-6">
-              <p className="text-sm text-green-400 bg-green-900/30 border border-green-800/40 p-4">{message}</p>
+              <p className="text-sm text-green-400 bg-green-900/30 border border-green-800/40 p-4 rounded">{message}</p>
               <Link href="/login" className="btn-luxury py-3 w-full block text-[10px] uppercase tracking-widest font-bold">Back to Login</Link>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-[9px] font-bold tracking-[0.3em] uppercase text-white/50 ml-1">Email Address</label>
+                <label className="text-[9px] font-bold tracking-[0.3em] uppercase text-[#C49A45] ml-1">Email Address</label>
                 <input 
                   type="email" 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full bg-[#050202] border-b border-white/20 px-0 py-3 text-sm text-white placeholder-white/30 focus:border-white outline-none transition-all"
+                  className="w-full bg-[#30231D] border-b border-[#DED2C1]/30 px-3 py-3 text-sm text-[#F8F1E5] placeholder-white/30 focus:border-[#C49A45] outline-none transition-all rounded-t"
                   placeholder="Enter your email"
                 />
               </div>
 
-              {error && <p className="text-xs text-red-400 bg-red-900/30 border border-red-800/40 p-3 text-center font-medium">{error}</p>}
+              {error && <p className="text-xs text-red-400 bg-red-900/30 border border-red-800/40 p-3 text-center font-medium rounded">{error}</p>}
 
               <div className="pt-4 space-y-4">
                 <button type="submit" disabled={loading} className="w-full btn-luxury py-4 font-bold text-[10px] tracking-[0.4em] uppercase shadow-xl disabled:opacity-50">
                   {loading ? 'Sending...' : 'Send Reset Link'}
                 </button>
                 <div className="text-center">
-                  <Link href="/login" className="inline-block text-[10px] text-white/50 hover:text-white transition-colors uppercase tracking-widest font-bold">Back to Login</Link>
+                  <Link href="/login" className="inline-block text-[10px] text-[#C49A45] hover:text-[#F8F1E5] transition-colors uppercase tracking-widest font-bold">Back to Login</Link>
                 </div>
               </div>
             </form>
