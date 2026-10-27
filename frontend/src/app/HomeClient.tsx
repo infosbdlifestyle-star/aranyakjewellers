@@ -226,6 +226,120 @@ export default function HomeClient({
   return (
     <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C] selection:bg-[#D6B15D] selection:text-[#211813]" ref={containerRef}>
       
+      {/* 1. Full-Screen Luxury "Timeless Elegance" Hero Section */}
+      <section className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-[#211813]" aria-label="Hero Section">
+        <motion.div 
+          className="absolute inset-0"
+          initial={{ scale: 1.15 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+          style={{ y: yParallax, opacity: opacityParallax }}
+        >
+          <Image 
+            src={liveMediaMap['home_hero_banner'] || (liveBanners && liveBanners.length > 0 ? liveBanners[0].imageUrl : (initialBanners && initialBanners.length > 0 ? initialBanners[0].imageUrl : "/uploads/hero_timeless_elegance.webp"))} 
+            alt="Aranyak Jewellers Masterpiece Collection" 
+            fill
+            className="object-cover animate-slow-zoom no-select opacity-70"
+            priority
+          />
+        </motion.div>
+        
+        {/* Multi-layered Warm Espresso & Gold Ambient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/60 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/85 via-transparent to-[#211813]/85 pointer-events-none" />
+        
+        {/* Floating Gold Dust Particles */}
+        {mounted && (
+          <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-[#D6B15D] rounded-full blur-[1px] mix-blend-screen"
+                initial={{ 
+                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
+                  y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
+                  opacity: Math.random() * 0.5 + 0.2
+                }}
+                animate={{
+                  y: [null, Math.random() * -200 - 100],
+                  x: [null, Math.random() * 100 - 50],
+                  opacity: [null, 0],
+                }}
+                transition={{
+                  duration: Math.random() * 10 + 10,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+            ))}
+          </div>
+        )}
+        
+        <div className="relative z-10 w-full px-6 max-w-6xl flex flex-col items-center text-center pt-20 pb-20">
+          
+          {/* Top Pill Badge */}
+          <Reveal y={20} duration={1}>
+            <div className="relative inline-flex items-center space-x-3 px-5 py-2 rounded-full bg-[#211813]/85 backdrop-blur-md border border-[#D6B15D]/50 mb-8 shadow-xl">
+              <SparkleGlint className="absolute -top-2 -right-2" size={16} delay={0.5} />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D6B15D] animate-pulse" />
+              <span className="text-[#D6B15D] text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase">
+                • EST. 2005 • TRIPURA'S FINEST JEWELLER •
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D6B15D] animate-pulse" />
+            </div>
+          </Reveal>
+          
+          {/* Main Headline with Kinetic Masked Text Reveal */}
+          <h1 className="text-5xl sm:text-7xl md:text-9xl lg:text-[10rem] font-serif font-light text-[#FFF8EB] leading-[0.88] tracking-tight drop-shadow-2xl">
+            <TextReveal delay={0.1} duration={1.1}>
+              Timeless
+            </TextReveal>
+            <br />
+            <TextReveal delay={0.25} duration={1.2}>
+              <span className="font-editorial gold-gradient italic inline-block mt-2 sm:mt-4 drop-shadow-[0_4px_30px_rgba(196,154,69,0.35)]">
+                Elegance
+              </span>
+            </TextReveal>
+          </h1>
+
+          {/* Subtitle Narrative */}
+          <Reveal delay={0.4} y={30}>
+            <p className="mt-8 text-xs sm:text-sm md:text-base text-[#E5D7C5] font-normal tracking-[0.18em] max-w-3xl mx-auto leading-relaxed uppercase drop-shadow-md">
+              CURATING HANDCRAFTED GOLD, CERTIFIED DIAMONDS, AND SACRED ASTROLOGICAL GEMSTONES WITH 21+ YEARS OF MASTER CRAFTSMANSHIP.
+            </p>
+          </Reveal>
+
+          {/* Two CTA Buttons */}
+          <Reveal delay={0.6} y={30}>
+            <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-center gap-5 sm:gap-8">
+              <Link 
+                href="/collections" 
+                className="btn-luxury px-10 py-4 text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase rounded-none glow-gold transition-all duration-500 hover:scale-105"
+              >
+                EXPLORE HIGH JEWELLERY
+              </Link>
+              <Link 
+                href="/stores" 
+                className="px-10 py-4 text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase text-[#FFF8EB] hover:text-[#211813] bg-[#211813]/70 hover:bg-[#D6B15D] backdrop-blur-md border border-[#DED2C1]/40 hover:border-[#D6B15D] transition-all duration-500 hover:scale-105 shadow-lg"
+              >
+                FIND BOUTIQUE SHOWROOMS
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Bottom "SCROLL" Indicator */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 pointer-events-none opacity-80 animate-bounce">
+          <span className="text-[9px] font-bold tracking-[0.35em] uppercase text-[#D6B15D]">
+            SCROLL
+          </span>
+          <svg width="14" height="16" viewBox="0 0 24 24" fill="none" stroke="#D6B15D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </div>
+      </section>
+
       {/* 2.5 Special Festive & Wedding Offers Grid */}
       <section className="pt-12 md:pt-16 pb-12 md:pb-16 bg-gradient-to-b from-[#211813] via-[#211813] to-[#211813] relative overflow-hidden text-[#FFF8EB] border-b border-[#DED2C1]/15">
         <div className="absolute inset-0 bg-radial-gold opacity-20 pointer-events-none" />
@@ -347,121 +461,7 @@ export default function HomeClient({
         </div>
       </section>
 
-{/* 1. Full-Screen Luxury "Timeless Elegance" Hero Section */}
-      <section className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-[#211813]" aria-label="Hero Section">
-        <motion.div 
-          className="absolute inset-0"
-          initial={{ scale: 1.15 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-          style={{ y: yParallax, opacity: opacityParallax }}
-        >
-          <Image 
-            src={liveMediaMap['home_hero_banner'] || (liveBanners && liveBanners.length > 0 ? liveBanners[0].imageUrl : (initialBanners && initialBanners.length > 0 ? initialBanners[0].imageUrl : "/uploads/hero_timeless_elegance.webp"))} 
-            alt="Aranyak Jewellers Masterpiece Collection" 
-            fill
-            className="object-cover animate-slow-zoom no-select opacity-70"
-            priority
-          />
-        </motion.div>
-        
-        {/* Multi-layered Warm Espresso & Gold Ambient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/60 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/85 via-transparent to-[#211813]/85 pointer-events-none" />
-        
-        {/* Floating Gold Dust Particles */}
-        {mounted && (
-          <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-[#D6B15D] rounded-full blur-[1px] mix-blend-screen"
-                initial={{ 
-                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
-                  y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
-                  opacity: Math.random() * 0.5 + 0.2
-                }}
-                animate={{
-                  y: [null, Math.random() * -200 - 100],
-                  x: [null, Math.random() * 100 - 50],
-                  opacity: [null, 0],
-                }}
-                transition={{
-                  duration: Math.random() * 10 + 10,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              />
-            ))}
-          </div>
-        )}
-        
-        <div className="relative z-10 w-full px-6 max-w-6xl flex flex-col items-center text-center pt-20 pb-20">
-          
-          {/* Top Pill Badge */}
-          <Reveal y={20} duration={1}>
-            <div className="relative inline-flex items-center space-x-3 px-5 py-2 rounded-full bg-[#211813]/85 backdrop-blur-md border border-[#D6B15D]/50 mb-8 shadow-xl">
-              <SparkleGlint className="absolute -top-2 -right-2" size={16} delay={0.5} />
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D6B15D] animate-pulse" />
-              <span className="text-[#D6B15D] text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase">
-                • EST. 2005 • TRIPURA'S FINEST JEWELLER •
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D6B15D] animate-pulse" />
-            </div>
-          </Reveal>
-          
-          {/* Main Headline with Kinetic Masked Text Reveal */}
-          <h1 className="text-5xl sm:text-7xl md:text-9xl lg:text-[10rem] font-serif font-light text-[#FFF8EB] leading-[0.88] tracking-tight drop-shadow-2xl">
-            <TextReveal delay={0.1} duration={1.1}>
-              Timeless
-            </TextReveal>
-            <br />
-            <TextReveal delay={0.25} duration={1.2}>
-              <span className="font-editorial gold-gradient italic inline-block mt-2 sm:mt-4 drop-shadow-[0_4px_30px_rgba(196,154,69,0.35)]">
-                Elegance
-              </span>
-            </TextReveal>
-          </h1>
-
-          {/* Subtitle Narrative */}
-          <Reveal delay={0.4} y={30}>
-            <p className="mt-8 text-xs sm:text-sm md:text-base text-[#E5D7C5] font-normal tracking-[0.18em] max-w-3xl mx-auto leading-relaxed uppercase drop-shadow-md">
-              CURATING HANDCRAFTED GOLD, CERTIFIED DIAMONDS, AND SACRED ASTROLOGICAL GEMSTONES WITH 21+ YEARS OF MASTER CRAFTSMANSHIP.
-            </p>
-          </Reveal>
-
-          {/* Two CTA Buttons */}
-          <Reveal delay={0.6} y={30}>
-            <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-center gap-5 sm:gap-8">
-              <Link 
-                href="/collections" 
-                className="btn-luxury px-10 py-4 text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase rounded-none glow-gold transition-all duration-500 hover:scale-105"
-              >
-                EXPLORE HIGH JEWELLERY
-              </Link>
-              <Link 
-                href="/stores" 
-                className="px-10 py-4 text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase text-[#FFF8EB] hover:text-[#211813] bg-[#211813]/70 hover:bg-[#D6B15D] backdrop-blur-md border border-[#DED2C1]/40 hover:border-[#D6B15D] transition-all duration-500 hover:scale-105 shadow-lg"
-              >
-                FIND BOUTIQUE SHOWROOMS
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Bottom "SCROLL" Indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 pointer-events-none opacity-80 animate-bounce">
-          <span className="text-[9px] font-bold tracking-[0.35em] uppercase text-[#D6B15D]">
-            SCROLL
-          </span>
-          <svg width="14" height="16" viewBox="0 0 24 24" fill="none" stroke="#D6B15D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <polyline points="19 12 12 19 5 12"></polyline>
-          </svg>
-        </div>
-      </section>
-
-      {/* 3.5 Animated 3D Cover-Flow "Top Picks" Luxury Showcase */}
+{/* 3.5 Animated 3D Cover-Flow "Top Picks" Luxury Showcase */}
       <TopPicksCoverFlow />
 
       {/* Hero Carousel — placed below Top Picks */}
