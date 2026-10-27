@@ -46,15 +46,15 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
   const mdPhoto = mediaMap['about_md_image'] || settings['about_md_image'] || "/md.jpg";
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#F8F4EC] text-[#30231D] selection:bg-[#C49A45] selection:text-[#211713]">
+    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#40352F] selection:bg-[#C49A45] selection:text-[#211813]">
       
       {/* 1. Editorial Hero */}
-      <section className="py-28 md:py-36 px-6 md:px-12 text-left relative overflow-hidden bg-[#211713] text-[#F8F1E5] border-b border-[#DED2C1]/20">
+      <section className="py-28 md:py-36 px-6 md:px-12 text-left relative overflow-hidden bg-[#211813] text-[#FFF8EB] border-b border-[#DED2C1]/15">
         <div 
           style={{ backgroundImage: `url('${heroBackdrop}')` }}
           className="absolute inset-0 bg-cover bg-center opacity-15 mix-blend-luminosity scale-105 transition-transform duration-1000" 
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#211713]/90 via-[#211713]/70 to-[#211713]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#211813]/90 via-[#211813]/70 to-[#211813]" />
         
         <div className="relative z-10 container mx-auto max-w-7xl">
           <motion.div
@@ -63,15 +63,15 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 mb-4"
           >
-            <SparkleGlint color="#C49A45" size={12}>
-              <span className="text-[#C49A45]">✧</span>
+            <SparkleGlint color="#E7C880" size={12}>
+              <span className="text-[#E7C880]">✧</span>
             </SparkleGlint>
-            <p className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#C49A45]">
+            <p className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#E7C880]">
               Heritage Est. 1995 • Tripura
             </p>
           </motion.div>
 
-          <h1 className="text-5xl md:text-8xl font-serif font-light mb-6 tracking-tight text-[#F8F1E5]">
+          <h1 className="text-5xl md:text-8xl font-serif font-light mb-6 tracking-tight text-[#FFF8EB]">
             <TextReveal text="Our Generational" />{' '}
             <span className="font-editorial italic gold-gradient">Legacy</span>
           </h1>
@@ -80,7 +80,7 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-xs sm:text-sm text-[#D4C5B2] font-normal tracking-widest uppercase max-w-xl leading-relaxed"
+            className="text-xs sm:text-sm text-[#E5D7C5] font-normal tracking-widest uppercase max-w-xl leading-relaxed"
           >
             Three decades of preserving traditional Bengali goldsmithing and crafting cherished bridal heirlooms.
           </motion.p>
@@ -88,14 +88,14 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
       </section>
 
       {/* 2. Story Section - Asymmetrical Magazine Layout */}
-      <section className="py-24 bg-[#F8F4EC]">
+      <section className="py-24 bg-[#FAF7F0]">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="flex flex-col md:flex-row gap-16 md:gap-24 items-center">
             
             {/* Image Side with 3D Magnetic Frame */}
             <div className="w-full md:w-5/12 relative">
               <MagneticCard tiltAmount={5} glareOpacity={0.15}>
-                <div className="relative aspect-[3/4] w-full bg-[#211713] overflow-hidden group border border-[#DED2C1] shadow-2xl rounded-xl">
+                <div className="relative aspect-[3/4] w-full bg-[#211813] overflow-hidden group border border-[#DED2C1] shadow-2xl rounded-xl">
                   <Image 
                     src={mdPhoto} 
                     alt="Managing Director - Aranyak Jewellers" 
@@ -114,8 +114,8 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
               {/* Overlapping Text Box (Editorial Quote) */}
               <div className="hidden md:block absolute -right-12 bottom-12 z-20 max-w-xs">
                 <MagneticCard tiltAmount={4} glareOpacity={0.12}>
-                  <div className="bg-[#30231D] p-8 border border-[#C49A45]/50 shadow-2xl rounded-lg">
-                    <p className="font-editorial text-2xl leading-snug text-[#F8F1E5] relative z-10">
+                  <div className="bg-[#241B17] p-8 border border-[#C49A45]/50 shadow-2xl rounded-lg">
+                    <p className="font-editorial text-2xl leading-snug text-[#FFF8EB] relative z-10">
                       &ldquo;Preserving traditions while defining Tripura&apos;s elegance for over a quarter of a century.&rdquo;
                     </p>
                     <div className="mt-6 flex items-center justify-between border-t border-[#C49A45]/30 pt-4">
@@ -134,19 +134,19 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
             {/* Text Side */}
             <div className="w-full md:w-7/12 space-y-12">
               <div className="space-y-6">
-                <div className="inline-block text-[10px] font-bold tracking-[0.3em] uppercase text-[#A77C32] bg-[#F0E7D8] px-3 py-1 rounded">
+                <div className="inline-block text-[10px] font-bold tracking-[0.3em] uppercase text-[#98712E] bg-[#FFFDF8] border border-[#DED2C1] px-3 py-1 rounded">
                   Crafted by Master Karigars
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-serif font-light text-[#30231D] tracking-tight">
+                <h2 className="text-4xl md:text-5xl font-serif font-light text-[#241B17] tracking-tight">
                   <TextReveal text="A Vision of Uncompromising" />{' '}
                   <span className="font-editorial italic text-[#C49A45]">Purity</span>
                 </h2>
                 
-                <p className="text-[#74665A] leading-[1.8] tracking-wide font-normal text-base">
+                <p className="text-[#40352F] leading-[1.8] tracking-wide font-normal text-base">
                   {settings['about_p1'] || "Aranyak Jewellers is not just a destination for fine jewelry; it is an institution built on trust, artistry, and heritage. What began as a singular vision in 1995 has blossomed into Tripura's most prestigious jewelry house."}
                 </p>
-                <p className="text-[#74665A] leading-[1.8] tracking-wide font-normal text-base">
+                <p className="text-[#40352F] leading-[1.8] tracking-wide font-normal text-base">
                   {settings['about_p2'] || "We believe that every piece of jewelry carries a soul. It is a silent witness to life's most profound moments—a wedding vow, a milestone anniversary, a gift of enduring love. Our master artisans, carrying centuries-old Bengali goldsmithing traditions, pour hundreds of hours into realizing these masterpieces."}
                 </p>
               </div>
@@ -156,17 +156,17 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                   {PILLARS.map((pillar, idx) => (
                     <StaggerItem key={idx}>
-                      <div className="p-6 bg-[#F0E7D8]/80 hover:bg-[#FFFFFF] border border-[#DED2C1] hover:border-[#C49A45] transition-all duration-300 rounded-xl shadow-sm group">
+                      <div className="p-6 bg-[#FFFDF8] hover:bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E] transition-all duration-300 rounded-xl shadow-sm group">
                         <div className="flex items-center justify-between mb-4">
-                          <span className="text-sm font-editorial text-[#C49A45] font-bold group-hover:scale-110 transition-transform">
+                          <span className="text-sm font-editorial text-[#98712E] font-bold group-hover:scale-110 transition-transform">
                             {pillar.num}
                           </span>
                           <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45]/40 group-hover:bg-[#C49A45] transition-colors" />
                         </div>
-                        <h3 className="text-xs font-bold tracking-[0.2em] uppercase mb-2 text-[#30231D] group-hover:text-[#A77C32] transition-colors">
+                        <h3 className="text-xs font-bold tracking-[0.2em] uppercase mb-2 text-[#241B17] group-hover:text-[#98712E] transition-colors">
                           {pillar.title}
                         </h3>
-                        <p className="text-xs text-[#74665A] leading-relaxed font-normal">
+                        <p className="text-xs text-[#40352F] leading-relaxed font-normal">
                           {pillar.desc}
                         </p>
                       </div>
@@ -185,52 +185,52 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
       <ExpandingDivider color="#C49A45" maxWidth="75%" />
 
       {/* 3. Artisan Craftsmanship Section */}
-      <section className="py-24 bg-[#F0E7D8]/40 relative overflow-hidden">
+      <section className="py-24 bg-[#FAF7F0] relative overflow-hidden">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#A77C32] mb-3 block">
+            <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#98712E] mb-3 block">
               The Living Tradition
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-light text-[#30231D]">
+            <h2 className="text-3xl md:text-5xl font-serif font-light text-[#241B17]">
               Centuries-Old <span className="font-editorial italic text-[#C49A45]">Bengali Karigari</span>
             </h2>
-            <p className="text-[#74665A] mt-4 text-sm font-normal leading-relaxed">
+            <p className="text-[#40352F] mt-4 text-sm font-normal leading-relaxed">
               From the intricate swirls of Filigree (Tarakasi) to the regal sculptures of Nakshi work, our master jewelers breathe timeless elegance into pure 22 Karat gold.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             <MagneticCard tiltAmount={4} glareOpacity={0.12}>
-              <div className="bg-[#FFFFFF] border border-[#DED2C1] p-8 rounded-xl shadow-sm text-center space-y-4">
-                <div className="w-12 h-12 mx-auto rounded-full bg-[#211713] text-[#C49A45] flex items-center justify-center font-serif text-xl">
+              <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 rounded-xl shadow-sm text-center space-y-4">
+                <div className="w-12 h-12 mx-auto rounded-full bg-[#241B17] text-[#E7C880] flex items-center justify-center font-serif text-xl">
                   ১
                 </div>
-                <h3 className="text-lg font-serif text-[#30231D]">Intricate Filigree (তারকাশি)</h3>
-                <p className="text-xs text-[#74665A] leading-relaxed">
+                <h3 className="text-lg font-serif text-[#241B17]">Intricate Filigree (তারকাশি)</h3>
+                <p className="text-xs text-[#40352F] leading-relaxed">
                   Delicate gold threads hand-twisted and soldered into ethereal leaf and floral motifs with microscopic precision.
                 </p>
               </div>
             </MagneticCard>
 
             <MagneticCard tiltAmount={4} glareOpacity={0.12}>
-              <div className="bg-[#FFFFFF] border border-[#DED2C1] p-8 rounded-xl shadow-sm text-center space-y-4">
-                <div className="w-12 h-12 mx-auto rounded-full bg-[#211713] text-[#C49A45] flex items-center justify-center font-serif text-xl">
+              <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 rounded-xl shadow-sm text-center space-y-4">
+                <div className="w-12 h-12 mx-auto rounded-full bg-[#241B17] text-[#E7C880] flex items-center justify-center font-serif text-xl">
                   ২
                 </div>
-                <h3 className="text-lg font-serif text-[#30231D]">Nakshi Embossing (নকশী)</h3>
-                <p className="text-xs text-[#74665A] leading-relaxed">
+                <h3 className="text-lg font-serif text-[#241B17]">Nakshi Embossing (নকশী)</h3>
+                <p className="text-xs text-[#40352F] leading-relaxed">
                   Deep dimensional relief carving evoking sacred deities, peacocks, and temple architecture on solid gold sheets.
                 </p>
               </div>
             </MagneticCard>
 
             <MagneticCard tiltAmount={4} glareOpacity={0.12}>
-              <div className="bg-[#FFFFFF] border border-[#DED2C1] p-8 rounded-xl shadow-sm text-center space-y-4">
-                <div className="w-12 h-12 mx-auto rounded-full bg-[#211713] text-[#C49A45] flex items-center justify-center font-serif text-xl">
+              <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 rounded-xl shadow-sm text-center space-y-4">
+                <div className="w-12 h-12 mx-auto rounded-full bg-[#241B17] text-[#E7C880] flex items-center justify-center font-serif text-xl">
                   ৩
                 </div>
-                <h3 className="text-lg font-serif text-[#30231D]">Jadau & Polki Setting</h3>
-                <p className="text-xs text-[#74665A] leading-relaxed">
+                <h3 className="text-lg font-serif text-[#241B17]">Jadau & Polki Setting</h3>
+                <p className="text-xs text-[#40352F] leading-relaxed">
                   Natural uncut diamonds cradled in 24K gold foil settings accented with rich Meenakari enameling on reverse.
                 </p>
               </div>
@@ -240,7 +240,7 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
       </section>
 
       {/* 4. Full Width Quote */}
-      <section className="py-28 bg-[#211713] text-[#F8F1E5] text-center px-6 border-y border-[#DED2C1]/20 relative overflow-hidden">
+      <section className="py-28 bg-[#211713] text-[#FFF8EB] text-center px-6 border-y border-[#DED2C1]/20 relative overflow-hidden">
         <div className="absolute inset-0 bg-radial-gradient opacity-10 pointer-events-none" />
         
         <div className="relative z-10 max-w-4xl mx-auto space-y-8">
@@ -248,7 +248,7 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
             <div className="text-[#C49A45] text-xl font-serif">✧</div>
           </SparkleGlint>
 
-          <h2 className="text-3xl md:text-5xl font-serif font-light leading-snug text-[#F8F1E5]">
+          <h2 className="text-3xl md:text-5xl font-serif font-light leading-snug text-[#FFF8EB]">
             &ldquo;Every gram of gold that leaves our stores carries our{' '}
             <span className="font-editorial italic text-[#C49A45]">solemn promise</span> of authenticity.&rdquo;
           </h2>
@@ -262,7 +262,7 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
             </Link>
             <Link
               href="/stores"
-              className="px-10 py-3.5 text-xs font-bold uppercase tracking-widest text-[#F8F1E5] bg-[#30231D] hover:bg-[#211713] border border-[#C49A45]/40 rounded transition-all inline-block shadow-md"
+              className="px-10 py-3.5 text-xs font-bold uppercase tracking-widest text-[#FFF8EB] bg-[#241B17] hover:bg-[#40352F] border border-[#C49A45]/40 rounded transition-all inline-block shadow-md"
             >
               Visit Our Boutiques
             </Link>

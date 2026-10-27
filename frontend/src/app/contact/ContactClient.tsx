@@ -95,12 +95,12 @@ export default function ContactClient() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#F8F4EC] text-[#30231D] selection:bg-[#C49A45] selection:text-[#211713]">
+    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#40352F] selection:bg-[#C49A45] selection:text-[#211813]">
       
       {/* 1. Hero */}
-      <section className="py-28 md:py-36 px-6 md:px-12 relative bg-[#211713] text-[#F8F1E5] text-left border-b border-[#DED2C1]/20 overflow-hidden">
+      <section className="py-28 md:py-36 px-6 md:px-12 relative bg-[#211813] text-[#FFF8EB] text-left border-b border-[#DED2C1]/15 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-15 mix-blend-luminosity scale-105" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#211713]/90 via-[#211713]/70 to-[#211713]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#211813]/90 via-[#211813]/70 to-[#211813]" />
         
         <div className="relative z-10 container mx-auto max-w-7xl">
           <motion.div
@@ -109,27 +109,27 @@ export default function ContactClient() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 mb-4"
           >
-            <SparkleGlint color="#C49A45" size={12}>
-              <span className="text-[#C49A45]">✧</span>
+            <SparkleGlint color="#E7C880" size={12}>
+              <span className="text-[#E7C880]">✧</span>
             </SparkleGlint>
-            <p className="text-[10px] tracking-[0.5em] uppercase text-[#C49A45] font-bold">
+            <p className="text-[10px] tracking-[0.5em] uppercase text-[#E7C880] font-bold">
               Aranyak Patron Concierge
             </p>
           </motion.div>
 
-          <h1 className="text-5xl md:text-8xl font-serif font-light mb-6 text-[#F8F1E5] tracking-tight">
+          <h1 className="text-5xl md:text-8xl font-serif font-light mb-6 text-[#FFF8EB] tracking-tight">
             <TextReveal text="Get in" />{' '}
             <span className="font-editorial italic gold-gradient">Touch</span>
           </h1>
 
-          <p className="text-xs sm:text-sm text-[#D4C5B2] font-normal tracking-widest uppercase max-w-xl leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#E5D7C5] font-normal tracking-widest uppercase max-w-xl leading-relaxed">
             Connect with our diamond gemologists, bridal trousseau consultants, and master artisans across Tripura.
           </p>
         </div>
       </section>
 
       {/* 2. Contact Cards */}
-      <section className="py-24 bg-[#F8F4EC] text-[#30231D]">
+      <section className="py-24 bg-[#FAF7F0] text-[#40352F]">
         <div className="container mx-auto px-4 max-w-7xl">
           
           <StaggerContainer delay={0.1} staggerTime={0.15}>
@@ -137,18 +137,18 @@ export default function ContactClient() {
               {CONTACT_INFO.map((info, i) => (
                 <StaggerItem key={i}>
                   <MagneticCard tiltAmount={5} glareOpacity={0.14}>
-                    <div className="bg-[#FFFFFF] border border-[#DED2C1] p-10 text-center space-y-6 min-h-[300px] flex flex-col items-center justify-between rounded-xl shadow-md group hover:border-[#C49A45] transition-colors duration-500">
+                    <div className="bg-[#FFFDF8] border border-[#DED2C1] p-10 text-center space-y-6 min-h-[300px] flex flex-col items-center justify-between rounded-xl shadow-md group hover:border-[#C49A45] transition-colors duration-500">
                       
-                      <div className="w-16 h-16 mx-auto bg-[#211713] border border-[#C49A45]/40 flex items-center justify-center text-[#C49A45] group-hover:scale-110 transition-transform duration-500 rounded-xl shadow-inner">
+                      <div className="w-16 h-16 mx-auto bg-[#241B17] border border-[#C49A45]/40 flex items-center justify-center text-[#E7C880] group-hover:scale-110 transition-transform duration-500 rounded-xl shadow-inner">
                         {info.icon}
                       </div>
 
                       <div className="space-y-2">
-                        <h3 className="text-xl font-serif font-light text-[#30231D] tracking-wide">
+                        <h3 className="text-xl font-serif font-light text-[#241B17] tracking-wide">
                           {info.title}
                         </h3>
                         {info.details.map((detail, j) => (
-                          <p key={j} className="text-xs text-[#74665A] font-normal">
+                          <p key={j} className="text-xs text-[#40352F] font-normal">
                             {detail}
                           </p>
                         ))}
@@ -158,7 +158,7 @@ export default function ContactClient() {
                         href={info.actionHref}
                         target={info.actionHref.startsWith('http') ? '_blank' : undefined}
                         rel={info.actionHref.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#A77C32] hover:text-[#30231D] inline-flex items-center gap-1 group-hover:underline"
+                        className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#98712E] hover:text-[#241B17] inline-flex items-center gap-1 group-hover:underline"
                       >
                         <span>{info.actionText}</span>
                         <span>→</span>
@@ -174,13 +174,13 @@ export default function ContactClient() {
           {/* Showroom Directory Banner */}
           <div className="mb-24">
             <div className="text-center mb-10">
-              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#A77C32] block mb-2">
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#98712E] block mb-2">
                 Tripura Boutiques Network
               </span>
-              <h2 className="text-3xl md:text-4xl font-serif font-light text-[#30231D]">
+              <h2 className="text-3xl md:text-4xl font-serif font-light text-[#241B17]">
                 Visit Our <span className="font-editorial italic text-[#C49A45]">Showrooms</span>
               </h2>
-              <p className="text-xs text-[#74665A] mt-2 font-normal">
+              <p className="text-xs text-[#40352F] mt-2 font-normal">
                 Serving patrons across Agartala, Dharmanagar, Kailashahar, and Khowai.
               </p>
             </div>
@@ -189,16 +189,16 @@ export default function ContactClient() {
               {SHOWROOMS_DIRECTORY.map((s, idx) => (
                 <div 
                   key={idx}
-                  className="bg-[#FFFFFF] border border-[#DED2C1] hover:border-[#C49A45] rounded-xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                  className="bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#C49A45] rounded-xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
                 >
                   <div>
-                    <span className="text-[9px] font-bold tracking-widest uppercase px-2 py-0.5 rounded bg-[#F8F4EC] text-[#A77C32] border border-[#DED2C1]">
+                    <span className="text-[9px] font-bold tracking-widest uppercase px-2 py-0.5 rounded bg-[#F8F4EC] text-[#98712E] border border-[#DED2C1]">
                       {s.city}
                     </span>
-                    <h4 className="font-serif font-bold text-base text-[#30231D] mt-2 mb-1.5 leading-snug">
+                    <h4 className="font-serif font-bold text-base text-[#241B17] mt-2 mb-1.5 leading-snug">
                       {s.name}
                     </h4>
-                    <p className="text-xs text-[#74665A] leading-relaxed">
+                    <p className="text-xs text-[#40352F] leading-relaxed">
                       {s.address}
                     </p>
                   </div>
@@ -208,7 +208,7 @@ export default function ContactClient() {
                       href={s.directionsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#211713] hover:text-[#C49A45] transition-colors"
+                      className="text-[#241B17] hover:text-[#98712E] transition-colors"
                     >
                       Directions →
                     </a>
@@ -216,7 +216,7 @@ export default function ContactClient() {
                       href={s.mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#A77C32] hover:underline"
+                      className="text-[#98712E] hover:underline"
                     >
                       Maps ↗
                     </a>
@@ -228,7 +228,7 @@ export default function ContactClient() {
             <div className="text-center mt-8">
               <Link
                 href="/stores"
-                className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-[#A77C32] hover:text-[#211713] transition-colors hover:underline"
+                className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-[#98712E] hover:text-[#211713] transition-colors hover:underline"
               >
                 <span>View Full Showrooms Details & Timings</span>
                 <span>→</span>
@@ -239,15 +239,15 @@ export default function ContactClient() {
           {/* 3. Interactive Contact Form */}
           <div className="max-w-3xl mx-auto">
             <MagneticCard tiltAmount={3} glareOpacity={0.1}>
-              <div className="bg-[#FFFFFF] border border-[#DED2C1] p-10 md:p-16 rounded-2xl shadow-xl relative overflow-hidden">
+              <div className="bg-[#FFFDF8] border border-[#DED2C1] p-10 md:p-16 rounded-2xl shadow-xl relative overflow-hidden">
                 <div className="text-center mb-12">
-                  <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#A77C32] block mb-2">
+                  <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#98712E] block mb-2">
                     Direct Inquiry
                   </span>
-                  <h2 className="text-3xl md:text-4xl font-serif font-light text-[#30231D]">
+                  <h2 className="text-3xl md:text-4xl font-serif font-light text-[#241B17]">
                     Send Us a <span className="font-editorial italic text-[#C49A45]">Message</span>
                   </h2>
-                  <p className="text-xs text-[#74665A] mt-2 font-normal">
+                  <p className="text-xs text-[#40352F] mt-2 font-normal">
                     We typically respond within 2 to 4 business hours.
                   </p>
                 </div>
@@ -263,13 +263,13 @@ export default function ContactClient() {
                       <div className="w-16 h-16 mx-auto rounded-full bg-[#211713] text-[#C49A45] flex items-center justify-center text-2xl border border-[#C49A45]">
                         ✓
                       </div>
-                      <h3 className="text-2xl font-serif text-[#30231D]">Message Received With Grace</h3>
-                      <p className="text-sm text-[#74665A] max-w-md mx-auto">
+                      <h3 className="text-2xl font-serif text-[#241B17]">Message Received With Grace</h3>
+                      <p className="text-sm text-[#40352F] max-w-md mx-auto">
                         Thank you, {formState.name || 'Patron'}. Our jewellery concierge will reach you shortly at {formState.phone || formState.email || 'your contact'}.
                       </p>
                       <button
                         onClick={() => setSubmitted(false)}
-                        className="mt-4 px-6 py-2.5 text-xs font-bold tracking-widest uppercase bg-[#F0E7D8] text-[#30231D] rounded border border-[#DED2C1] hover:border-[#C49A45]"
+                        className="mt-4 px-6 py-2.5 text-xs font-bold tracking-widest uppercase bg-[#F0E7D8] text-[#241B17] rounded border border-[#DED2C1] hover:border-[#C49A45]"
                       >
                         Send Another Note
                       </button>
@@ -278,7 +278,7 @@ export default function ContactClient() {
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label htmlFor="contact-name" className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#30231D] mb-2 block">
+                          <label htmlFor="contact-name" className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#241B17] mb-2 block">
                             Full Name *
                           </label>
                           <input 
@@ -288,11 +288,11 @@ export default function ContactClient() {
                             placeholder="Sreemoyi Roy"
                             value={formState.name}
                             onChange={e => setFormState({ ...formState, name: e.target.value })}
-                            className="w-full border-b border-[#DED2C1] px-0 py-3 text-sm text-[#30231D] placeholder-[#74665A]/50 focus:outline-none focus:border-[#C49A45] transition-colors bg-transparent"
+                            className="w-full border-b border-[#DED2C1] px-0 py-3 text-sm text-[#241B17] placeholder-[#74665C]/60 focus:outline-none focus:border-[#C49A45] transition-colors bg-transparent"
                           />
                         </div>
                         <div>
-                          <label htmlFor="contact-phone" className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#30231D] mb-2 block">
+                          <label htmlFor="contact-phone" className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#241B17] mb-2 block">
                             Phone Number *
                           </label>
                           <input 
@@ -302,14 +302,14 @@ export default function ContactClient() {
                             placeholder="+91-9436501506"
                             value={formState.phone}
                             onChange={e => setFormState({ ...formState, phone: e.target.value })}
-                            className="w-full border-b border-[#DED2C1] px-0 py-3 text-sm text-[#30231D] placeholder-[#74665A]/50 focus:outline-none focus:border-[#C49A45] transition-colors bg-transparent"
+                            className="w-full border-b border-[#DED2C1] px-0 py-3 text-sm text-[#241B17] placeholder-[#74665C]/60 focus:outline-none focus:border-[#C49A45] transition-colors bg-transparent"
                           />
                         </div>
                       </div>
 
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label htmlFor="contact-email" className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#30231D] mb-2 block">
+                          <label htmlFor="contact-email" className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#241B17] mb-2 block">
                             Email Address
                           </label>
                           <input 
@@ -318,31 +318,31 @@ export default function ContactClient() {
                             placeholder="patron@example.com"
                             value={formState.email}
                             onChange={e => setFormState({ ...formState, email: e.target.value })}
-                            className="w-full border-b border-[#DED2C1] px-0 py-3 text-sm text-[#30231D] placeholder-[#74665A]/50 focus:outline-none focus:border-[#C49A45] transition-colors bg-transparent"
+                            className="w-full border-b border-[#DED2C1] px-0 py-3 text-sm text-[#241B17] placeholder-[#74665C]/60 focus:outline-none focus:border-[#C49A45] transition-colors bg-transparent"
                           />
                         </div>
 
                         <div>
-                          <label htmlFor="contact-subject" className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#30231D] mb-2 block">
+                          <label htmlFor="contact-subject" className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#241B17] mb-2 block">
                             Interest / Inquiry Type
                           </label>
                           <select 
                             id="contact-subject"
                             value={formState.subject}
                             onChange={e => setFormState({ ...formState, subject: e.target.value })}
-                            className="w-full border-b border-[#DED2C1] px-0 py-3 text-sm text-[#30231D] focus:outline-none focus:border-[#C49A45] transition-colors bg-transparent appearance-none rounded-none cursor-pointer"
+                            className="w-full border-b border-[#DED2C1] px-0 py-3 text-sm text-[#241B17] focus:outline-none focus:border-[#C49A45] transition-colors bg-transparent appearance-none rounded-none cursor-pointer"
                           >
-                            <option className="bg-[#F8F4EC] text-[#30231D]">Bridal Consultation</option>
-                            <option className="bg-[#F8F4EC] text-[#30231D]">Bespoke Jewellery Commission</option>
-                            <option className="bg-[#F8F4EC] text-[#30231D]">Certified Solitaires & Diamonds</option>
-                            <option className="bg-[#F8F4EC] text-[#30231D]">Gold Rate & Investment Inquiry</option>
-                            <option className="bg-[#F8F4EC] text-[#30231D]">Old Gold Exchange & Valuation</option>
+                            <option className="bg-[#F8F4EC] text-[#241B17]">Bridal Consultation</option>
+                            <option className="bg-[#F8F4EC] text-[#241B17]">Bespoke Jewellery Commission</option>
+                            <option className="bg-[#F8F4EC] text-[#241B17]">Certified Solitaires & Diamonds</option>
+                            <option className="bg-[#F8F4EC] text-[#241B17]">Gold Rate & Investment Inquiry</option>
+                            <option className="bg-[#F8F4EC] text-[#241B17]">Old Gold Exchange & Valuation</option>
                           </select>
                         </div>
                       </div>
 
                       <div>
-                        <label htmlFor="contact-message" className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#30231D] mb-2 block">
+                        <label htmlFor="contact-message" className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#241B17] mb-2 block">
                           Message / Special Requests
                         </label>
                         <textarea 
@@ -352,7 +352,7 @@ export default function ContactClient() {
                           placeholder="Tell us about the jewellery pieces or occasions you have in mind..."
                           value={formState.message}
                           onChange={e => setFormState({ ...formState, message: e.target.value })}
-                          className="w-full border-b border-[#DED2C1] px-0 py-3 text-sm text-[#30231D] placeholder-[#74665A]/50 focus:outline-none focus:border-[#C49A45] transition-colors bg-transparent resize-none"
+                          className="w-full border-b border-[#DED2C1] px-0 py-3 text-sm text-[#241B17] placeholder-[#74665C]/60 focus:outline-none focus:border-[#C49A45] transition-colors bg-transparent resize-none"
                         />
                       </div>
 

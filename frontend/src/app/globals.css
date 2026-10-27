@@ -2,41 +2,41 @@
 
 @layer base {
   :root {
-    --background: #F8F4EC; /* Primary background: Warm ivory */
-    --foreground: #30231D; /* Primary text on light: Deep brown */
-    --primary: #C49A45; /* Primary gold accent: Champagne gold */
-    --primary-foreground: #F8F1E5; /* Primary text on dark: Warm ivory */
-    --secondary: #A77C32; /* Secondary gold accent: Muted antique gold */
-    --secondary-foreground: #F8F1E5;
+    --background: #FAF7F0; /* Light section background: Warm ivory */
+    --foreground: #241B17; /* Primary headings & strong text: Deep charcoal */
+    --primary: #98712E; /* Gold accent text: Rich antique gold */
+    --primary-foreground: #FFF8EB; /* Text on dark backgrounds: Warm ivory */
+    --secondary: #40352F; /* Body text: Dark warm brown */
+    --secondary-foreground: #FFF8EB;
     --accent: #F0E7D8; /* Secondary background: Soft champagne */
-    --accent-foreground: #30231D;
-    --ivory: #F8F4EC;
-    --muted: #E8DDCC; /* Alternate section background: Light beige */
-    --muted-foreground: #74665A; /* Secondary text on light: Warm taupe */
-    --card: #F8F4EC;
-    --card-foreground: #30231D;
+    --accent-foreground: #241B17;
+    --ivory: #FAF7F0;
+    --muted: #E8DDCC; /* Alternate subtle background: Light beige */
+    --muted-foreground: #74665C; /* Secondary text: Muted brown */
+    --card: #FFFDF8; /* Card background: Soft cream */
+    --card-foreground: #40352F;
     --border: #DED2C1; /* Borders and dividers: Subtle warm beige */
     --input: #DED2C1;
-    --ring: #C49A45;
+    --ring: #98712E;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: #F8F4EC; /* Maintain consistent luxury warm ivory base */
-    --foreground: #30231D;
-    --primary: #C49A45;
-    --primary-foreground: #F8F1E5;
-    --secondary: #A77C32;
-    --secondary-foreground: #F8F1E5;
+    --background: #FAF7F0;
+    --foreground: #241B17;
+    --primary: #98712E;
+    --primary-foreground: #FFF8EB;
+    --secondary: #40352F;
+    --secondary-foreground: #FFF8EB;
     --accent: #F0E7D8;
-    --accent-foreground: #30231D;
+    --accent-foreground: #241B17;
     --muted: #E8DDCC;
-    --muted-foreground: #74665A;
-    --card: #F8F4EC;
-    --card-foreground: #30231D;
+    --muted-foreground: #74665C;
+    --card: #FFFDF8;
+    --card-foreground: #40352F;
     --border: #DED2C1;
     --input: #DED2C1;
-    --ring: #C49A45;
+    --ring: #98712E;
   }
 }
 
@@ -51,18 +51,20 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-ivory: var(--ivory);
 
-  /* Exact Design Tokens */
-  --color-ivory-warm: #F8F4EC;
+  /* Exact Design Tokens - Aranyak Jewellers Luxury Palette */
+  --color-ivory-warm: #FAF7F0;
+  --color-cream-soft: #FFFDF8;
   --color-champagne-soft: #F0E7D8;
   --color-beige-light: #E8DDCC;
-  --color-espresso-deep: #211713;
-  --color-charcoal-warm: #30231D;
-  --color-gold-champagne: #C49A45;
-  --color-gold-antique: #A77C32;
-  --color-brown-deep: #30231D;
-  --color-taupe-warm: #74665A;
-  --color-ivory-light: #F8F1E5;
-  --color-beige-soft: #D4C5B2;
+  --color-espresso-deep: #211813;
+  --color-charcoal-deep: #241B17;
+  --color-brown-dark: #40352F;
+  --color-brown-muted: #74665C;
+  --color-gold-rich: #98712E;
+  --color-gold-radiant: #C49A45;
+  --color-gold-light: #E7C880;
+  --color-ivory-light: #FFF8EB;
+  --color-beige-soft: #E5D7C5;
   --color-beige-border: #DED2C1;
 
   --font-sans: var(--font-geist-sans);
@@ -73,7 +75,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
-  overflow-x: clip; /* Fixes mobile horizontal scroll while preserving smooth vertical scroll */
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -92,20 +94,45 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Consistent Luxury Typography Utilities */
-.text-brown-deep {
-  color: #30231D !important;
+.text-charcoal-deep {
+  color: #241B17 !important;
 }
 
-.text-taupe-warm {
-  color: #74665A !important;
+.text-brown-dark {
+  color: #40352F !important;
+}
+
+.text-brown-muted {
+  color: #74665C !important;
+}
+
+.text-gold-rich {
+  color: #98712E !important;
+}
+
+.text-gold-radiant {
+  color: #C49A45 !important;
+}
+
+.text-gold-light {
+  color: #E7C880 !important;
 }
 
 .text-ivory-light {
-  color: #F8F1E5 !important;
+  color: #FFF8EB !important;
 }
 
 .text-beige-soft {
-  color: #D4C5B2 !important;
+  color: #E5D7C5 !important;
+}
+
+/* Backward-compatible luxury classes mapped to exact palette tokens */
+.text-brown-deep {
+  color: #241B17 !important;
+}
+
+.text-taupe-warm {
+  color: #74665C !important;
 }
 
 .text-gold-champagne {
@@ -113,24 +140,36 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-gold-antique {
-  color: #A77C32 !important;
+  color: #98712E !important;
 }
 
-/* Backward-compatible luxury classes mapped to new tokens */
 .text-luxury-ink {
-  color: #30231D !important;
+  color: #241B17 !important;
 }
 
 .text-luxury-charcoal {
-  color: #30231D !important;
+  color: #241B17 !important;
 }
 
 .text-luxury-body {
-  color: #74665A !important;
+  color: #40352F !important;
 }
 
 .text-luxury-muted {
-  color: #74665A !important;
+  color: #74665C !important;
+}
+
+/* Background utilities */
+.bg-ivory-warm {
+  background-color: #FAF7F0 !important;
+}
+
+.bg-cream-soft {
+  background-color: #FFFDF8 !important;
+}
+
+.bg-espresso-deep {
+  background-color: #211813 !important;
 }
 
 /* Text Balancer for Headlines */
@@ -138,22 +177,22 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
-/* Glassmorphism utility - Dark Theme Default */
+/* Glassmorphism utility */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 253, 248, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(222, 210, 193, 0.4);
 }
 
 .dark .glass {
-  background: rgba(10, 10, 10, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(33, 24, 19, 0.85);
+  border: 1px solid rgba(222, 210, 193, 0.2);
 }
 
 /* Luxury Gradients & Textures */
 .gold-gradient {
-  background: linear-gradient(135deg, #A77C32 0%, #D8AF5A 30%, #C49A45 60%, #E7C880 85%, #A77C32 100%);
+  background: linear-gradient(135deg, #98712E 0%, #D8AF5A 30%, #C49A45 60%, #E7C880 85%, #98712E 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% auto;
@@ -161,14 +200,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .espresso-gradient {
-  background: linear-gradient(135deg, #211713 0%, #30231D 50%, #211713 100%);
+  background: linear-gradient(135deg, #211813 0%, #2E1F18 50%, #211813 100%);
 }
 
 .burgundy-gradient {
   background: linear-gradient(135deg, #2A1713 0%, #3A231D 50%, #2A1713 100%);
 }
 
-/* Silk texture - local SVG pattern */
+/* Silk texture */
 .silk-texture {
   position: relative;
 }
@@ -180,15 +219,15 @@ h1, h2, h3, h4, h5, h6 {
   background-image: 
     repeating-linear-gradient(
       0deg,
-      rgba(248, 241, 229, 0.02) 0px,
-      rgba(248, 241, 229, 0.02) 1px,
+      rgba(255, 248, 235, 0.02) 0px,
+      rgba(255, 248, 235, 0.02) 1px,
       transparent 1px,
       transparent 4px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(248, 241, 229, 0.01) 0px,
-      rgba(248, 241, 229, 0.01) 1px,
+      rgba(255, 248, 235, 0.01) 0px,
+      rgba(255, 248, 235, 0.01) 1px,
       transparent 1px,
       transparent 4px
     );
@@ -232,17 +271,17 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   inset: 0;
   border: 1px solid transparent;
-  background: linear-gradient(135deg, #A77C32, #F0E7D8, #C49A45, #F0E7D8, #8C6524) border-box;
+  background: linear-gradient(135deg, #98712E, #FFFDF8, #C49A45, #FFFDF8, #8C6524) border-box;
   mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
 }
 
-/* Primary Luxury Button */
+/* Primary Luxury Button (Gold on dark or prominent CTA) */
 .btn-luxury {
   background-color: #C49A45;
-  color: #211713;
-  border: 1px solid #A77C32;
+  color: #211813;
+  border: 1px solid #98712E;
   position: relative;
   overflow: hidden;
   font-weight: 700;
@@ -250,23 +289,42 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-luxury:hover {
-  background-color: #A77C32;
-  color: #F8F1E5;
-  box-shadow: 0 4px 20px rgba(196, 154, 69, 0.25);
+  background-color: #98712E;
+  color: #FFF8EB;
+  border-color: #98712E;
+  box-shadow: 0 4px 20px rgba(152, 113, 46, 0.35);
+}
+
+/* Primary Button for Light Backgrounds: Deep Brown with Ivory Text */
+.btn-luxury-dark {
+  background-color: #241B17;
+  color: #FFF8EB;
+  border: 1px solid #40352F;
+  position: relative;
+  overflow: hidden;
+  font-weight: 700;
+  transition: all 0.4s ease-out;
+}
+
+.btn-luxury-dark:hover {
+  background-color: #98712E;
+  color: #FFF8EB;
+  border-color: #98712E;
+  box-shadow: 0 4px 20px rgba(152, 113, 46, 0.3);
 }
 
 /* Secondary Luxury Button (Outline) */
 .btn-luxury-outline {
   background-color: transparent;
-  color: #F8F1E5;
+  color: #FFF8EB;
   border: 1px solid #DED2C1;
   transition: all 0.4s ease-out;
 }
 
 .btn-luxury-outline:hover {
-  background-color: rgba(248, 244, 236, 0.12);
+  background-color: rgba(255, 248, 235, 0.12);
   border-color: #C49A45;
-  color: #C49A45;
+  color: #E7C880;
 }
 
 /* Hover underline effect */
@@ -277,10 +335,10 @@ h1, h2, h3, h4, h5, h6 {
   content: '';
   position: absolute;
   width: 0;
-  height: 1px;
+  height: 1.5px;
   bottom: -2px;
   left: 50%;
-  background-color: #C49A45;
+  background-color: #98712E;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
 }
@@ -314,18 +372,17 @@ h1, h2, h3, h4, h5, h6 {
   animation: fill-down 2.5s infinite cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #211713;
+  background: #211813;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C49A45;
+  background: #98712E;
 }
 
 /* Interaction fixes */
@@ -347,7 +404,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Text Mask Reveal Utils */
 .mask-clip {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
@@ -368,64 +424,34 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Luxury Glow & Glass Utilities */
 .glow-gold {
-  box-shadow: 0 0 25px rgba(196, 154, 69, 0.16);
+  box-shadow: 0 0 25px rgba(196, 154, 69, 0.2);
 }
 
 .glow-gold-sm {
-  box-shadow: 0 0 12px rgba(196, 154, 69, 0.2);
+  box-shadow: 0 0 12px rgba(196, 154, 69, 0.25);
 }
 
 .gold-border-glow {
-  border: 1px solid rgba(196, 154, 69, 0.25);
+  border: 1px solid rgba(196, 154, 69, 0.3);
   transition: all 0.4s ease;
 }
 
 .gold-border-glow:hover {
-  border-color: rgba(196, 154, 69, 0.6);
-  box-shadow: 0 4px 20px rgba(196, 154, 69, 0.15);
-}
-
-.bg-radial-gold {
-  background: radial-gradient(circle at 50% 50%, rgba(196, 154, 69, 0.08) 0%, rgba(33, 23, 19, 0) 70%);
-}
-
-.bg-radial-gold-top {
-  background: radial-gradient(circle at 50% 0%, rgba(196, 154, 69, 0.12) 0%, rgba(33, 23, 19, 0) 65%);
-}
-
-/* Refined Soft Gemstone Glow Utilities */
-.glow-ruby {
-  box-shadow: 0 4px 20px rgba(167, 124, 50, 0.15);
-}
-.glow-emerald {
-  box-shadow: 0 4px 20px rgba(167, 124, 50, 0.15);
-}
-.glow-sapphire {
-  box-shadow: 0 4px 20px rgba(167, 124, 50, 0.15);
-}
-.glow-amber {
+  border-color: rgba(196, 154, 69, 0.7);
   box-shadow: 0 4px 20px rgba(196, 154, 69, 0.2);
 }
 
-/* Subtle Warm Accent Gradients */
-.text-gradient-rose {
-  background: linear-gradient(135deg, #A77C32 0%, #C49A45 50%, #8C6524 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.text-gradient-emerald {
-  background: linear-gradient(135deg, #A77C32 0%, #C49A45 50%, #8C6524 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.text-gradient-cyan {
-  background: linear-gradient(135deg, #A77C32 0%, #C49A45 50%, #8C6524 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.text-gradient-gold {
-  background: linear-gradient(135deg, #C49A45 0%, #E7C880 50%, #A77C32 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.bg-radial-gold {
+  background: radial-gradient(circle at 50% 50%, rgba(196, 154, 69, 0.08) 0%, rgba(33, 24, 19, 0) 70%);
 }
 
+.bg-radial-gold-top {
+  background: radial-gradient(circle at 50% 0%, rgba(196, 154, 69, 0.12) 0%, rgba(33, 24, 19, 0) 65%);
+}
+
+/* Subtle Warm Accent Gradients */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #98712E 0%, #E7C880 50%, #98712E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

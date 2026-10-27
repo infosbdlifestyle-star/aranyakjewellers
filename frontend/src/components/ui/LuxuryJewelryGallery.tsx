@@ -74,10 +74,10 @@ export function LuxuryJewelryGallery({
               onClick={() => setSelectedItem(item)}
               onMouseMove={(e) => handleMouseMove(e, item.id)}
               onMouseLeave={handleMouseLeave}
-              className="group relative bg-[#211713] border border-[#DED2C1]/20 hover:border-[#C49A45]/60 overflow-hidden cursor-pointer shadow-xl transition-all duration-500 rounded-xl"
+              className="group relative bg-[#211813] border border-[#DED2C1]/20 hover:border-[#C49A45]/60 overflow-hidden cursor-pointer shadow-xl transition-all duration-500 rounded-xl"
             >
               {/* Responsive Container */}
-              <div className={`relative ${aspectRatio === '1/1' ? 'aspect-square' : 'aspect-[4/5]'} w-full overflow-hidden bg-[#30231D]`}>
+              <div className={`relative ${aspectRatio === '1/1' ? 'aspect-square' : 'aspect-[4/5]'} w-full overflow-hidden bg-[#241B17]`}>
                 
                 {/* Standard Base Image */}
                 <Image
@@ -109,14 +109,14 @@ export function LuxuryJewelryGallery({
 
                 {/* Top Gold Purity Seal */}
                 <div className="absolute top-4 left-4 z-20">
-                  <span className="text-[9px] font-bold tracking-widest uppercase text-[#C49A45] bg-[#211713]/90 backdrop-blur-md border border-[#C49A45]/40 px-3 py-1 shadow-md rounded">
+                  <span className="text-[9px] font-bold tracking-widest uppercase text-[#E7C880] bg-[#211813]/90 backdrop-blur-md border border-[#C49A45]/40 px-3 py-1 shadow-md rounded">
                     {item.purity}
                   </span>
                 </div>
 
                 {/* Hover Lens Indicator */}
                 <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="w-8 h-8 rounded-full bg-[#211713]/80 border border-[#DED2C1]/20 flex items-center justify-center text-xs text-[#C49A45]">
+                  <span className="w-8 h-8 rounded-full bg-[#211813]/80 border border-[#DED2C1]/20 flex items-center justify-center text-xs text-[#E7C880]">
                     🔍
                   </span>
                 </div>
@@ -124,23 +124,23 @@ export function LuxuryJewelryGallery({
                 {/* Bottom Content Card */}
                 <div className="absolute bottom-0 inset-x-0 p-6 z-20 flex flex-col justify-end transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                   {item.tag && (
-                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-[#C49A45] mb-1">
+                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-[#E7C880] mb-1">
                       {item.tag}
                     </span>
                   )}
-                  <h3 className="text-xl font-serif font-light text-[#F8F1E5] group-hover:text-[#C49A45] transition-colors mb-2 line-clamp-1">
+                  <h3 className="text-xl font-serif font-light text-[#FFF8EB] group-hover:text-[#E7C880] transition-colors mb-2 line-clamp-1">
                     {item.title}
                   </h3>
                   
                   {item.price ? (
-                    <p className="text-sm font-bold text-[#C49A45] font-serif mb-2">
+                    <p className="text-sm font-bold text-[#E7C880] font-serif mb-2">
                       ₹{Number(item.price).toLocaleString('en-IN')}
                     </p>
                   ) : null}
 
-                  <div className="inline-flex items-center space-x-2 text-[9px] font-bold tracking-[0.25em] uppercase text-[#D4C5B2] group-hover:text-[#F8F1E5] transition-colors">
+                  <div className="inline-flex items-center space-x-2 text-[9px] font-bold tracking-[0.25em] uppercase text-[#E5D7C5] group-hover:text-[#FFF8EB] transition-colors">
                     <span>Inspect Fine Detail</span>
-                    <span className="text-[#C49A45]">→</span>
+                    <span className="text-[#E7C880]">→</span>
                   </div>
                 </div>
 
@@ -161,7 +161,7 @@ export function LuxuryJewelryGallery({
               setSelectedItem(null);
               setIsZoomedInModal(false);
             }}
-            className="fixed inset-0 z-[100] bg-[#211713]/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
+            className="fixed inset-0 z-[100] bg-[#211813]/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
           >
             <motion.div
               initial={{ scale: 0.94, y: 15, opacity: 0 }}
@@ -169,7 +169,7 @@ export function LuxuryJewelryGallery({
               exit={{ scale: 0.94, y: 15, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 350, damping: 28 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-[#211713] border border-[#C49A45]/50 max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl rounded-xl"
+              className="relative bg-[#211813] border border-[#C49A45]/50 max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 overflow-hidden shadow-2xl rounded-xl"
             >
               {/* Close Button */}
               <button
@@ -177,7 +177,7 @@ export function LuxuryJewelryGallery({
                   setSelectedItem(null);
                   setIsZoomedInModal(false);
                 }}
-                className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-[#30231D] border border-[#DED2C1]/20 flex items-center justify-center text-[#F8F1E5] hover:text-[#C49A45] transition-colors shadow-lg"
+                className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-[#241B17] border border-[#DED2C1]/20 flex items-center justify-center text-[#FFF8EB] hover:text-[#E7C880] transition-colors shadow-lg"
                 aria-label="Close modal"
               >
                 ✕
@@ -185,7 +185,7 @@ export function LuxuryJewelryGallery({
 
               {/* Modal High-Res Zoomable Image Container */}
               <div 
-                className="relative aspect-[4/5] md:aspect-auto w-full min-h-[400px] bg-[#30231D] overflow-hidden cursor-zoom-in"
+                className="relative aspect-[4/5] md:aspect-auto w-full min-h-[400px] bg-[#241B17] overflow-hidden cursor-zoom-in"
                 onClick={() => setIsZoomedInModal(!isZoomedInModal)}
               >
                 <Image
@@ -200,7 +200,7 @@ export function LuxuryJewelryGallery({
                 
                 {/* Zoom Toggle Hint */}
                 <div className="absolute bottom-4 left-4 z-20">
-                  <span className="text-[10px] font-bold tracking-widest uppercase bg-[#211713]/85 text-[#F8F1E5] px-3 py-1.5 rounded border border-[#DED2C1]/20 backdrop-blur-md">
+                  <span className="text-[10px] font-bold tracking-widest uppercase bg-[#211813]/85 text-[#FFF8EB] px-3 py-1.5 rounded border border-[#DED2C1]/20 backdrop-blur-md">
                     {isZoomedInModal ? '🔎 Click to Reset' : '🔍 Click to Zoom 2.5x'}
                   </span>
                 </div>
@@ -210,27 +210,27 @@ export function LuxuryJewelryGallery({
               <div className="p-8 sm:p-12 flex flex-col justify-between space-y-6">
                 <div>
                   <div className="flex items-center space-x-3 mb-4">
-                    <span className="px-3 py-1 bg-[#C49A45]/15 border border-[#C49A45]/40 text-[#C49A45] text-[10px] font-bold tracking-[0.25em] uppercase rounded">
+                    <span className="px-3 py-1 bg-[#C49A45]/15 border border-[#C49A45]/40 text-[#E7C880] text-[10px] font-bold tracking-[0.25em] uppercase rounded">
                       {selectedItem.purity}
                     </span>
                     {selectedItem.weight ? (
-                      <span className="text-xs text-[#D4C5B2] font-serif">
+                      <span className="text-xs text-[#E5D7C5] font-serif">
                         Weight: {selectedItem.weight}g
                       </span>
                     ) : null}
                   </div>
 
-                  <h2 className="text-3xl sm:text-4xl font-serif font-light text-[#F8F1E5] mb-4 leading-tight">
+                  <h2 className="text-3xl sm:text-4xl font-serif font-light text-[#FFF8EB] mb-4 leading-tight">
                     {selectedItem.title}
                   </h2>
 
                   {selectedItem.price ? (
-                    <p className="text-2xl font-serif font-bold text-[#C49A45] mb-4">
+                    <p className="text-2xl font-serif font-bold text-[#E7C880] mb-4">
                       ₹{Number(selectedItem.price).toLocaleString('en-IN')}
                     </p>
                   ) : null}
 
-                  <p className="text-xs sm:text-sm text-[#D4C5B2] leading-relaxed font-light mb-6">
+                  <p className="text-xs sm:text-sm text-[#E5D7C5] leading-relaxed font-light mb-6">
                     {selectedItem.description}
                   </p>
                 </div>
@@ -250,7 +250,7 @@ export function LuxuryJewelryGallery({
 
                   <button
                     onClick={() => setIsZoomedInModal(!isZoomedInModal)}
-                    className="w-full py-3.5 text-center text-[10px] font-bold tracking-[0.3em] uppercase text-[#F8F1E5] bg-[#30231D] hover:bg-[#30231D]/80 border border-[#DED2C1]/20 transition-colors rounded"
+                    className="w-full py-3.5 text-center text-[10px] font-bold tracking-[0.3em] uppercase text-[#FFF8EB] bg-[#241B17] hover:bg-[#241B17]/80 border border-[#DED2C1]/20 transition-colors rounded"
                   >
                     {isZoomedInModal ? 'Reset View' : 'Inspect Craftsmanship & Texture'}
                   </button>

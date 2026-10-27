@@ -311,9 +311,10 @@ export default function HeroCarousel() {
           width: 44px;
           height: 44px;
           border-radius: 9999px;
-          background: rgba(255,255,255,0.15);
+          background: rgba(33,24,19,0.7);
           backdrop-filter: blur(8px);
-          border: 1px solid rgba(255,255,255,0.25);
+          border: 1px solid rgba(222,210,193,0.35);
+          color: #FFF8EB;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -322,8 +323,9 @@ export default function HeroCarousel() {
           z-index: 30;
         }
         .hero-nav-btn:hover {
-          background: rgba(255,255,255,0.28);
-          border-color: rgba(196,154,69,0.5);
+          background: #241B17;
+          border-color: #C49A45;
+          color: #E7C880;
           transform: translateY(-50%) scale(1.05);
         }
         .hero-nav-btn.prev { left: 16px; }
@@ -352,8 +354,8 @@ export default function HeroCarousel() {
         }
         .hero-dot.is-active {
           width: 32px;
-          background: #C49A45;
-          box-shadow: 0 0 10px rgba(196,154,69,0.5);
+          background: #98712E;
+          box-shadow: 0 0 10px rgba(152,113,46,0.5);
         }
 
         @media (max-width: 640px) {
@@ -414,14 +416,14 @@ export default function HeroCarousel() {
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(90deg,rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.15) 55%,rgba(0,0,0,0.08) 100%)",
+                    "linear-gradient(90deg,rgba(33,24,19,0.85) 0%,rgba(33,24,19,0.45) 55%,rgba(33,24,19,0.15) 100%)",
                 }}
               />
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(180deg,transparent 40%,rgba(0,0,0,0.55) 100%)",
+                    "linear-gradient(180deg,transparent 40%,rgba(33,24,19,0.7) 100%)",
                 }}
               />
 
@@ -468,7 +470,7 @@ export default function HeroCarousel() {
                     {slide.eyebrow && (
                       <p
                         className="slide-eyebrow text-[9px] sm:text-[10px] font-bold tracking-[0.45em] uppercase mb-2 sm:mb-3"
-                        style={{ color: "rgba(212,197,178,0.8)" }}
+                        style={{ color: "#E5D7C5" }}
                       >
                         {slide.eyebrow}
                       </p>
@@ -483,7 +485,7 @@ export default function HeroCarousel() {
 
                     {/* Headline */}
                     <h2
-                      className="slide-headline font-serif font-light leading-[0.95] tracking-tight text-white mt-1 mb-3 sm:mb-4"
+                      className="slide-headline font-serif font-light leading-[0.95] tracking-tight text-[#FFF8EB] mt-1 mb-3 sm:mb-4"
                       style={{
                         fontSize: "clamp(2rem, 5.5vw, 4rem)",
                         textShadow: "0 2px 24px rgba(0,0,0,0.45)",
@@ -496,7 +498,7 @@ export default function HeroCarousel() {
                     {slide.subline && (
                       <p
                         className="slide-subline text-xs sm:text-sm font-normal tracking-wide leading-relaxed mb-5 sm:mb-7 max-w-md"
-                        style={{ color: "rgba(212,197,178,0.9)" }}
+                        style={{ color: "#E5D7C5" }}
                       >
                         {slide.subline}
                       </p>
@@ -535,14 +537,14 @@ export default function HeroCarousel() {
                             href={slide.ctaSecondary.href}
                             className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 text-[10px] sm:text-[11px] font-bold tracking-[0.28em] uppercase transition-all duration-300 hover:scale-105"
                             style={{
-                              background: "rgba(248,244,236,0.08)",
-                              color: "rgba(248,241,229,0.9)",
+                              background: "rgba(33,24,19,0.7)",
+                              color: "#FFF8EB",
                               border: "1px solid rgba(222,210,193,0.35)",
                               backdropFilter: "blur(8px)",
                             }}
                             onMouseEnter={(e) => {
-                              (e.currentTarget as HTMLElement).style.background = "rgba(196,154,69,0.15)";
-                              (e.currentTarget as HTMLElement).style.borderColor = "rgba(196,154,69,0.5)";
+                              (e.currentTarget as HTMLElement).style.background = "#FAF7F0";
+                              (e.currentTarget as HTMLElement).style.color = "#241B17";
                             }}
                             onMouseLeave={(e) => {
                               (e.currentTarget as HTMLElement).style.background = "rgba(248,244,236,0.08)";

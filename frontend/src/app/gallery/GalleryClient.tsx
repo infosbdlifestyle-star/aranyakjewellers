@@ -40,40 +40,40 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
   }, [dynamicGalleryItems, activeTab]);
 
   return (
-    <main className="min-h-screen bg-[#F8F4EC] text-[#30231D] selection:bg-[#C49A45] selection:text-[#211713]">
+    <main className="min-h-screen bg-[#FAF7F0] text-[#40352F] selection:bg-[#C49A45] selection:text-[#211813]">
       
       {/* 1. Header Banner */}
-      <section className="relative py-24 sm:py-32 bg-[#211713] border-b border-[#DED2C1]/20 overflow-hidden text-center px-6">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#211713]/90 via-transparent to-[#211713] pointer-events-none" />
+      <section className="relative py-24 sm:py-32 bg-[#211713] border-b border-[#DED2C1]/15 overflow-hidden text-center px-6">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#211713]/95 via-[#211713]/80 to-[#211713] pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto">
-          <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#30231D] border border-[#C49A45]/40 mb-6 shadow-xl">
-            <SparkleGlint color="#C49A45" size={12}>
-              <span className="text-[#C49A45]">✧</span>
+          <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#241B17] border border-[#C49A45]/40 mb-6 shadow-xl">
+            <SparkleGlint color="#E7C880" size={12}>
+              <span className="text-[#E7C880]">✧</span>
             </SparkleGlint>
-            <span className="text-[#C49A45] text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase">
+            <span className="text-[#E7C880] text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase">
               ARANYAK MASTER GALLERY
             </span>
-            <SparkleGlint color="#C49A45" size={12}>
-              <span className="text-[#C49A45]">✧</span>
+            <SparkleGlint color="#E7C880" size={12}>
+              <span className="text-[#E7C880]">✧</span>
             </SparkleGlint>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#F8F1E5] tracking-tight leading-none mb-6">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#FFF8EB] tracking-tight leading-none mb-6">
             <TextReveal text="Haute" /> <span className="font-editorial gold-gradient italic">Jewellery</span> <TextReveal text="Portfolio" />
           </h1>
 
-          <p className="text-xs sm:text-sm text-[#D4C5B2] tracking-widest max-w-2xl mx-auto leading-relaxed uppercase font-normal mb-6">
+          <p className="text-xs sm:text-sm text-[#E5D7C5] tracking-widest max-w-2xl mx-auto leading-relaxed uppercase font-normal mb-6">
             Explore our comprehensive archive of handcrafted gold, pure 925 silver, and royal bridal trousseau masterpieces.
           </p>
 
-          <div className="inline-flex items-center space-x-2 text-[11px] font-serif text-[#C49A45] bg-[#30231D]/80 border border-[#C49A45]/30 px-4 py-1 rounded-full">
+          <div className="inline-flex items-center space-x-2 text-[11px] font-serif text-[#E7C880] bg-[#241B17]/80 border border-[#C49A45]/30 px-4 py-1 rounded-full">
             <span>{filteredItems.length} Masterpiece Photos in Collection</span>
           </div>
         </div>
       </section>
 
       {/* 2. Category Filter Tabs with Sliding Animated Pill */}
-      <section className="sticky top-20 z-40 bg-[#F0E7D8]/95 backdrop-blur-md border-b border-[#DED2C1] py-4 px-6 shadow-sm">
+      <section className="sticky top-20 z-40 bg-[#FAF7F0]/95 backdrop-blur-md border-b border-[#DED2C1] py-4 px-6 shadow-sm">
         <div className="container mx-auto max-w-7xl flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar space-x-2 sm:space-x-3">
           {GALLERY_CATEGORIES.map((cat) => {
             const isActive = activeTab === cat.id;
@@ -81,17 +81,17 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
               <button
                 key={cat.id}
                 onClick={() => setActiveTab(cat.id)}
-                className="relative px-4 py-2 sm:px-5 sm:py-2.5 text-[10px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.25em] uppercase whitespace-nowrap transition-colors duration-300 rounded-none overflow-hidden"
+                className="relative px-4 py-2 sm:px-5 sm:py-2.5 text-[10px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.25em] uppercase whitespace-nowrap transition-colors duration-300 rounded-full overflow-hidden"
               >
                 {isActive && (
                   <motion.div 
                     layoutId="activeGalleryTabPill"
-                    className="absolute inset-0 bg-[#C49A45] shadow-md z-0"
+                    className="absolute inset-0 bg-[#241B17] rounded-full shadow-md z-0 border border-[#98712E]/50"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
                 <span className={`relative z-10 transition-colors duration-300 ${
-                  isActive ? 'text-[#211713]' : 'text-[#74665A] hover:text-[#30231D]'
+                  isActive ? 'text-[#FFF8EB]' : 'text-[#40352F] hover:text-[#241B17]'
                 }`}>
                   {cat.label}
                 </span>

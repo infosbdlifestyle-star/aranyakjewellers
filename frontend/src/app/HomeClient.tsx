@@ -224,7 +224,7 @@ export default function HomeClient({
   const rate18k = getRate(18, 59300);
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#F8F4EC] text-[#30231D] selection:bg-[#C49A45] selection:text-[#211713]" ref={containerRef}>
+    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#241B17] selection:bg-[#C49A45] selection:text-[#211713]" ref={containerRef}>
       
       {/* 1. Full-Screen Luxury "Timeless Elegance" Hero Section */}
       <section className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-[#211713]" aria-label="Hero Section">
@@ -290,7 +290,7 @@ export default function HomeClient({
           </Reveal>
           
           {/* Main Headline with Kinetic Masked Text Reveal */}
-          <h1 className="text-5xl sm:text-7xl md:text-9xl lg:text-[10rem] font-serif font-light text-[#F8F1E5] leading-[0.88] tracking-tight drop-shadow-2xl">
+          <h1 className="text-5xl sm:text-7xl md:text-9xl lg:text-[10rem] font-serif font-light text-[#FFF8EB] leading-[0.88] tracking-tight drop-shadow-2xl">
             <TextReveal delay={0.1} duration={1.1}>
               Timeless
             </TextReveal>
@@ -304,7 +304,7 @@ export default function HomeClient({
 
           {/* Subtitle Narrative */}
           <Reveal delay={0.4} y={30}>
-            <p className="mt-8 text-xs sm:text-sm md:text-base text-[#D4C5B2] font-normal tracking-[0.18em] max-w-3xl mx-auto leading-relaxed uppercase drop-shadow-md">
+            <p className="mt-8 text-xs sm:text-sm md:text-base text-[#E5D7C5] font-normal tracking-[0.18em] max-w-3xl mx-auto leading-relaxed uppercase drop-shadow-md">
               CURATING HANDCRAFTED GOLD, CERTIFIED DIAMONDS, AND SACRED ASTROLOGICAL GEMSTONES WITH 21+ YEARS OF MASTER CRAFTSMANSHIP.
             </p>
           </Reveal>
@@ -320,7 +320,7 @@ export default function HomeClient({
               </Link>
               <Link 
                 href="/stores" 
-                className="px-10 py-4 text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase text-[#F8F1E5] hover:text-[#211713] bg-[#211713]/70 hover:bg-[#C49A45] backdrop-blur-md border border-[#DED2C1]/40 hover:border-[#C49A45] transition-all duration-500 hover:scale-105 shadow-lg"
+                className="px-10 py-4 text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase text-[#FFF8EB] hover:text-[#211713] bg-[#211713]/70 hover:bg-[#C49A45] backdrop-blur-md border border-[#DED2C1]/40 hover:border-[#C49A45] transition-all duration-500 hover:scale-105 shadow-lg"
               >
                 FIND BOUTIQUE SHOWROOMS
               </Link>
@@ -341,7 +341,7 @@ export default function HomeClient({
       </section>
 
       {/* 2.5 Special Festive & Wedding Offers Grid */}
-      <section className="pt-16 md:pt-20 pb-0 bg-gradient-to-b from-[#211713] via-[#2B1B15] to-[#211713] relative overflow-hidden text-[#F8F1E5]">
+      <section className="pt-16 md:pt-20 pb-0 bg-gradient-to-b from-[#211713] via-[#2B1B15] to-[#211713] relative overflow-hidden text-[#FFF8EB]">
         <div className="absolute inset-0 bg-radial-gold opacity-20 pointer-events-none" />
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-12">
@@ -355,19 +355,19 @@ export default function HomeClient({
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light tracking-tight text-[#F8F1E5] mb-3">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light tracking-tight text-[#FFF8EB] mb-3">
                 Exclusive <span className="font-editorial gold-gradient italic">Privileges</span> & Offers
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="text-xs sm:text-sm text-[#D4C5B2] max-w-xl mx-auto font-light leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#E5D7C5] max-w-xl mx-auto font-light leading-relaxed">
                 Celebrate life&apos;s most precious milestones with guaranteed purity, exceptional exchange value, and festival blessings across all Tripura boutiques.
               </p>
             </Reveal>
             <Reveal delay={0.3}>
               <div className="mt-6 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#30231D]/90 border border-[#C49A45]/50 shadow-[0_4px_20px_rgba(196,154,69,0.15)] backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-[#C49A45] animate-pulse" />
-                <span className="text-xs sm:text-sm font-medium tracking-wide text-[#F8F1E5]">
+                <span className="text-xs sm:text-sm font-medium tracking-wide text-[#FFF8EB]">
                   অফার* চলবে ১ নভেম্বর থেকে ১৪ নভেম্বর ২০২৬ পর্যন্ত
                 </span>
                 <span className="text-[#C49A45] text-xs">✦</span>
@@ -438,10 +438,10 @@ export default function HomeClient({
                           ✦
                         </span>
                       </div>
-                      <h3 className="text-lg font-serif font-bold text-[#F8F1E5] mb-2 group-hover:text-[#C49A45] transition-colors leading-snug">
+                      <h3 className="text-lg font-serif font-bold text-[#FFF8EB] mb-2 group-hover:text-[#C49A45] transition-colors leading-snug">
                         {item.title}
                       </h3>
-                      <p className="text-xs text-[#D4C5B2] leading-relaxed font-light">
+                      <p className="text-xs text-[#E5D7C5] leading-relaxed font-light">
                         {item.desc}
                       </p>
                     </div>
@@ -460,7 +460,7 @@ export default function HomeClient({
         <div 
           className="w-full pt-16 md:pt-24 mt-12 sm:mt-16 relative pointer-events-none"
           style={{
-            background: 'linear-gradient(180deg, rgba(33, 23, 19, 0) 0%, #211713 15%, #382820 38%, #665044 62%, #E8DDCC 85%, #F8F4EC 100%)'
+            background: 'linear-gradient(180deg, rgba(33, 23, 19, 0) 0%, #211713 15%, #382820 38%, #665044 62%, #E8DDCC 85%, #FAF7F0 100%)'
           }}
         >
           {/* Elegant Shallow Symmetrical Curved Divider */}
@@ -484,7 +484,7 @@ export default function HomeClient({
               {/* Shallow curved path filled with final ivory #F8F4EC */}
               <path 
                 d="M0,0 Q720,44 1440,0 L1440,60 L0,60 Z" 
-                fill="#F8F4EC" 
+                fill="#FAF7F0" 
               />
               {/* Subtle gold hairline accent along the curve */}
               <path 
@@ -505,7 +505,7 @@ export default function HomeClient({
       <HeroCarousel />
 
       {/* 4. The Aranyak Heritage & Brand Stats Section */}
-      <section className="py-24 md:py-36 bg-[#F0E7D8] text-[#30231D] relative z-20 overflow-hidden border-b border-[#DED2C1] bg-radial-gold">
+      <section className="py-24 md:py-36 bg-[#FAF7F0] text-[#241B17] relative z-20 overflow-hidden border-b border-[#DED2C1] bg-radial-gold">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
             
@@ -514,18 +514,18 @@ export default function HomeClient({
               <Reveal>
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-[2px] bg-[#A77C32]" />
-                  <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#A77C32]">The Aranyak Philosophy</h2>
+                  <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#98712E]">The Aranyak Philosophy</h2>
                 </div>
               </Reveal>
               
               <Reveal delay={0.1}>
-                <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light leading-[1.1] text-[#30231D]">
+                <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light leading-[1.1] text-[#241B17]">
                   Masterpieces born from <span className="font-editorial gold-gradient italic">heritage</span> & crafted for eternity.
                 </h3>
               </Reveal>
               
               <Reveal delay={0.2}>
-                <p className="text-base text-[#74665A] leading-[1.8] font-normal tracking-wide">
+                <p className="text-base text-[#40352F] leading-[1.8] font-normal tracking-wide">
                   For over a quarter-century, Aranyak Jewellers has remained Tripura’s most trusted symbol of purity and fine craftsmanship. From intricate traditional Bengali gold ornaments to contemporary solitaire diamond creations, every piece is sculpted to perfection.
                 </p>
               </Reveal>
@@ -534,7 +534,7 @@ export default function HomeClient({
                 <div className="pt-4 flex items-center space-x-8">
                   <Link 
                     href="/about" 
-                    className="inline-block text-[11px] font-bold uppercase tracking-[0.35em] text-[#30231D] hover:text-[#A77C32] transition-colors border-b-2 border-[#C49A45] pb-2"
+                    className="inline-block text-[11px] font-bold uppercase tracking-[0.35em] text-[#241B17] hover:text-[#98712E] transition-colors border-b-2 border-[#C49A45] pb-2"
                   >
                     Read Our Story & Journey →
                   </Link>
@@ -551,16 +551,16 @@ export default function HomeClient({
                 { num: "IV", title: "Curated Luxury", desc: "Bespoke bridal sets, daily elegance wear, and certified astrological gemstones." }
               ].map((item, i) => (
                 <Reveal key={i} delay={0.1 * i} y={30}>
-                  <div className="group border-r border-b border-[#DED2C1] p-10 bg-[#F8F4EC] hover:bg-white transition-all duration-500 h-full flex flex-col justify-between shadow-sm">
+                  <div className="group border-r border-b border-[#DED2C1] p-10 bg-[#FFFDF8] hover:bg-white transition-all duration-500 h-full flex flex-col justify-between shadow-sm">
                     <div className="flex items-center justify-between mb-8">
                       <span className="text-sm font-editorial font-bold text-[#C49A45]">{item.num}</span>
                       <div className="w-2.5 h-2.5 rounded-full bg-[#30231D]/15 group-hover:bg-[#C49A45] transition-colors" />
                     </div>
                     <div>
-                      <h4 className="text-2xl font-serif font-medium mb-3 tracking-wide text-[#30231D] group-hover:text-[#A77C32] transition-colors">
+                      <h4 className="text-2xl font-serif font-medium mb-3 tracking-wide text-[#241B17] group-hover:text-[#98712E] transition-colors">
                         {item.title}
                       </h4>
-                      <p className="text-sm text-[#74665A] leading-relaxed tracking-normal font-normal">{item.desc}</p>
+                      <p className="text-sm text-[#40352F] leading-relaxed tracking-normal font-normal">{item.desc}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -572,9 +572,9 @@ export default function HomeClient({
           <div className="mt-24 pt-16 border-t border-[#DED2C1] grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {STATS.map(stat => stat.label.includes('Showroom') ? { ...stat, value: `${liveStoresCount}` } : stat).map((stat, idx) => (
               <MagneticCard key={idx} tiltAmount={4} glareOpacity={0.12}>
-                <div className="p-6 sm:p-8 bg-[#F8F4EC] border border-[#DED2C1] hover:border-[#C49A45]/70 transition-all duration-300 rounded-xl shadow-sm h-full flex flex-col justify-center">
+                <div className="p-6 sm:p-8 bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#C49A45]/70 transition-all duration-300 rounded-xl shadow-sm h-full flex flex-col justify-center">
                   <p className="text-4xl md:text-5xl font-serif font-light text-[#C49A45] mb-2">{stat.value}</p>
-                  <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#30231D]">{stat.label}</p>
+                  <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#241B17]">{stat.label}</p>
                 </div>
               </MagneticCard>
             ))}
@@ -606,12 +606,12 @@ export default function HomeClient({
           </Reveal>
           <Reveal delay={0.1}>
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-serif font-light tracking-wide leading-tight max-w-4xl drop-shadow-2xl">
-              <span className="text-[#F8F1E5]">The Essence of</span>{" "}
+              <span className="text-[#FFF8EB]">The Essence of</span>{" "}
               <span className="font-editorial gold-gradient italic">Craftsmanship</span>
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mt-6 text-[#D4C5B2] font-light tracking-wide max-w-2xl mx-auto text-sm md:text-base drop-shadow-md">
+            <p className="mt-6 text-[#E5D7C5] font-light tracking-wide max-w-2xl mx-auto text-sm md:text-base drop-shadow-md">
               Watch as raw gold and unpolished stones are meticulously transformed into breathtaking masterpieces by our legacy artisans.
             </p>
           </Reveal>
@@ -619,7 +619,7 @@ export default function HomeClient({
             <div className="mt-10 pointer-events-auto">
               <Link 
                 href="/about" 
-                className="group flex items-center space-x-4 px-8 py-3.5 bg-[#C49A45] hover:bg-[#A77C32] text-[#211713] hover:text-[#F8F1E5] border border-[#A77C32] text-[10px] font-bold tracking-[0.35em] uppercase transition-all duration-500 shadow-lg"
+                className="group flex items-center space-x-4 px-8 py-3.5 bg-[#C49A45] hover:bg-[#A77C32] text-[#211713] hover:text-[#FFF8EB] border border-[#A77C32] text-[10px] font-bold tracking-[0.35em] uppercase transition-all duration-500 shadow-lg"
               >
                 <span>Discover Our Heritage</span>
               </Link>
@@ -629,19 +629,19 @@ export default function HomeClient({
       </section>
 
       {/* 6. Curated High Jewellery Collections (Interactive Grid) */}
-      <section className="py-24 md:py-36 bg-[#F8F4EC] border-b border-[#DED2C1] relative overflow-hidden">
+      <section className="py-24 md:py-36 bg-[#FFFDF8] border-b border-[#DED2C1] relative overflow-hidden">
         <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
           
           <div className="text-center mb-20 md:mb-32">
             <Reveal>
               <div className="flex items-center justify-center space-x-4 mb-4">
                 <div className="w-8 h-[2px] bg-[#C49A45]" />
-                <span className="text-[11px] tracking-[0.5em] uppercase font-bold text-[#A77C32]">Curated Masterpieces</span>
+                <span className="text-[11px] tracking-[0.5em] uppercase font-bold text-[#98712E]">Curated Masterpieces</span>
                 <div className="w-8 h-[2px] bg-[#C49A45]" />
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <h3 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#30231D] tracking-tight">
+              <h3 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#241B17] tracking-tight">
                 High <span className="font-editorial gold-gradient italic">Jewellery</span>
               </h3>
             </Reveal>
@@ -672,10 +672,10 @@ export default function HomeClient({
                     <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1 rounded-full border mb-3 bg-[#C49A45]/15 text-[#C49A45] border-[#C49A45]/30 group-hover:scale-105 transition-transform">
                       {gemAura.tag}
                     </span>
-                    <h4 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[#F8F1E5] mb-4 group-hover:text-[#C49A45] transition-colors drop-shadow-md">
+                    <h4 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[#FFF8EB] mb-4 group-hover:text-[#C49A45] transition-colors drop-shadow-md">
                       {cat.name}
                     </h4>
-                    <p className="text-xs text-[#D4C5B2] font-normal max-w-xs mx-auto mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <p className="text-xs text-[#E5D7C5] font-normal max-w-xs mx-auto mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       {cat.tagline}
                     </p>
                     <div className="text-[10px] font-bold tracking-[0.35em] uppercase text-[#C49A45] border-b border-[#C49A45] pb-1.5 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
@@ -690,7 +690,7 @@ export default function HomeClient({
           
           <div className="text-center mt-20 md:mt-28">
             <Reveal>
-              <Link href="/collections" className="inline-flex items-center space-x-6 text-xs font-bold tracking-[0.35em] uppercase text-[#30231D] hover:text-[#A77C32] transition-colors group">
+              <Link href="/collections" className="inline-flex items-center space-x-6 text-xs font-bold tracking-[0.35em] uppercase text-[#241B17] hover:text-[#98712E] transition-colors group">
                 <span>Browse All Collections</span>
                 <div className="w-16 h-[2px] bg-[#DED2C1] group-hover:bg-[#C49A45] group-hover:w-24 transition-all duration-500" />
               </Link>
@@ -706,22 +706,22 @@ export default function HomeClient({
           {/* Left Column: Text & CTA Button */}
           <div className="text-left space-y-6">
             <Reveal width="100%">
-              <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#F8F4EC] border border-[#DED2C1] mb-2 shadow-sm">
+              <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#FFFDF8] border border-[#DED2C1] mb-2 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45]" />
-                <span className="text-[11px] font-bold tracking-[0.35em] uppercase text-[#A77C32]">
+                <span className="text-[11px] font-bold tracking-[0.35em] uppercase text-[#98712E]">
                   PHOTOGRAPHY & ARTWORK ARCHIVE
                 </span>
               </div>
             </Reveal>
 
             <Reveal width="100%" delay={0.1}>
-              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#30231D] leading-tight">
+              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#241B17] leading-tight">
                 Master <span className="font-editorial gold-gradient italic">Gallery</span> Directory
               </h3>
             </Reveal>
 
             <Reveal width="100%" delay={0.2}>
-              <p className="text-sm md:text-base text-[#74665A] uppercase tracking-widest font-normal leading-relaxed max-w-xl">
+              <p className="text-sm md:text-base text-[#40352F] uppercase tracking-widest font-normal leading-relaxed max-w-xl">
                 View our complete catalogue of handcrafted gold ornaments, certified solitaires, and antique temple jewelry in full resolution.
               </p>
             </Reveal>
@@ -730,7 +730,7 @@ export default function HomeClient({
               <div className="pt-2">
                 <Link 
                   href="/gallery"
-                  className="btn-luxury inline-block px-10 py-4.5 text-[10px] font-bold tracking-[0.4em] uppercase shadow-lg hover:scale-105 transition-all duration-500"
+                  className="btn-luxury-dark inline-block px-10 py-4.5 text-[10px] font-bold tracking-[0.4em] uppercase shadow-lg hover:scale-105 transition-all duration-500"
                 >
                   Open Master Gallery Archive →
                 </Link>
@@ -759,7 +759,7 @@ export default function HomeClient({
                       <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#C49A45] block mb-1">
                         FEATURED MASTERPIECE
                       </span>
-                      <h4 className="text-xl sm:text-2xl font-serif text-[#F8F1E5] font-light">
+                      <h4 className="text-xl sm:text-2xl font-serif text-[#FFF8EB] font-light">
                         Royal Bridal Trousseau
                       </h4>
                     </div>
@@ -783,7 +783,7 @@ export default function HomeClient({
                     <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[#C49A45] block mb-0.5">
                       SOLITAIRES
                     </span>
-                    <span className="text-sm font-serif text-[#F8F1E5]">
+                    <span className="text-sm font-serif text-[#FFF8EB]">
                       Diamond Flower Ring
                     </span>
                   </div>
@@ -803,7 +803,7 @@ export default function HomeClient({
                     <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[#C49A45] block mb-0.5">
                       BESPOKE EARPIECES
                     </span>
-                    <span className="text-sm font-serif text-[#F8F1E5]">
+                    <span className="text-sm font-serif text-[#FFF8EB]">
                       Ruby & Diamond Drops
                     </span>
                   </div>
@@ -817,21 +817,21 @@ export default function HomeClient({
       </section>
 
       {/* Instagram Official Lookbook & Feed Showcase */}
-      <section className="py-24 bg-[#F8F4EC] border-b border-[#DED2C1] relative overflow-hidden">
+      <section className="py-24 bg-[#FFFDF8] border-b border-[#DED2C1] relative overflow-hidden">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <Reveal>
-              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#A77C32] mb-3 block">
+              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#98712E] mb-3 block">
                 INSTAGRAM OFFICIAL LOOKBOOK
               </span>
             </Reveal>
             <Reveal delay={0.1}>
-              <h3 className="text-4xl sm:text-6xl font-serif font-light text-[#30231D] mb-4">
+              <h3 className="text-4xl sm:text-6xl font-serif font-light text-[#241B17] mb-4">
                 Follow <span className="font-editorial gold-gradient italic">@aranyakjewellers</span>
               </h3>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="text-sm text-[#74665A] font-normal tracking-wide max-w-xl mx-auto uppercase mb-8 leading-relaxed">
+              <p className="text-sm text-[#40352F] font-normal tracking-wide max-w-xl mx-auto uppercase mb-8 leading-relaxed">
                 Explore real bride trousseaus, daily gold rates, & store designs on Instagram
               </p>
             </Reveal>
@@ -840,7 +840,7 @@ export default function HomeClient({
                 href="https://www.instagram.com/aranyakjewellers/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-3 px-8 py-3.5 rounded-full bg-[#211713] text-[#F8F1E5] text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-[#C49A45] hover:text-[#211713] border border-[#C49A45]/30 transition-all duration-500 shadow-md"
+                className="inline-flex items-center space-x-3 px-8 py-3.5 rounded-full bg-[#211713] text-[#FFF8EB] text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-[#C49A45] hover:text-[#211713] border border-[#C49A45]/30 transition-all duration-500 shadow-md"
               >
                 <span>📸 Visit @aranyakjewellers on Instagram</span>
               </a>
@@ -877,7 +877,7 @@ export default function HomeClient({
                   </div>
                   <div className="absolute bottom-4 left-4 right-4 z-10">
                     <span className="text-[9px] font-bold tracking-widest uppercase text-[#C49A45] block mb-1">{item.tag}</span>
-                    <h5 className="text-xs sm:text-sm font-serif font-medium text-[#F8F1E5] group-hover:text-[#C49A45] transition-colors drop-shadow-sm">{item.title}</h5>
+                    <h5 className="text-xs sm:text-sm font-serif font-medium text-[#FFF8EB] group-hover:text-[#C49A45] transition-colors drop-shadow-sm">{item.title}</h5>
                   </div>
                 </a>
               </Reveal>
@@ -892,12 +892,12 @@ export default function HomeClient({
           
           <div className="text-center mb-16 md:mb-24">
             <Reveal>
-              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#A77C32] mb-3 block">
+              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#98712E] mb-3 block">
                 Voices of Trust
               </span>
             </Reveal>
             <Reveal delay={0.1}>
-              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#30231D]">
+              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#241B17]">
                 Cherished <span className="font-editorial gold-gradient italic">Stories</span>
               </h3>
             </Reveal>
@@ -907,7 +907,7 @@ export default function HomeClient({
             {TESTIMONIALS.map((t, idx) => (
               <StaggerItem key={idx} y={30} className="h-full">
                 <MagneticCard tiltIntensity={4} className="h-full rounded-xl">
-                  <div className="bg-[#F8F4EC] border border-[#DED2C1] p-8 sm:p-10 flex flex-col justify-between h-full hover:border-[#C49A45]/70 transition-all duration-500 shadow-sm hover:shadow-lg rounded-xl">
+                  <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 sm:p-10 flex flex-col justify-between h-full hover:border-[#C49A45]/70 transition-all duration-500 shadow-sm hover:shadow-lg rounded-xl">
                     <div>
                       {/* Stars with Subtle Stagger */}
                       <div className="flex items-center space-x-1.5 text-[#C49A45] mb-6">
@@ -915,17 +915,17 @@ export default function HomeClient({
                           <span key={i} className="text-base font-bold drop-shadow-sm">★</span>
                         ))}
                       </div>
-                      <p className="text-sm text-[#30231D] font-normal leading-[1.8] italic mb-8">
+                      <p className="text-sm text-[#241B17] font-normal leading-[1.8] italic mb-8">
                         &ldquo;{t.quote}&rdquo;
                       </p>
                     </div>
 
                     <div className="pt-6 border-t border-[#DED2C1] flex items-center justify-between">
                       <div>
-                        <h4 className="text-base font-serif font-bold text-[#30231D]">{t.author}</h4>
-                        <p className="text-[11px] text-[#74665A] uppercase tracking-wider font-semibold">{t.location}</p>
+                        <h4 className="text-base font-serif font-bold text-[#241B17]">{t.author}</h4>
+                        <p className="text-[11px] text-[#40352F] uppercase tracking-wider font-semibold">{t.location}</p>
                       </div>
-                      <span className="text-[10px] font-bold tracking-wider uppercase text-[#A77C32] bg-[#C49A45]/10 border border-[#C49A45]/30 px-3 py-1 rounded-sm">
+                      <span className="text-[10px] font-bold tracking-wider uppercase text-[#98712E] bg-[#C49A45]/10 border border-[#C49A45]/30 px-3 py-1 rounded-sm">
                         {t.tag}
                       </span>
                     </div>
@@ -949,20 +949,20 @@ export default function HomeClient({
           <div className="absolute inset-0 bg-gradient-to-t from-[#211713] via-[#211713]/85 to-transparent" />
         </div>
         
-        <div className="relative z-10 container mx-auto px-6 max-w-4xl text-center text-[#F8F1E5]">
+        <div className="relative z-10 container mx-auto px-6 max-w-4xl text-center text-[#FFF8EB]">
           <Reveal>
             <div className="w-16 h-[1px] bg-[#C49A45] mx-auto mb-10" />
           </Reveal>
           
           <Reveal delay={0.1}>
-            <h3 className="text-4xl sm:text-6xl md:text-7xl font-serif font-light mb-8 leading-tight drop-shadow-2xl text-[#F8F1E5]">
+            <h3 className="text-4xl sm:text-6xl md:text-7xl font-serif font-light mb-8 leading-tight drop-shadow-2xl text-[#FFF8EB]">
               Experience the <br /> 
               <span className="font-editorial gold-gradient italic">Brilliance</span> in Person
             </h3>
           </Reveal>
           
           <Reveal delay={0.2}>
-            <p className="text-xs sm:text-sm text-[#D4C5B2] tracking-wider max-w-xl mx-auto leading-relaxed mb-12 font-light uppercase drop-shadow-md">
+            <p className="text-xs sm:text-sm text-[#E5D7C5] tracking-wider max-w-xl mx-auto leading-relaxed mb-12 font-light uppercase drop-shadow-md">
               Step into our flagship boutiques across Agartala, Dharmanagar, Kailashahar, and Khowai. Enjoy personalized bridal consultations, private viewings, and bespoke design services with our master jewelers.
             </p>
           </Reveal>
@@ -977,7 +977,7 @@ export default function HomeClient({
               </Link>
               <Link 
                 href="/contact" 
-                className="px-10 py-4.5 text-[10px] font-bold tracking-[0.35em] uppercase text-[#F8F1E5] hover:text-[#211713] bg-[#F8F4EC]/10 hover:bg-[#C49A45] backdrop-blur-md border border-[#DED2C1]/40 hover:border-[#C49A45] transition-all duration-500 hover:scale-105 shadow-md"
+                className="px-10 py-4.5 text-[10px] font-bold tracking-[0.35em] uppercase text-[#FFF8EB] hover:text-[#211713] bg-[#FFFDF8]/10 hover:bg-[#C49A45] backdrop-blur-md border border-[#DED2C1]/40 hover:border-[#C49A45] transition-all duration-500 hover:scale-105 shadow-md"
               >
                 Schedule Consultation
               </Link>
