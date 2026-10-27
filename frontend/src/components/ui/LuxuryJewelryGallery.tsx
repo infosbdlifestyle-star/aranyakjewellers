@@ -105,18 +105,18 @@ export function LuxuryJewelryGallery({
                 )}
 
                 {/* Ambient Dark Vignette */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#211713] via-transparent to-black/30 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/95 via-[#211813]/50 to-transparent pointer-events-none" />
 
                 {/* Top Gold Purity Seal */}
                 <div className="absolute top-4 left-4 z-20">
-                  <span className="text-[9px] font-bold tracking-widest uppercase text-[#E7C880] bg-[#211813]/90 backdrop-blur-md border border-[#C49A45]/40 px-3 py-1 shadow-md rounded">
+                  <span className="text-[9px] font-bold tracking-widest uppercase text-[#E0BD72] bg-[#211813]/90 backdrop-blur-md border border-[#C49A45]/40 px-3 py-1 shadow-md rounded">
                     {item.purity}
                   </span>
                 </div>
 
                 {/* Hover Lens Indicator */}
                 <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="w-8 h-8 rounded-full bg-[#211813]/80 border border-[#DED2C1]/20 flex items-center justify-center text-xs text-[#E7C880]">
+                  <span className="w-8 h-8 rounded-full bg-[#211813]/80 border border-[#DED2C1]/20 flex items-center justify-center text-xs text-[#E0BD72]">
                     🔍
                   </span>
                 </div>
@@ -124,23 +124,23 @@ export function LuxuryJewelryGallery({
                 {/* Bottom Content Card */}
                 <div className="absolute bottom-0 inset-x-0 p-6 z-20 flex flex-col justify-end transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                   {item.tag && (
-                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-[#E7C880] mb-1">
+                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-[#E0BD72] mb-1">
                       {item.tag}
                     </span>
                   )}
-                  <h3 className="text-xl font-serif font-light text-[#FFF8EB] group-hover:text-[#E7C880] transition-colors mb-2 line-clamp-1">
+                  <h3 className="text-xl font-serif font-light text-[#FFF8EC] group-hover:text-[#E0BD72] transition-colors mb-2 line-clamp-1">
                     {item.title}
                   </h3>
                   
                   {item.price ? (
-                    <p className="text-sm font-bold text-[#E7C880] font-serif mb-2">
+                    <p className="text-sm font-bold text-[#D6B15D] font-serif mb-2">
                       ₹{Number(item.price).toLocaleString('en-IN')}
                     </p>
                   ) : null}
 
-                  <div className="inline-flex items-center space-x-2 text-[9px] font-bold tracking-[0.25em] uppercase text-[#E5D7C5] group-hover:text-[#FFF8EB] transition-colors">
+                  <div className="inline-flex items-center space-x-2 text-[9px] font-bold tracking-[0.25em] uppercase text-[#E5D9C8] group-hover:text-[#FFF8EC] transition-colors">
                     <span>Inspect Fine Detail</span>
-                    <span className="text-[#E7C880]">→</span>
+                    <span className="text-[#E0BD72]">→</span>
                   </div>
                 </div>
 
@@ -177,7 +177,7 @@ export function LuxuryJewelryGallery({
                   setSelectedItem(null);
                   setIsZoomedInModal(false);
                 }}
-                className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-[#241B17] border border-[#DED2C1]/20 flex items-center justify-center text-[#FFF8EB] hover:text-[#E7C880] transition-colors shadow-lg"
+                className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-[#241B17] border border-[#DED2C1]/20 flex items-center justify-center text-[#FFF8EC] hover:text-[#E0BD72] transition-colors shadow-lg"
                 aria-label="Close modal"
               >
                 ✕
@@ -200,7 +200,7 @@ export function LuxuryJewelryGallery({
                 
                 {/* Zoom Toggle Hint */}
                 <div className="absolute bottom-4 left-4 z-20">
-                  <span className="text-[10px] font-bold tracking-widest uppercase bg-[#211813]/85 text-[#FFF8EB] px-3 py-1.5 rounded border border-[#DED2C1]/20 backdrop-blur-md">
+                  <span className="text-[10px] font-bold tracking-widest uppercase bg-[#211813]/85 text-[#FFF8EC] px-3 py-1.5 rounded border border-[#DED2C1]/20 backdrop-blur-md">
                     {isZoomedInModal ? '🔎 Click to Reset' : '🔍 Click to Zoom 2.5x'}
                   </span>
                 </div>
@@ -210,27 +210,27 @@ export function LuxuryJewelryGallery({
               <div className="p-8 sm:p-12 flex flex-col justify-between space-y-6">
                 <div>
                   <div className="flex items-center space-x-3 mb-4">
-                    <span className="px-3 py-1 bg-[#C49A45]/15 border border-[#C49A45]/40 text-[#E7C880] text-[10px] font-bold tracking-[0.25em] uppercase rounded">
+                    <span className="px-3 py-1 bg-[#C49A45]/15 border border-[#C49A45]/40 text-[#E0BD72] text-[10px] font-bold tracking-[0.25em] uppercase rounded">
                       {selectedItem.purity}
                     </span>
                     {selectedItem.weight ? (
-                      <span className="text-xs text-[#E5D7C5] font-serif">
+                      <span className="text-xs text-[#E5D9C8] font-serif">
                         Weight: {selectedItem.weight}g
                       </span>
                     ) : null}
                   </div>
 
-                  <h2 className="text-3xl sm:text-4xl font-serif font-light text-[#FFF8EB] mb-4 leading-tight">
+                  <h2 className="text-3xl sm:text-4xl font-serif font-light text-[#FFF8EC] mb-4 leading-tight">
                     {selectedItem.title}
                   </h2>
 
                   {selectedItem.price ? (
-                    <p className="text-2xl font-serif font-bold text-[#E7C880] mb-4">
+                    <p className="text-2xl font-serif font-bold text-[#D6B15D] mb-4">
                       ₹{Number(selectedItem.price).toLocaleString('en-IN')}
                     </p>
                   ) : null}
 
-                  <p className="text-xs sm:text-sm text-[#E5D7C5] leading-relaxed font-light mb-6">
+                  <p className="text-xs sm:text-sm text-[#E5D9C8] leading-relaxed font-light mb-6">
                     {selectedItem.description}
                   </p>
                 </div>
@@ -250,7 +250,7 @@ export function LuxuryJewelryGallery({
 
                   <button
                     onClick={() => setIsZoomedInModal(!isZoomedInModal)}
-                    className="w-full py-3.5 text-center text-[10px] font-bold tracking-[0.3em] uppercase text-[#FFF8EB] bg-[#241B17] hover:bg-[#241B17]/80 border border-[#DED2C1]/20 transition-colors rounded"
+                    className="w-full py-3.5 text-center text-[10px] font-bold tracking-[0.3em] uppercase text-[#FFF8EC] bg-[#241B17] hover:bg-[#241B17]/80 border border-[#DED2C1]/20 transition-colors rounded"
                   >
                     {isZoomedInModal ? 'Reset View' : 'Inspect Craftsmanship & Texture'}
                   </button>

@@ -39,20 +39,23 @@ const SLIDES: HeroSlide[] = [
     eyebrow: "ARANYAK JEWELLERS • EST. 1995",
     headline: (
       <>
-        UP TO{" "}
+        <span style={{ color: "#FFF8EC" }}>UP TO </span>
         <span
           style={{
+            color: "#D6B15D",
             background:
-              "linear-gradient(135deg,#C49A45 0%,#E7C880 40%,#A77C32 100%)",
+              "linear-gradient(135deg, #D6B15D 0%, #E7C880 45%, #C49A45 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
+            fontWeight: 700,
+            display: "inline-block",
           }}
         >
           100% OFF
         </span>
         <br />
-        ON MAKING CHARGES
+        <span style={{ color: "#FFF8EC" }}>ON MAKING CHARGES</span>
       </>
     ),
     subline: "On certified diamond jewellery across all Tripura showrooms",
@@ -73,22 +76,24 @@ const SLIDES: HeroSlide[] = [
     eyebrow: "HANDCRAFTED • BIS 916 HALLMARKED",
     headline: (
       <>
-        Timeless{" "}
+        <span style={{ color: "#FFF8EC" }}>Timeless </span>
         <span
           style={{
             fontStyle: "italic",
             fontFamily: "var(--font-cormorant), serif",
+            color: "#D6B15D",
             background:
-              "linear-gradient(135deg,#C49A45 0%,#E7C880 40%,#A77C32 100%)",
+              "linear-gradient(135deg, #D6B15D 0%, #E7C880 45%, #C49A45 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
+            display: "inline-block",
           }}
         >
           Bridal Gold
         </span>
         <br />
-        Jewellery
+        <span style={{ color: "#FFF8EC" }}>Jewellery</span>
       </>
     ),
     subline:
@@ -109,21 +114,24 @@ const SLIDES: HeroSlide[] = [
     eyebrow: "VVS · VS · SI SOLITAIRES",
     headline: (
       <>
-        Exclusive{" "}
+        <span style={{ color: "#FFF8EC" }}>Exclusive </span>
         <span
           style={{
             fontStyle: "italic",
             fontFamily: "var(--font-cormorant), serif",
+            color: "#B8D4F0",
             background:
               "linear-gradient(135deg,#B8D4F0 0%,#E8F4FF 50%,#8BB8E8 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
+            display: "inline-block",
           }}
         >
           Diamond
         </span>
-        <br />& Solitaire Edit
+        <br />
+        <span style={{ color: "#FFF8EC" }}>& Solitaire Edit</span>
       </>
     ),
     subline:
@@ -416,14 +424,14 @@ export default function HeroCarousel() {
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(90deg,rgba(33,24,19,0.85) 0%,rgba(33,24,19,0.45) 55%,rgba(33,24,19,0.15) 100%)",
+                    "linear-gradient(90deg, rgba(33,24,19,0.95) 0%, rgba(33,24,19,0.70) 50%, rgba(33,24,19,0.25) 100%)",
                 }}
               />
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(180deg,transparent 40%,rgba(33,24,19,0.7) 100%)",
+                    "linear-gradient(180deg, transparent 25%, rgba(33,24,19,0.80) 100%)",
                 }}
               />
 
@@ -470,7 +478,7 @@ export default function HeroCarousel() {
                     {slide.eyebrow && (
                       <p
                         className="slide-eyebrow text-[9px] sm:text-[10px] font-bold tracking-[0.45em] uppercase mb-2 sm:mb-3"
-                        style={{ color: "#E5D7C5" }}
+                        style={{ color: "#E5D9C8" }}
                       >
                         {slide.eyebrow}
                       </p>
@@ -485,7 +493,7 @@ export default function HeroCarousel() {
 
                     {/* Headline */}
                     <h2
-                      className="slide-headline font-serif font-light leading-[0.95] tracking-tight text-[#FFF8EB] mt-1 mb-3 sm:mb-4"
+                      className="slide-headline font-serif font-light leading-[0.95] tracking-tight text-[#FFF8EC] mt-1 mb-3 sm:mb-4"
                       style={{
                         fontSize: "clamp(2rem, 5.5vw, 4rem)",
                         textShadow: "0 2px 24px rgba(0,0,0,0.45)",
@@ -498,7 +506,7 @@ export default function HeroCarousel() {
                     {slide.subline && (
                       <p
                         className="slide-subline text-xs sm:text-sm font-normal tracking-wide leading-relaxed mb-5 sm:mb-7 max-w-md"
-                        style={{ color: "#E5D7C5" }}
+                        style={{ color: "#E5D9C8" }}
                       >
                         {slide.subline}
                       </p>

@@ -2,6 +2,15 @@
 
 @layer base {
   :root {
+    /* Requested Exact Contrast & Color Tokens */
+    --text-on-dark: #FFF8EC;
+    --text-on-light: #241B17;
+    --text-secondary-on-dark: #E5D9C8;
+    --text-secondary-on-light: #40352F;
+    --accent-gold: #D6B15D;
+    --accent-gold-light: #E0BD72;
+    --dark-background: #211813;
+    --light-background: #FAF7F0;
     --background: #FAF7F0; /* Light section background: Warm ivory */
     --foreground: #241B17; /* Primary headings & strong text: Deep charcoal */
     --primary: #98712E; /* Gold accent text: Rich antique gold */
@@ -22,6 +31,15 @@
   }
 
   .dark {
+    /* Requested Exact Contrast & Color Tokens */
+    --text-on-dark: #FFF8EC;
+    --text-on-light: #241B17;
+    --text-secondary-on-dark: #E5D9C8;
+    --text-secondary-on-light: #40352F;
+    --accent-gold: #D6B15D;
+    --accent-gold-light: #E0BD72;
+    --dark-background: #211813;
+    --light-background: #FAF7F0;
     --background: #FAF7F0;
     --foreground: #241B17;
     --primary: #98712E;
@@ -41,6 +59,14 @@
 }
 
 @theme inline {
+  --color-text-on-dark: #FFF8EC;
+  --color-text-on-light: #241B17;
+  --color-text-secondary-on-dark: #E5D9C8;
+  --color-text-secondary-on-light: #40352F;
+  --color-accent-gold: #D6B15D;
+  --color-accent-gold-light: #E0BD72;
+  --color-dark-background: #211813;
+  --color-light-background: #FAF7F0;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -455,3 +481,11 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Utility classes for exact text-on-dark and text-on-light rules */
+.text-on-dark { color: #FFF8EC !important; }
+.text-on-light { color: #241B17 !important; }
+.text-secondary-on-dark { color: #E5D9C8 !important; }
+.text-secondary-on-light { color: #40352F !important; }
+.text-accent-gold { color: #D6B15D !important; }
+.text-accent-gold-light { color: #E0BD72 !important; }

@@ -661,24 +661,43 @@ export default function HomeClient({
                 <Link 
                   key={cat.id} 
                   href={`/category/${cat.slug}`} 
-                  className={`${cat.span} row-span-1 relative group overflow-hidden bg-[#211713] flex items-center justify-center p-10 border border-[#DED2C1]/25 hover:border-[#C49A45]/60 rounded-2xl transition-all duration-700 shadow-xl`}
+                  className={`${cat.span} row-span-1 relative group overflow-hidden bg-[#211813] flex items-center justify-center p-10 border border-[#DED2C1]/30 hover:border-[#E0BD72]/70 rounded-2xl transition-all duration-700 shadow-xl`}
                 >
                   <MouseParallaxImage src={cat.imageUrl} alt={cat.name} intensity={18} />
                   
-                  {/* Warm espresso vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#211713] via-[#211713]/40 to-transparent transition-opacity duration-700 group-hover:opacity-90" />
+                  {/* Subtle multi-stop image gradient ensuring high contrast without overly darkening jewellery */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/95 via-[#211813]/50 to-transparent transition-opacity duration-700 group-hover:opacity-95 pointer-events-none" />
                   
                   <div className="relative z-10 text-center flex flex-col items-center justify-end h-full pb-6">
-                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1 rounded-full border mb-3 bg-[#C49A45]/15 text-[#C49A45] border-[#C49A45]/30 group-hover:scale-105 transition-transform">
+                    <span 
+                      className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1 rounded-full border mb-3 group-hover:scale-105 transition-transform backdrop-blur-sm"
+                      style={{
+                        color: "#E0BD72",
+                        background: "rgba(33,24,19,0.75)",
+                        borderColor: "rgba(224,189,114,0.4)"
+                      }}
+                    >
                       {gemAura.tag}
                     </span>
-                    <h4 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-[#FFF8EB] mb-4 group-hover:text-[#C49A45] transition-colors drop-shadow-md">
+                    <h4 
+                      className="text-3xl sm:text-4xl md:text-5xl font-serif font-light mb-4 transition-colors drop-shadow-md"
+                      style={{ color: "#FFF8EC" }}
+                    >
                       {cat.name}
                     </h4>
-                    <p className="text-xs text-[#E5D7C5] font-normal max-w-xs mx-auto mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <p 
+                      className="text-xs font-normal max-w-xs mx-auto mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 leading-relaxed"
+                      style={{ color: "#E5D9C8" }}
+                    >
                       {cat.tagline}
                     </p>
-                    <div className="text-[10px] font-bold tracking-[0.35em] uppercase text-[#C49A45] border-b border-[#C49A45] pb-1.5 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+                    <div 
+                      className="text-[10px] font-bold tracking-[0.35em] uppercase border-b-2 pb-1.5 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500"
+                      style={{
+                        color: "#E0BD72",
+                        borderColor: "#E0BD72"
+                      }}
+                    >
                       Discover Collection →
                     </div>
                   </div>
@@ -752,18 +771,31 @@ export default function HomeClient({
                     sizes="(max-width: 768px) 100vw, (max-width: 1536px) 50vw, 40vw"
                     className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#211713]/85 via-[#211713]/25 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/95 via-[#211813]/40 to-transparent pointer-events-none" />
                   
                   <div className="absolute bottom-6 left-6 right-6 z-10 flex items-end justify-between">
                     <div>
-                      <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#C49A45] block mb-1">
+                      <span 
+                        className="text-[10px] font-bold tracking-[0.3em] uppercase block mb-1"
+                        style={{ color: "#E0BD72" }}
+                      >
                         FEATURED MASTERPIECE
                       </span>
-                      <h4 className="text-xl sm:text-2xl font-serif text-[#FFF8EB] font-light">
+                      <h4 
+                        className="text-xl sm:text-2xl font-serif font-light"
+                        style={{ color: "#FFF8EC" }}
+                      >
                         Royal Bridal Trousseau
                       </h4>
                     </div>
-                    <span className="w-8 h-8 rounded-full bg-[#211713]/80 border border-[#C49A45]/40 text-[#C49A45] flex items-center justify-center text-xs flex-shrink-0">
+                    <span 
+                      className="w-8 h-8 rounded-full flex items-center justify-center text-xs flex-shrink-0 border"
+                      style={{
+                        background: "rgba(33,24,19,0.85)",
+                        borderColor: "rgba(224,189,114,0.45)",
+                        color: "#E0BD72"
+                      }}
+                    >
                       ✦
                     </span>
                   </div>
@@ -778,12 +810,18 @@ export default function HomeClient({
                     sizes="(max-width: 768px) 100vw, (max-width: 1536px) 25vw, 20vw"
                     className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#211713]/70 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/95 via-[#211813]/45 to-transparent pointer-events-none" />
                   <div className="absolute bottom-4 left-4 z-10">
-                    <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[#C49A45] block mb-0.5">
+                    <span 
+                      className="text-[9px] font-bold tracking-[0.25em] uppercase block mb-0.5"
+                      style={{ color: "#E0BD72" }}
+                    >
                       SOLITAIRES
                     </span>
-                    <span className="text-sm font-serif text-[#FFF8EB]">
+                    <span 
+                      className="text-sm font-serif font-medium"
+                      style={{ color: "#FFF8EC" }}
+                    >
                       Diamond Flower Ring
                     </span>
                   </div>
@@ -798,12 +836,18 @@ export default function HomeClient({
                     sizes="(max-width: 768px) 100vw, (max-width: 1536px) 25vw, 20vw"
                     className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#211713]/70 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/95 via-[#211813]/45 to-transparent pointer-events-none" />
                   <div className="absolute bottom-4 left-4 z-10">
-                    <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[#C49A45] block mb-0.5">
+                    <span 
+                      className="text-[9px] font-bold tracking-[0.25em] uppercase block mb-0.5"
+                      style={{ color: "#E0BD72" }}
+                    >
                       BESPOKE EARPIECES
                     </span>
-                    <span className="text-sm font-serif text-[#FFF8EB]">
+                    <span 
+                      className="text-sm font-serif font-medium"
+                      style={{ color: "#FFF8EC" }}
+                    >
                       Ruby & Diamond Drops
                     </span>
                   </div>
@@ -869,15 +913,32 @@ export default function HomeClient({
                     sizes="(max-width: 768px) 50vw, 25vw"
                     className="object-cover opacity-85 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#211713] via-[#211713]/30 to-transparent pointer-events-none" />
-                  <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-[#211713]/85 border border-[#C49A45]/40 flex items-center justify-center text-[#C49A45] group-hover:scale-110 transition-transform shadow-md">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/95 via-[#211813]/40 to-transparent pointer-events-none" />
+                  <div 
+                    className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-md border"
+                    style={{
+                      background: "rgba(33,24,19,0.85)",
+                      borderColor: "rgba(224,189,114,0.45)",
+                      color: "#E0BD72"
+                    }}
+                  >
                     <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                   </div>
                   <div className="absolute bottom-4 left-4 right-4 z-10">
-                    <span className="text-[9px] font-bold tracking-widest uppercase text-[#C49A45] block mb-1">{item.tag}</span>
-                    <h5 className="text-xs sm:text-sm font-serif font-medium text-[#FFF8EB] group-hover:text-[#C49A45] transition-colors drop-shadow-sm">{item.title}</h5>
+                    <span 
+                      className="text-[9px] font-bold tracking-widest uppercase block mb-1"
+                      style={{ color: "#E0BD72" }}
+                    >
+                      {item.tag}
+                    </span>
+                    <h5 
+                      className="text-xs sm:text-sm font-serif font-medium transition-colors drop-shadow-sm"
+                      style={{ color: "#FFF8EC" }}
+                    >
+                      {item.title}
+                    </h5>
                   </div>
                 </a>
               </Reveal>
