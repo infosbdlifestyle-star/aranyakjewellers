@@ -257,33 +257,49 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Promotional Announcement Bar Continuous Marquee */
-@keyframes announcementMarquee {
+@keyframes continuousOffersScroll {
   0% {
-    transform: translateX(0%);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+@-webkit-keyframes continuousOffersScroll {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
+.offers-marquee-track,
 .animate-announcement-marquee {
-  display: flex;
-  width: max-content;
+  display: flex !important;
+  width: max-content !important;
   will-change: transform;
-  animation: announcementMarquee 38s linear infinite;
+  animation: continuousOffersScroll 40s linear infinite !important;
+  -webkit-animation: continuousOffersScroll 40s linear infinite !important;
 }
 
+.offers-marquee-container:hover .offers-marquee-track,
+.offers-marquee-track:hover,
 .group:hover .animate-announcement-marquee,
 .animate-announcement-marquee:hover {
-  animation-play-state: paused;
+  animation-play-state: paused !important;
+  -webkit-animation-play-state: paused !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .offers-marquee-track,
   .animate-announcement-marquee {
-    animation: none !important;
-    transform: none !important;
-    width: 100%;
-    justify-content: center;
+    animation-duration: 120s !important;
+    -webkit-animation-duration: 120s !important;
   }
 }
 
