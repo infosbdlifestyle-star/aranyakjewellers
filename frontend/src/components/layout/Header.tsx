@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CATEGORIES } from '@/constants/categories';
 import { useAuth } from '@/context/AuthContext';
+import PromotionalAnnouncementBar from '@/components/layout/PromotionalAnnouncementBar';
 
 const NAV_LINKS = [
   { name: 'Gallery', href: '/gallery' },
@@ -17,7 +18,13 @@ const NAV_LINKS = [
 // Categories to hide from the navigation menu
 const HIDDEN_CATEGORIES = ['costume-jewellery', 'offers-deals', 'astrological-stones'];
 
-const Header = ({ categories = [] }: { categories?: any[] }) => {
+const Header = ({ 
+  categories = [], 
+  settings = {} 
+}: { 
+  categories?: any[]; 
+  settings?: Record<string, string>;
+}) => {
   const { user, isAuthenticated } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -281,7 +288,10 @@ const Header = ({ categories = [] }: { categories?: any[] }) => {
         )}
       </AnimatePresence>
     </header>
-    </div>
+
+    {/* Dedicated Promotional Announcement Bar positioned immediately below the navigation */}
+    <PromotionalAnnouncementBar marqueeText={settings?.marquee_text} />
+  </div>
   );
 };
 

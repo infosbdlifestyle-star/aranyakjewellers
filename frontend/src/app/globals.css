@@ -255,3 +255,35 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: #D6B15D;
 }
+
+/* Promotional Announcement Bar Continuous Marquee */
+@keyframes announcementMarquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-announcement-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: announcementMarquee 38s linear infinite;
+}
+
+.group:hover .animate-announcement-marquee,
+.animate-announcement-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-announcement-marquee {
+    animation: none !important;
+    transform: none !important;
+    width: 100%;
+    justify-content: center;
+  }
+}
+

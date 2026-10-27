@@ -77,7 +77,7 @@ export default async function RootLayout({
         <AuthProvider>
           <PageLoader />
           <SmoothScroll>
-            <Header categories={categories} />
+            <Header categories={categories} settings={settings} />
             {children}
             <Footer categories={categories} settings={settings} />
           </SmoothScroll>
