@@ -14,7 +14,6 @@ import {
 } from '@/components/animations/LuxuryMotion';
 import { MouseParallaxImage } from '@/components/ui/MouseParallaxImage';
 import TopPicksCoverFlow from '@/components/home/TopPicksCoverFlow';
-import HeroCarousel from '@/components/home/HeroCarousel';
 import { useRef, useState, useEffect } from 'react';
 import React from 'react';
 import { api } from '@/lib/api';
@@ -227,7 +226,7 @@ export default function HomeClient({
     <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C] selection:bg-[#D6B15D] selection:text-[#211813]" ref={containerRef}>
       
       {/* 1. Full-Screen Luxury "Timeless Elegance" Hero Section */}
-      <section className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-[#211813]" aria-label="Hero Section">
+      <section className="relative min-h-[58vh] sm:min-h-[64vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#211813]" aria-label="Hero Section">
         <motion.div 
           className="absolute inset-0"
           initial={{ scale: 1.15 }}
@@ -276,13 +275,13 @@ export default function HomeClient({
         )}
         
         {/* Centered Brand Name Title */}
-        <div className="relative z-10 w-full px-6 max-w-7xl flex items-center justify-center text-center py-24 sm:py-32">
+        <div className="relative z-10 w-full px-6 max-w-6xl flex items-center justify-center text-center py-16 sm:py-20 md:py-24">
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-light text-[#C49A45] text-4xl sm:text-6xl md:text-7xl lg:text-[84px] xl:text-[96px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.24em] uppercase leading-tight sm:leading-none select-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)]"
-            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9), 0 0 35px rgba(196,154,69,0.25)" }}
+            className="font-serif font-light text-[#C49A45] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)]"
+            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9), 0 0 35px rgba(196,154,69,0.22)" }}
           >
             AARANYAK JEWELLERS
           </motion.h1>
@@ -404,60 +403,18 @@ export default function HomeClient({
             ))}
           </StaggerContainer>
         </div>
-        {/* Subtle Luxury Divider into Hero Section */}
+        {/* Straight Clean Antique-Gold Luxury Divider into Warm Ivory Section */}
         <div className="w-full flex justify-center mt-12 sm:mt-16 pointer-events-none">
-          <div className="w-48 sm:w-64 h-[1px] bg-gradient-to-r from-transparent via-[#D6B15D]/40 to-transparent" />
+          <div className="w-full max-w-7xl px-6">
+            <div className="h-[1px] bg-gradient-to-r from-transparent via-[#C49A45]/40 to-transparent" />
+          </div>
         </div>
       </section>
 
 {/* 3.5 Animated 3D Cover-Flow "Top Picks" Luxury Showcase */}
       <TopPicksCoverFlow />
 
-      {/* Hero Carousel — placed below Top Picks */}
-      <HeroCarousel />
-
-      {/* Smooth Multi-stop Luxury Gradient Transition (#211813 -> #382820 -> #665044 -> #E8DDCC -> #F8F4EC) */}
-        <div 
-          className="w-full pt-16 md:pt-24 mt-12 sm:mt-16 relative pointer-events-none"
-          style={{
-            background: 'linear-gradient(180deg, rgba(33, 23, 19, 0) 0%, #211813 15%, #382820 38%, #665044 62%, #E8DDCC 85%, #FAF7F0 100%)'
-          }}
-        >
-          {/* Elegant Shallow Symmetrical Curved Divider */}
-          <div className="w-full overflow-hidden leading-none relative z-10">
-            <svg 
-              className="w-full h-8 sm:h-12 md:h-16 block" 
-              viewBox="0 0 1440 60" 
-              preserveAspectRatio="none" 
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <defs>
-                <linearGradient id="aranyakCurveGold" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#D6B15D" stopOpacity="0" />
-                  <stop offset="20%" stopColor="#D6B15D" stopOpacity="0.35" />
-                  <stop offset="50%" stopColor="#D6B15D" stopOpacity="0.75" />
-                  <stop offset="80%" stopColor="#D6B15D" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="#D6B15D" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              {/* Shallow curved path filled with final ivory #F8F4EC */}
-              <path 
-                d="M0,0 Q720,44 1440,0 L1440,60 L0,60 Z" 
-                fill="#FAF7F0" 
-              />
-              {/* Subtle gold hairline accent along the curve */}
-              <path 
-                d="M0,0 Q720,44 1440,0" 
-                fill="none" 
-                stroke="url(#aranyakCurveGold)" 
-                strokeWidth="1.2" 
-              />
-            </svg>
-          </div>
-        </div>
-
-{/* 4. The Aranyak Heritage & Brand Stats Section */}
+      {/* 4. The Aranyak Heritage & Brand Stats Section */}
       <section className="py-24 md:py-36 bg-[#FAF7F0] text-[#76551C] relative z-20 overflow-hidden border-b border-[#DED2C1] bg-radial-gold">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
