@@ -283,7 +283,7 @@ export default function HomeClient({
             className="font-serif font-light text-[#C49A45] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)]"
             style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9), 0 0 35px rgba(196,154,69,0.22)" }}
           >
-            AARANYAK JEWELLERS
+            ARANYAK JEWELLERS
           </motion.h1>
         </div>
       </section>
