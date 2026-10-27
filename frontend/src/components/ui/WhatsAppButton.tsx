@@ -33,11 +33,11 @@ const WhatsAppButton = () => {
         >
           <div className="relative">
             {/* Tooltip */}
-            <div className={`absolute bottom-full right-0 mb-3 bg-[#211713] text-[#F8F1E5] px-4 py-2 rounded-lg shadow-xl border border-[#C49A45]/40 text-[10px] uppercase tracking-widest font-bold whitespace-nowrap transition-all duration-300 ${
+            <div className={`absolute bottom-full right-0 mb-3 bg-[#211813] text-[#F8F1E5] px-4 py-2 rounded-lg shadow-xl border border-[#C49A45]/40 text-[10px] uppercase tracking-widest font-bold whitespace-nowrap transition-all duration-300 ${
               isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
             }`}>
               Chat with us on WhatsApp
-              <div className="absolute top-full right-4 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-[#211713]" />
+              <div className="absolute top-full right-4 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-[#211813]" />
             </div>
 
             {/* Enhanced Button */}

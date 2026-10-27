@@ -35,21 +35,21 @@ export default function CollectionsPage() {
   }, []);
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#40352F]">
+    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C]">
       {/* Page Hero */}
-      <section className="relative py-28 md:py-36 px-6 md:px-12 text-left bg-[#211813] text-[#FFF8EB] overflow-hidden border-b border-[#DED2C1]/20">
+      <section className="relative py-28 md:py-36 px-6 md:px-12 text-left bg-[#211813] text-[#FFF8EC] overflow-hidden border-b border-[#DED2C1]/20">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-15 mix-blend-luminosity animate-slow-zoom" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/70 to-transparent pointer-events-none" />
         
         <div className="relative z-10 container mx-auto max-w-7xl">
           <Reveal y={30}>
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#241B17] border border-[#C49A45]/40 mb-5 shadow-sm">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#211813] border border-[#D6B15D]/40 mb-5 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#98712E] animate-pulse" />
-              <span className="text-[10px] tracking-[0.5em] uppercase text-[#E7C880] font-bold">The Archives</span>
+              <span className="text-[10px] tracking-[0.5em] uppercase text-[#E0BD72] font-bold">The Archives</span>
             </div>
           </Reveal>
           
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-light mb-6 tracking-tight drop-shadow-2xl text-[#FFF8EB]">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-light mb-6 tracking-tight drop-shadow-2xl text-[#FFF8EC]">
             <TextReveal delay={0.1} duration={1}>
               Our
             </TextReveal>{" "}
@@ -59,7 +59,7 @@ export default function CollectionsPage() {
           </h1>
 
           <Reveal delay={0.3} y={20}>
-            <p className="text-xs sm:text-sm text-[#E5D7C5] font-normal tracking-[0.2em] max-w-xl uppercase leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#E5D9C8] font-normal tracking-[0.2em] max-w-xl uppercase leading-relaxed">
               Timeless chapters of Bengali heritage, hallmarked bullion purity, and precision-cut solitaires.
             </p>
           </Reveal>
@@ -82,7 +82,7 @@ export default function CollectionsPage() {
                   <div className="w-full md:w-1/2 relative">
                     <Reveal y={40} duration={0.9}>
                       <MagneticCard tiltIntensity={6} className="rounded-2xl">
-                        <div className="relative aspect-[4/5] bg-[#211813] flex items-center justify-center overflow-hidden group border border-[#DED2C1] hover:border-[#C49A45]/80 transition-all duration-700 shadow-xl rounded-2xl">
+                        <div className="relative aspect-[4/5] bg-[#211813] flex items-center justify-center overflow-hidden group border border-[#DED2C1] hover:border-[#D6B15D]/80 transition-all duration-700 shadow-xl rounded-2xl">
                           <Image 
                             src={imageSrc} 
                             alt={`${cat.name} Luxury Collection - Aranyak Jewellers`} 
@@ -90,10 +90,10 @@ export default function CollectionsPage() {
                             sizes="(max-width: 768px) 100vw, 50vw"
                             className="object-cover group-hover:scale-108 transition-transform duration-[1.2s] ease-out opacity-90 group-hover:opacity-100" 
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#211713] via-[#211713]/30 to-transparent pointer-events-none" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/30 to-transparent pointer-events-none" />
                           
                           {/* Inner Decorative Golden Inset Frame */}
-                          <div className="absolute inset-6 border border-[#DED2C1]/40 group-hover:border-[#C49A45]/70 transition-colors duration-700 pointer-events-none rounded-lg" />
+                          <div className="absolute inset-6 border border-[#DED2C1]/40 group-hover:border-[#D6B15D]/70 transition-colors duration-700 pointer-events-none rounded-lg" />
                           
                           {/* Corner Glint */}
                           <SparkleGlint className="absolute top-8 right-8 z-30" size={18} delay={idx * 0.4} />
@@ -103,7 +103,7 @@ export default function CollectionsPage() {
                     
                     {/* Floating Luxury Chapter Number */}
                     <div className={`absolute top-1/2 -translate-y-1/2 ${isEven ? '-left-10 lg:-left-16' : '-right-10 lg:-right-16'} hidden md:block z-20 pointer-events-none`}>
-                      <span className="text-[7rem] lg:text-[9rem] font-editorial text-[#C49A45]/20 select-none drop-shadow-sm">
+                      <span className="text-[7rem] lg:text-[9rem] font-editorial text-[#D6B15D]/20 select-none drop-shadow-sm">
                         0{idx + 1}
                       </span>
                     </div>
@@ -112,12 +112,12 @@ export default function CollectionsPage() {
                   {/* Content Area */}
                   <div className={`w-full md:w-1/2 flex flex-col ${isEven ? 'md:items-start' : 'md:items-end md:text-right'}`}>
                     <Reveal delay={0.1} y={30}>
-                      <div className="inline-flex items-center space-x-2 text-[10px] font-bold tracking-[0.4em] uppercase text-[#98712E] mb-4">
+                      <div className="inline-flex items-center space-x-2 text-[10px] font-bold tracking-[0.4em] uppercase text-[#D6B15D] mb-4">
                         <span>Chapter 0{idx + 1}</span>
                         <span>•</span>
                         <span>Bespoke Edition</span>
                       </div>
-                      <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#241B17] mb-8 leading-tight">
+                      <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#76551C] mb-8 leading-tight">
                         {cat.name}
                       </h2>
                     </Reveal>
@@ -129,7 +129,7 @@ export default function CollectionsPage() {
                             <Link
                               key={sub.id}
                               href={`/category/${cat.slug}/${sub.slug}`}
-                              className={`flex items-center gap-3 text-sm text-[#40352F] hover:text-[#98712E] transition-colors duration-300 group/link ${isEven ? 'justify-start' : 'justify-end'} py-1`}
+                              className={`flex items-center gap-3 text-sm text-[#76551C] hover:text-[#D6B15D] transition-colors duration-300 group/link ${isEven ? 'justify-start' : 'justify-end'} py-1`}
                             >
                               {isEven && <span className="w-0 group-hover/link:w-6 h-[1.5px] bg-[#98712E] transition-all duration-300" />}
                               <span className="tracking-widest uppercase text-[11px] font-bold">{sub.name}</span>
@@ -138,7 +138,7 @@ export default function CollectionsPage() {
                           ))}
                         </div>
                       ) : (
-                        <p className="text-sm md:text-base text-[#40352F] leading-relaxed font-normal max-w-md mb-10">
+                        <p className="text-sm md:text-base text-[#76551C] leading-relaxed font-normal max-w-md mb-10">
                           Immerse yourself in our masterfully crafted {cat.name.toLowerCase()} pieces, where traditional techniques meet contemporary sophistication.
                         </p>
                       )}

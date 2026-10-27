@@ -2,71 +2,64 @@
 
 @layer base {
   :root {
-    /* Requested Exact Contrast & Color Tokens */
+    /* Palette Tokens - Aranyak Jewellers White & Gold Luxury Scheme */
+    --color-text-white: #FFFFFF;
+    --color-text-ivory: #FFF8EC;
+    --color-gold-main: #D6B15D;
+    --color-gold-champagne: #E0BD72;
+    --color-gold-dark: #76551C;
+    --color-bg-dark: #211813;
+    --color-btn-gold: #C9A04A;
+
+    --background: #FAF7F0; /* Warm ivory surface */
+    --foreground: #76551C; /* Rich dark gold for light surfaces - NO black */
+    --primary: #D6B15D; /* Main gold accent */
+    --primary-foreground: #211813; /* Contrast text on gold buttons */
+    --secondary: #76551C; /* Readable dark gold */
+    --secondary-foreground: #FFF8EC;
+    --accent: #E0BD72; /* Champagne gold */
+    --accent-foreground: #211813;
+    --ivory: #FFF8EC;
+    --muted: #E8DDCC;
+    --muted-foreground: #76551C;
+    --card: #FFFDF8; /* Soft cream card surface */
+    --card-foreground: #76551C;
+    --border: #DED2C1;
+    --input: #DED2C1;
+    --ring: #D6B15D;
+    --radius: 0.5rem;
+
+    /* Semantic Theme Tokens */
     --text-on-dark: #FFF8EC;
-    --text-on-light: #241B17;
+    --text-on-light: #76551C;
     --text-secondary-on-dark: #E5D9C8;
-    --text-secondary-on-light: #40352F;
+    --text-secondary-on-light: #76551C;
     --accent-gold: #D6B15D;
     --accent-gold-light: #E0BD72;
     --dark-background: #211813;
     --light-background: #FAF7F0;
-    --background: #FAF7F0; /* Light section background: Warm ivory */
-    --foreground: #241B17; /* Primary headings & strong text: Deep charcoal */
-    --primary: #98712E; /* Gold accent text: Rich antique gold */
-    --primary-foreground: #FFF8EB; /* Text on dark backgrounds: Warm ivory */
-    --secondary: #40352F; /* Body text: Dark warm brown */
-    --secondary-foreground: #FFF8EB;
-    --accent: #F0E7D8; /* Secondary background: Soft champagne */
-    --accent-foreground: #241B17;
-    --ivory: #FAF7F0;
-    --muted: #E8DDCC; /* Alternate subtle background: Light beige */
-    --muted-foreground: #74665C; /* Secondary text: Muted brown */
-    --card: #FFFDF8; /* Card background: Soft cream */
-    --card-foreground: #40352F;
-    --border: #DED2C1; /* Borders and dividers: Subtle warm beige */
-    --input: #DED2C1;
-    --ring: #98712E;
-    --radius: 0.5rem;
   }
 
   .dark {
-    /* Requested Exact Contrast & Color Tokens */
-    --text-on-dark: #FFF8EC;
-    --text-on-light: #241B17;
-    --text-secondary-on-dark: #E5D9C8;
-    --text-secondary-on-light: #40352F;
-    --accent-gold: #D6B15D;
-    --accent-gold-light: #E0BD72;
-    --dark-background: #211813;
-    --light-background: #FAF7F0;
-    --background: #FAF7F0;
-    --foreground: #241B17;
-    --primary: #98712E;
-    --primary-foreground: #FFF8EB;
-    --secondary: #40352F;
-    --secondary-foreground: #FFF8EB;
-    --accent: #F0E7D8;
-    --accent-foreground: #241B17;
-    --muted: #E8DDCC;
-    --muted-foreground: #74665C;
-    --card: #FFFDF8;
-    --card-foreground: #40352F;
-    --border: #DED2C1;
-    --input: #DED2C1;
-    --ring: #98712E;
+    --background: #211813;
+    --foreground: #FFF8EC;
+    --primary: #D6B15D;
+    --primary-foreground: #211813;
+    --secondary: #E5D9C8;
+    --secondary-foreground: #FFF8EC;
+    --accent: #E0BD72;
+    --accent-foreground: #211813;
+    --muted: #2C1F18;
+    --muted-foreground: #E5D9C8;
+    --card: #211813;
+    --card-foreground: #FFF8EC;
+    --border: rgba(214, 177, 93, 0.25);
+    --input: rgba(214, 177, 93, 0.25);
+    --ring: #D6B15D;
   }
 }
 
 @theme inline {
-  --color-text-on-dark: #FFF8EC;
-  --color-text-on-light: #241B17;
-  --color-text-secondary-on-dark: #E5D9C8;
-  --color-text-secondary-on-light: #40352F;
-  --color-accent-gold: #D6B15D;
-  --color-accent-gold-light: #E0BD72;
-  --color-dark-background: #211813;
-  --color-light-background: #FAF7F0;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -77,20 +70,28 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-ivory: var(--ivory);
 
-  /* Exact Design Tokens - Aranyak Jewellers Luxury Palette */
+  /* Exact Design Tokens - Aranyak Jewellers White & Gold Palette */
+  --color-text-white: #FFFFFF;
+  --color-text-ivory: #FFF8EC;
+  --color-gold-main: #D6B15D;
+  --color-gold-champagne: #E0BD72;
+  --color-gold-dark: #76551C;
+  --color-bg-dark: #211813;
+  --color-btn-gold: #C9A04A;
+
   --color-ivory-warm: #FAF7F0;
   --color-cream-soft: #FFFDF8;
   --color-champagne-soft: #F0E7D8;
   --color-beige-light: #E8DDCC;
   --color-espresso-deep: #211813;
-  --color-charcoal-deep: #241B17;
-  --color-brown-dark: #40352F;
-  --color-brown-muted: #74665C;
-  --color-gold-rich: #98712E;
-  --color-gold-radiant: #C49A45;
-  --color-gold-light: #E7C880;
-  --color-ivory-light: #FFF8EB;
-  --color-beige-soft: #E5D7C5;
+  --color-charcoal-deep: #76551C; /* Replaced dark charcoal with rich dark gold */
+  --color-brown-dark: #76551C;   /* Replaced dark brown with rich dark gold */
+  --color-brown-muted: #76551C;
+  --color-gold-rich: #D6B15D;
+  --color-gold-radiant: #C9A04A;
+  --color-gold-light: #E0BD72;
+  --color-ivory-light: #FFF8EC;
+  --color-beige-soft: #E5D9C8;
   --color-beige-border: #DED2C1;
 
   --font-sans: var(--font-geist-sans);
@@ -119,288 +120,109 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
 
-/* Consistent Luxury Typography Utilities */
-.text-charcoal-deep {
-  color: #241B17 !important;
+/* White & Gold Typography Utilities - NO BLACK TEXT */
+.text-white-pure {
+  color: #FFFFFF !important;
 }
 
-.text-brown-dark {
-  color: #40352F !important;
+.text-ivory-warm {
+  color: #FFF8EC !important;
 }
 
-.text-brown-muted {
-  color: #74665C !important;
-}
-
-.text-gold-rich {
-  color: #98712E !important;
-}
-
-.text-gold-radiant {
-  color: #C49A45 !important;
-}
-
-.text-gold-light {
-  color: #E7C880 !important;
-}
-
-.text-ivory-light {
-  color: #FFF8EB !important;
-}
-
-.text-beige-soft {
-  color: #E5D7C5 !important;
-}
-
-/* Backward-compatible luxury classes mapped to exact palette tokens */
-.text-brown-deep {
-  color: #241B17 !important;
-}
-
-.text-taupe-warm {
-  color: #74665C !important;
+.text-gold-main {
+  color: #D6B15D !important;
 }
 
 .text-gold-champagne {
-  color: #C49A45 !important;
+  color: #E0BD72 !important;
 }
 
-.text-gold-antique {
-  color: #98712E !important;
+.text-gold-dark {
+  color: #76551C !important;
 }
 
-.text-luxury-ink {
-  color: #241B17 !important;
+.text-on-dark {
+  color: #FFF8EC !important;
 }
 
-.text-luxury-charcoal {
-  color: #241B17 !important;
+.text-on-light {
+  color: #76551C !important;
 }
 
-.text-luxury-body {
-  color: #40352F !important;
+.text-secondary-on-dark {
+  color: #E5D9C8 !important;
 }
 
-.text-luxury-muted {
-  color: #74665C !important;
+.text-secondary-on-light {
+  color: #76551C !important;
 }
 
-/* Background utilities */
-.bg-ivory-warm {
-  background-color: #FAF7F0 !important;
-}
-
-.bg-cream-soft {
-  background-color: #FFFDF8 !important;
-}
-
-.bg-espresso-deep {
-  background-color: #211813 !important;
-}
-
-/* Text Balancer for Headlines */
-.text-balance {
-  text-wrap: balance;
-}
-
-/* Glassmorphism utility */
-.glass {
-  background: rgba(255, 253, 248, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(222, 210, 193, 0.4);
-}
-
-.dark .glass {
-  background: rgba(33, 24, 19, 0.85);
-  border: 1px solid rgba(222, 210, 193, 0.2);
-}
-
-/* Luxury Gradients & Textures */
-.gold-gradient {
-  background: linear-gradient(135deg, #98712E 0%, #D8AF5A 30%, #C49A45 60%, #E7C880 85%, #98712E 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% auto;
-  animation: shine 6s linear infinite;
-}
-
-.espresso-gradient {
-  background: linear-gradient(135deg, #211813 0%, #2E1F18 50%, #211813 100%);
-}
-
-.burgundy-gradient {
-  background: linear-gradient(135deg, #2A1713 0%, #3A231D 50%, #2A1713 100%);
-}
-
-/* Silk texture */
-.silk-texture {
-  position: relative;
-}
-
-.silk-texture::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: 
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 248, 235, 0.02) 0px,
-      rgba(255, 248, 235, 0.02) 1px,
-      transparent 1px,
-      transparent 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 248, 235, 0.01) 0px,
-      rgba(255, 248, 235, 0.01) 1px,
-      transparent 1px,
-      transparent 4px
-    );
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.luxury-shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.luxury-shimmer::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 45%,
-    rgba(255, 255, 255, 0.15) 50%,
-    transparent 55%
-  );
-  transform: rotate(45deg);
-  animation: shimmer-swipe 5s infinite cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes shimmer-swipe {
-  0% { transform: translate(-100%, -100%) rotate(45deg); }
-  20%, 100% { transform: translate(100%, 100%) rotate(45deg); }
-}
-
-.gold-foil-border {
-  position: relative;
-}
-
-.gold-foil-border::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid transparent;
-  background: linear-gradient(135deg, #98712E, #FFFDF8, #C49A45, #FFFDF8, #8C6524) border-box;
-  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-/* Primary Luxury Button (Gold on dark or prominent CTA) */
+/* Luxury Gold Buttons */
 .btn-luxury {
-  background-color: #C49A45;
-  color: #211813;
-  border: 1px solid #98712E;
-  position: relative;
-  overflow: hidden;
+  background: #C9A04A !important;
+  color: #211813 !important;
   font-weight: 700;
-  transition: all 0.4s ease-out;
+  transition: all 0.3s ease;
+  letter-spacing: 0.25em;
+  border: 1px solid #C9A04A;
 }
 
 .btn-luxury:hover {
-  background-color: #98712E;
-  color: #FFF8EB;
-  border-color: #98712E;
-  box-shadow: 0 4px 20px rgba(152, 113, 46, 0.35);
+  background: #D6B15D !important;
+  color: #211813 !important;
+  box-shadow: 0 4px 25px rgba(214, 177, 93, 0.45);
 }
 
-/* Primary Button for Light Backgrounds: Deep Brown with Ivory Text */
 .btn-luxury-dark {
-  background-color: #241B17;
-  color: #FFF8EB;
-  border: 1px solid #40352F;
-  position: relative;
-  overflow: hidden;
+  background: #211813 !important;
+  color: #FFF8EC !important;
   font-weight: 700;
-  transition: all 0.4s ease-out;
+  transition: all 0.3s ease;
+  letter-spacing: 0.25em;
+  border: 1px solid rgba(224, 189, 114, 0.45);
 }
 
 .btn-luxury-dark:hover {
-  background-color: #98712E;
-  color: #FFF8EB;
-  border-color: #98712E;
-  box-shadow: 0 4px 20px rgba(152, 113, 46, 0.3);
+  background: #C9A04A !important;
+  color: #211813 !important;
+  border-color: #C9A04A !important;
 }
 
-/* Secondary Luxury Button (Outline) */
-.btn-luxury-outline {
-  background-color: transparent;
-  color: #FFF8EB;
-  border: 1px solid #DED2C1;
-  transition: all 0.4s ease-out;
+/* Gold Gradient Utilities */
+.gold-gradient {
+  background: linear-gradient(135deg, #D6B15D 0%, #FFF8EC 50%, #C9A04A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #D6B15D;
 }
 
-.btn-luxury-outline:hover {
-  background-color: rgba(255, 248, 235, 0.12);
-  border-color: #C49A45;
-  color: #E7C880;
+.gold-gradient-subtle {
+  background: linear-gradient(135deg, #E0BD72 0%, #D6B15D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #E0BD72;
 }
 
-/* Hover underline effect */
-.hover-underline-gold {
-  position: relative;
-}
-.hover-underline-gold::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 1.5px;
-  bottom: -2px;
-  left: 50%;
-  background-color: #98712E;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateX(-50%);
-}
-.hover-underline-gold:hover::after {
-  width: 100%;
+/* Glassmorphism & Scrim Overlays */
+.glass-luxury-dark {
+  background: rgba(33, 24, 19, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(224, 189, 114, 0.3);
 }
 
-/* Animations */
-@keyframes shine {
-  to { background-position: 200% center; }
+.glass-luxury-light {
+  background: rgba(255, 253, 248, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(214, 177, 93, 0.25);
 }
 
-@keyframes slow-zoom {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.05); }
-}
-
-.animate-slow-zoom {
-  animation: slow-zoom 25s ease-in-out infinite alternate;
-}
-
-/* Scroll Indicator */
-@keyframes fill-down {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  50.1% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
-
-.animate-fill-down {
-  animation: fill-down 2.5s infinite cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-/* Custom Scrollbar */
+/* Custom Scrollbar in Luxury Gold & Deep Brown */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -408,84 +230,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #98712E;
+  background: #C9A04A;
+  border-radius: 4px;
 }
 
-/* Interaction fixes */
-.no-select {
-  user-select: none;
-  -webkit-user-drag: none;
+::-webkit-scrollbar-thumb:hover {
+  background: #D6B15D;
 }
-
-/* Touch Device Hover Fix */
-@media (hover: none) {
-  .hover-underline-gold:hover::after {
-    width: 0 !important;
-  }
-  .group:hover .group-hover\:scale-105 {
-    transform: none !important;
-  }
-  .group:hover .group-hover\:opacity-100 {
-    opacity: 0 !important;
-  }
-}
-
-.mask-clip {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-}
-
-.animate-in {
-  animation: fadeIn 0.4s ease-out, slideInFromTop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideInFromTop {
-  from { transform: translateY(-15px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* Luxury Glow & Glass Utilities */
-.glow-gold {
-  box-shadow: 0 0 25px rgba(196, 154, 69, 0.2);
-}
-
-.glow-gold-sm {
-  box-shadow: 0 0 12px rgba(196, 154, 69, 0.25);
-}
-
-.gold-border-glow {
-  border: 1px solid rgba(196, 154, 69, 0.3);
-  transition: all 0.4s ease;
-}
-
-.gold-border-glow:hover {
-  border-color: rgba(196, 154, 69, 0.7);
-  box-shadow: 0 4px 20px rgba(196, 154, 69, 0.2);
-}
-
-.bg-radial-gold {
-  background: radial-gradient(circle at 50% 50%, rgba(196, 154, 69, 0.08) 0%, rgba(33, 24, 19, 0) 70%);
-}
-
-.bg-radial-gold-top {
-  background: radial-gradient(circle at 50% 0%, rgba(196, 154, 69, 0.12) 0%, rgba(33, 24, 19, 0) 65%);
-}
-
-/* Subtle Warm Accent Gradients */
-.text-gradient-gold {
-  background: linear-gradient(135deg, #98712E 0%, #E7C880 50%, #98712E 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Utility classes for exact text-on-dark and text-on-light rules */
-.text-on-dark { color: #FFF8EC !important; }
-.text-on-light { color: #241B17 !important; }
-.text-secondary-on-dark { color: #E5D9C8 !important; }
-.text-secondary-on-light { color: #40352F !important; }
-.text-accent-gold { color: #D6B15D !important; }
-.text-accent-gold-light { color: #E0BD72 !important; }

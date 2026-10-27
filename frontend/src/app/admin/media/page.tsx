@@ -325,7 +325,7 @@ export default function AdminMediaManagerPage() {
 
           <button
             onClick={openCreateModal}
-            className="px-5 py-2.5 rounded-xl bg-[#C49A45] hover:bg-[#D4A955] text-[#211713] text-xs font-bold tracking-[0.15em] uppercase transition-all shadow-lg flex items-center gap-2 font-mono"
+            className="px-5 py-2.5 rounded-xl bg-[#C49A45] hover:bg-[#D4A955] text-[#211813] text-xs font-bold tracking-[0.15em] uppercase transition-all shadow-lg flex items-center gap-2 font-mono"
           >
             <span>+</span> Add Media Slot
           </button>
@@ -385,14 +385,14 @@ export default function AdminMediaManagerPage() {
                 onClick={() => setActiveSection(sec.id)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all flex items-center gap-2 border ${
                   isActive
-                    ? 'bg-[#C49A45] text-[#211713] border-[#C49A45] shadow-lg'
+                    ? 'bg-[#C49A45] text-[#211813] border-[#C49A45] shadow-lg'
                     : 'bg-white/5 text-white/70 hover:text-white hover:bg-white/10 border-white/10'
                 }`}
               >
                 <span>{sec.icon}</span>
                 <span>{sec.label}</span>
                 <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
-                  isActive ? 'bg-[#211713] text-[#E7C880]' : 'bg-white/10 text-white/60'
+                  isActive ? 'bg-[#211813] text-[#E7C880]' : 'bg-white/10 text-white/60'
                 }`}>
                   {count}
                 </span>
@@ -496,7 +496,7 @@ export default function AdminMediaManagerPage() {
                     {/* Primary Replace Button */}
                     <button
                       onClick={() => openReplaceModal(item)}
-                      className="flex-1 py-2.5 rounded-xl bg-[#C49A45] hover:bg-[#D4A955] text-[#211713] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-1.5"
+                      className="flex-1 py-2.5 rounded-xl bg-[#C49A45] hover:bg-[#D4A955] text-[#211813] text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-1.5"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4 M17 8l-5-5-5 5 M12 3v12"/>
@@ -621,7 +621,7 @@ export default function AdminMediaManagerPage() {
                   accept="image/jpeg,image/jpg,image/png,image/webp,image/avif"
                   onChange={handleFileChange}
                   required
-                  className="w-full text-xs text-white/70 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:uppercase file:tracking-wider file:bg-[#C49A45] file:text-[#211713] hover:file:bg-[#D4A955] cursor-pointer bg-white/5 p-2 rounded-xl border border-white/10"
+                  className="w-full text-xs text-white/70 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:uppercase file:tracking-wider file:bg-[#C49A45] file:text-[#211813] hover:file:bg-[#D4A955] cursor-pointer bg-white/5 p-2 rounded-xl border border-white/10"
                 />
                 <p className="text-[10px] text-white/40 mt-1.5">
                   Supported: JPG, JPEG, PNG, WebP, AVIF. Maximum size: 10MB.
@@ -655,11 +655,11 @@ export default function AdminMediaManagerPage() {
                 <button
                   type="submit"
                   disabled={isProcessing || !uploadFile}
-                  className="px-6 py-2.5 rounded-xl bg-[#C49A45] hover:bg-[#D4A955] text-[#211713] text-xs font-bold uppercase tracking-[0.15em] transition-all shadow-lg disabled:opacity-50 flex items-center gap-2"
+                  className="px-6 py-2.5 rounded-xl bg-[#C49A45] hover:bg-[#D4A955] text-[#211813] text-xs font-bold uppercase tracking-[0.15em] transition-all shadow-lg disabled:opacity-50 flex items-center gap-2"
                 >
                   {isProcessing ? (
                     <>
-                      <div className="w-3.5 h-3.5 border-2 border-[#211713] border-t-transparent rounded-full animate-spin" />
+                      <div className="w-3.5 h-3.5 border-2 border-[#211813] border-t-transparent rounded-full animate-spin" />
                       <span>Publishing...</span>
                     </>
                   ) : (
@@ -774,7 +774,7 @@ export default function AdminMediaManagerPage() {
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="px-6 py-2.5 rounded-xl bg-[#C49A45] hover:bg-[#D4A955] text-[#211713] text-xs font-bold uppercase tracking-[0.15em] transition-all shadow-lg"
+                  className="px-6 py-2.5 rounded-xl bg-[#C49A45] hover:bg-[#D4A955] text-[#211813] text-xs font-bold uppercase tracking-[0.15em] transition-all shadow-lg"
                 >
                   Save Changes
                 </button>
@@ -890,7 +890,7 @@ export default function AdminMediaManagerPage() {
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="px-6 py-2.5 rounded-xl bg-[#C49A45] hover:bg-[#D4A955] text-[#211713] text-xs font-bold uppercase tracking-[0.15em] transition-all shadow-lg"
+                  className="px-6 py-2.5 rounded-xl bg-[#C49A45] hover:bg-[#D4A955] text-[#211813] text-xs font-bold uppercase tracking-[0.15em] transition-all shadow-lg"
                 >
                   Create Media Slot
                 </button>
@@ -938,7 +938,7 @@ export default function AdminMediaManagerPage() {
                 onClick={() => {
                   setActiveModal('replace');
                 }}
-                className="px-4 py-2 rounded-xl bg-[#C49A45] text-[#211713] font-bold uppercase tracking-wider"
+                className="px-4 py-2 rounded-xl bg-[#C49A45] text-[#211813] font-bold uppercase tracking-wider"
               >
                 Replace this Photo
               </button>

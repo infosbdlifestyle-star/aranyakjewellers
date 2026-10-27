@@ -216,7 +216,7 @@ export default function AdminPage() {
                 type="button"
                 onClick={handleSyncLiveRates}
                 disabled={updating}
-                className="px-4 py-2.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:brightness-110 text-black font-extrabold text-[10px] uppercase tracking-widest rounded-xl transition-all flex items-center gap-1.5 shadow-[0_0_20px_rgba(245,158,11,0.4)] disabled:opacity-50"
+                className="px-4 py-2.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:brightness-110 text-[#211813] font-extrabold text-[10px] uppercase tracking-widest rounded-xl transition-all flex items-center gap-1.5 shadow-[0_0_20px_rgba(245,158,11,0.4)] disabled:opacity-50"
               >
                 <span>⚡ Sync Live Market Rates</span>
               </button>
@@ -273,7 +273,7 @@ export default function AdminPage() {
                             const input = document.getElementById(`purity-${purity}`) as HTMLInputElement;
                             handleUpdatePrice(purity, Number(input.value));
                           }}
-                          className="bg-gradient-to-r from-amber-500/20 to-yellow-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500 hover:text-black px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all disabled:opacity-50 whitespace-nowrap shadow-md"
+                          className="bg-gradient-to-r from-amber-500/20 to-yellow-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500 hover:text-[#211813] px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all disabled:opacity-50 whitespace-nowrap shadow-md"
                         >
                           Save
                         </button>

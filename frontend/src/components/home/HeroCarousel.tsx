@@ -71,7 +71,7 @@ const SLIDES: HeroSlide[] = [
     desktopBg: "/uploads/banner_bridal_gold.webp",
     mobileBg: "/uploads/banner_bridal_gold_mobile.webp",
     gradientFallback:
-      "linear-gradient(135deg, #211713 0%, #2C1A0E 25%, #3D2510 50%, #4B2E12 70%, #2C1A0E 100%)",
+      "linear-gradient(135deg, #211813 0%, #2C1A0E 25%, #3D2510 50%, #4B2E12 70%, #2C1A0E 100%)",
     badge: "🌸 Festive & Bridal Collection",
     eyebrow: "HANDCRAFTED • BIS 916 HALLMARKED",
     headline: (
@@ -331,7 +331,7 @@ export default function HeroCarousel() {
           z-index: 30;
         }
         .hero-nav-btn:hover {
-          background: #241B17;
+          background: #211813;
           border-color: #C49A45;
           color: #E7C880;
           transform: translateY(-50%) scale(1.05);
@@ -521,7 +521,7 @@ export default function HeroCarousel() {
                             className="inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 text-[10px] sm:text-[11px] font-bold tracking-[0.28em] uppercase transition-all duration-300 hover:scale-105 hover:shadow-xl"
                             style={{
                               background: "#C49A45",
-                              color: "#211713",
+                              color: "#211813",
                               border: "1px solid #A77C32",
                               boxShadow: "0 4px 20px rgba(196,154,69,0.3)",
                             }}
@@ -531,7 +531,7 @@ export default function HeroCarousel() {
                             }}
                             onMouseLeave={(e) => {
                               (e.currentTarget as HTMLElement).style.background = "#C49A45";
-                              (e.currentTarget as HTMLElement).style.color = "#211713";
+                              (e.currentTarget as HTMLElement).style.color = "#211813";
                             }}
                           >
                             {slide.cta.label}
@@ -552,7 +552,7 @@ export default function HeroCarousel() {
                             }}
                             onMouseEnter={(e) => {
                               (e.currentTarget as HTMLElement).style.background = "#FAF7F0";
-                              (e.currentTarget as HTMLElement).style.color = "#241B17";
+                              (e.currentTarget as HTMLElement).style.color = "#211813";
                             }}
                             onMouseLeave={(e) => {
                               (e.currentTarget as HTMLElement).style.background = "rgba(248,244,236,0.08)";

@@ -31,16 +31,16 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#F8F4EC] text-[#30231D]">
+    <main className="min-h-screen flex flex-col bg-[#F8F4EC] text-[#76551C]">
       <section className="flex-1 flex items-center justify-center py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
 
-        <div className="w-full max-w-md bg-[#211713] text-[#F8F1E5] p-10 shadow-2xl border border-[#DED2C1]/20 relative z-10 rounded-2xl">
+        <div className="w-full max-w-md bg-[#211813] text-[#FFF8EC] p-10 shadow-2xl border border-[#DED2C1]/20 relative z-10 rounded-2xl">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#A77C32] via-[#C49A45] to-[#A77C32] rounded-t-2xl" />
           
           <div className="text-center space-y-4 mb-10">
-            <h1 className="text-3xl font-serif font-light text-[#F8F1E5]">Reset Password</h1>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-[#D4C5B2] font-bold">We will send you a reset link</p>
+            <h1 className="text-3xl font-serif font-light text-[#FFF8EC]">Reset Password</h1>
+            <p className="text-[10px] tracking-[0.3em] uppercase text-[#E5D9C8] font-bold">We will send you a reset link</p>
           </div>
 
           {message ? (
@@ -51,13 +51,13 @@ export default function ForgotPasswordPage() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-[9px] font-bold tracking-[0.3em] uppercase text-[#C49A45] ml-1">Email Address</label>
+                <label className="text-[9px] font-bold tracking-[0.3em] uppercase text-[#D6B15D] ml-1">Email Address</label>
                 <input 
                   type="email" 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full bg-[#30231D] border-b border-[#DED2C1]/30 px-3 py-3 text-sm text-[#F8F1E5] placeholder-white/30 focus:border-[#C49A45] outline-none transition-all rounded-t"
+                  className="w-full bg-[#211813] border-b border-[#DED2C1]/30 px-3 py-3 text-sm text-[#FFF8EC] placeholder-white/30 focus:border-[#D6B15D] outline-none transition-all rounded-t"
                   placeholder="Enter your email"
                 />
               </div>
@@ -69,7 +69,7 @@ export default function ForgotPasswordPage() {
                   {loading ? 'Sending...' : 'Send Reset Link'}
                 </button>
                 <div className="text-center">
-                  <Link href="/login" className="inline-block text-[10px] text-[#C49A45] hover:text-[#F8F1E5] transition-colors uppercase tracking-widest font-bold">Back to Login</Link>
+                  <Link href="/login" className="inline-block text-[10px] text-[#D6B15D] hover:text-[#FFF8EC] transition-colors uppercase tracking-widest font-bold">Back to Login</Link>
                 </div>
               </div>
             </form>

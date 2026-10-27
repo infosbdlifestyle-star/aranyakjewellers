@@ -35,7 +35,7 @@ export default function FloatingWhatsApp() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
-            className="bg-[#211713]/90 backdrop-blur-md border border-[#C49A45]/40 text-[#F8F1E5] text-[10px] uppercase tracking-widest font-bold py-2 px-4 rounded-md shadow-xl hidden md:block"
+            className="bg-[#211813]/90 backdrop-blur-md border border-[#C49A45]/40 text-[#F8F1E5] text-[10px] uppercase tracking-widest font-bold py-2 px-4 rounded-md shadow-xl hidden md:block"
           >
             Consult an Expert
           </motion.div>

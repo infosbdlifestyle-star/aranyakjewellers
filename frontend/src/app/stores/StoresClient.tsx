@@ -155,23 +155,23 @@ export default function StoresClient({
       });
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#40352F]">
+    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C]">
       {/* Hero Section */}
-      <section className="relative py-28 md:py-36 px-6 md:px-12 bg-[#211813] text-[#FFF8EB] text-left overflow-hidden border-b border-[#DED2C1]/15">
+      <section className="relative py-28 md:py-36 px-6 md:px-12 bg-[#211813] text-[#FFF8EC] text-left overflow-hidden border-b border-[#DED2C1]/15">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] opacity-15 mix-blend-luminosity animate-slow-zoom pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/70 to-transparent pointer-events-none" />
         
         <div className="relative z-10 container mx-auto max-w-7xl">
           <Reveal y={20}>
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#241B17] border border-[#C49A45]/40 mb-5 shadow-sm">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#211813] border border-[#C49A45]/40 mb-5 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45] animate-pulse" />
-              <span className="text-[10px] tracking-[0.45em] uppercase text-[#E7C880] font-bold">
+              <span className="text-[10px] tracking-[0.45em] uppercase text-[#E0BD72] font-bold">
                 Tripura Showrooms ({sourceStores.length})
               </span>
             </div>
           </Reveal>
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light mb-6 tracking-tight text-[#FFF8EB]">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light mb-6 tracking-tight text-[#FFF8EC]">
             <TextReveal delay={0.1} duration={1}>
               Our
             </TextReveal>{" "}
@@ -181,7 +181,7 @@ export default function StoresClient({
           </h1>
 
           <div className="flex items-center justify-start space-x-4">
-            <p className="text-xs tracking-[0.3em] uppercase text-[#E5D7C5] font-medium">
+            <p className="text-xs tracking-[0.3em] uppercase text-[#E5D9C8] font-medium">
               Bespoke Jewellery Consultations Across {sourceStores.length} Tripura Boutiques
             </p>
             <div className="h-[1px] w-16 bg-gradient-to-r from-[#C49A45] to-transparent" />
@@ -207,12 +207,12 @@ export default function StoresClient({
                 {isActive && (
                   <motion.div 
                     layoutId="activeStoreTab"
-                    className="absolute inset-0 bg-[#241B17] shadow-md z-0 rounded-full"
+                    className="absolute inset-0 bg-[#211813] shadow-md z-0 rounded-full"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
                 <span className={`relative z-10 transition-colors duration-300 ${
-                  isActive ? 'text-[#FFF8EB] font-bold' : 'text-[#40352F] hover:text-[#241B17]'
+                  isActive ? 'text-[#FFF8EC] font-bold' : 'text-[#76551C] hover:text-[#76551C]'
                 }`}>
                   {tab.label}
                 </span>
@@ -223,7 +223,7 @@ export default function StoresClient({
       </section>
 
       {/* Stores Responsive Grid */}
-      <section className="py-16 md:py-24 flex-1 bg-gradient-to-b from-[#1C1410] via-[#211713] to-[#1C1410] text-[#FFF8EB] relative overflow-hidden">
+      <section className="py-16 md:py-24 flex-1 bg-gradient-to-b from-[#211813] via-[#211813] to-[#211813] text-[#FFF8EC] relative overflow-hidden">
         <div className="absolute inset-0 bg-radial-gold opacity-15 pointer-events-none" />
         
         <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
@@ -244,7 +244,7 @@ export default function StoresClient({
               return (
                 <article 
                   key={store.id} 
-                  className="bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E] rounded-2xl p-7 sm:p-8 flex flex-col justify-between h-full group transition-all duration-300 hover:shadow-xl shadow-sm text-[#40352F] relative overflow-hidden"
+                  className="bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E] rounded-2xl p-7 sm:p-8 flex flex-col justify-between h-full group transition-all duration-300 hover:shadow-xl shadow-sm text-[#76551C] relative overflow-hidden"
                 >
                   {/* Subtle Top Gold Accent Line */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#C49A45]/50 to-transparent group-hover:via-[#C49A45] transition-all duration-500" />
@@ -255,17 +255,17 @@ export default function StoresClient({
                     <div className="flex items-center justify-between gap-2 mb-3">
                       <div className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45]" />
-                        <span className="text-[10px] font-extrabold tracking-[0.25em] uppercase text-[#98712E]">
+                        <span className="text-[10px] font-extrabold tracking-[0.25em] uppercase text-[#D6B15D]">
                           {(store.city || 'Tripura').toUpperCase()}
                         </span>
                       </div>
-                      <span className="text-[#C49A45]/70 group-hover:text-[#C49A45] group-hover:scale-110 transition-all text-xs font-serif">
+                      <span className="text-[#D6B15D]/70 group-hover:text-[#D6B15D] group-hover:scale-110 transition-all text-xs font-serif">
                         ✦
                       </span>
                     </div>
 
                     {/* Prominent Branch Title */}
-                    <h3 className="text-2xl font-serif font-bold text-[#241B17] group-hover:text-[#98712E] transition-colors leading-snug mb-3">
+                    <h3 className="text-2xl font-serif font-bold text-[#76551C] group-hover:text-[#D6B15D] transition-colors leading-snug mb-3">
                       {displayTitle}
                     </h3>
 
@@ -273,10 +273,10 @@ export default function StoresClient({
                     <div className="w-14 h-[2px] bg-gradient-to-r from-[#C49A45] to-transparent mb-5" />
 
                     {/* Store Information: Address, Hours, Phone */}
-                    <div className="space-y-4 text-xs sm:text-sm text-[#40352F] flex-1">
+                    <div className="space-y-4 text-xs sm:text-sm text-[#76551C] flex-1">
                       {/* Clickable Address with Gold Pin Icon */}
                       <div className="flex items-start gap-3 leading-relaxed">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#C49A45] shrink-0 mt-0.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#D6B15D] shrink-0 mt-0.5">
                           <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
                           <circle cx="12" cy="10" r="3"/>
                         </svg>
@@ -284,7 +284,7 @@ export default function StoresClient({
                           href={searchTarget}
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="text-[#40352F] hover:text-[#98712E] hover:underline transition-colors break-words font-medium"
+                          className="text-[#76551C] hover:text-[#D6B15D] hover:underline transition-colors break-words font-medium"
                           title="Open Google Maps search for this showroom"
                         >
                           {store.address}
@@ -294,11 +294,11 @@ export default function StoresClient({
                       {/* Opening Hours with Gold Clock Icon */}
                       {store.hours && (
                         <div className="flex items-center gap-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#C49A45] shrink-0">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#D6B15D] shrink-0">
                             <circle cx="12" cy="12" r="10"/>
                             <polyline points="12 6 12 12 16 14"/>
                           </svg>
-                          <span className="font-semibold text-[#241B17]">
+                          <span className="font-semibold text-[#76551C]">
                             {store.hours}
                           </span>
                         </div>
@@ -307,13 +307,13 @@ export default function StoresClient({
                       {/* Phone with Gold Phone Icon (if present) */}
                       {store.phone && (
                         <div className="flex items-center gap-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#C49A45] shrink-0">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#D6B15D] shrink-0">
                             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                           </svg>
                           {store.phone.includes('X') ? (
-                            <span className="font-medium text-[#40352F]">{store.phone}</span>
+                            <span className="font-medium text-[#76551C]">{store.phone}</span>
                           ) : (
-                            <a href={`tel:${store.phone.replace(/\s+/g,'')}`} className="font-medium text-[#40352F] hover:text-[#98712E] hover:underline transition-colors tracking-wide">
+                            <a href={`tel:${store.phone.replace(/\s+/g,'')}`} className="font-medium text-[#76551C] hover:text-[#D6B15D] hover:underline transition-colors tracking-wide">
                               {store.phone}
                             </a>
                           )}
@@ -329,7 +329,7 @@ export default function StoresClient({
                       href={directionsTarget} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#211713] hover:bg-[#C49A45] text-[#FFF8EB] hover:text-[#211713] text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-md group/btn min-h-[44px]"
+                      className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#211813] hover:bg-[#C49A45] text-[#FFF8EC] hover:text-[#211813] text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-md group/btn min-h-[44px]"
                     >
                       <span>Get Directions</span>
                       <span className="group-hover/btn:translate-x-1 transition-transform duration-300 text-sm">→</span>
@@ -340,7 +340,7 @@ export default function StoresClient({
                       href={searchTarget} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="w-full inline-flex items-center justify-center gap-1.5 py-1.5 text-[11px] font-bold tracking-[0.16em] uppercase text-[#98712E] hover:text-[#241B17] transition-colors"
+                      className="w-full inline-flex items-center justify-center gap-1.5 py-1.5 text-[11px] font-bold tracking-[0.16em] uppercase text-[#D6B15D] hover:text-[#76551C] transition-colors"
                     >
                       <span>View on Google Maps</span>
                       <span className="text-xs">↗</span>
@@ -355,7 +355,7 @@ export default function StoresClient({
                 <p className="text-[#74665C] text-sm mb-4">No showrooms found for this selection.</p>
                 <button
                   onClick={() => setActiveTab('all')}
-                  className="text-xs uppercase tracking-widest text-[#98712E] underline hover:text-[#241B17]"
+                  className="text-xs uppercase tracking-widest text-[#D6B15D] underline hover:text-[#76551C]"
                 >
                   View All Showrooms
                 </button>
@@ -366,26 +366,26 @@ export default function StoresClient({
       </section>
 
       {/* Appointment CTA */}
-      <section className="py-24 bg-[#211813] text-[#FFF8EB] relative overflow-hidden border-t border-[#DED2C1]/20">
+      <section className="py-24 bg-[#211813] text-[#FFF8EC] relative overflow-hidden border-t border-[#DED2C1]/20">
         <div className="absolute inset-0 bg-radial-gold opacity-15 pointer-events-none" />
         
         <div className="container mx-auto px-4 max-w-4xl text-center space-y-8 relative z-10">
           <Reveal>
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#241B17] border border-[#C49A45]/40 mb-2">
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#211813] border border-[#C49A45]/40 mb-2">
               <span className="text-xs">✦</span>
-              <span className="text-[10px] uppercase tracking-[0.3em] text-[#E7C880] font-bold">Privé Consultation</span>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#E0BD72] font-bold">Privé Consultation</span>
               <span className="text-xs">✦</span>
             </div>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h2 className="text-4xl md:text-6xl font-serif font-light text-[#FFF8EB] leading-tight">
+            <h2 className="text-4xl md:text-6xl font-serif font-light text-[#FFF8EC] leading-tight">
               Personalized Shopping <span className="font-editorial italic gold-gradient">Experience</span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.2}>
-            <p className="max-w-2xl mx-auto text-[#E5D7C5] text-sm md:text-base leading-relaxed font-light">
+            <p className="max-w-2xl mx-auto text-[#E5D9C8] text-sm md:text-base leading-relaxed font-light">
               Our master gemologists and bridal stylists are at your service across Agartala, Dharmanagar, Kailashahar, and Khowai. Book an exclusive showroom viewing or virtual video tour across Tripura.
             </p>
           </Reveal>
@@ -402,7 +402,7 @@ export default function StoresClient({
               </a>
               <a 
                 href={`tel:${contactPhone}`}
-                className="px-10 py-4 text-[10px] font-bold tracking-[0.35em] uppercase text-[#FFF8EB] bg-[#241B17] hover:bg-[#40352F] border border-[#DED2C1]/30 hover:border-[#C49A45] text-[#FFF8EB] transition-all"
+                className="px-10 py-4 text-[10px] font-bold tracking-[0.35em] uppercase text-[#FFF8EC] bg-[#211813] hover:bg-[#C9A04A] hover:text-[#211813] border border-[#DED2C1]/30 hover:border-[#C49A45] text-[#FFF8EC] transition-all"
               >
                 Call Concierge
               </a>

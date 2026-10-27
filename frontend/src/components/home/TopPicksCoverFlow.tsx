@@ -439,7 +439,7 @@ export default function TopPicksCoverFlow({
           <Reveal>
             <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#F0E7D8] border border-[#DED2C1] mb-5 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45] animate-pulse" />
-              <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.35em] uppercase text-[#98712E]">
+              <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.35em] uppercase text-[#D6B15D]">
                 {sectionBadge}
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45] animate-pulse" />
@@ -447,13 +447,13 @@ export default function TopPicksCoverFlow({
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#241B17] tracking-tight leading-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#76551C] tracking-tight leading-tight">
               Top <span className="font-editorial gold-gradient italic">Picks</span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.2}>
-            <p className="mt-4 text-xs sm:text-sm md:text-base text-[#40352F] font-normal tracking-wide max-w-xl mx-auto leading-relaxed">
+            <p className="mt-4 text-xs sm:text-sm md:text-base text-[#76551C] font-normal tracking-wide max-w-xl mx-auto leading-relaxed">
               {subtitle}
             </p>
           </Reveal>
@@ -475,7 +475,7 @@ export default function TopPicksCoverFlow({
             type="button"
             onClick={goToPrev}
             aria-label="Previous Jewellery Collection"
-            className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-[#FFFDF8] hover:bg-[#241B17] text-[#241B17] hover:text-[#FFF8EB] border border-[#DED2C1] shadow-md backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-[#C49A45]"
+            className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-[#FFFDF8] hover:bg-[#C9A04A] text-[#76551C] hover:text-[#FFF8EC] border border-[#DED2C1] shadow-md backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-[#C49A45]"
           >
             <svg 
               className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:-translate-x-0.5" 
@@ -492,7 +492,7 @@ export default function TopPicksCoverFlow({
             type="button"
             onClick={goToNext}
             aria-label="Next Jewellery Collection"
-            className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-[#FFFDF8] hover:bg-[#241B17] text-[#241B17] hover:text-[#FFF8EB] border border-[#DED2C1] shadow-md backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-[#C49A45]"
+            className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-[#FFFDF8] hover:bg-[#C9A04A] text-[#76551C] hover:text-[#FFF8EC] border border-[#DED2C1] shadow-md backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-[#C49A45]"
           >
             <svg 
               className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-x-0.5" 
@@ -535,7 +535,7 @@ export default function TopPicksCoverFlow({
                     w-[270px] sm:w-[310px] md:w-[350px] lg:w-[360px] 
                     h-[410px] sm:h-[470px] md:h-[510px] 
                     rounded-2xl sm:rounded-3xl overflow-hidden
-                    bg-[#211713]
+                    bg-[#211813]
                     ${isCenter 
                       ? 'border-2 border-[#C49A45]/75 shadow-[0_20px_45px_-12px_rgba(33,23,19,0.35),0_0_20px_rgba(196,154,69,0.2)] ring-1 ring-[#C49A45]/40 cursor-default' 
                       : 'border border-[#DED2C1]/20 shadow-lg hover:border-[#C49A45]/40 cursor-pointer'
@@ -543,7 +543,7 @@ export default function TopPicksCoverFlow({
                   `}
                 >
                   {/* Card Media Layer (Video + Poster Image Fallback) */}
-                  <div className="relative w-full h-full overflow-hidden bg-[#211713]">
+                  <div className="relative w-full h-full overflow-hidden bg-[#211813]">
                     
                     {/* High-Resolution Poster Image (Always present as instant backdrop) */}
                     <Image
@@ -578,18 +578,18 @@ export default function TopPicksCoverFlow({
                     )}
 
                     {/* Editorial Vignette & Bottom Text Contrast Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#211713] via-[#211713]/60 to-transparent pointer-events-none" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#211713]/40 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/60 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#211813]/40 via-transparent to-transparent pointer-events-none" />
 
                     {/* Top Badges */}
                     <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
-                      <span className="px-3 py-1 rounded-full text-[9px] font-bold tracking-[0.25em] uppercase bg-[#211713]/85 backdrop-blur-md text-[#E7C880] border border-[#C49A45]/40 shadow-md">
+                      <span className="px-3 py-1 rounded-full text-[9px] font-bold tracking-[0.25em] uppercase bg-[#211813]/85 backdrop-blur-md text-[#E0BD72] border border-[#C49A45]/40 shadow-md">
                         {item.tag}
                       </span>
 
                       {/* Video Motion Indicator */}
                       {isVideoPlaying && (
-                        <span className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-[#211713]/85 backdrop-blur-md text-[#E7C880] text-[8px] font-bold tracking-widest border border-[#C49A45]/50 shadow-md">
+                        <span className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-[#211813]/85 backdrop-blur-md text-[#E0BD72] text-[8px] font-bold tracking-widest border border-[#C49A45]/50 shadow-md">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45] animate-ping" />
                           <span>MOTION</span>
                         </span>
@@ -600,12 +600,12 @@ export default function TopPicksCoverFlow({
                     <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-20 flex flex-col justify-end text-left">
                       
                       {/* Small Gold Subtitle */}
-                      <span className="text-[11px] sm:text-xs font-editorial italic text-[#E7C880] tracking-widest uppercase mb-1 drop-shadow-sm">
+                      <span className="text-[11px] sm:text-xs font-editorial italic text-[#E0BD72] tracking-widest uppercase mb-1 drop-shadow-sm">
                         {item.subtitle}
                       </span>
 
                       {/* Collection Title */}
-                      <h3 className="text-2xl sm:text-3xl font-serif font-normal text-[#FFF8EB] tracking-wide leading-tight drop-shadow-md">
+                      <h3 className="text-2xl sm:text-3xl font-serif font-normal text-[#FFF8EC] tracking-wide leading-tight drop-shadow-md">
                         {item.title}
                       </h3>
 
@@ -613,14 +613,14 @@ export default function TopPicksCoverFlow({
                       {isCenter && (
                         <div className="mt-3 pt-3 border-t border-[#DED2C1]/20 flex flex-col space-y-2">
                           {item.description && (
-                            <p className="text-[11px] text-[#E5D7C5] font-light leading-relaxed line-clamp-2">
+                            <p className="text-[11px] text-[#E5D9C8] font-light leading-relaxed line-clamp-2">
                               {item.description}
                             </p>
                           )}
 
                           <Link
                             href={item.link}
-                            className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.3em] text-[#E7C880] hover:text-[#FFF8EB] transition-colors duration-300 pt-1 group/cta"
+                            className="inline-flex items-center space-x-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.3em] text-[#E0BD72] hover:text-[#FFF8EC] transition-colors duration-300 pt-1 group/cta"
                           >
                             <span>Explore Collection</span>
                             <span className="transform transition-transform duration-300 group-hover/cta:translate-x-1">→</span>
@@ -640,16 +640,16 @@ export default function TopPicksCoverFlow({
         <div className="mt-10 sm:mt-12 flex flex-col items-center justify-center space-y-4">
           
           {/* Active Collection Counter */}
-          <div className="flex items-center space-x-3 text-xs tracking-widest uppercase text-[#40352F] font-semibold">
-            <span className="text-[#E7C880] font-serif text-sm font-bold">
+          <div className="flex items-center space-x-3 text-xs tracking-widest uppercase text-[#76551C] font-semibold">
+            <span className="text-[#E0BD72] font-serif text-sm font-bold">
               {String(activeIndex + 1).padStart(2, '0')}
             </span>
             <span className="w-8 h-[1px] bg-[#DED2C1]" />
-            <span className="text-[#241B17] font-medium">
+            <span className="text-[#76551C] font-medium">
               {activeItem.title}
             </span>
             <span className="w-8 h-[1px] bg-[#DED2C1]" />
-            <span className="text-[#40352F]/60 font-serif text-sm">
+            <span className="text-[#76551C]/60 font-serif text-sm">
               {String(total).padStart(2, '0')}
             </span>
           </div>
@@ -675,7 +675,7 @@ export default function TopPicksCoverFlow({
           </div>
 
           {/* Touch Swipe / Keyboard Prompt (Subtle UX tip) */}
-          <p className="text-[10px] text-[#40352F] uppercase tracking-[0.25em] font-medium pt-2">
+          <p className="text-[10px] text-[#76551C] uppercase tracking-[0.25em] font-medium pt-2">
             Swipe or use arrow keys to browse
           </p>
         </div>

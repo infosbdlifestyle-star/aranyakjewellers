@@ -77,7 +77,7 @@ export function LuxuryJewelryGallery({
               className="group relative bg-[#211813] border border-[#DED2C1]/20 hover:border-[#C49A45]/60 overflow-hidden cursor-pointer shadow-xl transition-all duration-500 rounded-xl"
             >
               {/* Responsive Container */}
-              <div className={`relative ${aspectRatio === '1/1' ? 'aspect-square' : 'aspect-[4/5]'} w-full overflow-hidden bg-[#241B17]`}>
+              <div className={`relative ${aspectRatio === '1/1' ? 'aspect-square' : 'aspect-[4/5]'} w-full overflow-hidden bg-[#211813]`}>
                 
                 {/* Standard Base Image */}
                 <Image
@@ -177,7 +177,7 @@ export function LuxuryJewelryGallery({
                   setSelectedItem(null);
                   setIsZoomedInModal(false);
                 }}
-                className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-[#241B17] border border-[#DED2C1]/20 flex items-center justify-center text-[#FFF8EC] hover:text-[#E0BD72] transition-colors shadow-lg"
+                className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-[#211813] border border-[#DED2C1]/20 flex items-center justify-center text-[#FFF8EC] hover:text-[#E0BD72] transition-colors shadow-lg"
                 aria-label="Close modal"
               >
                 ✕
@@ -185,7 +185,7 @@ export function LuxuryJewelryGallery({
 
               {/* Modal High-Res Zoomable Image Container */}
               <div 
-                className="relative aspect-[4/5] md:aspect-auto w-full min-h-[400px] bg-[#241B17] overflow-hidden cursor-zoom-in"
+                className="relative aspect-[4/5] md:aspect-auto w-full min-h-[400px] bg-[#211813] overflow-hidden cursor-zoom-in"
                 onClick={() => setIsZoomedInModal(!isZoomedInModal)}
               >
                 <Image
@@ -250,7 +250,7 @@ export function LuxuryJewelryGallery({
 
                   <button
                     onClick={() => setIsZoomedInModal(!isZoomedInModal)}
-                    className="w-full py-3.5 text-center text-[10px] font-bold tracking-[0.3em] uppercase text-[#FFF8EC] bg-[#241B17] hover:bg-[#241B17]/80 border border-[#DED2C1]/20 transition-colors rounded"
+                    className="w-full py-3.5 text-center text-[10px] font-bold tracking-[0.3em] uppercase text-[#FFF8EC] bg-[#211813] hover:bg-[#211813]/80 border border-[#DED2C1]/20 transition-colors rounded"
                   >
                     {isZoomedInModal ? 'Reset View' : 'Inspect Craftsmanship & Texture'}
                   </button>

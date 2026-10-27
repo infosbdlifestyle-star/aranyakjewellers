@@ -362,7 +362,7 @@ export default function AccountPage() {
   const roleName = user?.role === 'SUPER_ADMIN' ? 'Super Administrator' : user?.role === 'ADMIN' ? 'Administrator' : 'Royal Patron Member';
 
   return (
-    <main className="min-h-screen bg-[#080404] text-[#FAF7F2] pt-28 pb-24 selection:bg-[#E5C158] selection:text-black relative">
+    <main className="min-h-screen bg-[#080404] text-[#FAF7F2] pt-28 pb-24 selection:bg-[#E5C158] selection:text-[#76551C] relative">
       {/* Subtle Ambient Gold Lighting */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-gradient-to-b from-[#E5C158]/8 via-[#C5A059]/4 to-transparent blur-[140px] rounded-full" />

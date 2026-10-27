@@ -224,10 +224,10 @@ export default function HomeClient({
   const rate18k = getRate(18, 59300);
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#241B17] selection:bg-[#C49A45] selection:text-[#211713]" ref={containerRef}>
+    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C] selection:bg-[#D6B15D] selection:text-[#211813]" ref={containerRef}>
       
       {/* 1. Full-Screen Luxury "Timeless Elegance" Hero Section */}
-      <section className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-[#211713]" aria-label="Hero Section">
+      <section className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-[#211813]" aria-label="Hero Section">
         <motion.div 
           className="absolute inset-0"
           initial={{ scale: 1.15 }}
@@ -245,8 +245,8 @@ export default function HomeClient({
         </motion.div>
         
         {/* Multi-layered Warm Espresso & Gold Ambient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#211713] via-[#211713]/60 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#211713]/85 via-transparent to-[#211713]/85 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/60 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/85 via-transparent to-[#211813]/85 pointer-events-none" />
         
         {/* Floating Gold Dust Particles */}
         {mounted && (
@@ -254,7 +254,7 @@ export default function HomeClient({
             {[...Array(20)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-1 h-1 bg-[#C49A45] rounded-full blur-[1px] mix-blend-screen"
+                className="absolute w-1 h-1 bg-[#D6B15D] rounded-full blur-[1px] mix-blend-screen"
                 initial={{ 
                   x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
                   y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
@@ -279,13 +279,13 @@ export default function HomeClient({
           
           {/* Top Pill Badge */}
           <Reveal y={20} duration={1}>
-            <div className="relative inline-flex items-center space-x-3 px-5 py-2 rounded-full bg-[#211713]/85 backdrop-blur-md border border-[#C49A45]/50 mb-8 shadow-xl">
+            <div className="relative inline-flex items-center space-x-3 px-5 py-2 rounded-full bg-[#211813]/85 backdrop-blur-md border border-[#D6B15D]/50 mb-8 shadow-xl">
               <SparkleGlint className="absolute -top-2 -right-2" size={16} delay={0.5} />
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45] animate-pulse" />
-              <span className="text-[#C49A45] text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D6B15D] animate-pulse" />
+              <span className="text-[#D6B15D] text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase">
                 • EST. 2005 • TRIPURA'S FINEST JEWELLER •
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D6B15D] animate-pulse" />
             </div>
           </Reveal>
           
@@ -320,7 +320,7 @@ export default function HomeClient({
               </Link>
               <Link 
                 href="/stores" 
-                className="px-10 py-4 text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase text-[#FFF8EB] hover:text-[#211713] bg-[#211713]/70 hover:bg-[#C49A45] backdrop-blur-md border border-[#DED2C1]/40 hover:border-[#C49A45] transition-all duration-500 hover:scale-105 shadow-lg"
+                className="px-10 py-4 text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase text-[#FFF8EB] hover:text-[#211813] bg-[#211813]/70 hover:bg-[#D6B15D] backdrop-blur-md border border-[#DED2C1]/40 hover:border-[#D6B15D] transition-all duration-500 hover:scale-105 shadow-lg"
               >
                 FIND BOUTIQUE SHOWROOMS
               </Link>
@@ -330,10 +330,10 @@ export default function HomeClient({
 
         {/* Bottom "SCROLL" Indicator */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 pointer-events-none opacity-80 animate-bounce">
-          <span className="text-[9px] font-bold tracking-[0.35em] uppercase text-[#C49A45]">
+          <span className="text-[9px] font-bold tracking-[0.35em] uppercase text-[#D6B15D]">
             SCROLL
           </span>
-          <svg width="14" height="16" viewBox="0 0 24 24" fill="none" stroke="#C49A45" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="14" height="16" viewBox="0 0 24 24" fill="none" stroke="#D6B15D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <polyline points="19 12 12 19 5 12"></polyline>
           </svg>
@@ -341,14 +341,14 @@ export default function HomeClient({
       </section>
 
       {/* 2.5 Special Festive & Wedding Offers Grid */}
-      <section className="pt-16 md:pt-20 pb-0 bg-gradient-to-b from-[#211713] via-[#2B1B15] to-[#211713] relative overflow-hidden text-[#FFF8EB]">
+      <section className="pt-16 md:pt-20 pb-0 bg-gradient-to-b from-[#211813] via-[#211813] to-[#211813] relative overflow-hidden text-[#FFF8EB]">
         <div className="absolute inset-0 bg-radial-gold opacity-20 pointer-events-none" />
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <Reveal>
-              <div className="inline-flex items-center space-x-2 px-4 py-1 rounded-full bg-[#30231D] border border-[#C49A45]/40 mb-4 shadow-md">
+              <div className="inline-flex items-center space-x-2 px-4 py-1 rounded-full bg-[#211813] border border-[#D6B15D]/40 mb-4 shadow-md">
                 <span className="text-xs">🌸</span>
-                <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#C49A45]">
+                <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#D6B15D]">
                   FESTIVE & WEDDING CELEBRATION
                 </span>
                 <span className="text-xs">🌸</span>
@@ -365,12 +365,12 @@ export default function HomeClient({
               </p>
             </Reveal>
             <Reveal delay={0.3}>
-              <div className="mt-6 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#30231D]/90 border border-[#C49A45]/50 shadow-[0_4px_20px_rgba(196,154,69,0.15)] backdrop-blur-sm">
-                <span className="w-2 h-2 rounded-full bg-[#C49A45] animate-pulse" />
+              <div className="mt-6 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#211813]/90 border border-[#D6B15D]/50 shadow-[0_4px_20px_rgba(196,154,69,0.15)] backdrop-blur-sm">
+                <span className="w-2 h-2 rounded-full bg-[#D6B15D] animate-pulse" />
                 <span className="text-xs sm:text-sm font-medium tracking-wide text-[#FFF8EB]">
                   অফার* চলবে ১ নভেম্বর থেকে ১৪ নভেম্বর ২০২৬ পর্যন্ত
                 </span>
-                <span className="text-[#C49A45] text-xs">✦</span>
+                <span className="text-[#D6B15D] text-xs">✦</span>
               </div>
             </Reveal>
           </div>
@@ -424,28 +424,28 @@ export default function HomeClient({
                 }`}
               >
                 <MagneticCard tiltIntensity={5} className="h-full rounded-2xl">
-                  <div className={`p-6 sm:p-7 rounded-2xl bg-[#30231D]/80 backdrop-blur-md border ${
+                  <div className={`p-6 sm:p-7 rounded-2xl bg-[#211813]/80 backdrop-blur-md border ${
                     item.highlight 
-                      ? 'border-[#C49A45]/60 shadow-[0_0_25px_rgba(196,154,69,0.15)]' 
+                      ? 'border-[#D6B15D]/60 shadow-[0_0_25px_rgba(196,154,69,0.15)]' 
                       : 'border-[#DED2C1]/25'
-                  } hover:border-[#C49A45]/80 hover:shadow-[0_8px_30px_rgba(196,154,69,0.22)] transition-all duration-500 h-full flex flex-col justify-between group`}>
+                  } hover:border-[#D6B15D]/80 hover:shadow-[0_8px_30px_rgba(196,154,69,0.22)] transition-all duration-500 h-full flex flex-col justify-between group`}>
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-[9px] font-extrabold tracking-widest uppercase px-3 py-1 rounded-full bg-[#C49A45]/15 text-[#C49A45] border border-[#C49A45]/30 shadow-sm">
+                        <span className="text-[9px] font-extrabold tracking-widest uppercase px-3 py-1 rounded-full bg-[#D6B15D]/15 text-[#D6B15D] border border-[#D6B15D]/30 shadow-sm">
                           {item.tag}
                         </span>
-                        <span className="text-[#C49A45]/50 group-hover:text-[#C49A45] transition-colors text-xs font-serif">
+                        <span className="text-[#D6B15D]/50 group-hover:text-[#D6B15D] transition-colors text-xs font-serif">
                           ✦
                         </span>
                       </div>
-                      <h3 className="text-lg font-serif font-bold text-[#FFF8EB] mb-2 group-hover:text-[#C49A45] transition-colors leading-snug">
+                      <h3 className="text-lg font-serif font-bold text-[#FFF8EB] mb-2 group-hover:text-[#D6B15D] transition-colors leading-snug">
                         {item.title}
                       </h3>
                       <p className="text-xs text-[#E5D7C5] leading-relaxed font-light">
                         {item.desc}
                       </p>
                     </div>
-                    <div className="mt-5 pt-4 border-t border-[#DED2C1]/15 flex items-center justify-between text-[10px] text-[#C49A45] font-bold tracking-wider uppercase">
+                    <div className="mt-5 pt-4 border-t border-[#DED2C1]/15 flex items-center justify-between text-[10px] text-[#D6B15D] font-bold tracking-wider uppercase">
                       <span>Avail at all Stores</span>
                       <span className="group-hover:translate-x-1.5 transition-transform duration-300">→</span>
                     </div>
@@ -456,11 +456,11 @@ export default function HomeClient({
           </StaggerContainer>
         </div>
 
-        {/* Smooth Multi-stop Luxury Gradient Transition (#211713 -> #382820 -> #665044 -> #E8DDCC -> #F8F4EC) */}
+        {/* Smooth Multi-stop Luxury Gradient Transition (#211813 -> #382820 -> #665044 -> #E8DDCC -> #F8F4EC) */}
         <div 
           className="w-full pt-16 md:pt-24 mt-12 sm:mt-16 relative pointer-events-none"
           style={{
-            background: 'linear-gradient(180deg, rgba(33, 23, 19, 0) 0%, #211713 15%, #382820 38%, #665044 62%, #E8DDCC 85%, #FAF7F0 100%)'
+            background: 'linear-gradient(180deg, rgba(33, 23, 19, 0) 0%, #211813 15%, #382820 38%, #665044 62%, #E8DDCC 85%, #FAF7F0 100%)'
           }}
         >
           {/* Elegant Shallow Symmetrical Curved Divider */}
@@ -474,11 +474,11 @@ export default function HomeClient({
             >
               <defs>
                 <linearGradient id="aranyakCurveGold" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#C49A45" stopOpacity="0" />
-                  <stop offset="20%" stopColor="#C49A45" stopOpacity="0.35" />
-                  <stop offset="50%" stopColor="#C49A45" stopOpacity="0.75" />
-                  <stop offset="80%" stopColor="#C49A45" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="#C49A45" stopOpacity="0" />
+                  <stop offset="0%" stopColor="#D6B15D" stopOpacity="0" />
+                  <stop offset="20%" stopColor="#D6B15D" stopOpacity="0.35" />
+                  <stop offset="50%" stopColor="#D6B15D" stopOpacity="0.75" />
+                  <stop offset="80%" stopColor="#D6B15D" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="#D6B15D" stopOpacity="0" />
                 </linearGradient>
               </defs>
               {/* Shallow curved path filled with final ivory #F8F4EC */}
@@ -505,7 +505,7 @@ export default function HomeClient({
       <HeroCarousel />
 
       {/* 4. The Aranyak Heritage & Brand Stats Section */}
-      <section className="py-24 md:py-36 bg-[#FAF7F0] text-[#241B17] relative z-20 overflow-hidden border-b border-[#DED2C1] bg-radial-gold">
+      <section className="py-24 md:py-36 bg-[#FAF7F0] text-[#76551C] relative z-20 overflow-hidden border-b border-[#DED2C1] bg-radial-gold">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
             
@@ -514,18 +514,18 @@ export default function HomeClient({
               <Reveal>
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-[2px] bg-[#A77C32]" />
-                  <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#98712E]">The Aranyak Philosophy</h2>
+                  <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#D6B15D]">The Aranyak Philosophy</h2>
                 </div>
               </Reveal>
               
               <Reveal delay={0.1}>
-                <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light leading-[1.1] text-[#241B17]">
+                <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light leading-[1.1] text-[#76551C]">
                   Masterpieces born from <span className="font-editorial gold-gradient italic">heritage</span> & crafted for eternity.
                 </h3>
               </Reveal>
               
               <Reveal delay={0.2}>
-                <p className="text-base text-[#40352F] leading-[1.8] font-normal tracking-wide">
+                <p className="text-base text-[#76551C] leading-[1.8] font-normal tracking-wide">
                   For over a quarter-century, Aranyak Jewellers has remained Tripura’s most trusted symbol of purity and fine craftsmanship. From intricate traditional Bengali gold ornaments to contemporary solitaire diamond creations, every piece is sculpted to perfection.
                 </p>
               </Reveal>
@@ -534,7 +534,7 @@ export default function HomeClient({
                 <div className="pt-4 flex items-center space-x-8">
                   <Link 
                     href="/about" 
-                    className="inline-block text-[11px] font-bold uppercase tracking-[0.35em] text-[#241B17] hover:text-[#98712E] transition-colors border-b-2 border-[#C49A45] pb-2"
+                    className="inline-block text-[11px] font-bold uppercase tracking-[0.35em] text-[#76551C] hover:text-[#D6B15D] transition-colors border-b-2 border-[#D6B15D] pb-2"
                   >
                     Read Our Story & Journey →
                   </Link>
@@ -553,14 +553,14 @@ export default function HomeClient({
                 <Reveal key={i} delay={0.1 * i} y={30}>
                   <div className="group border-r border-b border-[#DED2C1] p-10 bg-[#FFFDF8] hover:bg-white transition-all duration-500 h-full flex flex-col justify-between shadow-sm">
                     <div className="flex items-center justify-between mb-8">
-                      <span className="text-sm font-editorial font-bold text-[#C49A45]">{item.num}</span>
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#30231D]/15 group-hover:bg-[#C49A45] transition-colors" />
+                      <span className="text-sm font-editorial font-bold text-[#D6B15D]">{item.num}</span>
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#211813]/15 group-hover:bg-[#D6B15D] transition-colors" />
                     </div>
                     <div>
-                      <h4 className="text-2xl font-serif font-medium mb-3 tracking-wide text-[#241B17] group-hover:text-[#98712E] transition-colors">
+                      <h4 className="text-2xl font-serif font-medium mb-3 tracking-wide text-[#76551C] group-hover:text-[#D6B15D] transition-colors">
                         {item.title}
                       </h4>
-                      <p className="text-sm text-[#40352F] leading-relaxed tracking-normal font-normal">{item.desc}</p>
+                      <p className="text-sm text-[#76551C] leading-relaxed tracking-normal font-normal">{item.desc}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -572,9 +572,9 @@ export default function HomeClient({
           <div className="mt-24 pt-16 border-t border-[#DED2C1] grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {STATS.map(stat => stat.label.includes('Showroom') ? { ...stat, value: `${liveStoresCount}` } : stat).map((stat, idx) => (
               <MagneticCard key={idx} tiltAmount={4} glareOpacity={0.12}>
-                <div className="p-6 sm:p-8 bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#C49A45]/70 transition-all duration-300 rounded-xl shadow-sm h-full flex flex-col justify-center">
-                  <p className="text-4xl md:text-5xl font-serif font-light text-[#C49A45] mb-2">{stat.value}</p>
-                  <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#241B17]">{stat.label}</p>
+                <div className="p-6 sm:p-8 bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#D6B15D]/70 transition-all duration-300 rounded-xl shadow-sm h-full flex flex-col justify-center">
+                  <p className="text-4xl md:text-5xl font-serif font-light text-[#D6B15D] mb-2">{stat.value}</p>
+                  <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#76551C]">{stat.label}</p>
                 </div>
               </MagneticCard>
             ))}
@@ -583,8 +583,8 @@ export default function HomeClient({
       </section>
 
       {/* 5. Craftsmanship Video Showcase */}
-      <section className="h-[75vh] w-full relative overflow-hidden border-b border-[#DED2C1]/20 group bg-[#211713]">
-        <div className="absolute inset-0 bg-gradient-to-t from-[#211713]/95 via-[#211713]/60 to-[#211713]/85 z-10 transition-opacity duration-700" />
+      <section className="h-[75vh] w-full relative overflow-hidden border-b border-[#DED2C1]/20 group bg-[#211813]">
+        <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/95 via-[#211813]/60 to-[#211813]/85 z-10 transition-opacity duration-700" />
         
         {/* Silent Autoplay Video Background */}
         <video 
@@ -600,7 +600,7 @@ export default function HomeClient({
 
         <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6 pointer-events-none">
           <Reveal>
-            <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#C49A45] mb-6 block drop-shadow-md">
+            <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#D6B15D] mb-6 block drop-shadow-md">
               Behind the Art
             </span>
           </Reveal>
@@ -619,7 +619,7 @@ export default function HomeClient({
             <div className="mt-10 pointer-events-auto">
               <Link 
                 href="/about" 
-                className="group flex items-center space-x-4 px-8 py-3.5 bg-[#C49A45] hover:bg-[#A77C32] text-[#211713] hover:text-[#FFF8EB] border border-[#A77C32] text-[10px] font-bold tracking-[0.35em] uppercase transition-all duration-500 shadow-lg"
+                className="group flex items-center space-x-4 px-8 py-3.5 bg-[#D6B15D] hover:bg-[#A77C32] text-[#211813] hover:text-[#FFF8EB] border border-[#A77C32] text-[10px] font-bold tracking-[0.35em] uppercase transition-all duration-500 shadow-lg"
               >
                 <span>Discover Our Heritage</span>
               </Link>
@@ -635,13 +635,13 @@ export default function HomeClient({
           <div className="text-center mb-20 md:mb-32">
             <Reveal>
               <div className="flex items-center justify-center space-x-4 mb-4">
-                <div className="w-8 h-[2px] bg-[#C49A45]" />
-                <span className="text-[11px] tracking-[0.5em] uppercase font-bold text-[#98712E]">Curated Masterpieces</span>
-                <div className="w-8 h-[2px] bg-[#C49A45]" />
+                <div className="w-8 h-[2px] bg-[#D6B15D]" />
+                <span className="text-[11px] tracking-[0.5em] uppercase font-bold text-[#D6B15D]">Curated Masterpieces</span>
+                <div className="w-8 h-[2px] bg-[#D6B15D]" />
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <h3 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#241B17] tracking-tight">
+              <h3 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#76551C] tracking-tight">
                 High <span className="font-editorial gold-gradient italic">Jewellery</span>
               </h3>
             </Reveal>
@@ -709,9 +709,9 @@ export default function HomeClient({
           
           <div className="text-center mt-20 md:mt-28">
             <Reveal>
-              <Link href="/collections" className="inline-flex items-center space-x-6 text-xs font-bold tracking-[0.35em] uppercase text-[#241B17] hover:text-[#98712E] transition-colors group">
+              <Link href="/collections" className="inline-flex items-center space-x-6 text-xs font-bold tracking-[0.35em] uppercase text-[#76551C] hover:text-[#D6B15D] transition-colors group">
                 <span>Browse All Collections</span>
-                <div className="w-16 h-[2px] bg-[#DED2C1] group-hover:bg-[#C49A45] group-hover:w-24 transition-all duration-500" />
+                <div className="w-16 h-[2px] bg-[#DED2C1] group-hover:bg-[#D6B15D] group-hover:w-24 transition-all duration-500" />
               </Link>
             </Reveal>
           </div>
@@ -726,21 +726,21 @@ export default function HomeClient({
           <div className="text-left space-y-6">
             <Reveal width="100%">
               <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#FFFDF8] border border-[#DED2C1] mb-2 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45]" />
-                <span className="text-[11px] font-bold tracking-[0.35em] uppercase text-[#98712E]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D6B15D]" />
+                <span className="text-[11px] font-bold tracking-[0.35em] uppercase text-[#D6B15D]">
                   PHOTOGRAPHY & ARTWORK ARCHIVE
                 </span>
               </div>
             </Reveal>
 
             <Reveal width="100%" delay={0.1}>
-              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#241B17] leading-tight">
+              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#76551C] leading-tight">
                 Master <span className="font-editorial gold-gradient italic">Gallery</span> Directory
               </h3>
             </Reveal>
 
             <Reveal width="100%" delay={0.2}>
-              <p className="text-sm md:text-base text-[#40352F] uppercase tracking-widest font-normal leading-relaxed max-w-xl">
+              <p className="text-sm md:text-base text-[#76551C] uppercase tracking-widest font-normal leading-relaxed max-w-xl">
                 View our complete catalogue of handcrafted gold ornaments, certified solitaires, and antique temple jewelry in full resolution.
               </p>
             </Reveal>
@@ -763,7 +763,7 @@ export default function HomeClient({
               <div className="grid grid-cols-1 sm:grid-cols-2 sm:grid-rows-2 gap-4 lg:gap-6 h-auto sm:h-[560px] lg:h-[640px] w-full">
                 
                 {/* Large Primary Hero Image spanning 2 rows on the left */}
-                <div className="sm:row-span-2 relative h-[380px] sm:h-full w-full rounded-2xl overflow-hidden shadow-2xl group border border-[#DED2C1]/60 bg-[#211713]">
+                <div className="sm:row-span-2 relative h-[380px] sm:h-full w-full rounded-2xl overflow-hidden shadow-2xl group border border-[#DED2C1]/60 bg-[#211813]">
                   <Image 
                     src={liveMediaMap['home_bridal_image'] || "/uploads/gallery_royal_bridal_feature.webp"} 
                     alt="Handcrafted Royal Heritage 22kt Gold Bridal Necklace"
@@ -802,7 +802,7 @@ export default function HomeClient({
                 </div>
 
                 {/* Top Supporting Image (Right column, Row 1) */}
-                <div className="relative h-[240px] sm:h-full w-full rounded-2xl overflow-hidden shadow-xl group border border-[#DED2C1]/60 bg-[#211713]">
+                <div className="relative h-[240px] sm:h-full w-full rounded-2xl overflow-hidden shadow-xl group border border-[#DED2C1]/60 bg-[#211813]">
                   <Image 
                     src={liveMediaMap['gallery_diamond_ring'] || "/uploads/gallery_solitaire_feature.webp"} 
                     alt="Certified Solitaire Diamond Eternity Band"
@@ -828,7 +828,7 @@ export default function HomeClient({
                 </div>
 
                 {/* Bottom Supporting Image (Right column, Row 2) */}
-                <div className="relative h-[240px] sm:h-full w-full rounded-2xl overflow-hidden shadow-xl group border border-[#DED2C1]/60 bg-[#211713]">
+                <div className="relative h-[240px] sm:h-full w-full rounded-2xl overflow-hidden shadow-xl group border border-[#DED2C1]/60 bg-[#211813]">
                   <Image 
                     src="/uploads/gallery_chandeliers_feature.webp" 
                     alt="Haute Joaillerie Handcrafted Diamond Chandelier Earrings"
@@ -865,17 +865,17 @@ export default function HomeClient({
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <Reveal>
-              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#98712E] mb-3 block">
+              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#D6B15D] mb-3 block">
                 INSTAGRAM OFFICIAL LOOKBOOK
               </span>
             </Reveal>
             <Reveal delay={0.1}>
-              <h3 className="text-4xl sm:text-6xl font-serif font-light text-[#241B17] mb-4">
+              <h3 className="text-4xl sm:text-6xl font-serif font-light text-[#76551C] mb-4">
                 Follow <span className="font-editorial gold-gradient italic">@aranyakjewellers</span>
               </h3>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="text-sm text-[#40352F] font-normal tracking-wide max-w-xl mx-auto uppercase mb-8 leading-relaxed">
+              <p className="text-sm text-[#76551C] font-normal tracking-wide max-w-xl mx-auto uppercase mb-8 leading-relaxed">
                 Explore real bride trousseaus, daily gold rates, & store designs on Instagram
               </p>
             </Reveal>
@@ -884,7 +884,7 @@ export default function HomeClient({
                 href="https://www.instagram.com/aranyakjewellers/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-3 px-8 py-3.5 rounded-full bg-[#211713] text-[#FFF8EB] text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-[#C49A45] hover:text-[#211713] border border-[#C49A45]/30 transition-all duration-500 shadow-md"
+                className="inline-flex items-center space-x-3 px-8 py-3.5 rounded-full bg-[#211813] text-[#FFF8EB] text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-[#D6B15D] hover:text-[#211813] border border-[#D6B15D]/30 transition-all duration-500 shadow-md"
               >
                 <span>📸 Visit @aranyakjewellers on Instagram</span>
               </a>
@@ -904,7 +904,7 @@ export default function HomeClient({
                   href="https://www.instagram.com/aranyakjewellers/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative aspect-square w-full h-full overflow-hidden bg-[#211713] border border-[#DED2C1] hover:border-[#C49A45] block rounded-lg shadow-md transition-colors"
+                  className="group relative aspect-square w-full h-full overflow-hidden bg-[#211813] border border-[#DED2C1] hover:border-[#D6B15D] block rounded-lg shadow-md transition-colors"
                 >
                   <Image 
                     src={item.img} 
@@ -953,12 +953,12 @@ export default function HomeClient({
           
           <div className="text-center mb-16 md:mb-24">
             <Reveal>
-              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#98712E] mb-3 block">
+              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#D6B15D] mb-3 block">
                 Voices of Trust
               </span>
             </Reveal>
             <Reveal delay={0.1}>
-              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#241B17]">
+              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#76551C]">
                 Cherished <span className="font-editorial gold-gradient italic">Stories</span>
               </h3>
             </Reveal>
@@ -968,25 +968,25 @@ export default function HomeClient({
             {TESTIMONIALS.map((t, idx) => (
               <StaggerItem key={idx} y={30} className="h-full">
                 <MagneticCard tiltIntensity={4} className="h-full rounded-xl">
-                  <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 sm:p-10 flex flex-col justify-between h-full hover:border-[#C49A45]/70 transition-all duration-500 shadow-sm hover:shadow-lg rounded-xl">
+                  <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 sm:p-10 flex flex-col justify-between h-full hover:border-[#D6B15D]/70 transition-all duration-500 shadow-sm hover:shadow-lg rounded-xl">
                     <div>
                       {/* Stars with Subtle Stagger */}
-                      <div className="flex items-center space-x-1.5 text-[#C49A45] mb-6">
+                      <div className="flex items-center space-x-1.5 text-[#D6B15D] mb-6">
                         {[...Array(t.rating)].map((_, i) => (
                           <span key={i} className="text-base font-bold drop-shadow-sm">★</span>
                         ))}
                       </div>
-                      <p className="text-sm text-[#241B17] font-normal leading-[1.8] italic mb-8">
+                      <p className="text-sm text-[#76551C] font-normal leading-[1.8] italic mb-8">
                         &ldquo;{t.quote}&rdquo;
                       </p>
                     </div>
 
                     <div className="pt-6 border-t border-[#DED2C1] flex items-center justify-between">
                       <div>
-                        <h4 className="text-base font-serif font-bold text-[#241B17]">{t.author}</h4>
-                        <p className="text-[11px] text-[#40352F] uppercase tracking-wider font-semibold">{t.location}</p>
+                        <h4 className="text-base font-serif font-bold text-[#76551C]">{t.author}</h4>
+                        <p className="text-[11px] text-[#76551C] uppercase tracking-wider font-semibold">{t.location}</p>
                       </div>
-                      <span className="text-[10px] font-bold tracking-wider uppercase text-[#98712E] bg-[#C49A45]/10 border border-[#C49A45]/30 px-3 py-1 rounded-sm">
+                      <span className="text-[10px] font-bold tracking-wider uppercase text-[#D6B15D] bg-[#D6B15D]/10 border border-[#D6B15D]/30 px-3 py-1 rounded-sm">
                         {t.tag}
                       </span>
                     </div>
@@ -999,7 +999,7 @@ export default function HomeClient({
       </section>
 
       {/* 8. Showroom Editorial CTA Section */}
-      <section className="relative py-32 overflow-hidden bg-[#211713] border-t border-[#DED2C1]/20">
+      <section className="relative py-32 overflow-hidden bg-[#211813] border-t border-[#DED2C1]/20">
         <div className="absolute inset-0">
           <Image 
             src={liveMediaMap['home_showroom_image'] || liveSettings['home_showroom_image'] || initialSettings['home_showroom_image'] || "/showroom.jpg"} 
@@ -1007,12 +1007,12 @@ export default function HomeClient({
             fill 
             className="object-cover opacity-35 animate-slow-zoom"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#211713] via-[#211713]/85 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/85 to-transparent" />
         </div>
         
         <div className="relative z-10 container mx-auto px-6 max-w-4xl text-center text-[#FFF8EB]">
           <Reveal>
-            <div className="w-16 h-[1px] bg-[#C49A45] mx-auto mb-10" />
+            <div className="w-16 h-[1px] bg-[#D6B15D] mx-auto mb-10" />
           </Reveal>
           
           <Reveal delay={0.1}>
@@ -1038,7 +1038,7 @@ export default function HomeClient({
               </Link>
               <Link 
                 href="/contact" 
-                className="px-10 py-4.5 text-[10px] font-bold tracking-[0.35em] uppercase text-[#FFF8EB] hover:text-[#211713] bg-[#FFFDF8]/10 hover:bg-[#C49A45] backdrop-blur-md border border-[#DED2C1]/40 hover:border-[#C49A45] transition-all duration-500 hover:scale-105 shadow-md"
+                className="px-10 py-4.5 text-[10px] font-bold tracking-[0.35em] uppercase text-[#FFF8EB] hover:text-[#211813] bg-[#FFFDF8]/10 hover:bg-[#D6B15D] backdrop-blur-md border border-[#DED2C1]/40 hover:border-[#D6B15D] transition-all duration-500 hover:scale-105 shadow-md"
               >
                 Schedule Consultation
               </Link>

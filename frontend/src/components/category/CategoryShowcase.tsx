@@ -249,46 +249,46 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#40352F] selection:bg-[#C49A45] selection:text-[#211813]">
+    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C] selection:bg-[#C49A45] selection:text-[#211813]">
       
       {/* 1. Luxury Editorial Hero Banner */}
-      <section className="relative py-24 md:py-32 px-6 md:px-12 text-left overflow-hidden bg-[#211713] border-b border-[#DED2C1]/15">
+      <section className="relative py-24 md:py-32 px-6 md:px-12 text-left overflow-hidden bg-[#211813] border-b border-[#DED2C1]/15">
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity scale-105 transition-transform duration-1000"
           style={{ backgroundImage: `url(${meta.heroImage})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#211713]/95 via-[#211713]/85 to-[#211713] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#211813]/95 via-[#211813]/85 to-[#211813] pointer-events-none" />
 
         <div className="relative z-10 container mx-auto max-w-7xl">
           {/* Breadcrumbs */}
-          <nav className="flex items-center space-x-2 text-[10px] uppercase font-bold tracking-[0.25em] text-[#E5D7C5] mb-6">
-            <Link href="/" className="hover:text-[#E7C880] transition-colors">Home</Link>
-            <span className="text-[#C49A45]">/</span>
-            <Link href="/collections" className="hover:text-[#E7C880] transition-colors">Collections</Link>
-            <span className="text-[#C49A45]">/</span>
-            <span className="text-[#E7C880]">{meta.badge}</span>
+          <nav className="flex items-center space-x-2 text-[10px] uppercase font-bold tracking-[0.25em] text-[#E5D9C8] mb-6">
+            <Link href="/" className="hover:text-[#E0BD72] transition-colors">Home</Link>
+            <span className="text-[#D6B15D]">/</span>
+            <Link href="/collections" className="hover:text-[#E0BD72] transition-colors">Collections</Link>
+            <span className="text-[#D6B15D]">/</span>
+            <span className="text-[#E0BD72]">{meta.badge}</span>
           </nav>
 
           {/* Luxury Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#241B17] border border-[#C49A45]/40 mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#211813] border border-[#C49A45]/40 mb-4 shadow-sm">
             <SparkleGlint color="#E7C880" size={12}>
-              <span className="text-[#E7C880]">✧</span>
+              <span className="text-[#E0BD72]">✧</span>
             </SparkleGlint>
-            <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#E7C880]">
+            <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#E0BD72]">
               {meta.purityBanner}
             </p>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-light mb-6 tracking-tight text-[#FFF8EB]">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-light mb-6 tracking-tight text-[#FFF8EC]">
             <TextReveal text={meta.title} />
           </h1>
 
-          <p className="text-xs sm:text-sm text-[#E5D7C5] font-normal tracking-wide max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#E5D9C8] font-normal tracking-wide max-w-2xl leading-relaxed">
             {meta.subtitle}
           </p>
 
           {/* Hallmark Strip */}
-          <div className="mt-8 pt-6 border-t border-[#DED2C1]/15 flex items-center gap-3 text-[11px] text-[#E7C880] font-semibold tracking-wider">
+          <div className="mt-8 pt-6 border-t border-[#DED2C1]/15 flex items-center gap-3 text-[11px] text-[#E0BD72] font-semibold tracking-wider">
             <span>✦</span>
             <span>{meta.hallmarkText}</span>
           </div>
@@ -305,14 +305,14 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
               onClick={() => setSelectedSubCategory('all')}
               className={`relative px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-300 shrink-0 ${
                 selectedSubCategory === 'all'
-                  ? 'text-[#FFF8EB]'
-                  : 'text-[#40352F] hover:text-[#241B17] bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E]'
+                  ? 'text-[#FFF8EC]'
+                  : 'text-[#76551C] hover:text-[#76551C] bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E]'
               }`}
             >
               {selectedSubCategory === 'all' && (
                 <motion.div
                   layoutId="activeSubCategoryPill"
-                  className="absolute inset-0 bg-[#241B17] rounded-full -z-10 shadow-sm border border-[#98712E]/50"
+                  className="absolute inset-0 bg-[#211813] rounded-full -z-10 shadow-sm border border-[#98712E]/50"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
@@ -327,14 +327,14 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                   onClick={() => setSelectedSubCategory(sub.slug)}
                   className={`relative px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-300 shrink-0 ${
                     isActive
-                      ? 'text-[#FFF8EB]'
-                      : 'text-[#40352F] hover:text-[#241B17] bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E]'
+                      ? 'text-[#FFF8EC]'
+                      : 'text-[#76551C] hover:text-[#76551C] bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E]'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeSubCategoryPill"
-                      className="absolute inset-0 bg-[#241B17] rounded-full -z-10 shadow-sm border border-[#98712E]/50"
+                      className="absolute inset-0 bg-[#211813] rounded-full -z-10 shadow-sm border border-[#98712E]/50"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -346,11 +346,11 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
           {/* Sort Dropdown */}
           <div className="hidden sm:flex items-center space-x-3 shrink-0">
-            <span className="text-[10px] font-bold tracking-widest uppercase text-[#74665C]">Sort:</span>
+            <span className="text-[10px] font-bold tracking-widest uppercase text-[#76551C]">Sort:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="text-xs font-semibold bg-[#FFFDF8] border border-[#DED2C1] rounded-lg px-3 py-1.5 text-[#241B17] focus:outline-none focus:border-[#98712E] cursor-pointer"
+              className="text-xs font-semibold bg-[#FFFDF8] border border-[#DED2C1] rounded-lg px-3 py-1.5 text-[#76551C] focus:outline-none focus:border-[#98712E] cursor-pointer"
             >
               <option value="featured">Featured First</option>
               <option value="price-asc">Price: Low to High</option>
@@ -369,13 +369,13 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
           {/* Item count status bar */}
           <div className="flex items-center justify-between mb-10 pb-4 border-b border-[#DED2C1]">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#74665C]">
-              Showing <span className="text-[#241B17]">{displayedProducts.length}</span> {meta.badge} Pieces
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#76551C]">
+              Showing <span className="text-[#76551C]">{displayedProducts.length}</span> {meta.badge} Pieces
             </p>
             {selectedSubCategory !== 'all' && (
               <button 
                 onClick={() => setSelectedSubCategory('all')}
-                className="text-xs text-[#98712E] hover:text-[#241B17] font-bold tracking-wider uppercase underline"
+                className="text-xs text-[#D6B15D] hover:text-[#76551C] font-bold tracking-wider uppercase underline"
               >
                 Clear Filter ✕
               </button>
@@ -402,11 +402,11 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
           {/* Lifecycle State 2: Error with Retry */}
           {!loading && error && (
             <div className="max-w-xl mx-auto my-12 p-8 text-center bg-[#FFFDF8] border border-[#98712E]/30 rounded-2xl shadow-lg space-y-4">
-              <div className="w-12 h-12 mx-auto rounded-full bg-[#241B17] text-[#E7C880] flex items-center justify-center text-xl">
+              <div className="w-12 h-12 mx-auto rounded-full bg-[#211813] text-[#E0BD72] flex items-center justify-center text-xl">
                 !
               </div>
-              <h3 className="text-xl font-serif text-[#241B17]">Unable to Synchronize Collection</h3>
-              <p className="text-xs text-[#40352F] leading-relaxed">
+              <h3 className="text-xl font-serif text-[#76551C]">Unable to Synchronize Collection</h3>
+              <p className="text-xs text-[#76551C] leading-relaxed">
                 {error}
               </p>
               <div className="pt-2 flex justify-center gap-3">
@@ -424,12 +424,12 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
           {!loading && !error && displayedProducts.length === 0 && (
             <div className="text-center py-24 space-y-6 max-w-lg mx-auto">
               <SparkleGlint color="#C49A45" size={24}>
-                <div className="text-4xl text-[#C49A45] font-serif">✧</div>
+                <div className="text-4xl text-[#D6B15D] font-serif">✧</div>
               </SparkleGlint>
-              <h2 className="text-3xl font-serif font-light text-[#241B17]">
+              <h2 className="text-3xl font-serif font-light text-[#76551C]">
                 No Pieces Currently in this Chapter
               </h2>
-              <p className="text-xs text-[#40352F] leading-relaxed">
+              <p className="text-xs text-[#76551C] leading-relaxed">
                 Our master artisans are currently crafting new additions for this specific section. Explore our full {meta.title} or commission a bespoke custom creation.
               </p>
               <div className="pt-4 flex justify-center gap-4">
@@ -441,7 +441,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                 </button>
                 <Link
                   href="/contact"
-                  className="px-8 py-3 text-xs font-bold tracking-widest uppercase text-[#FFF8EB] bg-[#211713] border border-[#C49A45]/40 rounded shadow"
+                  className="px-8 py-3 text-xs font-bold tracking-widest uppercase text-[#FFF8EC] bg-[#211813] border border-[#C49A45]/40 rounded shadow"
                 >
                   Bespoke Commission
                 </Link>
@@ -468,7 +468,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                           {/* Card Image Area */}
                           <div 
                             onClick={() => setSelectedProduct(p)}
-                            className="relative aspect-[4/5] bg-[#211713] rounded-xl overflow-hidden cursor-pointer"
+                            className="relative aspect-[4/5] bg-[#211813] rounded-xl overflow-hidden cursor-pointer"
                           >
                             <Image
                               src={displayImage}
@@ -480,22 +480,22 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                             />
 
                             {/* Warm vignette */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#211713]/80 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/80 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
 
                             {/* Purity & Metal Badge */}
                             <div className="absolute top-3 left-3 flex flex-col gap-1">
-                              <span className="px-2.5 py-1 bg-[#211713]/90 backdrop-blur-md border border-[#C49A45]/50 text-[#C49A45] text-[9px] font-bold tracking-widest uppercase rounded">
+                              <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#C49A45]/50 text-[#D6B15D] text-[9px] font-bold tracking-widest uppercase rounded">
                                 {p.categorySlug === 'silver' ? '92.5 Silver' : p.goldPurity ? `${p.goldPurity}KT Hallmarked` : meta.badge}
                               </span>
                               {p.diamondCarat && (
-                                <span className="px-2.5 py-0.5 bg-[#FFFFFF]/90 backdrop-blur-md text-[#211713] text-[9px] font-bold tracking-wider rounded">
+                                <span className="px-2.5 py-0.5 bg-[#FFFFFF]/90 backdrop-blur-md text-[#211813] text-[9px] font-bold tracking-wider rounded">
                                   {p.diamondCarat} ct {p.diamondClarity || 'Diamond'}
                                 </span>
                               )}
                             </div>
 
                             {/* Inspect Detail Hover Pill */}
-                            <div className="absolute bottom-3 right-3 bg-[#211713]/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#C49A45]/40 text-[9px] uppercase tracking-widest font-bold text-[#C49A45] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <div className="absolute bottom-3 right-3 bg-[#211813]/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#C49A45]/40 text-[9px] uppercase tracking-widest font-bold text-[#D6B15D] opacity-0 group-hover:opacity-100 transition-all duration-300">
                               🔍 Inspect Piece
                             </div>
                           </div>
@@ -503,7 +503,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                           {/* Card Content Area */}
                           <div className="pt-4 space-y-2 flex-1 flex flex-col justify-between">
                             <div>
-                              <div className="flex items-center justify-between text-[10px] text-[#98712E] font-bold tracking-widest uppercase mb-1">
+                              <div className="flex items-center justify-between text-[10px] text-[#D6B15D] font-bold tracking-widest uppercase mb-1">
                                 <span>{p.subCategory}</span>
                                 {p.goldWeight > 0 && (
                                   <span>{p.goldWeight}g Net Wt</span>
@@ -512,12 +512,12 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
                               <h3 
                                 onClick={() => setSelectedProduct(p)}
-                                className="text-base font-serif font-medium text-[#241B17] group-hover:text-[#98712E] transition-colors cursor-pointer line-clamp-1"
+                                className="text-base font-serif font-medium text-[#76551C] group-hover:text-[#D6B15D] transition-colors cursor-pointer line-clamp-1"
                               >
                                 {p.name}
                               </h3>
 
-                              <p className="text-xs text-[#40352F] line-clamp-2 mt-1 font-normal leading-relaxed">
+                              <p className="text-xs text-[#76551C] line-clamp-2 mt-1 font-normal leading-relaxed">
                                 {p.description}
                               </p>
                             </div>
@@ -527,15 +527,15 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                               <div>
                                 {p.pricing?.finalPrice ? (
                                   <div>
-                                    <span className="text-[10px] text-[#40352F] uppercase tracking-wider block font-medium">Estimated Value</span>
-                                    <span className="text-base font-serif font-bold text-[#241B17]">
+                                    <span className="text-[10px] text-[#76551C] uppercase tracking-wider block font-medium">Estimated Value</span>
+                                    <span className="text-base font-serif font-bold text-[#76551C]">
                                       ₹{p.pricing.finalPrice.toLocaleString('en-IN')}
                                     </span>
                                   </div>
                                 ) : (
                                   <div>
-                                    <span className="text-[10px] text-[#40352F] uppercase tracking-wider block font-medium">Price on Inquiry</span>
-                                    <span className="text-xs font-serif font-bold text-[#98712E]">Daily Gold Linked</span>
+                                    <span className="text-[10px] text-[#76551C] uppercase tracking-wider block font-medium">Price on Inquiry</span>
+                                    <span className="text-xs font-serif font-bold text-[#D6B15D]">Daily Gold Linked</span>
                                   </div>
                                 )}
                               </div>
@@ -545,7 +545,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                                   href={`https://wa.me/919436501506?text=${encodeURIComponent(`Hello Aranyak Jewellers, I would like to inquire about ${p.name} (SKU: ${p.sku}). Please share pricing and availability.`)}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="w-8 h-8 rounded-full bg-[#211713] hover:bg-[#241B17] text-[#E7C880] flex items-center justify-center border border-[#C49A45]/40 transition-colors"
+                                  className="w-8 h-8 rounded-full bg-[#211813] hover:bg-[#211813] text-[#E0BD72] flex items-center justify-center border border-[#C49A45]/40 transition-colors"
                                   title="Inquire on WhatsApp"
                                 >
                                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -555,7 +555,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
                                 <button
                                   onClick={() => setSelectedProduct(p)}
-                                  className="px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase bg-[#F0E7D8] hover:bg-[#211713] text-[#241B17] hover:text-[#FFF8EB] rounded border border-[#DED2C1] transition-all"
+                                  className="px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase bg-[#F0E7D8] hover:bg-[#211813] text-[#76551C] hover:text-[#FFF8EC] rounded border border-[#DED2C1] transition-all"
                                 >
                                   Details
                                 </button>
@@ -596,14 +596,14 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProduct(null)}
-                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-[#241B17] border border-[#DED2C1]/20 text-[#FFF8EB] flex items-center justify-center text-lg hover:border-[#C49A45] hover:text-[#C49A45] transition-colors"
+                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-[#211813] border border-[#DED2C1]/20 text-[#FFF8EC] flex items-center justify-center text-lg hover:border-[#C49A45] hover:text-[#D6B15D] transition-colors"
                 aria-label="Close dialog"
               >
                 ✕
               </button>
 
               {/* Modal Image */}
-              <div className="w-full md:w-1/2 aspect-square relative bg-[#241B17]">
+              <div className="w-full md:w-1/2 aspect-square relative bg-[#211813]">
                 <Image
                   src={imageErrorMap[selectedProduct.id] ? getFallbackImage(selectedProduct.category) : (selectedProduct.images?.[0] || getFallbackImage(selectedProduct.category))}
                   alt={`${selectedProduct.name} - Handcrafted Fine Jewellery | Aranyak Jewellers`}
@@ -617,56 +617,56 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
               <div className="w-full md:w-1/2 p-8 flex flex-col justify-between space-y-6">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-[#E7C880] font-bold">
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-[#E0BD72] font-bold">
                       {selectedProduct.category} • {selectedProduct.subCategory}
                     </span>
                   </div>
 
-                  <h2 className="text-2xl sm:text-3xl font-serif font-light text-[#FFF8EB] mb-3">
+                  <h2 className="text-2xl sm:text-3xl font-serif font-light text-[#FFF8EC] mb-3">
                     {selectedProduct.name}
                   </h2>
 
-                  <p className="text-xs text-[#E5D7C5] font-light leading-relaxed mb-6">
+                  <p className="text-xs text-[#E5D9C8] font-light leading-relaxed mb-6">
                     {selectedProduct.description}
                   </p>
 
                   {/* Specifications Grid */}
                   <div className="grid grid-cols-2 gap-4 border-t border-[#DED2C1]/20 pt-4 text-xs">
                     <div>
-                      <span className="text-[#E5D7C5]/70 uppercase tracking-widest block text-[9px]">Purity Standard</span>
-                      <span className="text-[#FFF8EB] font-serif font-medium">
+                      <span className="text-[#E5D9C8]/70 uppercase tracking-widest block text-[9px]">Purity Standard</span>
+                      <span className="text-[#FFF8EC] font-serif font-medium">
                         {selectedProduct.categorySlug === 'silver' ? '92.5 Sterling Silver' : selectedProduct.goldPurity ? `${selectedProduct.goldPurity}KT BIS Hallmarked` : 'Certified Purity'}
                       </span>
                     </div>
 
                     {selectedProduct.goldWeight > 0 && (
                       <div>
-                        <span className="text-[#E5D7C5]/70 uppercase tracking-widest block text-[9px]">Net Weight</span>
-                        <span className="text-[#FFF8EB] font-serif font-medium">{selectedProduct.goldWeight} grams</span>
+                        <span className="text-[#E5D9C8]/70 uppercase tracking-widest block text-[9px]">Net Weight</span>
+                        <span className="text-[#FFF8EC] font-serif font-medium">{selectedProduct.goldWeight} grams</span>
                       </div>
                     )}
 
                     {selectedProduct.diamondCarat && (
                       <div>
-                        <span className="text-[#E5D7C5]/70 uppercase tracking-widest block text-[9px]">Diamond Specs</span>
-                        <span className="text-[#FFF8EB] font-serif font-medium">{selectedProduct.diamondCarat} ct ({selectedProduct.diamondClarity || 'Certified'})</span>
+                        <span className="text-[#E5D9C8]/70 uppercase tracking-widest block text-[9px]">Diamond Specs</span>
+                        <span className="text-[#FFF8EC] font-serif font-medium">{selectedProduct.diamondCarat} ct ({selectedProduct.diamondClarity || 'Certified'})</span>
                       </div>
                     )}
 
                     <div>
-                      <span className="text-[#E5D7C5]/70 uppercase tracking-widest block text-[9px]">SKU Identifier</span>
-                      <span className="text-[#FFF8EB] font-mono text-[11px]">{selectedProduct.sku}</span>
+                      <span className="text-[#E5D9C8]/70 uppercase tracking-widest block text-[9px]">SKU Identifier</span>
+                      <span className="text-[#FFF8EC] font-mono text-[11px]">{selectedProduct.sku}</span>
                     </div>
 
                     <div>
-                      <span className="text-[#E5D7C5]/70 uppercase tracking-widest block text-[9px]">Showroom Status</span>
+                      <span className="text-[#E5D9C8]/70 uppercase tracking-widest block text-[9px]">Showroom Status</span>
                       <span className="text-emerald-400 font-serif">In Stock & Verified</span>
                     </div>
 
                     {selectedProduct.pricing?.finalPrice && (
                       <div>
-                        <span className="text-[#E5D7C5]/70 uppercase tracking-widest block text-[9px]">Approx. Value</span>
-                        <span className="text-[#E7C880] font-serif font-bold text-sm">
+                        <span className="text-[#E5D9C8]/70 uppercase tracking-widest block text-[9px]">Approx. Value</span>
+                        <span className="text-[#E0BD72] font-serif font-bold text-sm">
                           ₹{selectedProduct.pricing.finalPrice.toLocaleString('en-IN')}
                         </span>
                       </div>
@@ -688,13 +688,13 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                   <div className="flex gap-2">
                     <Link
                       href="/stores"
-                      className="flex-1 py-3 border border-[#DED2C1]/30 text-[#FFF8EB] bg-[#241B17] text-[10px] font-bold tracking-[0.2em] uppercase hover:border-[#C49A45] text-center transition-colors rounded"
+                      className="flex-1 py-3 border border-[#DED2C1]/30 text-[#FFF8EC] bg-[#211813] text-[10px] font-bold tracking-[0.2em] uppercase hover:border-[#C49A45] text-center transition-colors rounded"
                     >
                       Locate Showrooms
                     </Link>
                     <Link
                       href="/contact"
-                      className="flex-1 py-3 border border-[#DED2C1]/30 text-[#FFF8EB] bg-[#241B17] text-[10px] font-bold tracking-[0.2em] uppercase hover:border-[#C49A45] text-center transition-colors rounded"
+                      className="flex-1 py-3 border border-[#DED2C1]/30 text-[#FFF8EC] bg-[#211813] text-[10px] font-bold tracking-[0.2em] uppercase hover:border-[#C49A45] text-center transition-colors rounded"
                     >
                       Book Consultation
                     </Link>

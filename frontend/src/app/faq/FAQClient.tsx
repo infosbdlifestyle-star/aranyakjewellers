@@ -78,7 +78,7 @@ export default function FAQClient() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF7F0] text-[#40352F] pt-32 pb-24 px-4 sm:px-6 relative overflow-hidden">
+    <main className="min-h-screen bg-[#FAF7F0] text-[#76551C] pt-32 pb-24 px-4 sm:px-6 relative overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute top-[-15%] left-[-10%] w-[55%] h-[55%] bg-[#C49A45]/5 blur-[160px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#F0E7D8]/60 blur-[130px] rounded-full pointer-events-none" />
@@ -87,19 +87,19 @@ export default function FAQClient() {
         
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#241B17] text-[#E7C880] border border-[#C49A45]/30 text-[10px] uppercase font-bold tracking-[0.3em] mb-6 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#211813] text-[#E0BD72] border border-[#D6B15D]/30 text-[10px] uppercase font-bold tracking-[0.3em] mb-6 shadow-sm">
             <SparkleGlint color="#E7C880" size={12}>
               <span>✦</span>
             </SparkleGlint>
             Patron Concierge
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-serif font-light mb-6 text-[#241B17] tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-serif font-light mb-6 text-[#76551C] tracking-tight">
             <TextReveal text="Frequently Asked" />{' '}
-            <span className="font-editorial italic text-[#98712E]">Questions</span>
+            <span className="font-editorial italic text-[#D6B15D]">Questions</span>
           </h1>
           
-          <p className="text-[#40352F] font-normal max-w-2xl mx-auto leading-relaxed text-sm md:text-base">
+          <p className="text-[#76551C] font-normal max-w-2xl mx-auto leading-relaxed text-sm md:text-base">
             Everything you need to know regarding hallmark certifications, custom bridal commissions, 
             lifetime buy-back guarantees, and boutique care.
           </p>
@@ -115,14 +115,14 @@ export default function FAQClient() {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`relative px-4 py-2 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 ${
                   isActive
-                    ? 'text-[#FFF8EB]'
-                    : 'text-[#40352F] hover:text-[#241B17] bg-[#F0E7D8]/60 border border-[#DED2C1]'
+                    ? 'text-[#FFF8EC]'
+                    : 'text-[#76551C] hover:text-[#76551C] bg-[#F0E7D8]/60 border border-[#DED2C1]'
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="faq-active-pill"
-                    className="absolute inset-0 bg-[#241B17] rounded-full shadow-md -z-10 border border-[#98712E]/50"
+                    className="absolute inset-0 bg-[#211813] rounded-full shadow-md -z-10 border border-[#D6B15D]/50"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -150,8 +150,8 @@ export default function FAQClient() {
                     key={faq.id}
                     className={`border transition-all duration-300 rounded-xl overflow-hidden shadow-sm ${
                       isOpen
-                        ? 'border-[#98712E] bg-[#FFFDF8] shadow-md ring-1 ring-[#98712E]/20'
-                        : 'border-[#DED2C1] bg-[#FFFDF8] hover:border-[#98712E]'
+                        ? 'border-[#D6B15D] bg-[#FFFDF8] shadow-md ring-1 ring-[#98712E]/20'
+                        : 'border-[#DED2C1] bg-[#FFFDF8] hover:border-[#D6B15D]'
                     }`}
                   >
                     <button
@@ -160,15 +160,15 @@ export default function FAQClient() {
                       aria-expanded={isOpen}
                     >
                       <span className={`text-base md:text-lg font-serif transition-colors duration-300 ${
-                        isOpen ? 'text-[#98712E] font-medium' : 'text-[#241B17] group-hover:text-[#98712E]'
+                        isOpen ? 'text-[#D6B15D] font-medium' : 'text-[#76551C] group-hover:text-[#D6B15D]'
                       }`}>
                         {faq.question}
                       </span>
                       
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border transition-all duration-300 ${
                         isOpen 
-                          ? 'bg-[#241B17] text-[#E7C880] border-[#98712E]' 
-                          : 'bg-[#F0E7D8] text-[#241B17] border-[#DED2C1] group-hover:border-[#C49A45]'
+                          ? 'bg-[#211813] text-[#E0BD72] border-[#D6B15D]' 
+                          : 'bg-[#F0E7D8] text-[#76551C] border-[#DED2C1] group-hover:border-[#D6B15D]'
                       }`}>
                         <motion.span
                           animate={{ rotate: isOpen ? 135 : 0 }}
@@ -189,7 +189,7 @@ export default function FAQClient() {
                           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                           className="overflow-hidden"
                         >
-                          <div className="px-6 md:px-8 pb-6 pt-1 text-[#40352F] text-sm md:text-[15px] font-normal leading-relaxed border-t border-[#DED2C1]/40">
+                          <div className="px-6 md:px-8 pb-6 pt-1 text-[#76551C] text-sm md:text-[15px] font-normal leading-relaxed border-t border-[#DED2C1]/40">
                             <p className="mt-2">{faq.answer}</p>
                           </div>
                         </motion.div>
@@ -206,11 +206,11 @@ export default function FAQClient() {
         <div className="mt-20">
           <MagneticCard tiltAmount={4} glareOpacity={0.12}>
             <div className="border border-[#DED2C1] bg-[#FFFDF8] p-8 sm:p-12 rounded-2xl shadow-md text-center relative overflow-hidden">
-              <div className="absolute top-3 right-3 text-[#C49A45]/20 font-serif text-6xl pointer-events-none select-none">✧</div>
-              <h2 className="text-2xl md:text-3xl font-serif mb-3 text-[#241B17]">
+              <div className="absolute top-3 right-3 text-[#D6B15D]/20 font-serif text-6xl pointer-events-none select-none">✧</div>
+              <h2 className="text-2xl md:text-3xl font-serif mb-3 text-[#76551C]">
                 Have a unique query or need immediate advice?
               </h2>
-              <p className="text-[#40352F] mb-8 font-normal max-w-lg mx-auto text-sm">
+              <p className="text-[#76551C] mb-8 font-normal max-w-lg mx-auto text-sm">
                 Our jewellery masters and boutique concierges are available 6 days a week to guide your decisions.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4">
@@ -225,7 +225,7 @@ export default function FAQClient() {
                   href="https://wa.me/919436501506"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-3.5 uppercase tracking-widest text-xs font-bold text-[#FFF8EB] bg-[#241B17] hover:bg-[#40352F] border border-[#C49A45]/40 rounded transition-all shadow-sm"
+                  className="px-8 py-3.5 uppercase tracking-widest text-xs font-bold text-[#FFF8EC] bg-[#211813] hover:bg-[#C9A04A] hover:text-[#211813] border border-[#D6B15D]/40 rounded transition-all shadow-sm"
                 >
                   WhatsApp Now
                 </a>

@@ -40,33 +40,33 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
   }, [dynamicGalleryItems, activeTab]);
 
   return (
-    <main className="min-h-screen bg-[#FAF7F0] text-[#40352F] selection:bg-[#C49A45] selection:text-[#211813]">
+    <main className="min-h-screen bg-[#FAF7F0] text-[#76551C] selection:bg-[#C49A45] selection:text-[#211813]">
       
       {/* 1. Header Banner */}
-      <section className="relative py-24 sm:py-32 bg-[#211713] border-b border-[#DED2C1]/15 overflow-hidden text-center px-6">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#211713]/95 via-[#211713]/80 to-[#211713] pointer-events-none" />
+      <section className="relative py-24 sm:py-32 bg-[#211813] border-b border-[#DED2C1]/15 overflow-hidden text-center px-6">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#211813]/95 via-[#211813]/80 to-[#211813] pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto">
-          <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#241B17] border border-[#C49A45]/40 mb-6 shadow-xl">
-            <SparkleGlint color="#E7C880" size={12}>
-              <span className="text-[#E7C880]">✧</span>
+          <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#211813] border border-[#C49A45]/40 mb-6 shadow-xl">
+            <SparkleGlint color="#D6B15D" size={12}>
+              <span className="text-[#D6B15D]">✧</span>
             </SparkleGlint>
-            <span className="text-[#E7C880] text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase">
+            <span className="text-[#D6B15D] text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase">
               ARANYAK MASTER GALLERY
             </span>
-            <SparkleGlint color="#E7C880" size={12}>
-              <span className="text-[#E7C880]">✧</span>
+            <SparkleGlint color="#D6B15D" size={12}>
+              <span className="text-[#D6B15D]">✧</span>
             </SparkleGlint>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#FFF8EB] tracking-tight leading-none mb-6">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#FFF8EC] tracking-tight leading-none mb-6">
             <TextReveal text="Haute" /> <span className="font-editorial gold-gradient italic">Jewellery</span> <TextReveal text="Portfolio" />
           </h1>
 
-          <p className="text-xs sm:text-sm text-[#E5D7C5] tracking-widest max-w-2xl mx-auto leading-relaxed uppercase font-normal mb-6">
+          <p className="text-xs sm:text-sm text-[#E5D9C8] tracking-widest max-w-2xl mx-auto leading-relaxed uppercase font-normal mb-6">
             Explore our comprehensive archive of handcrafted gold, pure 925 silver, and royal bridal trousseau masterpieces.
           </p>
 
-          <div className="inline-flex items-center space-x-2 text-[11px] font-serif text-[#E7C880] bg-[#241B17]/80 border border-[#C49A45]/30 px-4 py-1 rounded-full">
+          <div className="inline-flex items-center space-x-2 text-[11px] font-serif text-[#D6B15D] bg-[#211813]/80 border border-[#C49A45]/30 px-4 py-1 rounded-full">
             <span>{filteredItems.length} Masterpiece Photos in Collection</span>
           </div>
         </div>
@@ -86,12 +86,12 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
                 {isActive && (
                   <motion.div 
                     layoutId="activeGalleryTabPill"
-                    className="absolute inset-0 bg-[#241B17] rounded-full shadow-md z-0 border border-[#98712E]/50"
+                    className="absolute inset-0 bg-[#211813] rounded-full shadow-md z-0 border border-[#D6B15D]/60"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
                 <span className={`relative z-10 transition-colors duration-300 ${
-                  isActive ? 'text-[#FFF8EB]' : 'text-[#40352F] hover:text-[#241B17]'
+                  isActive ? 'text-[#FFF8EC]' : 'text-[#76551C] hover:text-[#76551C]'
                 }`}>
                   {cat.label}
                 </span>
