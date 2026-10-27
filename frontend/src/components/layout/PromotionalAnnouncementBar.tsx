@@ -33,6 +33,10 @@ export default function PromotionalAnnouncementBar({
       .split('|')
       .map(s => s.trim())
       .filter(Boolean);
+    // If the text is only 1 short string without offer details, prefer the rich multi-offer sequence
+    if (split.length <= 1 && split[0].length < 35) {
+      return DEFAULT_PROMOTIONAL_MESSAGES;
+    }
     return split.length > 0 ? split : DEFAULT_PROMOTIONAL_MESSAGES;
   }, [marqueeText]);
 

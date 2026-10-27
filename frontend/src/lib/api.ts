@@ -117,7 +117,7 @@ class ApiClient {
     const fallbackSettings: Record<string, string> = {
       contact_email: 'aranyakjeweller@gmail.com',
       contact_phone: '+919436501506',
-      marquee_text: '🌸 আরণ্যক জুয়েলার্স বিশেষ পুজো অফার',
+      marquee_text: '🌸 আরণ্যক জুয়েলার্স বিশেষ পুজো অফার | 🪙 সোনার গয়নায় প্রতি গ্রামে ₹১০০০/- টাকা পর্যন্ত ছাড় | 💎 হীরের গয়নার মেকিং চার্জে ১০০% ছাড় | ♻️ পুরোনো হলমার্কযুক্ত গয়নায় ১০০% এক্সচেঞ্জ মূল্য | 🥈 রূপোর গয়নার MRP-তে ২৫% পর্যন্ত ছাড় | 🎁 প্রতিটি কেনাকাটায় নিশ্চিত উপহার | 📺 প্রতিদিনের লাকি ড্র-তে আকর্ষণীয় হোম অ্যাপ্লায়েন্স | 🛵 মেগা লাকি ড্র-তে ৩টি ব্র্যান্ড নিউ স্কুটি | 📍 আগরতলা, ধর্মনগর, কৈলাশহর ও খোয়াই শোরুম',
       social_instagram: 'https://instagram.com/aranyakjewellers',
       social_facebook: 'https://facebook.com/aranyakjewellers',
       home_editorial_image: '/hero-necklace.png',
