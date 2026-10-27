@@ -144,11 +144,11 @@ export default function ContactClient() {
                       </div>
 
                       <div className="space-y-2">
-                        <h3 className="text-xl font-serif font-light text-[#76551C] tracking-wide">
+                        <h3 className="text-xl font-serif font-light text-[#211813] tracking-wide">
                           {info.title}
                         </h3>
                         {info.details.map((detail, j) => (
-                          <p key={j} className="text-xs text-[#76551C] font-normal">
+                          <p key={j} className="text-xs text-[#40352F] font-normal">
                             {detail}
                           </p>
                         ))}
@@ -158,7 +158,7 @@ export default function ContactClient() {
                         href={info.actionHref}
                         target={info.actionHref.startsWith('http') ? '_blank' : undefined}
                         rel={info.actionHref.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#D6B15D] hover:text-[#76551C] inline-flex items-center gap-1 group-hover:underline"
+                        className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#8A5A12] hover:text-[#70440C] inline-flex items-center gap-1 group-hover:underline"
                       >
                         <span>{info.actionText}</span>
                         <span>→</span>
@@ -174,13 +174,13 @@ export default function ContactClient() {
           {/* Showroom Directory Banner */}
           <div className="mb-24">
             <div className="text-center mb-10">
-              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D6B15D] block mb-2">
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#966719] block mb-2">
                 Tripura Boutiques Network
               </span>
-              <h2 className="text-3xl md:text-4xl font-serif font-light text-[#76551C]">
-                Visit Our <span className="font-editorial italic text-[#D6B15D]">Showrooms</span>
+              <h2 className="text-3xl md:text-4xl font-serif font-light text-[#211813]">
+                Visit Our <span className="font-editorial italic gold-gradient text-[#8A5A12]">Showrooms</span>
               </h2>
-              <p className="text-xs text-[#76551C] mt-2 font-normal">
+              <p className="text-xs text-[#40352F] mt-2 font-normal">
                 Serving patrons across Agartala, Dharmanagar, Kailashahar, and Khowai.
               </p>
             </div>
@@ -192,13 +192,13 @@ export default function ContactClient() {
                   className="bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#D6B15D] rounded-xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
                 >
                   <div>
-                    <span className="text-[9px] font-bold tracking-widest uppercase px-2 py-0.5 rounded bg-[#F8F4EC] text-[#D6B15D] border border-[#DED2C1]">
+                    <span className="text-[9px] font-bold tracking-widest uppercase px-2 py-0.5 rounded bg-[#F8F4EC] text-[#8A5A12] border border-[#DED2C1]">
                       {s.city}
                     </span>
-                    <h4 className="font-serif font-bold text-base text-[#76551C] mt-2 mb-1.5 leading-snug">
+                    <h4 className="font-serif font-bold text-base text-[#211813] mt-2 mb-1.5 leading-snug">
                       {s.name}
                     </h4>
-                    <p className="text-xs text-[#76551C] leading-relaxed">
+                    <p className="text-xs text-[#40352F] leading-relaxed">
                       {s.address}
                     </p>
                   </div>
@@ -208,7 +208,7 @@ export default function ContactClient() {
                       href={s.directionsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#76551C] hover:text-[#D6B15D] transition-colors"
+                      className="text-[#211813] hover:text-[#8A5A12] transition-colors"
                     >
                       Directions →
                     </a>
@@ -216,7 +216,7 @@ export default function ContactClient() {
                       href={s.mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#D6B15D] hover:underline"
+                      className="text-[#8A5A12] hover:underline"
                     >
                       Maps ↗
                     </a>
@@ -241,13 +241,13 @@ export default function ContactClient() {
             <MagneticCard tiltAmount={3} glareOpacity={0.1}>
               <div className="bg-[#FFFDF8] border border-[#DED2C1] p-10 md:p-16 rounded-2xl shadow-xl relative overflow-hidden">
                 <div className="text-center mb-12">
-                  <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D6B15D] block mb-2">
+                  <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#966719] block mb-2">
                     Direct Inquiry
                   </span>
                   <h2 className="text-3xl md:text-4xl font-serif font-light text-[#76551C]">
                     Send Us a <span className="font-editorial italic text-[#D6B15D]">Message</span>
                   </h2>
-                  <p className="text-xs text-[#76551C] mt-2 font-normal">
+                  <p className="text-xs text-[#40352F] mt-2 font-normal">
                     We typically respond within 2 to 4 business hours.
                   </p>
                 </div>

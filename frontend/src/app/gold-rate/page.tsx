@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function GoldRatePage() {
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C] selection:bg-[#C49A45] selection:text-[#211813]">
+    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#211813] selection:bg-[#C49A45] selection:text-[#211813]">
       <section className="py-24 px-6 md:px-12 relative bg-[#211813] text-left border-b border-[#DED2C1]/15 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-15 mix-blend-luminosity scale-105" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#211813]/90 via-[#211813]/70 to-[#211813] pointer-events-none" />
@@ -40,7 +40,7 @@ export default function GoldRatePage() {
           {/* Gold Rate Information Card */}
           <div className="p-8 bg-[#FFFDF8] border border-[#DED2C1] rounded-2xl shadow-lg space-y-6">
             <div className="flex items-center justify-between border-b border-[#DED2C1]/60 pb-4">
-              <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#D6B15D]">
+              <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#8A5A12]">
                 Official Benchmark Rate
               </span>
               <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1.5">
@@ -50,18 +50,18 @@ export default function GoldRatePage() {
             </div>
 
             <div className="py-2">
-              <p className="text-xs sm:text-sm text-[#76551C] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#40352F] leading-relaxed">
                 Gold and bullion rates are calibrated daily according to market standards across all Tripura showrooms in Agartala, Khowai, Dharmanagar, and Kailashahar.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#DED2C1]/40 text-xs text-[#76551C]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#DED2C1]/40 text-xs text-[#40352F]">
               <div className="p-4 bg-[#FAF7F0] rounded-xl border border-[#DED2C1]/60">
-                <span className="font-bold text-[#76551C] block mb-1">BIS 916 Hallmarked</span>
+                <span className="font-bold text-[#211813] block mb-1">BIS 916 Hallmarked</span>
                 <span>Every gram calibrated with laser HUID certification for guaranteed purity.</span>
               </div>
               <div className="p-4 bg-[#FAF7F0] rounded-xl border border-[#DED2C1]/60">
-                <span className="font-bold text-[#76551C] block mb-1">Lifetime Exchange</span>
+                <span className="font-bold text-[#211813] block mb-1">Lifetime Exchange</span>
                 <span>Full market bullion rate value guaranteed on all authenticated exchanges.</span>
               </div>
             </div>

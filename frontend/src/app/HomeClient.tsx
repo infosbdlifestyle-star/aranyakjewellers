@@ -514,18 +514,18 @@ export default function HomeClient({
               <Reveal>
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-[2px] bg-[#A77C32]" />
-                  <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#D6B15D]">The Aranyak Philosophy</h2>
+                  <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#966719]">The Aranyak Philosophy</h2>
                 </div>
               </Reveal>
               
               <Reveal delay={0.1}>
-                <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light leading-[1.1] text-[#76551C]">
-                  Masterpieces born from <span className="font-editorial gold-gradient italic">heritage</span> & crafted for eternity.
+                <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light leading-[1.1] text-[#211813]">
+                  Masterpieces born from <span className="font-editorial gold-gradient italic text-[#8A5A12]">heritage</span> & crafted for eternity.
                 </h3>
               </Reveal>
               
               <Reveal delay={0.2}>
-                <p className="text-base text-[#76551C] leading-[1.8] font-normal tracking-wide">
+                <p className="text-base text-[#40352F] leading-[1.8] font-normal tracking-wide">
                   For over a quarter-century, Aranyak Jewellers has remained Tripura’s most trusted symbol of purity and fine craftsmanship. From intricate traditional Bengali gold ornaments to contemporary solitaire diamond creations, every piece is sculpted to perfection.
                 </p>
               </Reveal>
@@ -534,7 +534,7 @@ export default function HomeClient({
                 <div className="pt-4 flex items-center space-x-8">
                   <Link 
                     href="/about" 
-                    className="inline-block text-[11px] font-bold uppercase tracking-[0.35em] text-[#76551C] hover:text-[#D6B15D] transition-colors border-b-2 border-[#D6B15D] pb-2"
+                    className="inline-block text-[11px] font-bold uppercase tracking-[0.35em] text-[#8A5A12] hover:text-[#70440C] transition-colors border-b-2 border-[#8A5A12] pb-2"
                   >
                     Read Our Story & Journey →
                   </Link>
@@ -553,11 +553,11 @@ export default function HomeClient({
                 <Reveal key={i} delay={0.1 * i} y={30}>
                   <div className="group border-r border-b border-[#DED2C1] p-10 bg-[#FFFDF8] hover:bg-white transition-all duration-500 h-full flex flex-col justify-between shadow-sm">
                     <div className="flex items-center justify-between mb-8">
-                      <span className="text-sm font-editorial font-bold text-[#D6B15D]">{item.num}</span>
+                      <span className="text-sm font-editorial font-bold text-[#8A5A12]">{item.num}</span>
                       <div className="w-2.5 h-2.5 rounded-full bg-[#211813]/15 group-hover:bg-[#D6B15D] transition-colors" />
                     </div>
                     <div>
-                      <h4 className="text-2xl font-serif font-medium mb-3 tracking-wide text-[#76551C] group-hover:text-[#D6B15D] transition-colors">
+                      <h4 className="text-2xl font-serif font-medium mb-3 tracking-wide text-[#211813] group-hover:text-[#8A5A12] transition-colors">
                         {item.title}
                       </h4>
                       <p className="text-sm text-[#76551C] leading-relaxed tracking-normal font-normal">{item.desc}</p>
@@ -573,8 +573,8 @@ export default function HomeClient({
             {STATS.map(stat => stat.label.includes('Showroom') ? { ...stat, value: `${liveStoresCount}` } : stat).map((stat, idx) => (
               <MagneticCard key={idx} tiltAmount={4} glareOpacity={0.12}>
                 <div className="p-6 sm:p-8 bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#D6B15D]/70 transition-all duration-300 rounded-xl shadow-sm h-full flex flex-col justify-center">
-                  <p className="text-4xl md:text-5xl font-serif font-light text-[#D6B15D] mb-2">{stat.value}</p>
-                  <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#76551C]">{stat.label}</p>
+                  <p className="text-4xl md:text-5xl font-serif font-light text-[#8A5A12] mb-2">{stat.value}</p>
+                  <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#211813]">{stat.label}</p>
                 </div>
               </MagneticCard>
             ))}
@@ -636,13 +636,13 @@ export default function HomeClient({
             <Reveal>
               <div className="flex items-center justify-center space-x-4 mb-4">
                 <div className="w-8 h-[2px] bg-[#D6B15D]" />
-                <span className="text-[11px] tracking-[0.5em] uppercase font-bold text-[#D6B15D]">Curated Masterpieces</span>
+                <span className="text-[11px] tracking-[0.5em] uppercase font-bold text-[#966719]">Curated Masterpieces</span>
                 <div className="w-8 h-[2px] bg-[#D6B15D]" />
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <h3 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#76551C] tracking-tight">
-                High <span className="font-editorial gold-gradient italic">Jewellery</span>
+              <h3 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#211813] tracking-tight">
+                High <span className="font-editorial gold-gradient italic text-[#8A5A12]">Jewellery</span>
               </h3>
             </Reveal>
           </div>
@@ -709,9 +709,9 @@ export default function HomeClient({
           
           <div className="text-center mt-20 md:mt-28">
             <Reveal>
-              <Link href="/collections" className="inline-flex items-center space-x-6 text-xs font-bold tracking-[0.35em] uppercase text-[#76551C] hover:text-[#D6B15D] transition-colors group">
+              <Link href="/collections" className="inline-flex items-center space-x-6 text-xs font-bold tracking-[0.35em] uppercase text-[#211813] hover:text-[#8A5A12] transition-colors group">
                 <span>Browse All Collections</span>
-                <div className="w-16 h-[2px] bg-[#DED2C1] group-hover:bg-[#D6B15D] group-hover:w-24 transition-all duration-500" />
+                <div className="w-16 h-[2px] bg-[#DED2C1] group-hover:bg-[#8A5A12] group-hover:w-24 transition-all duration-500" />
               </Link>
             </Reveal>
           </div>
@@ -727,20 +727,20 @@ export default function HomeClient({
             <Reveal width="100%">
               <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#FFFDF8] border border-[#DED2C1] mb-2 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#D6B15D]" />
-                <span className="text-[11px] font-bold tracking-[0.35em] uppercase text-[#D6B15D]">
+                <span className="text-[11px] font-bold tracking-[0.35em] uppercase text-[#966719]">
                   PHOTOGRAPHY & ARTWORK ARCHIVE
                 </span>
               </div>
             </Reveal>
 
             <Reveal width="100%" delay={0.1}>
-              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#76551C] leading-tight">
-                Master <span className="font-editorial gold-gradient italic">Gallery</span> Directory
+              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#211813] leading-tight">
+                Master <span className="font-editorial gold-gradient italic text-[#8A5A12]">Gallery</span> Directory
               </h3>
             </Reveal>
 
             <Reveal width="100%" delay={0.2}>
-              <p className="text-sm md:text-base text-[#76551C] uppercase tracking-widest font-normal leading-relaxed max-w-xl">
+              <p className="text-sm md:text-base text-[#40352F] uppercase tracking-widest font-normal leading-relaxed max-w-xl">
                 View our complete catalogue of handcrafted gold ornaments, certified solitaires, and antique temple jewelry in full resolution.
               </p>
             </Reveal>
@@ -865,17 +865,17 @@ export default function HomeClient({
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <Reveal>
-              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#D6B15D] mb-3 block">
+              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#966719] mb-3 block">
                 INSTAGRAM OFFICIAL LOOKBOOK
               </span>
             </Reveal>
             <Reveal delay={0.1}>
-              <h3 className="text-4xl sm:text-6xl font-serif font-light text-[#76551C] mb-4">
-                Follow <span className="font-editorial gold-gradient italic">@aranyakjewellers</span>
+              <h3 className="text-4xl sm:text-6xl font-serif font-light text-[#211813] mb-4">
+                Follow <span className="font-editorial gold-gradient italic text-[#8A5A12]">@aranyakjewellers</span>
               </h3>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="text-sm text-[#76551C] font-normal tracking-wide max-w-xl mx-auto uppercase mb-8 leading-relaxed">
+              <p className="text-sm text-[#40352F] font-normal tracking-wide max-w-xl mx-auto uppercase mb-8 leading-relaxed">
                 Explore real bride trousseaus, daily gold rates, & store designs on Instagram
               </p>
             </Reveal>
@@ -884,7 +884,7 @@ export default function HomeClient({
                 href="https://www.instagram.com/aranyakjewellers/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-3 px-8 py-3.5 rounded-full bg-[#211813] text-[#FFF8EB] text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-[#D6B15D] hover:text-[#211813] border border-[#D6B15D]/30 transition-all duration-500 shadow-md"
+                className="inline-flex items-center space-x-3 px-8 py-3.5 rounded-full bg-[#211813] text-[#FFF8EB] text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-[#8A5A12] hover:text-[#FFF8EC] border border-[#8A5A12]/30 transition-all duration-500 shadow-md"
               >
                 <span>📸 Visit @aranyakjewellers on Instagram</span>
               </a>
@@ -953,13 +953,13 @@ export default function HomeClient({
           
           <div className="text-center mb-16 md:mb-24">
             <Reveal>
-              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#D6B15D] mb-3 block">
+              <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#966719] mb-3 block">
                 Voices of Trust
               </span>
             </Reveal>
             <Reveal delay={0.1}>
-              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#76551C]">
-                Cherished <span className="font-editorial gold-gradient italic">Stories</span>
+              <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#211813]">
+                Cherished <span className="font-editorial gold-gradient italic text-[#8A5A12]">Stories</span>
               </h3>
             </Reveal>
           </div>
@@ -971,22 +971,22 @@ export default function HomeClient({
                   <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 sm:p-10 flex flex-col justify-between h-full hover:border-[#D6B15D]/70 transition-all duration-500 shadow-sm hover:shadow-lg rounded-xl">
                     <div>
                       {/* Stars with Subtle Stagger */}
-                      <div className="flex items-center space-x-1.5 text-[#D6B15D] mb-6">
+                      <div className="flex items-center space-x-1.5 text-[#8A5A12] mb-6">
                         {[...Array(t.rating)].map((_, i) => (
                           <span key={i} className="text-base font-bold drop-shadow-sm">★</span>
                         ))}
                       </div>
-                      <p className="text-sm text-[#76551C] font-normal leading-[1.8] italic mb-8">
+                      <p className="text-sm text-[#40352F] font-normal leading-[1.8] italic mb-8">
                         &ldquo;{t.quote}&rdquo;
                       </p>
                     </div>
 
                     <div className="pt-6 border-t border-[#DED2C1] flex items-center justify-between">
                       <div>
-                        <h4 className="text-base font-serif font-bold text-[#76551C]">{t.author}</h4>
-                        <p className="text-[11px] text-[#76551C] uppercase tracking-wider font-semibold">{t.location}</p>
+                        <h4 className="text-base font-serif font-bold text-[#211813]">{t.author}</h4>
+                        <p className="text-[11px] text-[#70440C] uppercase tracking-wider font-semibold">{t.location}</p>
                       </div>
-                      <span className="text-[10px] font-bold tracking-wider uppercase text-[#D6B15D] bg-[#D6B15D]/10 border border-[#D6B15D]/30 px-3 py-1 rounded-sm">
+                      <span className="text-[10px] font-bold tracking-wider uppercase text-[#8A5A12] bg-[#8A5A12]/10 border border-[#8A5A12]/30 px-3 py-1 rounded-sm">
                         {t.tag}
                       </span>
                     </div>

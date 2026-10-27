@@ -188,21 +188,39 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #C9A04A !important;
 }
 
-/* Gold Gradient Utilities */
-.gold-gradient {
-  background: linear-gradient(135deg, #D6B15D 0%, #FFF8EC 50%, #C9A04A 100%);
+/* Gold Gradient Utilities - Deep Rich Antique Gold (High Contrast on Ivory/Cream) */
+.gold-gradient,
+.gold-gradient-text,
+.gold-heading,
+.gold-italic {
+  background-image: linear-gradient(100deg, #8A5A12 0%, #A87519 50%, #966719 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: #D6B15D;
+  color: #8A5A12;
+  display: inline-block;
 }
 
 .gold-gradient-subtle {
-  background: linear-gradient(135deg, #E0BD72 0%, #D6B15D 100%);
+  background-image: linear-gradient(100deg, #966719 0%, #B8872D 50%, #8A5A12 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: #E0BD72;
+  color: #966719;
+  display: inline-block;
+}
+
+/* Rich Gold Utility Classes for High Readability */
+.text-gold-primary {
+  color: #8A5A12 !important;
+}
+
+.text-gold-antique {
+  color: #966719 !important;
+}
+
+.text-gold-hover:hover {
+  color: #70440C !important;
 }
 
 /* Glassmorphism & Scrim Overlays */

@@ -40,7 +40,7 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
   }, [dynamicGalleryItems, activeTab]);
 
   return (
-    <main className="min-h-screen bg-[#FAF7F0] text-[#76551C] selection:bg-[#C49A45] selection:text-[#211813]">
+    <main className="min-h-screen bg-[#FAF7F0] text-[#211813] selection:bg-[#C49A45] selection:text-[#211813]">
       
       {/* 1. Header Banner */}
       <section className="relative py-24 sm:py-32 bg-[#211813] border-b border-[#DED2C1]/15 overflow-hidden text-center px-6">
@@ -91,7 +91,7 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
                   />
                 )}
                 <span className={`relative z-10 transition-colors duration-300 ${
-                  isActive ? 'text-[#FFF8EC]' : 'text-[#76551C] hover:text-[#76551C]'
+                  isActive ? 'text-[#FFF8EC]' : 'text-[#211813] hover:text-[#8A5A12]'
                 }`}>
                   {cat.label}
                 </span>

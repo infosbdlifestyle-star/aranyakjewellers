@@ -306,7 +306,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
               className={`relative px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-300 shrink-0 ${
                 selectedSubCategory === 'all'
                   ? 'text-[#FFF8EC]'
-                  : 'text-[#76551C] hover:text-[#76551C] bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E]'
+                  : 'text-[#211813] hover:text-[#8A5A12] bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#8A5A12]'
               }`}
             >
               {selectedSubCategory === 'all' && (
@@ -328,7 +328,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                   className={`relative px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-300 shrink-0 ${
                     isActive
                       ? 'text-[#FFF8EC]'
-                      : 'text-[#76551C] hover:text-[#76551C] bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E]'
+                      : 'text-[#211813] hover:text-[#8A5A12] bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#8A5A12]'
                   }`}
                 >
                   {isActive && (
@@ -350,7 +350,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="text-xs font-semibold bg-[#FFFDF8] border border-[#DED2C1] rounded-lg px-3 py-1.5 text-[#76551C] focus:outline-none focus:border-[#98712E] cursor-pointer"
+              className="text-xs font-semibold bg-[#FFFDF8] border border-[#DED2C1] rounded-lg px-3 py-1.5 text-[#211813] focus:outline-none focus:border-[#8A5A12] cursor-pointer"
             >
               <option value="featured">Featured First</option>
               <option value="price-asc">Price: Low to High</option>
@@ -369,13 +369,13 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
           {/* Item count status bar */}
           <div className="flex items-center justify-between mb-10 pb-4 border-b border-[#DED2C1]">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#76551C]">
-              Showing <span className="text-[#76551C]">{displayedProducts.length}</span> {meta.badge} Pieces
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#211813]">
+              Showing <span className="text-[#8A5A12] font-extrabold">{displayedProducts.length}</span> {meta.badge} Pieces
             </p>
             {selectedSubCategory !== 'all' && (
               <button 
                 onClick={() => setSelectedSubCategory('all')}
-                className="text-xs text-[#D6B15D] hover:text-[#76551C] font-bold tracking-wider uppercase underline"
+                className="text-xs text-[#8A5A12] hover:text-[#70440C] font-bold tracking-wider uppercase underline"
               >
                 Clear Filter ✕
               </button>
@@ -405,8 +405,8 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
               <div className="w-12 h-12 mx-auto rounded-full bg-[#211813] text-[#E0BD72] flex items-center justify-center text-xl">
                 !
               </div>
-              <h3 className="text-xl font-serif text-[#76551C]">Unable to Synchronize Collection</h3>
-              <p className="text-xs text-[#76551C] leading-relaxed">
+              <h3 className="text-xl font-serif text-[#211813]">Unable to Synchronize Collection</h3>
+              <p className="text-xs text-[#40352F] leading-relaxed">
                 {error}
               </p>
               <div className="pt-2 flex justify-center gap-3">
@@ -426,10 +426,10 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
               <SparkleGlint color="#C49A45" size={24}>
                 <div className="text-4xl text-[#D6B15D] font-serif">✧</div>
               </SparkleGlint>
-              <h2 className="text-3xl font-serif font-light text-[#76551C]">
+              <h2 className="text-3xl font-serif font-light text-[#211813]">
                 No Pieces Currently in this Chapter
               </h2>
-              <p className="text-xs text-[#76551C] leading-relaxed">
+              <p className="text-xs text-[#40352F] leading-relaxed">
                 Our master artisans are currently crafting new additions for this specific section. Explore our full {meta.title} or commission a bespoke custom creation.
               </p>
               <div className="pt-4 flex justify-center gap-4">
@@ -503,7 +503,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                           {/* Card Content Area */}
                           <div className="pt-4 space-y-2 flex-1 flex flex-col justify-between">
                             <div>
-                              <div className="flex items-center justify-between text-[10px] text-[#D6B15D] font-bold tracking-widest uppercase mb-1">
+                              <div className="flex items-center justify-between text-[10px] text-[#8A5A12] font-bold tracking-widest uppercase mb-1">
                                 <span>{p.subCategory}</span>
                                 {p.goldWeight > 0 && (
                                   <span>{p.goldWeight}g Net Wt</span>
@@ -512,12 +512,12 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
                               <h3 
                                 onClick={() => setSelectedProduct(p)}
-                                className="text-base font-serif font-medium text-[#76551C] group-hover:text-[#D6B15D] transition-colors cursor-pointer line-clamp-1"
+                                className="text-base font-serif font-medium text-[#211813] group-hover:text-[#8A5A12] transition-colors cursor-pointer line-clamp-1"
                               >
                                 {p.name}
                               </h3>
 
-                              <p className="text-xs text-[#76551C] line-clamp-2 mt-1 font-normal leading-relaxed">
+                              <p className="text-xs text-[#40352F] line-clamp-2 mt-1 font-normal leading-relaxed">
                                 {p.description}
                               </p>
                             </div>
@@ -527,15 +527,15 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                               <div>
                                 {p.pricing?.finalPrice ? (
                                   <div>
-                                    <span className="text-[10px] text-[#76551C] uppercase tracking-wider block font-medium">Estimated Value</span>
-                                    <span className="text-base font-serif font-bold text-[#76551C]">
+                                    <span className="text-[10px] text-[#70440C] uppercase tracking-wider block font-medium">Estimated Value</span>
+                                    <span className="text-base font-serif font-bold text-[#211813]">
                                       ₹{p.pricing.finalPrice.toLocaleString('en-IN')}
                                     </span>
                                   </div>
                                 ) : (
                                   <div>
-                                    <span className="text-[10px] text-[#76551C] uppercase tracking-wider block font-medium">Price on Inquiry</span>
-                                    <span className="text-xs font-serif font-bold text-[#D6B15D]">Daily Gold Linked</span>
+                                    <span className="text-[10px] text-[#70440C] uppercase tracking-wider block font-medium">Price on Inquiry</span>
+                                    <span className="text-xs font-serif font-bold text-[#8A5A12]">Daily Gold Linked</span>
                                   </div>
                                 )}
                               </div>

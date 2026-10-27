@@ -112,12 +112,12 @@ export default function CollectionsPage() {
                   {/* Content Area */}
                   <div className={`w-full md:w-1/2 flex flex-col ${isEven ? 'md:items-start' : 'md:items-end md:text-right'}`}>
                     <Reveal delay={0.1} y={30}>
-                      <div className="inline-flex items-center space-x-2 text-[10px] font-bold tracking-[0.4em] uppercase text-[#D6B15D] mb-4">
+                      <div className="inline-flex items-center space-x-2 text-[10px] font-bold tracking-[0.4em] uppercase text-[#966719] mb-4">
                         <span>Chapter 0{idx + 1}</span>
                         <span>•</span>
                         <span>Bespoke Edition</span>
                       </div>
-                      <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#76551C] mb-8 leading-tight">
+                      <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#211813] mb-8 leading-tight">
                         {cat.name}
                       </h2>
                     </Reveal>
@@ -129,16 +129,16 @@ export default function CollectionsPage() {
                             <Link
                               key={sub.id}
                               href={`/category/${cat.slug}/${sub.slug}`}
-                              className={`flex items-center gap-3 text-sm text-[#76551C] hover:text-[#D6B15D] transition-colors duration-300 group/link ${isEven ? 'justify-start' : 'justify-end'} py-1`}
+                              className={`flex items-center gap-3 text-sm text-[#40352F] hover:text-[#8A5A12] transition-colors duration-300 group/link ${isEven ? 'justify-start' : 'justify-end'} py-1`}
                             >
-                              {isEven && <span className="w-0 group-hover/link:w-6 h-[1.5px] bg-[#98712E] transition-all duration-300" />}
+                              {isEven && <span className="w-0 group-hover/link:w-6 h-[1.5px] bg-[#8A5A12] transition-all duration-300" />}
                               <span className="tracking-widest uppercase text-[11px] font-bold">{sub.name}</span>
-                              {!isEven && <span className="w-0 group-hover/link:w-6 h-[1.5px] bg-[#98712E] transition-all duration-300" />}
+                              {!isEven && <span className="w-0 group-hover/link:w-6 h-[1.5px] bg-[#8A5A12] transition-all duration-300" />}
                             </Link>
                           ))}
                         </div>
                       ) : (
-                        <p className="text-sm md:text-base text-[#76551C] leading-relaxed font-normal max-w-md mb-10">
+                        <p className="text-sm md:text-base text-[#40352F] leading-relaxed font-normal max-w-md mb-10">
                           Immerse yourself in our masterfully crafted {cat.name.toLowerCase()} pieces, where traditional techniques meet contemporary sophistication.
                         </p>
                       )}

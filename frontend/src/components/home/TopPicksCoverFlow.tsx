@@ -439,7 +439,7 @@ export default function TopPicksCoverFlow({
           <Reveal>
             <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#F0E7D8] border border-[#DED2C1] mb-5 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45] animate-pulse" />
-              <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.35em] uppercase text-[#D6B15D]">
+              <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.35em] uppercase text-[#966719]">
                 {sectionBadge}
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45] animate-pulse" />
@@ -447,13 +447,13 @@ export default function TopPicksCoverFlow({
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#76551C] tracking-tight leading-tight">
-              Top <span className="font-editorial gold-gradient italic">Picks</span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#211813] tracking-tight leading-tight">
+              Top <span className="font-editorial gold-gradient italic text-[#8A5A12]">Picks</span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.2}>
-            <p className="mt-4 text-xs sm:text-sm md:text-base text-[#76551C] font-normal tracking-wide max-w-xl mx-auto leading-relaxed">
+            <p className="mt-4 text-xs sm:text-sm md:text-base text-[#40352F] font-normal tracking-wide max-w-xl mx-auto leading-relaxed">
               {subtitle}
             </p>
           </Reveal>
@@ -475,7 +475,7 @@ export default function TopPicksCoverFlow({
             type="button"
             onClick={goToPrev}
             aria-label="Previous Jewellery Collection"
-            className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-[#FFFDF8] hover:bg-[#C9A04A] text-[#76551C] hover:text-[#FFF8EC] border border-[#DED2C1] shadow-md backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-[#C49A45]"
+            className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-[#FFFDF8] hover:bg-[#8A5A12] text-[#8A5A12] hover:text-[#FFF8EC] border border-[#DED2C1] shadow-md backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-[#8A5A12]"
           >
             <svg 
               className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:-translate-x-0.5" 
@@ -492,7 +492,7 @@ export default function TopPicksCoverFlow({
             type="button"
             onClick={goToNext}
             aria-label="Next Jewellery Collection"
-            className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-[#FFFDF8] hover:bg-[#C9A04A] text-[#76551C] hover:text-[#FFF8EC] border border-[#DED2C1] shadow-md backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-[#C49A45]"
+            className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-[#FFFDF8] hover:bg-[#8A5A12] text-[#8A5A12] hover:text-[#FFF8EC] border border-[#DED2C1] shadow-md backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-[#8A5A12]"
           >
             <svg 
               className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:translate-x-0.5" 
@@ -640,16 +640,16 @@ export default function TopPicksCoverFlow({
         <div className="mt-10 sm:mt-12 flex flex-col items-center justify-center space-y-4">
           
           {/* Active Collection Counter */}
-          <div className="flex items-center space-x-3 text-xs tracking-widest uppercase text-[#76551C] font-semibold">
-            <span className="text-[#E0BD72] font-serif text-sm font-bold">
+          <div className="flex items-center space-x-3 text-xs tracking-widest uppercase text-[#211813] font-semibold">
+            <span className="text-[#8A5A12] font-serif text-sm font-bold">
               {String(activeIndex + 1).padStart(2, '0')}
             </span>
             <span className="w-8 h-[1px] bg-[#DED2C1]" />
-            <span className="text-[#76551C] font-medium">
+            <span className="text-[#211813] font-medium">
               {activeItem.title}
             </span>
             <span className="w-8 h-[1px] bg-[#DED2C1]" />
-            <span className="text-[#76551C]/60 font-serif text-sm">
+            <span className="text-[#211813]/60 font-serif text-sm">
               {String(total).padStart(2, '0')}
             </span>
           </div>
@@ -666,8 +666,8 @@ export default function TopPicksCoverFlow({
                   aria-label={`Jump to ${item.title}`}
                   className={`h-1.5 transition-all duration-500 rounded-full focus:outline-none ${
                     isActive 
-                      ? 'w-8 bg-[#98712E]' 
-                      : 'w-2 bg-[#DED2C1] hover:bg-[#98712E]/50'
+                      ? 'w-8 bg-[#8A5A12]' 
+                      : 'w-2 bg-[#DED2C1] hover:bg-[#8A5A12]/50'
                   }`}
                 />
               );
@@ -675,7 +675,7 @@ export default function TopPicksCoverFlow({
           </div>
 
           {/* Touch Swipe / Keyboard Prompt (Subtle UX tip) */}
-          <p className="text-[10px] text-[#76551C] uppercase tracking-[0.25em] font-medium pt-2">
+          <p className="text-[10px] text-[#70440C] uppercase tracking-[0.25em] font-medium pt-2">
             Swipe or use arrow keys to browse
           </p>
         </div>

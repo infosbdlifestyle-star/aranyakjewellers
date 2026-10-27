@@ -212,7 +212,7 @@ export default function StoresClient({
                   />
                 )}
                 <span className={`relative z-10 transition-colors duration-300 ${
-                  isActive ? 'text-[#FFF8EC] font-bold' : 'text-[#76551C] hover:text-[#76551C]'
+                  isActive ? 'text-[#FFF8EC] font-bold' : 'text-[#211813] hover:text-[#8A5A12]'
                 }`}>
                   {tab.label}
                 </span>
@@ -255,7 +255,7 @@ export default function StoresClient({
                     <div className="flex items-center justify-between gap-2 mb-3">
                       <div className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45]" />
-                        <span className="text-[10px] font-extrabold tracking-[0.25em] uppercase text-[#D6B15D]">
+                        <span className="text-[10px] font-extrabold tracking-[0.25em] uppercase text-[#966719]">
                           {(store.city || 'Tripura').toUpperCase()}
                         </span>
                       </div>
@@ -265,7 +265,7 @@ export default function StoresClient({
                     </div>
 
                     {/* Prominent Branch Title */}
-                    <h3 className="text-2xl font-serif font-bold text-[#76551C] group-hover:text-[#D6B15D] transition-colors leading-snug mb-3">
+                    <h3 className="text-2xl font-serif font-bold text-[#211813] group-hover:text-[#8A5A12] transition-colors leading-snug mb-3">
                       {displayTitle}
                     </h3>
 
@@ -273,10 +273,10 @@ export default function StoresClient({
                     <div className="w-14 h-[2px] bg-gradient-to-r from-[#C49A45] to-transparent mb-5" />
 
                     {/* Store Information: Address, Hours, Phone */}
-                    <div className="space-y-4 text-xs sm:text-sm text-[#76551C] flex-1">
+                    <div className="space-y-4 text-xs sm:text-sm text-[#40352F] flex-1">
                       {/* Clickable Address with Gold Pin Icon */}
                       <div className="flex items-start gap-3 leading-relaxed">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#D6B15D] shrink-0 mt-0.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#8A5A12] shrink-0 mt-0.5">
                           <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
                           <circle cx="12" cy="10" r="3"/>
                         </svg>
@@ -284,7 +284,7 @@ export default function StoresClient({
                           href={searchTarget}
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="text-[#76551C] hover:text-[#D6B15D] hover:underline transition-colors break-words font-medium"
+                          className="text-[#40352F] hover:text-[#8A5A12] hover:underline transition-colors break-words font-medium"
                           title="Open Google Maps search for this showroom"
                         >
                           {store.address}
@@ -294,11 +294,11 @@ export default function StoresClient({
                       {/* Opening Hours with Gold Clock Icon */}
                       {store.hours && (
                         <div className="flex items-center gap-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#D6B15D] shrink-0">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#8A5A12] shrink-0">
                             <circle cx="12" cy="12" r="10"/>
                             <polyline points="12 6 12 12 16 14"/>
                           </svg>
-                          <span className="font-semibold text-[#76551C]">
+                          <span className="font-semibold text-[#211813]">
                             {store.hours}
                           </span>
                         </div>
@@ -307,13 +307,13 @@ export default function StoresClient({
                       {/* Phone with Gold Phone Icon (if present) */}
                       {store.phone && (
                         <div className="flex items-center gap-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#D6B15D] shrink-0">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#8A5A12] shrink-0">
                             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                           </svg>
                           {store.phone.includes('X') ? (
                             <span className="font-medium text-[#76551C]">{store.phone}</span>
                           ) : (
-                            <a href={`tel:${store.phone.replace(/\s+/g,'')}`} className="font-medium text-[#76551C] hover:text-[#D6B15D] hover:underline transition-colors tracking-wide">
+                            <a href={`tel:${store.phone.replace(/\s+/g,'')}`} className="font-medium text-[#40352F] hover:text-[#8A5A12] hover:underline transition-colors tracking-wide">
                               {store.phone}
                             </a>
                           )}

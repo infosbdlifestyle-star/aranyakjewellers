@@ -134,19 +134,19 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
             {/* Text Side */}
             <div className="w-full md:w-7/12 space-y-12">
               <div className="space-y-6">
-                <div className="inline-block text-[10px] font-bold tracking-[0.3em] uppercase text-[#D6B15D] bg-[#FFFDF8] border border-[#DED2C1] px-3 py-1 rounded">
+                <div className="inline-block text-[10px] font-bold tracking-[0.3em] uppercase text-[#966719] bg-[#FFFDF8] border border-[#DED2C1] px-3 py-1 rounded">
                   Crafted by Master Karigars
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-serif font-light text-[#76551C] tracking-tight">
+                <h2 className="text-4xl md:text-5xl font-serif font-light text-[#211813] tracking-tight">
                   <TextReveal text="A Vision of Uncompromising" />{' '}
-                  <span className="font-editorial italic text-[#D6B15D]">Purity</span>
+                  <span className="font-editorial italic gold-gradient text-[#8A5A12]">Purity</span>
                 </h2>
                 
-                <p className="text-[#76551C] leading-[1.8] tracking-wide font-normal text-base">
+                <p className="text-[#40352F] leading-[1.8] tracking-wide font-normal text-base">
                   {settings['about_p1'] || "Aranyak Jewellers is not just a destination for fine jewelry; it is an institution built on trust, artistry, and heritage. What began as a singular vision in 1995 has blossomed into Tripura's most prestigious jewelry house."}
                 </p>
-                <p className="text-[#76551C] leading-[1.8] tracking-wide font-normal text-base">
+                <p className="text-[#40352F] leading-[1.8] tracking-wide font-normal text-base">
                   {settings['about_p2'] || "We believe that every piece of jewelry carries a soul. It is a silent witness to life's most profound moments—a wedding vow, a milestone anniversary, a gift of enduring love. Our master artisans, carrying centuries-old Bengali goldsmithing traditions, pour hundreds of hours into realizing these masterpieces."}
                 </p>
               </div>
@@ -158,15 +158,15 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
                     <StaggerItem key={idx}>
                       <div className="p-6 bg-[#FFFDF8] hover:bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#D6B15D] transition-all duration-300 rounded-xl shadow-sm group">
                         <div className="flex items-center justify-between mb-4">
-                          <span className="text-sm font-editorial text-[#D6B15D] font-bold group-hover:scale-110 transition-transform">
+                          <span className="text-sm font-editorial text-[#8A5A12] font-bold group-hover:scale-110 transition-transform">
                             {pillar.num}
                           </span>
                           <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45]/40 group-hover:bg-[#C49A45] transition-colors" />
                         </div>
-                        <h3 className="text-xs font-bold tracking-[0.2em] uppercase mb-2 text-[#76551C] group-hover:text-[#D6B15D] transition-colors">
+                        <h3 className="text-xs font-bold tracking-[0.2em] uppercase mb-2 text-[#211813] group-hover:text-[#8A5A12] transition-colors">
                           {pillar.title}
                         </h3>
-                        <p className="text-xs text-[#76551C] leading-relaxed font-normal">
+                        <p className="text-xs text-[#40352F] leading-relaxed font-normal">
                           {pillar.desc}
                         </p>
                       </div>
@@ -188,13 +188,13 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
       <section className="py-24 bg-[#FAF7F0] relative overflow-hidden">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#D6B15D] mb-3 block">
+            <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#966719] mb-3 block">
               The Living Tradition
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-light text-[#76551C]">
-              Centuries-Old <span className="font-editorial italic text-[#D6B15D]">Bengali Karigari</span>
+            <h2 className="text-3xl md:text-5xl font-serif font-light text-[#211813]">
+              Centuries-Old <span className="font-editorial italic gold-gradient text-[#8A5A12]">Bengali Karigari</span>
             </h2>
-            <p className="text-[#76551C] mt-4 text-sm font-normal leading-relaxed">
+            <p className="text-[#40352F] mt-4 text-sm font-normal leading-relaxed">
               From the intricate swirls of Filigree (Tarakasi) to the regal sculptures of Nakshi work, our master jewelers breathe timeless elegance into pure 22 Karat gold.
             </p>
           </div>
@@ -205,8 +205,8 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
                 <div className="w-12 h-12 mx-auto rounded-full bg-[#211813] text-[#E0BD72] flex items-center justify-center font-serif text-xl">
                   ১
                 </div>
-                <h3 className="text-lg font-serif text-[#76551C]">Intricate Filigree (তারকাশি)</h3>
-                <p className="text-xs text-[#76551C] leading-relaxed">
+                <h3 className="text-lg font-serif text-[#211813]">Intricate Filigree (তারকাশি)</h3>
+                <p className="text-xs text-[#40352F] leading-relaxed">
                   Delicate gold threads hand-twisted and soldered into ethereal leaf and floral motifs with microscopic precision.
                 </p>
               </div>
@@ -217,8 +217,8 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
                 <div className="w-12 h-12 mx-auto rounded-full bg-[#211813] text-[#E0BD72] flex items-center justify-center font-serif text-xl">
                   ২
                 </div>
-                <h3 className="text-lg font-serif text-[#76551C]">Nakshi Embossing (নকশী)</h3>
-                <p className="text-xs text-[#76551C] leading-relaxed">
+                <h3 className="text-lg font-serif text-[#211813]">Nakshi Embossing (নকশী)</h3>
+                <p className="text-xs text-[#40352F] leading-relaxed">
                   Deep dimensional relief carving evoking sacred deities, peacocks, and temple architecture on solid gold sheets.
                 </p>
               </div>
@@ -229,8 +229,8 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
                 <div className="w-12 h-12 mx-auto rounded-full bg-[#211813] text-[#E0BD72] flex items-center justify-center font-serif text-xl">
                   ৩
                 </div>
-                <h3 className="text-lg font-serif text-[#76551C]">Jadau & Polki Setting</h3>
-                <p className="text-xs text-[#76551C] leading-relaxed">
+                <h3 className="text-lg font-serif text-[#211813]">Jadau & Polki Setting</h3>
+                <p className="text-xs text-[#40352F] leading-relaxed">
                   Natural uncut diamonds cradled in 24K gold foil settings accented with rich Meenakari enameling on reverse.
                 </p>
               </div>
