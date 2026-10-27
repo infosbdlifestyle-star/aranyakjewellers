@@ -86,8 +86,8 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
   };
 
   // State Management
-  const [products, setProducts] = useState<ProductItem[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [products, setProducts] = useState<ProductItem[]>(() => getCatalogueProducts(categoryKey));
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState<string>(initialSubCategorySlug || 'all');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'weight-desc' | 'name'>('featured');
@@ -114,7 +114,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
     const controller = new AbortController();
     abortControllerRef.current = controller;
 
-    setLoading(true);
+    if (products.length === 0) setLoading(true);
     setError(null);
 
     // Initial local baseline products for zero-wait display
