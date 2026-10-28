@@ -483,53 +483,7 @@ export default function HomeClient({
           animation-delay: 1.05s;
         }
 
-        /* 3. Desktop Navigation Bar: Gold Underline Expanding Smoothly from Left to Right on Hover */
-        body.is-homepage header nav,
-        body:has(#homepage-root) header nav {
-          position: relative;
-        }
-
-        body.is-homepage header nav > div > a,
-        body.is-homepage header nav > a,
-        body:has(#homepage-root) header nav > div > a,
-        body:has(#homepage-root) header nav > a {
-          position: relative;
-          transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        body.is-homepage header nav > div > a::after,
-        body.is-homepage header nav > a::after,
-        body:has(#homepage-root) header nav > div > a::after,
-        body:has(#homepage-root) header nav > a::after {
-          content: '';
-          position: absolute;
-          bottom: -2px;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background: linear-gradient(90deg, #D6B15D, #FFF8EC 60%, #D6B15D);
-          transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-          pointer-events: none;
-          border-radius: 2px;
-          box-shadow: 0 0 6px rgba(214, 177, 93, 0.6);
-        }
-
-        body.is-homepage header nav > div:hover > a::after,
-        body.is-homepage header nav > a:hover::after,
-        body:has(#homepage-root) header nav > div:hover > a::after,
-        body:has(#homepage-root) header nav > a:hover::after {
-          width: 100%;
-        }
-
-        /* Exclude dropdown internal links */
-        body.is-homepage header nav div[class*="backdrop-blur"] a::after,
-        body.is-homepage header nav div[class*="overflow-y-auto"] a::after,
-        body:has(#homepage-root) header nav div[class*="backdrop-blur"] a::after,
-        body:has(#homepage-root) header nav div[class*="overflow-y-auto"] a::after {
-          display: none !important;
-        }
-
-        /* 4. Floating WhatsApp Button: Visible Animated Green Pulse Ring Around Button & Small Hover Effect */
+        /* 3. Floating WhatsApp Button: Visible Animated Green Pulse Ring Around Button & Small Hover Effect */
         @keyframes whatsappPulseRingAnimation {
           0% {
             transform: scale(0.92);
@@ -656,12 +610,6 @@ export default function HomeClient({
           body:has(#homepage-root) a[aria-label="Chat on WhatsApp"] > div > div.rounded-full {
             animation: none !important;
             transform: none !important;
-          }
-          body.is-homepage header nav > div > a::after,
-          body.is-homepage header nav > a::after,
-          body:has(#homepage-root) header nav > div > a::after,
-          body:has(#homepage-root) header nav > a::after {
-            transition: none !important;
           }
         }
       `}} />
