@@ -681,8 +681,8 @@ export default function HomeClient({
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-              className="relative inline-block font-serif font-light text-[#C49A45] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)]"
-              style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9), 0 0 35px rgba(196,154,69,0.22)" }}
+              className="relative inline-block font-serif font-light text-[#F0D58A] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none"
+              style={{ textShadow: "0 2px 12px rgba(0,0,0,0.45)" }}
             >
               <span className="relative z-10 inline-block">
                 {brandTitleWords.map((wordObj: { word: string; letters: { char: string; index: number }[] }, wIdx: number) => (
