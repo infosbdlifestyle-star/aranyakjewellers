@@ -439,48 +439,14 @@ export default function HomeClient({
           pointer-events: none;
         }
 
-        /* 2. Main Heading Metallic-Gold Shimmer Sweep */
-        @keyframes textMetallicGoldSweep {
-          0% {
-            transform: translateX(-130%) skewX(-25deg);
-            opacity: 0;
-          }
-          15% {
-            opacity: 0.85;
-          }
-          50% {
-            opacity: 1;
-          }
-          85% {
-            opacity: 0.85;
-          }
-          100% {
-            transform: translateX(260%) skewX(-25deg);
-            opacity: 0;
-          }
-        }
-
-        .hero-heading-shimmer-sweep {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          width: 40%;
-          height: 100%;
-          background: linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(214, 177, 93, 0.25) 25%,
-            rgba(255, 255, 255, 0.85) 50%,
-            rgba(245, 222, 152, 0.45) 75%,
-            transparent 100%
-          );
-          mix-blend-mode: overlay;
-          pointer-events: none;
-          z-index: 20;
-          filter: blur(5px);
-          animation: textMetallicGoldSweep 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-          animation-delay: 1.05s;
+        /* 2. Main Hero Heading Guaranteed Bright Champagne Gold Contrast */
+        .hero-brand-heading,
+        .hero-brand-heading *,
+        h1.hero-brand-heading,
+        h1.hero-brand-heading span {
+          color: #F0D58A !important;
+          opacity: 1 !important;
+          text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45) !important;
         }
 
         /* 3. Floating WhatsApp Button: Visible Animated Green Pulse Ring Around Button & Small Hover Effect */
@@ -597,13 +563,11 @@ export default function HomeClient({
         /* 8. Respect prefers-reduced-motion */
         @media (prefers-reduced-motion: reduce) {
           body.is-homepage .hero-gold-sweep,
-          body.is-homepage .hero-heading-shimmer-sweep,
           body.is-homepage .celebration-badge-glow,
           body.is-homepage .animate-hero-aura,
           body.is-homepage .animate-gold-shimmer-sweep,
           body.is-homepage a[aria-label="Chat on WhatsApp"] > div > div.rounded-full,
           body:has(#homepage-root) .hero-gold-sweep,
-          body:has(#homepage-root) .hero-heading-shimmer-sweep,
           body:has(#homepage-root) .celebration-badge-glow,
           body:has(#homepage-root) .animate-hero-aura,
           body:has(#homepage-root) .animate-gold-shimmer-sweep,
@@ -678,29 +642,22 @@ export default function HomeClient({
           {/* Centered Brand Name Title with Letter-by-Letter Reveal & Moving Metallic Gold Shimmer */}
           <div className="relative z-20 w-full px-6 max-w-6xl flex flex-col items-center justify-center text-center py-16 sm:py-20 md:py-24">
             <motion.h1
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-              className="relative inline-block font-serif font-light text-[#F0D58A] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none"
-              style={{ textShadow: "0 2px 12px rgba(0,0,0,0.45)" }}
+              className="hero-brand-heading relative inline-block font-serif font-light text-[#F0D58A] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none"
+              style={{ color: "#F0D58A", opacity: 1, textShadow: "0 2px 12px rgba(0,0,0,0.45)" }}
             >
-              <span className="relative z-10 inline-block">
+              <span className="relative z-10 inline-block" style={{ color: "#F0D58A", opacity: 1 }}>
                 {brandTitleWords.map((wordObj: { word: string; letters: { char: string; index: number }[] }, wIdx: number) => (
-                  <span key={wIdx} className="inline-block whitespace-nowrap">
+                  <span key={wIdx} className="inline-block whitespace-nowrap" style={{ color: "#F0D58A", opacity: 1 }}>
                     {wordObj.letters.map((item: { char: string; index: number }) => (
-                      <motion.span
+                      <span
                         key={item.index}
                         className="inline-block"
-                        initial={{ opacity: 0, y: 22 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 0.75,
-                          delay: 0.1 + item.index * 0.04,
-                          ease: [0.16, 1, 0.3, 1]
-                        }}
+                        style={{ color: "#F0D58A", opacity: 1 }}
                       >
                         {item.char}
-                      </motion.span>
+                      </span>
                     ))}
                     {wIdx < brandTitleWords.length - 1 && (
                       <span className="inline-block w-[0.28em]">&nbsp;</span>
@@ -708,8 +665,6 @@ export default function HomeClient({
                   </span>
                 ))}
               </span>
-              {/* Moving metallic-gold shimmer across the text */}
-              <span className="hero-heading-shimmer-sweep" aria-hidden="true" />
             </motion.h1>
 
             {/* Subtitle Reveal: Smooth Fade & Upward Slide after heading finishes */}
