@@ -110,8 +110,8 @@ async function getGlobalData() {
 - **Primary method**: `git push origin main` → Vercel auto-deploys from GitHub.
 - **Backup method**: Run `npx vercel --prod --yes` from the `frontend/` directory.
 - The `frontend/vercel.json` MUST contain `"name": "aranyakjewellers"` to target the correct project.
-- The Vercel project is under team `rony-santras-projects`, project `aranyakjewellers`.
-- Live URLs: `https://aranyakjewellers.vercel.app` and `https://aranyakjewellers-xi.vercel.app`
+- The Vercel project is under team `infosbdlifestyle-9638s-projects` (or collaborator account), project `aranyakjewellers`.
+- Live URLs: `https://aranyakjewellers.vercel.app` and `https://www.aranyakjewellers.com` (Note: `aranyakjewellers-xi.vercel.app` is an obsolete/frozen deployment alias and should not be used).
 
 ### Backend Deployment (VPS)
 - **VPS IP**: `117.252.16.132`, user: `root`, SSH password: `b&Doe2K46e%1`
