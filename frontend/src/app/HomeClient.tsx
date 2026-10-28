@@ -96,6 +96,26 @@ const STATS = [
   { label: 'Flagship Showrooms', value: '4' }
 ];
 
+// Deterministic gentle floating gold particles for hero background
+const HERO_PARTICLES = [
+  { id: 1, left: '10%', top: '75%', size: 2, delay: 0, duration: 13, xOffset: 20 },
+  { id: 2, left: '22%', top: '65%', size: 1.5, delay: 2, duration: 16, xOffset: -18 },
+  { id: 3, left: '34%', top: '80%', size: 2.5, delay: 3.5, duration: 15, xOffset: 24 },
+  { id: 4, left: '46%', top: '70%', size: 1.5, delay: 1, duration: 18, xOffset: -22 },
+  { id: 5, left: '58%', top: '85%', size: 2, delay: 3, duration: 17, xOffset: 18 },
+  { id: 6, left: '72%', top: '68%', size: 1.8, delay: 4.5, duration: 14, xOffset: -16 },
+  { id: 7, left: '85%', top: '78%', size: 2.2, delay: 2.5, duration: 16, xOffset: 22 },
+  { id: 8, left: '16%', top: '42%', size: 1.5, delay: 5, duration: 19, xOffset: -14 },
+  { id: 9, left: '28%', top: '32%', size: 2, delay: 1.8, duration: 15, xOffset: 16 },
+  { id: 10, left: '52%', top: '48%', size: 1.8, delay: 4, duration: 17, xOffset: -20 },
+  { id: 11, left: '68%', top: '36%', size: 2.2, delay: 3.2, duration: 16, xOffset: 14 },
+  { id: 12, left: '80%', top: '52%', size: 1.5, delay: 6, duration: 20, xOffset: -24 },
+  { id: 13, left: '8%', top: '28%', size: 2, delay: 5.2, duration: 15, xOffset: 18 },
+  { id: 14, left: '40%', top: '24%', size: 1.8, delay: 2.6, duration: 18, xOffset: -15 },
+  { id: 15, left: '64%', top: '25%', size: 2, delay: 6.5, duration: 16, xOffset: 16 },
+  { id: 16, left: '90%', top: '32%', size: 1.5, delay: 4.2, duration: 19, xOffset: -18 },
+];
+
 export default function HomeClient({ 
   settings: initialSettings, 
   categories: initialCategories, 
@@ -105,6 +125,7 @@ export default function HomeClient({
   mediaMap: initialMediaMap = {}
 }: HomeClientProps) {
   const containerRef = useRef(null);
+  const heroSectionRef = useRef<HTMLElement>(null);
   const [activeRateTab, setActiveRateTab] = useState<'24k' | '22k' | '18k'>('22k');
   const [liveGoldRates, setLiveGoldRates] = useState<any[]>(initialGoldRates || []);
   const [liveBanners, setLiveBanners] = useState<any[]>(initialBanners || []);
@@ -117,6 +138,8 @@ export default function HomeClient({
 
   useEffect(() => {
     setMounted(true);
+    document.body.classList.add('is-homepage');
+
     const fetchLiveData = async () => {
       try {
         const [rates, bans, cats, sets, stores, media, offers] = await Promise.all([
@@ -145,13 +168,24 @@ export default function HomeClient({
 
     // Refresh live real-time data every 10 seconds
     const interval = setInterval(fetchLiveData, 10000);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      document.body.classList.remove('is-homepage');
+    };
   }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
+
+  const { scrollYProgress: heroScrollProgress } = useScroll({
+    target: heroSectionRef,
+    offset: ["start start", "end start"]
+  });
+
+  const yHeroParallax = useTransform(heroScrollProgress, [0, 1], ["0%", "24%"]);
+  const opacityHeroParallax = useTransform(heroScrollProgress, [0, 0.85], [1, 0.25]);
 
   const yParallax = useTransform(scrollYProgress, [0, 0.5], ["0%", "20%"]);
   const opacityParallax = useTransform(scrollYProgress, [0, 0.4], [1, 0.2]);
@@ -251,6 +285,20 @@ export default function HomeClient({
       overlayDarkness: '60',
     };
   }, [liveSettings]);
+
+  // Split brand title into words and characters for smooth, luxurious letter-by-letter reveal
+  const brandTitleWords = useMemo(() => {
+    const raw = heroConfig.brandTitle || "ARANYAK JEWELLERS";
+    let runningIndex = 0;
+    return raw.split(" ").map((word: string) => {
+      const letters = word.split("").map((char: string) => {
+        const charIdx = runningIndex++;
+        return { char, index: charIdx };
+      });
+      runningIndex++;
+      return { word, letters };
+    });
+  }, [heroConfig.brandTitle]);
 
   // Dynamic Section Visibility
   const enabledSections = useMemo(() => {
@@ -355,74 +403,280 @@ export default function HomeClient({
   }, [liveOffers]);
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C] selection:bg-[#D6B15D] selection:text-[#211813]" ref={containerRef}>
+    <main id="homepage-root" className="homepage-root min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C] selection:bg-[#D6B15D] selection:text-[#211813]" ref={containerRef}>
+      {/* Scoped Luxury Animations & Interactions strictly for the Homepage */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        /* 1. Hero Slow Subtle Movement & Zoom */
+        @keyframes heroLuxurySlowMovement {
+          0% {
+            transform: scale(1.0) translate3d(0, 0, 0);
+          }
+          50% {
+            transform: scale(1.05) translate3d(-0.6%, -0.4%, 0);
+          }
+          100% {
+            transform: scale(1.0) translate3d(0, 0, 0);
+          }
+        }
+
+        .hero-luxury-background {
+          will-change: transform;
+          animation: heroLuxurySlowMovement 24s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        /* 2. Soft Ambient Gold Aura */
+        @keyframes heroAuraPulse {
+          0%, 100% {
+            opacity: 0.55;
+            transform: scale(0.96);
+          }
+          50% {
+            opacity: 0.95;
+            transform: scale(1.04);
+          }
+        }
+
+        .animate-hero-aura {
+          animation: heroAuraPulse 7s ease-in-out infinite;
+        }
+
+        /* 3. Gold Shimmer Sweep across accent line */
+        @keyframes goldShimmerSweep {
+          0% {
+            transform: translateX(-100%);
+          }
+          30%, 100% {
+            transform: translateX(100%);
+          }
+        }
+
+        .animate-gold-shimmer-sweep {
+          animation: goldShimmerSweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        /* 4. Desktop Navigation Bar: Smooth Hover Transitions & Refined Gold Underline */
+        body.is-homepage header nav,
+        body:has(#homepage-root) header nav {
+          position: relative;
+        }
+
+        body.is-homepage header nav > div > a,
+        body.is-homepage header nav > a,
+        body:has(#homepage-root) header nav > div > a,
+        body:has(#homepage-root) header nav > a {
+          position: relative;
+          transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body.is-homepage header nav > div > a::after,
+        body.is-homepage header nav > a::after,
+        body:has(#homepage-root) header nav > div > a::after,
+        body:has(#homepage-root) header nav > a::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #D6B15D 30%, #FFF8EC 50%, #D6B15D 70%, transparent);
+          transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), left 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+          opacity: 0;
+          pointer-events: none;
+          border-radius: 2px;
+          box-shadow: 0 0 8px rgba(214, 177, 93, 0.6);
+        }
+
+        body.is-homepage header nav > div:hover > a::after,
+        body.is-homepage header nav > a:hover::after,
+        body:has(#homepage-root) header nav > div:hover > a::after,
+        body:has(#homepage-root) header nav > a:hover::after {
+          width: 100%;
+          left: 0;
+          opacity: 1;
+        }
+
+        /* Exclude dropdown internal links */
+        body.is-homepage header nav div[class*="backdrop-blur"] a::after,
+        body.is-homepage header nav div[class*="overflow-y-auto"] a::after,
+        body:has(#homepage-root) header nav div[class*="backdrop-blur"] a::after,
+        body:has(#homepage-root) header nav div[class*="overflow-y-auto"] a::after {
+          display: none !important;
+        }
+
+        /* 5. Floating WhatsApp Button: Subtle Pulsing Green Glow & Gentle Hover Scale */
+        @keyframes homepageWhatsAppPulseGlow {
+          0%, 100% {
+            box-shadow: 0 0 18px rgba(37, 211, 102, 0.45), 0 0 34px rgba(37, 211, 102, 0.22), 0 4px 14px rgba(0, 0, 0, 0.4);
+          }
+          50% {
+            box-shadow: 0 0 32px rgba(37, 211, 102, 0.8), 0 0 55px rgba(37, 211, 102, 0.42), 0 6px 20px rgba(0, 0, 0, 0.5);
+          }
+        }
+
+        body.is-homepage a[aria-label="Chat on WhatsApp"] > div > div.rounded-full,
+        body:has(#homepage-root) a[aria-label="Chat on WhatsApp"] > div > div.rounded-full {
+          animation: homepageWhatsAppPulseGlow 3.2s ease-in-out infinite !important;
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease !important;
+        }
+
+        body.is-homepage a[aria-label="Chat on WhatsApp"]:hover > div > div.rounded-full,
+        body:has(#homepage-root) a[aria-label="Chat on WhatsApp"]:hover > div > div.rounded-full {
+          transform: scale(1.08) !important;
+          box-shadow: 0 0 42px rgba(37, 211, 102, 0.95), 0 0 70px rgba(37, 211, 102, 0.5), 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        /* 6. Gold Announcement Ticker: Smooth, Continuous 60 FPS, No Jump or Flickering */
+        body.is-homepage .offers-marquee-track,
+        body:has(#homepage-root) .offers-marquee-track {
+          will-change: transform;
+          transform: translate3d(0, 0, 0);
+          -webkit-transform: translate3d(0, 0, 0);
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          perspective: 1000px;
+          -webkit-perspective: 1000px;
+        }
+
+        /* 7. Respect prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+          body.is-homepage .hero-luxury-background,
+          body.is-homepage .animate-hero-aura,
+          body.is-homepage .animate-gold-shimmer-sweep,
+          body.is-homepage a[aria-label="Chat on WhatsApp"] > div > div.rounded-full,
+          body:has(#homepage-root) .hero-luxury-background,
+          body:has(#homepage-root) .animate-hero-aura,
+          body:has(#homepage-root) .animate-gold-shimmer-sweep,
+          body:has(#homepage-root) a[aria-label="Chat on WhatsApp"] > div > div.rounded-full {
+            animation: none !important;
+            transform: none !important;
+          }
+          body.is-homepage header nav > div > a::after,
+          body.is-homepage header nav > a::after,
+          body:has(#homepage-root) header nav > div > a::after,
+          body:has(#homepage-root) header nav > a::after {
+            transition: none !important;
+          }
+        }
+      `}} />
       
       {/* 1. Full-Screen Luxury "Timeless Elegance" Hero Section */}
       {enabledSections.hero && (
-        <section className="relative min-h-[58vh] sm:min-h-[64vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#211813]" aria-label="Hero Section">
+        <section 
+          ref={heroSectionRef}
+          className="relative min-h-[58vh] sm:min-h-[64vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#211813]" 
+          aria-label="Hero Section"
+        >
+          {/* Subtle Zoom & Parallax Movement Background */}
           <motion.div 
-            className="absolute inset-0"
-            initial={{ scale: 1.15 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-            style={{ y: yParallax, opacity: opacityParallax }}
+            className="absolute inset-0 overflow-hidden"
+            style={{ y: yHeroParallax, opacity: opacityHeroParallax }}
           >
-            <Image 
-              src={heroConfig.imageUrl || liveMediaMap['home_hero_banner'] || (liveBanners && liveBanners.length > 0 ? liveBanners[0].imageUrl : (initialBanners && initialBanners.length > 0 ? initialBanners[0].imageUrl : "/uploads/hero_timeless_elegance.webp"))} 
-              alt="Aranyak Jewellers Masterpiece Collection" 
-              fill
-              className="object-cover animate-slow-zoom no-select opacity-70"
-              priority
-            />
+            <div className="relative w-full h-full hero-luxury-background">
+              <Image 
+                src={heroConfig.imageUrl || liveMediaMap['home_hero_banner'] || (liveBanners && liveBanners.length > 0 ? liveBanners[0].imageUrl : (initialBanners && initialBanners.length > 0 ? initialBanners[0].imageUrl : "/uploads/hero_timeless_elegance.webp"))} 
+                alt="Aranyak Jewellers Masterpiece Collection" 
+                fill
+                className="object-cover no-select opacity-75"
+                priority
+              />
+            </div>
           </motion.div>
           
           {/* Multi-layered Warm Espresso & Gold Ambient Overlays */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/60 to-transparent pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/85 via-transparent to-[#211813]/85 pointer-events-none" />
           
-          {/* Floating Gold Dust Particles */}
+          {/* Soft glowing ambient gold highlights */}
+          <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center overflow-hidden" aria-hidden="true">
+            <div className="w-[500px] h-[300px] sm:w-[750px] sm:h-[420px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(214,177,93,0.15)_0%,rgba(214,177,93,0.03)_50%,transparent_75%)] blur-2xl animate-hero-aura" />
+          </div>
+
+          {/* Gentle Floating Gold Dust Particles */}
           {mounted && (
-            <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
-              {[...Array(20)].map((_, i) => (
+            <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden" aria-hidden="true">
+              {HERO_PARTICLES.map((p) => (
                 <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-[#D6B15D] rounded-full blur-[1px] mix-blend-screen"
-                  initial={{ 
-                    x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
-                    y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
-                    opacity: Math.random() * 0.5 + 0.2
+                  key={p.id}
+                  className="absolute rounded-full bg-[#D6B15D] mix-blend-screen pointer-events-none"
+                  style={{
+                    left: p.left,
+                    top: p.top,
+                    width: p.size,
+                    height: p.size,
+                    boxShadow: `0 0 ${p.size * 3}px rgba(214,177,93,0.85)`,
                   }}
                   animate={{
-                    y: [null, Math.random() * -200 - 100],
-                    x: [null, Math.random() * 100 - 50],
-                    opacity: [null, 0],
+                    y: [-15, -130],
+                    x: [0, p.xOffset, 0],
+                    opacity: [0, 0.8, 0],
+                    scale: [0.8, 1.25, 0.8],
                   }}
                   transition={{
-                    duration: Math.random() * 10 + 10,
+                    duration: p.duration,
                     repeat: Infinity,
-                    ease: "linear"
+                    delay: p.delay,
+                    ease: "easeInOut",
                   }}
                 />
               ))}
             </div>
           )}
           
-          {/* Centered Brand Name Title */}
-          <div className="relative z-10 w-full px-6 max-w-6xl flex flex-col items-center justify-center text-center py-16 sm:py-20 md:py-24">
+          {/* Centered Brand Name Title with Letter-by-Letter Reveal */}
+          <div className="relative z-20 w-full px-6 max-w-6xl flex flex-col items-center justify-center text-center py-16 sm:py-20 md:py-24">
             <motion.h1
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-light text-[#C49A45] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)]"
+              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-serif font-light text-[#C49A45] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)] relative"
               style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9), 0 0 35px rgba(196,154,69,0.22)" }}
             >
-              {heroConfig.brandTitle || "ARANYAK JEWELLERS"}
+              {brandTitleWords.map((wordObj: { word: string; letters: { char: string; index: number }[] }, wIdx: number) => (
+                <span key={wIdx} className="inline-block whitespace-nowrap">
+                  {wordObj.letters.map((item: { char: string; index: number }) => (
+                    <motion.span
+                      key={item.index}
+                      className="inline-block"
+                      initial={{ opacity: 0, y: 22, filter: 'blur(5px)' }}
+                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      transition={{
+                        duration: 0.85,
+                        delay: 0.12 + item.index * 0.042,
+                        ease: [0.16, 1, 0.3, 1]
+                      }}
+                    >
+                      {item.char}
+                    </motion.span>
+                  ))}
+                  {wIdx < brandTitleWords.length - 1 && (
+                    <span className="inline-block w-[0.28em]">&nbsp;</span>
+                  )}
+                </span>
+              ))}
             </motion.h1>
+
+            {/* Soft Subtitle Fade-In After Main Heading */}
             {heroConfig.tagline && (
-              <p className="text-xs sm:text-sm text-[#E5D7C5] tracking-[0.25em] uppercase mt-4 font-light drop-shadow">
+              <motion.p 
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+                className="text-xs sm:text-sm text-[#E5D7C5] tracking-[0.25em] uppercase mt-4 sm:mt-5 font-light drop-shadow"
+              >
                 {heroConfig.tagline}
-              </p>
+              </motion.p>
             )}
+
+            {/* Subtle Gold Shimmer Accent Line */}
+            <motion.div
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              transition={{ duration: 1.4, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}
+              className="w-24 sm:w-36 h-[1px] bg-gradient-to-r from-transparent via-[#D6B15D]/80 to-transparent mt-4 sm:mt-5 relative overflow-hidden"
+              aria-hidden="true"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FFF8EC] to-transparent w-full animate-gold-shimmer-sweep" />
+            </motion.div>
           </div>
         </section>
       )}
@@ -433,34 +687,54 @@ export default function HomeClient({
         <div className="absolute inset-0 bg-radial-gold opacity-20 pointer-events-none" />
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <Reveal>
-              <div className="inline-flex items-center space-x-2 px-4 py-1 rounded-full bg-[#211813] border border-[#D6B15D]/40 mb-4 shadow-md">
+            <motion.div
+              initial={{ opacity: 0, y: 26, scale: 0.94 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#211813] border border-[#D6B15D]/40 mb-4 shadow-md backdrop-blur-sm">
                 <span className="text-xs">🌸</span>
                 <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#D6B15D]">
                   FESTIVE & WEDDING CELEBRATION
                 </span>
                 <span className="text-xs">🌸</span>
               </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light tracking-tight text-[#FFF8EB] mb-3">
-                Exclusive <span className="font-editorial gold-gradient italic">Privileges</span> & Offers
-              </h2>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p className="text-xs sm:text-sm text-[#E5D7C5] max-w-xl mx-auto font-light leading-relaxed">
-                Celebrate life&apos;s most precious milestones with guaranteed purity, exceptional exchange value, and festival blessings across all Tripura boutiques.
-              </p>
-            </Reveal>
-            <Reveal delay={0.3}>
-              <div className="mt-6 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#211813]/90 border border-[#D6B15D]/50 shadow-[0_4px_20px_rgba(196,154,69,0.15)] backdrop-blur-sm">
-                <span className="w-2 h-2 rounded-full bg-[#D6B15D] animate-pulse" />
-                <span className="text-xs sm:text-sm font-medium tracking-wide text-[#FFF8EB]">
-                  অফার* চলবে ১ নভেম্বর থেকে ১৪ নভেম্বর ২০২৬ পর্যন্ত
-                </span>
-                <span className="text-[#D6B15D] text-xs">✦</span>
-              </div>
-            </Reveal>
+            </motion.div>
+            
+            <motion.h2
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.9, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="text-3xl sm:text-4xl md:text-5xl font-serif font-light tracking-tight text-[#FFF8EB] mb-3"
+            >
+              Exclusive <span className="font-editorial gold-gradient italic">Privileges</span> & Offers
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.85, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              className="text-xs sm:text-sm text-[#E5D7C5] max-w-xl mx-auto font-light leading-relaxed"
+            >
+              Celebrate life&apos;s most precious milestones with guaranteed purity, exceptional exchange value, and festival blessings across all Tripura boutiques.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.85, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-6 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#211813]/90 border border-[#D6B15D]/50 shadow-[0_4px_20px_rgba(196,154,69,0.15)] backdrop-blur-sm"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#D6B15D] animate-pulse" />
+              <span className="text-xs sm:text-sm font-medium tracking-wide text-[#FFF8EB]">
+                অফার* চলবে ১ নভেম্বর থেকে ১৪ নভেম্বর ২০২৬ পর্যন্ত
+              </span>
+              <span className="text-[#D6B15D] text-xs">✦</span>
+            </motion.div>
           </div>
 
           <StaggerContainer staggerDelay={0.09} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
