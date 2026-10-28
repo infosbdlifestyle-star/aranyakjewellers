@@ -123,7 +123,7 @@ export default function PromotionalAnnouncementBar({
         .offers-marquee-track span,
         .offers-marquee-message,
         .offers-marquee-separator {
-          font-size: 25px !important;
+          font-size: 20px !important;
           line-height: 1.35 !important;
         }
         .offers-marquee-container:hover .offers-marquee-track,
@@ -142,15 +142,15 @@ export default function PromotionalAnnouncementBar({
       <aside 
         role="region"
         aria-label="Promotional Offers Continuous Ticker"
-        className={`offers-marquee-container relative w-full h-[46px] sm:h-[50px] md:h-[54px] bg-gradient-to-r from-[#D4A745] via-[#D9AF4D] to-[#D4A745] border-t border-[#C49A45]/40 border-b border-[#B8872D]/60 shadow-[0_3px_12px_rgba(33,23,19,0.10)] flex items-center overflow-hidden select-none z-10 ${className}`}
+        className={`offers-marquee-container relative w-full h-[40px] sm:h-[44px] md:h-[46px] bg-gradient-to-r from-[#D4A745] via-[#D9AF4D] to-[#D4A745] border-t border-[#C49A45]/40 border-b border-[#B8872D]/60 shadow-[0_3px_12px_rgba(33,23,19,0.10)] flex items-center overflow-hidden select-none z-10 ${className}`}
       >
         {/* Left & Right luxury gradient masks */}
         <div 
-          className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 md:w-20 bg-gradient-to-r from-[#D4A745] to-transparent pointer-events-none z-10" 
+          className="absolute left-0 top-0 bottom-0 w-6 sm:w-12 md:w-16 bg-gradient-to-r from-[#D4A745] to-transparent pointer-events-none z-10" 
           aria-hidden="true" 
         />
         <div 
-          className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 md:w-20 bg-gradient-to-l from-[#D4A745] to-transparent pointer-events-none z-10" 
+          className="absolute right-0 top-0 bottom-0 w-6 sm:w-12 md:w-16 bg-gradient-to-l from-[#D4A745] to-transparent pointer-events-none z-10" 
           aria-hidden="true" 
         />
 
@@ -161,14 +161,14 @@ export default function PromotionalAnnouncementBar({
             {messages.map((msg, idx) => (
               <div key={`offer-set1-${idx}`} className="flex items-center shrink-0">
                 <span 
-                  className="offers-marquee-message font-sans font-semibold text-[25px] leading-normal text-[#211713] tracking-wide whitespace-nowrap px-1 inline-flex items-center"
-                  style={{ fontSize: '25px' }}
+                  className="offers-marquee-message font-sans font-semibold text-[20px] leading-normal text-[#211713] tracking-wide whitespace-nowrap px-1 inline-flex items-center"
+                  style={{ fontSize: '20px' }}
                 >
                   {msg}
                 </span>
                 <span 
-                  className="offers-marquee-separator mx-4 sm:mx-6 md:mx-7 text-[#211713]/60 text-[25px] leading-normal select-none inline-flex items-center" 
-                  style={{ fontSize: '25px' }}
+                  className="offers-marquee-separator mx-3 sm:mx-5 md:mx-6 text-[#211713]/60 text-[20px] leading-normal select-none inline-flex items-center" 
+                  style={{ fontSize: '20px' }}
                   aria-hidden="true"
                 >
                   {separator}
@@ -182,14 +182,14 @@ export default function PromotionalAnnouncementBar({
             {messages.map((msg, idx) => (
               <div key={`offer-set2-${idx}`} className="flex items-center shrink-0">
                 <span 
-                  className="offers-marquee-message font-sans font-semibold text-[25px] leading-normal text-[#211713] tracking-wide whitespace-nowrap px-1 inline-flex items-center"
-                  style={{ fontSize: '25px' }}
+                  className="offers-marquee-message font-sans font-semibold text-[20px] leading-normal text-[#211713] tracking-wide whitespace-nowrap px-1 inline-flex items-center"
+                  style={{ fontSize: '20px' }}
                 >
                   {msg}
                 </span>
                 <span 
-                  className="offers-marquee-separator mx-4 sm:mx-6 md:mx-7 text-[#211713]/60 text-[25px] leading-normal select-none inline-flex items-center" 
-                  style={{ fontSize: '25px' }}
+                  className="offers-marquee-separator mx-3 sm:mx-5 md:mx-6 text-[#211713]/60 text-[20px] leading-normal select-none inline-flex items-center" 
+                  style={{ fontSize: '20px' }}
                   aria-hidden="true"
                 >
                   {separator}
