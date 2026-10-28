@@ -53,6 +53,7 @@ const SHOWROOMS_DIRECTORY = [
     city: 'Agartala',
     name: 'Agartala Branch',
     address: 'B. Chowmuhani, M.B, Motor Stand Rd, Dhaleswar, Agartala 799001',
+    phone: '298 1506',
     directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Aranyak+Jewellers+B.+Chowmuhani,+M.B,+Motor+Stand+Rd,+near+Kamaan+Chowmuhani,+Dhaleswar,+Agartala,+Tripura+799001',
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Aranyak+Jewellers+B.+Chowmuhani,+M.B,+Motor+Stand+Rd,+near+Kamaan+Chowmuhani,+Dhaleswar,+Agartala,+Tripura+799001',
   },
@@ -60,6 +61,7 @@ const SHOWROOMS_DIRECTORY = [
     city: 'Dharmanagar',
     name: 'Dharmanagar Branch',
     address: 'DNV Road, Power House Quater Complex, Dharmanagar, Tripura 799250',
+    phone: '235 336',
     directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=DNV+Road%2C+Power+House+Quater+Complex%2C+Dharmanagar%2C+Tripura+799250%2C+India',
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=ARANYAK+JEWELLERS%2C+DNV+Road%2C+Dharmanagar%2C+Tripura+799250',
   },
@@ -67,6 +69,7 @@ const SHOWROOMS_DIRECTORY = [
     city: 'Kailashahar',
     name: 'Kailashahar Branch',
     address: 'GIRLS SCHOOL ROAD, Kailashahar, Tripura 799277',
+    phone: '232 323',
     directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Aranyak+Jewellers+GIRLS+SCHOOL+ROAD,+Kailashahar,+Tripura+799277',
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Aranyak+Jewellers+GIRLS+SCHOOL+ROAD,+Kailashahar,+Tripura+799277',
   },
@@ -74,6 +77,7 @@ const SHOWROOMS_DIRECTORY = [
     city: 'Khowai',
     name: 'Khowai Branch',
     address: '3J93+FHJ Subhash Park, Suhash Park, Khowai, Tripura 799202',
+    phone: '222 379',
     directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Aranyak+Jewellers+3J93%2BFHJ+Subhash+Park,+Suhash+Park,+Khowai,+Tripura+799202',
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Aranyak+Jewellers+3J93%2BFHJ+Subhash+Park,+Suhash+Park,+Khowai,+Tripura+799202',
   },
@@ -201,6 +205,19 @@ export default function ContactClient() {
                     <p className="text-xs text-[#40352F] leading-relaxed">
                       {s.address}
                     </p>
+                    {s.phone && (
+                      <div className="mt-3 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#8A5A12] shrink-0">
+                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        <a 
+                          href={`tel:${s.phone.replace(/\s+/g, '')}`} 
+                          className="text-xs font-semibold text-[#40352F] hover:text-[#8A5A12] hover:underline transition-colors tracking-wide"
+                        >
+                          {s.phone}
+                        </a>
+                      </div>
+                    )}
                   </div>
                   
                   <div className="mt-4 pt-3 border-t border-[#DED2C1]/60 flex items-center justify-between text-[11px] font-bold tracking-wider uppercase">

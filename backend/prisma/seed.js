@@ -774,7 +774,7 @@ async function main() {
     {
       name: "Agartala Branch",
       address: "B. Chowmuhani, M.B, Motor Stand Rd, near Kamaan Chowmuhani, Dhaleswar, Agartala, Tripura 799001",
-      phone: "03812981506",
+      phone: "298 1506",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Aranyak+Jewellers+B.+Chowmuhani,+M.B,+Motor+Stand+Rd,+near+Kamaan+Chowmuhani,+Dhaleswar,+Agartala,+Tripura+799001",
       isActive: true,
       order: 0,
@@ -782,7 +782,7 @@ async function main() {
     {
       name: "Dharmanagar Branch",
       address: "DNV Road, Power House Quater Complex, Dharmanagar, Tripura 799250, India",
-      phone: "",
+      phone: "235 336",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=ARANYAK+JEWELLERS%2C+DNV+Road%2C+Dharmanagar%2C+Tripura+799250",
       isActive: true,
       order: 1,
@@ -790,7 +790,7 @@ async function main() {
     {
       name: "Kailashahar Branch",
       address: "GIRLS SCHOOL ROAD, Kailashahar, Tripura 799277",
-      phone: "03812981506",
+      phone: "232 323",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Aranyak+Jewellers+GIRLS+SCHOOL+ROAD,+Kailashahar,+Tripura+799277",
       isActive: true,
       order: 2,
@@ -798,7 +798,7 @@ async function main() {
     {
       name: "Khowai Branch",
       address: "3J93+FHJ Subhash Park, Suhash Park, Khowai, Tripura 799202",
-      phone: "094365 89901",
+      phone: "222 379",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Aranyak+Jewellers+3J93%2BFHJ+Subhash+Park,+Suhash+Park,+Khowai,+Tripura+799202",
       isActive: true,
       order: 3,
