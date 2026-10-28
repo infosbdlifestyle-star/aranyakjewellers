@@ -43,7 +43,7 @@ export default function AdminHomepageManagerPage() {
   const [heroConfig, setHeroConfig] = useState({
     brandTitle: 'ARANYAK JEWELLERS',
     tagline: 'Timeless Elegance & Royal Heritage',
-    imageUrl: '/uploads/hero_timeless_elegance.webp',
+    imageUrl: '/Website banner .png',
     height: '64vh',
     alignment: 'center',
     overlayDarkness: '60',

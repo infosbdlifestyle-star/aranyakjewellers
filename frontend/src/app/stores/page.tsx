@@ -9,9 +9,6 @@ export const metadata: Metadata = {
   description: 'Visit Aranyak Jewellers flagship showrooms in Agartala, Dharmanagar, Kailashahar, and Khowai. Handcrafted hallmark gold and certified diamonds.',
 };
 
-export { STORE_LOCATIONS };
-export type { StoreLocation };
-
 async function getStoresAndSettings() {
   try {
     const controller = new AbortController();

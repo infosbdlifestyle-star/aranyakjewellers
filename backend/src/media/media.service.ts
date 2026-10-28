@@ -11,7 +11,7 @@ export const DEFAULT_MEDIA_ITEMS = [
     section: 'homepage_hero',
     title: 'Homepage Hero Master Banner',
     altText: 'Aranyak Jewellers - Royal Bridal Masterpiece Collection in Tripura',
-    url: '/uploads/hero_timeless_elegance.webp',
+    url: '/Website banner .png',
     usageLocation: 'Homepage Top Hero Banner & Atmosphere Backdrop',
     order: 0,
   },
