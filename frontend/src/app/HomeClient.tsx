@@ -125,7 +125,6 @@ export default function HomeClient({
   mediaMap: initialMediaMap = {}
 }: HomeClientProps) {
   const containerRef = useRef(null);
-  const heroSectionRef = useRef<HTMLElement>(null);
   const [activeRateTab, setActiveRateTab] = useState<'24k' | '22k' | '18k'>('22k');
   const [liveGoldRates, setLiveGoldRates] = useState<any[]>(initialGoldRates || []);
   const [liveBanners, setLiveBanners] = useState<any[]>(initialBanners || []);
@@ -178,14 +177,6 @@ export default function HomeClient({
     target: containerRef,
     offset: ["start start", "end start"]
   });
-
-  const { scrollYProgress: heroScrollProgress } = useScroll({
-    target: heroSectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const yHeroParallax = useTransform(heroScrollProgress, [0, 1], ["0%", "24%"]);
-  const opacityHeroParallax = useTransform(heroScrollProgress, [0, 0.85], [1, 0.25]);
 
   const yParallax = useTransform(scrollYProgress, [0, 0.5], ["0%", "20%"]);
   const opacityParallax = useTransform(scrollYProgress, [0, 0.4], [1, 0.2]);
@@ -406,55 +397,93 @@ export default function HomeClient({
     <main id="homepage-root" className="homepage-root min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C] selection:bg-[#D6B15D] selection:text-[#211813]" ref={containerRef}>
       {/* Scoped Luxury Animations & Interactions strictly for the Homepage */}
       <style dangerouslySetInnerHTML={{ __html: `
-        /* 1. Hero Slow Subtle Movement & Zoom */
-        @keyframes heroLuxurySlowMovement {
+        /* 1. Hero Animated Golden Light Sweep Moving Horizontally Across Stationary Background */
+        @keyframes heroGoldLightSweep {
           0% {
-            transform: scale(1.0) translate3d(0, 0, 0);
+            transform: translateX(-140%) skewX(-20deg);
+            opacity: 0;
+          }
+          20% {
+            opacity: 0.85;
           }
           50% {
-            transform: scale(1.05) translate3d(-0.6%, -0.4%, 0);
+            opacity: 1;
+          }
+          80% {
+            opacity: 0.85;
           }
           100% {
-            transform: scale(1.0) translate3d(0, 0, 0);
+            transform: translateX(260%) skewX(-20deg);
+            opacity: 0;
           }
         }
 
-        .hero-luxury-background {
-          will-change: transform;
-          animation: heroLuxurySlowMovement 24s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        .hero-gold-sweep {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          width: 55%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(214, 177, 93, 0.04) 20%,
+            rgba(255, 238, 185, 0.24) 50%,
+            rgba(214, 177, 93, 0.08) 80%,
+            transparent 100%
+          );
+          filter: blur(16px);
+          animation: heroGoldLightSweep 6.5s ease-in-out infinite;
+          will-change: transform, opacity;
+          pointer-events: none;
         }
 
-        /* 2. Soft Ambient Gold Aura */
-        @keyframes heroAuraPulse {
-          0%, 100% {
-            opacity: 0.55;
-            transform: scale(0.96);
+        /* 2. Main Heading Metallic-Gold Shimmer Sweep */
+        @keyframes textMetallicGoldSweep {
+          0% {
+            transform: translateX(-130%) skewX(-25deg);
+            opacity: 0;
+          }
+          15% {
+            opacity: 0.85;
           }
           50% {
-            opacity: 0.95;
-            transform: scale(1.04);
+            opacity: 1;
+          }
+          85% {
+            opacity: 0.85;
+          }
+          100% {
+            transform: translateX(260%) skewX(-25deg);
+            opacity: 0;
           }
         }
 
-        .animate-hero-aura {
-          animation: heroAuraPulse 7s ease-in-out infinite;
+        .hero-heading-shimmer-sweep {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          width: 40%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(214, 177, 93, 0.25) 25%,
+            rgba(255, 255, 255, 0.85) 50%,
+            rgba(245, 222, 152, 0.45) 75%,
+            transparent 100%
+          );
+          mix-blend-mode: overlay;
+          pointer-events: none;
+          z-index: 20;
+          filter: blur(5px);
+          animation: textMetallicGoldSweep 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          animation-delay: 1.05s;
         }
 
-        /* 3. Gold Shimmer Sweep across accent line */
-        @keyframes goldShimmerSweep {
-          0% {
-            transform: translateX(-100%);
-          }
-          30%, 100% {
-            transform: translateX(100%);
-          }
-        }
-
-        .animate-gold-shimmer-sweep {
-          animation: goldShimmerSweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-        }
-
-        /* 4. Desktop Navigation Bar: Smooth Hover Transitions & Refined Gold Underline */
+        /* 3. Desktop Navigation Bar: Gold Underline Expanding Smoothly from Left to Right on Hover */
         body.is-homepage header nav,
         body:has(#homepage-root) header nav {
           position: relative;
@@ -475,15 +504,14 @@ export default function HomeClient({
           content: '';
           position: absolute;
           bottom: -2px;
-          left: 50%;
+          left: 0;
           width: 0;
           height: 2px;
-          background: linear-gradient(90deg, transparent, #D6B15D 30%, #FFF8EC 50%, #D6B15D 70%, transparent);
-          transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), left 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
-          opacity: 0;
+          background: linear-gradient(90deg, #D6B15D, #FFF8EC 60%, #D6B15D);
+          transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
           pointer-events: none;
           border-radius: 2px;
-          box-shadow: 0 0 8px rgba(214, 177, 93, 0.6);
+          box-shadow: 0 0 6px rgba(214, 177, 93, 0.6);
         }
 
         body.is-homepage header nav > div:hover > a::after,
@@ -491,8 +519,6 @@ export default function HomeClient({
         body:has(#homepage-root) header nav > div:hover > a::after,
         body:has(#homepage-root) header nav > a:hover::after {
           width: 100%;
-          left: 0;
-          opacity: 1;
         }
 
         /* Exclude dropdown internal links */
@@ -503,31 +529,79 @@ export default function HomeClient({
           display: none !important;
         }
 
-        /* 5. Floating WhatsApp Button: Subtle Pulsing Green Glow & Gentle Hover Scale */
-        @keyframes homepageWhatsAppPulseGlow {
+        /* 4. Floating WhatsApp Button: Visible Animated Green Pulse Ring Around Button & Small Hover Effect */
+        @keyframes whatsappPulseRingAnimation {
+          0% {
+            transform: scale(0.92);
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.8);
+            opacity: 1;
+          }
+          65% {
+            transform: scale(1.2);
+            box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+            opacity: 0.15;
+          }
+          100% {
+            transform: scale(1.26);
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            opacity: 0;
+          }
+        }
+
+        @keyframes whatsappButtonGlow {
           0%, 100% {
-            box-shadow: 0 0 18px rgba(37, 211, 102, 0.45), 0 0 34px rgba(37, 211, 102, 0.22), 0 4px 14px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 18px rgba(37, 211, 102, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
           }
           50% {
-            box-shadow: 0 0 32px rgba(37, 211, 102, 0.8), 0 0 55px rgba(37, 211, 102, 0.42), 0 6px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 32px rgba(37, 211, 102, 0.85), 0 6px 18px rgba(0, 0, 0, 0.5);
           }
         }
 
         body.is-homepage a[aria-label="Chat on WhatsApp"] > div > div.rounded-full,
         body:has(#homepage-root) a[aria-label="Chat on WhatsApp"] > div > div.rounded-full {
-          animation: homepageWhatsAppPulseGlow 3.2s ease-in-out infinite !important;
-          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease !important;
+          animation: whatsappButtonGlow 2.8s ease-in-out infinite !important;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
+          position: relative !important;
+        }
+
+        body.is-homepage a[aria-label="Chat on WhatsApp"] > div > div.rounded-full::before,
+        body:has(#homepage-root) a[aria-label="Chat on WhatsApp"] > div > div.rounded-full::before {
+          content: '';
+          position: absolute;
+          inset: -6px;
+          border-radius: 9999px;
+          border: 2px solid rgba(37, 211, 102, 0.8);
+          animation: whatsappPulseRingAnimation 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite !important;
+          pointer-events: none;
         }
 
         body.is-homepage a[aria-label="Chat on WhatsApp"]:hover > div > div.rounded-full,
         body:has(#homepage-root) a[aria-label="Chat on WhatsApp"]:hover > div > div.rounded-full {
-          transform: scale(1.08) !important;
-          box-shadow: 0 0 42px rgba(37, 211, 102, 0.95), 0 0 70px rgba(37, 211, 102, 0.5), 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+          transform: scale(1.06) !important;
+          box-shadow: 0 0 42px rgba(37, 211, 102, 0.95), 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        /* 5. Festive & Wedding Celebration Badge: Subtle Border Glow */
+        @keyframes celebrationBadgeGlow {
+          0%, 100% {
+            border-color: rgba(214, 177, 93, 0.35);
+            box-shadow: 0 0 8px rgba(214, 177, 93, 0.2), inset 0 0 6px rgba(214, 177, 93, 0.1);
+          }
+          50% {
+            border-color: rgba(214, 177, 93, 0.85);
+            box-shadow: 0 0 20px rgba(214, 177, 93, 0.55), inset 0 0 10px rgba(214, 177, 93, 0.25);
+          }
+        }
+
+        .celebration-badge-glow {
+          animation: celebrationBadgeGlow 3s ease-in-out infinite;
         }
 
         /* 6. Gold Announcement Ticker: Smooth, Continuous 60 FPS, No Jump or Flickering */
         body.is-homepage .offers-marquee-track,
         body:has(#homepage-root) .offers-marquee-track {
+          display: flex !important;
+          width: max-content !important;
           will-change: transform;
           transform: translate3d(0, 0, 0);
           -webkit-transform: translate3d(0, 0, 0);
@@ -537,13 +611,46 @@ export default function HomeClient({
           -webkit-perspective: 1000px;
         }
 
-        /* 7. Respect prefers-reduced-motion */
+        /* 7. Hero Ambient Aura & Shimmer Line */
+        @keyframes heroAuraPulse {
+          0%, 100% {
+            opacity: 0.5;
+            transform: translate3d(0, 0, 0);
+          }
+          50% {
+            opacity: 0.85;
+            transform: translate3d(0, 0, 0);
+          }
+        }
+
+        .animate-hero-aura {
+          animation: heroAuraPulse 7s ease-in-out infinite;
+        }
+
+        @keyframes goldShimmerSweep {
+          0% {
+            transform: translateX(-100%);
+          }
+          30%, 100% {
+            transform: translateX(100%);
+          }
+        }
+
+        .animate-gold-shimmer-sweep {
+          animation: goldShimmerSweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        /* 8. Respect prefers-reduced-motion */
         @media (prefers-reduced-motion: reduce) {
-          body.is-homepage .hero-luxury-background,
+          body.is-homepage .hero-gold-sweep,
+          body.is-homepage .hero-heading-shimmer-sweep,
+          body.is-homepage .celebration-badge-glow,
           body.is-homepage .animate-hero-aura,
           body.is-homepage .animate-gold-shimmer-sweep,
           body.is-homepage a[aria-label="Chat on WhatsApp"] > div > div.rounded-full,
-          body:has(#homepage-root) .hero-luxury-background,
+          body:has(#homepage-root) .hero-gold-sweep,
+          body:has(#homepage-root) .hero-heading-shimmer-sweep,
+          body:has(#homepage-root) .celebration-badge-glow,
           body:has(#homepage-root) .animate-hero-aura,
           body:has(#homepage-root) .animate-gold-shimmer-sweep,
           body:has(#homepage-root) a[aria-label="Chat on WhatsApp"] > div > div.rounded-full {
@@ -562,30 +669,29 @@ export default function HomeClient({
       {/* 1. Full-Screen Luxury "Timeless Elegance" Hero Section */}
       {enabledSections.hero && (
         <section 
-          ref={heroSectionRef}
           className="relative min-h-[58vh] sm:min-h-[64vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#211813]" 
           aria-label="Hero Section"
         >
-          {/* Subtle Zoom & Parallax Movement Background */}
-          <motion.div 
-            className="absolute inset-0 overflow-hidden"
-            style={{ y: yHeroParallax, opacity: opacityHeroParallax }}
-          >
-            <div className="relative w-full h-full hero-luxury-background">
-              <Image 
-                src={heroConfig.imageUrl || liveMediaMap['home_hero_banner'] || (liveBanners && liveBanners.length > 0 ? liveBanners[0].imageUrl : (initialBanners && initialBanners.length > 0 ? initialBanners[0].imageUrl : "/uploads/hero_timeless_elegance.webp"))} 
-                alt="Aranyak Jewellers Masterpiece Collection" 
-                fill
-                className="object-cover no-select opacity-75"
-                priority
-              />
-            </div>
-          </motion.div>
+          {/* Completely Stationary Hero Background (Zero scale, zero zoom, original size) */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <Image 
+              src={heroConfig.imageUrl || liveMediaMap['home_hero_banner'] || (liveBanners && liveBanners.length > 0 ? liveBanners[0].imageUrl : (initialBanners && initialBanners.length > 0 ? initialBanners[0].imageUrl : "/uploads/hero_timeless_elegance.webp"))} 
+              alt="Aranyak Jewellers Masterpiece Collection" 
+              fill
+              className="object-cover no-select opacity-75"
+              priority
+            />
+          </div>
           
           {/* Multi-layered Warm Espresso & Gold Ambient Overlays */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/60 to-transparent pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/85 via-transparent to-[#211813]/85 pointer-events-none" />
           
+          {/* Subtle Animated Golden Light Sweep Moving Horizontally Across Hero Background */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden z-10" aria-hidden="true">
+            <div className="hero-gold-sweep" />
+          </div>
+
           {/* Soft glowing ambient gold highlights */}
           <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center overflow-hidden" aria-hidden="true">
             <div className="w-[500px] h-[300px] sm:w-[750px] sm:h-[420px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(214,177,93,0.15)_0%,rgba(214,177,93,0.03)_50%,transparent_75%)] blur-2xl animate-hero-aura" />
@@ -593,7 +699,7 @@ export default function HomeClient({
 
           {/* Gentle Floating Gold Dust Particles */}
           {mounted && (
-            <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden" aria-hidden="true">
+            <div className="absolute inset-0 pointer-events-none z-15 overflow-hidden" aria-hidden="true">
               {HERO_PARTICLES.map((p) => (
                 <motion.div
                   key={p.id}
@@ -603,13 +709,12 @@ export default function HomeClient({
                     top: p.top,
                     width: p.size,
                     height: p.size,
-                    boxShadow: `0 0 ${p.size * 3}px rgba(214,177,93,0.85)`,
+                    boxShadow: `0 0 ${p.size * 4}px 1px rgba(214,177,93,0.9)`,
                   }}
                   animate={{
-                    y: [-15, -130],
+                    y: [-10, -120],
                     x: [0, p.xOffset, 0],
-                    opacity: [0, 0.8, 0],
-                    scale: [0.8, 1.25, 0.8],
+                    opacity: [0, 0.85, 0],
                   }}
                   transition={{
                     duration: p.duration,
@@ -622,45 +727,49 @@ export default function HomeClient({
             </div>
           )}
           
-          {/* Centered Brand Name Title with Letter-by-Letter Reveal */}
+          {/* Centered Brand Name Title with Letter-by-Letter Reveal & Moving Metallic Gold Shimmer */}
           <div className="relative z-20 w-full px-6 max-w-6xl flex flex-col items-center justify-center text-center py-16 sm:py-20 md:py-24">
             <motion.h1
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-light text-[#C49A45] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)] relative"
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              className="relative inline-block font-serif font-light text-[#C49A45] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)]"
               style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9), 0 0 35px rgba(196,154,69,0.22)" }}
             >
-              {brandTitleWords.map((wordObj: { word: string; letters: { char: string; index: number }[] }, wIdx: number) => (
-                <span key={wIdx} className="inline-block whitespace-nowrap">
-                  {wordObj.letters.map((item: { char: string; index: number }) => (
-                    <motion.span
-                      key={item.index}
-                      className="inline-block"
-                      initial={{ opacity: 0, y: 22, filter: 'blur(5px)' }}
-                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                      transition={{
-                        duration: 0.85,
-                        delay: 0.12 + item.index * 0.042,
-                        ease: [0.16, 1, 0.3, 1]
-                      }}
-                    >
-                      {item.char}
-                    </motion.span>
-                  ))}
-                  {wIdx < brandTitleWords.length - 1 && (
-                    <span className="inline-block w-[0.28em]">&nbsp;</span>
-                  )}
-                </span>
-              ))}
+              <span className="relative z-10 inline-block">
+                {brandTitleWords.map((wordObj: { word: string; letters: { char: string; index: number }[] }, wIdx: number) => (
+                  <span key={wIdx} className="inline-block whitespace-nowrap">
+                    {wordObj.letters.map((item: { char: string; index: number }) => (
+                      <motion.span
+                        key={item.index}
+                        className="inline-block"
+                        initial={{ opacity: 0, y: 22 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.75,
+                          delay: 0.1 + item.index * 0.04,
+                          ease: [0.16, 1, 0.3, 1]
+                        }}
+                      >
+                        {item.char}
+                      </motion.span>
+                    ))}
+                    {wIdx < brandTitleWords.length - 1 && (
+                      <span className="inline-block w-[0.28em]">&nbsp;</span>
+                    )}
+                  </span>
+                ))}
+              </span>
+              {/* Moving metallic-gold shimmer across the text */}
+              <span className="hero-heading-shimmer-sweep" aria-hidden="true" />
             </motion.h1>
 
-            {/* Soft Subtitle Fade-In After Main Heading */}
+            {/* Subtitle Reveal: Smooth Fade & Upward Slide after heading finishes */}
             {heroConfig.tagline && (
               <motion.p 
-                initial={{ opacity: 0, y: 14 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.95, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
                 className="text-xs sm:text-sm text-[#E5D7C5] tracking-[0.25em] uppercase mt-4 sm:mt-5 font-light drop-shadow"
               >
                 {heroConfig.tagline}
@@ -688,12 +797,12 @@ export default function HomeClient({
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <motion.div
-              initial={{ opacity: 0, y: 26, scale: 0.94 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#211813] border border-[#D6B15D]/40 mb-4 shadow-md backdrop-blur-sm">
+              <div className="celebration-badge-glow inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#211813] border mb-4 shadow-md backdrop-blur-sm">
                 <span className="text-xs">🌸</span>
                 <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#D6B15D]">
                   FESTIVE & WEDDING CELEBRATION
