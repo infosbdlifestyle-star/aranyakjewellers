@@ -85,8 +85,8 @@ const Header = ({
     <div className="sticky top-0 z-50 w-full shadow-lg">
       <header className={`relative z-[100] w-full border-b transition-all duration-500 ${
         isScrolled 
-          ? 'bg-[#211813]/98 backdrop-blur-md border-[#D6B15D]/30 shadow-2xl' 
-          : 'bg-[#211813]/95 backdrop-blur-md border-[#D6B15D]/20'
+          ? 'bg-[#FFFFFF] backdrop-blur-md border-[#D6B15D]/30 shadow-2xl' 
+          : 'bg-[#FFFFFF] backdrop-blur-md border-[#D6B15D]/20'
       }`}>
         <div className="container mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
           {/* Logo on the Left - Mobile & Desktop */}
