@@ -5,7 +5,7 @@ import { api } from '@/lib/api';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Aranyak Jewellers | Timeless Elegance',
+  title: 'Aranyak Jewellers | Tripura’s Best Jewellery Brand',
   description: 'Premium gold and diamond jewellery stores across Tripura in Agartala, Dharmanagar, Kailashahar, and Khowai.',
 };
 

@@ -42,7 +42,7 @@ export default function AdminHomepageManagerPage() {
   // Hero State
   const [heroConfig, setHeroConfig] = useState({
     brandTitle: 'ARANYAK JEWELLERS',
-    tagline: 'Timeless Elegance & Royal Heritage',
+    tagline: 'Tripura’s Best Jewellery Brand',
     imageUrl: '/Website banner .png',
     height: '64vh',
     alignment: 'center',

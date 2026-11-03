@@ -259,7 +259,7 @@ export default function HomeClient({
         const parsed = JSON.parse(liveSettings['homepage_hero_config']);
         return {
           brandTitle: parsed.brandTitle || 'ARANYAK JEWELLERS',
-          tagline: parsed.tagline || 'Timeless Elegance & Royal Heritage',
+          tagline: parsed.tagline === 'Timeless Elegance & Royal Heritage' ? 'Tripura’s Best Jewellery Brand' : (parsed.tagline || 'Tripura’s Best Jewellery Brand'),
           imageUrl: parsed.imageUrl || '',
           height: parsed.height || '64vh',
           alignment: parsed.alignment || 'center',
@@ -269,7 +269,7 @@ export default function HomeClient({
     }
     return {
       brandTitle: 'ARANYAK JEWELLERS',
-      tagline: 'Timeless Elegance & Royal Heritage',
+      tagline: 'Tripura’s Best Jewellery Brand',
       imageUrl: '',
       height: '64vh',
       alignment: 'center',
@@ -578,7 +578,7 @@ export default function HomeClient({
         }
       `}} />
       
-      {/* 1. Full-Screen Luxury "Timeless Elegance" Hero Section */}
+      {/* 1. Full-Screen Luxury "Tripura’s Best Jewellery Brand" Hero Section */}
       {enabledSections.hero && (
         <section 
           className="relative min-h-[58vh] sm:min-h-[64vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#211813]" 
@@ -669,14 +669,14 @@ export default function HomeClient({
 
             {/* Subtitle Reveal: Smooth Fade & Upward Slide after heading finishes */}
             {heroConfig.tagline && (
-              <motion.p 
+              <motion.h2 
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.95, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
                 className="text-xs sm:text-sm text-[#E5D7C5] tracking-[0.25em] uppercase mt-4 sm:mt-5 font-light drop-shadow"
               >
-                {heroConfig.tagline}
-              </motion.p>
+                {heroConfig.tagline === 'Timeless Elegance & Royal Heritage' ? 'Tripura’s Best Jewellery Brand' : heroConfig.tagline}
+              </motion.h2>
             )}
 
             {/* Subtle Gold Shimmer Accent Line */}
