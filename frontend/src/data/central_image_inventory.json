@@ -1,0 +1,1136 @@
+{
+  "/uploads/hero_timeless_elegance.webp": {
+    "entity_type": "homepage",
+    "entity_id": "hero_banner",
+    "description": "Homepage stationary main luxury banner",
+    "hash": "094cdd845d50ef8f1f781e1aa9632dd0",
+    "path": "/uploads/hero_timeless_elegance.webp"
+  },
+  "/uploads/top_picks_bridal_elegance.webp": {
+    "entity_type": "homepage",
+    "entity_id": "top_picks_bridal",
+    "description": "Top Picks Bridal Elegance poster",
+    "hash": "652b99d06c0f471d981aa3b31595ba8c",
+    "path": "/uploads/top_picks_bridal_elegance.webp"
+  },
+  "/uploads/top_picks_party_glow.webp": {
+    "entity_type": "homepage",
+    "entity_id": "top_picks_party",
+    "description": "Top Picks Party Glow poster",
+    "hash": "765093c5344b674cecae9f79549e0095",
+    "path": "/uploads/top_picks_party_glow.webp"
+  },
+  "/uploads/top_picks_everyday_classics.webp": {
+    "entity_type": "homepage",
+    "entity_id": "top_picks_everyday",
+    "description": "Top Picks Everyday Classics poster",
+    "hash": "6fea107fc90c09d370469f6d719bfe0e",
+    "path": "/uploads/top_picks_everyday_classics.webp"
+  },
+  "/uploads/top_picks_traditional_heritage.webp": {
+    "entity_type": "homepage",
+    "entity_id": "top_picks_traditional",
+    "description": "Top Picks Traditional Heritage poster",
+    "hash": "e4ce2c62acd3356ec6f38192ec5e1360",
+    "path": "/uploads/top_picks_traditional_heritage.webp"
+  },
+  "/uploads/top_picks_diamond_dreams.webp": {
+    "entity_type": "homepage",
+    "entity_id": "top_picks_diamond",
+    "description": "Top Picks Diamond Dreams poster",
+    "hash": "7c131db2d78f32a3dab337ef40647a4a",
+    "path": "/uploads/top_picks_diamond_dreams.webp"
+  },
+  "/uploads/top_picks_gold_essentials.webp": {
+    "entity_type": "homepage",
+    "entity_id": "top_picks_gold",
+    "description": "Top Picks Gold Essentials poster",
+    "hash": "e6216b83521c31dc003276f671f5250e",
+    "path": "/uploads/top_picks_gold_essentials.webp"
+  },
+  "/uploads/craftsmanship_poster.webp": {
+    "entity_type": "homepage",
+    "entity_id": "craftsmanship",
+    "description": "Behind the Art craftsmanship video poster",
+    "hash": "ab857c9ac61f4616a093041fb26dd966",
+    "path": "/uploads/craftsmanship_poster.webp"
+  },
+  "/uploads/cat_bridal_heritage.webp": {
+    "entity_type": "homepage",
+    "entity_id": "showcase_bridal",
+    "description": "High Jewellery Bridal Heritage showcase card",
+    "hash": "7fc1fc00cd689fd20a8ed7e15aec24f8",
+    "path": "/uploads/cat_bridal_heritage.webp"
+  },
+  "/uploads/cat_royal_gold.webp": {
+    "entity_type": "homepage",
+    "entity_id": "showcase_gold",
+    "description": "High Jewellery Royal Gold showcase card",
+    "hash": "a177efc6ed3283de379160fe57476cd8",
+    "path": "/uploads/cat_royal_gold.webp"
+  },
+  "/uploads/cat_certified_diamonds.webp": {
+    "entity_type": "homepage",
+    "entity_id": "showcase_diamond",
+    "description": "High Jewellery Certified Diamonds showcase card",
+    "hash": "35375d3bdcfd914f0ada2bef626bb698",
+    "path": "/uploads/cat_certified_diamonds.webp"
+  },
+  "/uploads/cat_antique_silver_heritage.webp": {
+    "entity_type": "homepage",
+    "entity_id": "showcase_silver",
+    "description": "High Jewellery Pure 925 Silver showcase card",
+    "hash": "61ed0a178b04b5663c1e1819e0e90d77",
+    "path": "/uploads/cat_antique_silver_heritage.webp"
+  },
+  "/uploads/banner_bridal_gold.webp": {
+    "entity_type": "carousel",
+    "entity_id": "bridal_banner",
+    "description": "Hero Carousel bridal banner desktop",
+    "hash": "5abdb2d7a0d1e5825cccb3cded17c629",
+    "path": "/uploads/banner_bridal_gold.webp"
+  },
+  "/uploads/banner_bridal_gold_mobile.webp": {
+    "entity_type": "carousel",
+    "entity_id": "bridal_banner_mob",
+    "description": "Hero Carousel bridal banner mobile",
+    "hash": "a37fc383bc168c44235abbd48c703da9",
+    "path": "/uploads/banner_bridal_gold_mobile.webp"
+  },
+  "/uploads/banner_diamond_offer.webp": {
+    "entity_type": "carousel",
+    "entity_id": "diamond_banner",
+    "description": "Hero Carousel diamond banner desktop",
+    "hash": "7fb8df4fc25d81a8e66e677480cd1557",
+    "path": "/uploads/banner_diamond_offer.webp"
+  },
+  "/uploads/banner_diamond_offer_mobile.webp": {
+    "entity_type": "carousel",
+    "entity_id": "diamond_banner_mob",
+    "description": "Hero Carousel diamond banner mobile",
+    "hash": "6b0a46a09a22a1013bd4e91827ebca9b",
+    "path": "/uploads/banner_diamond_offer_mobile.webp"
+  },
+  "/uploads/gallery_royal_bridal_feature.webp": {
+    "entity_type": "category_hero",
+    "entity_id": "gold_meta_hero",
+    "description": "Category page Gold hero banner",
+    "hash": "d955b87ea207b9e322ee8f209851648c",
+    "path": "/uploads/gallery_royal_bridal_feature.webp"
+  },
+  "/uploads/gallery_solitaire_feature.webp": {
+    "entity_type": "category_hero",
+    "entity_id": "diamond_meta_hero",
+    "description": "Category page Diamond hero banner",
+    "hash": "92892e534ab2691ab7cc5eb4d5df2d51",
+    "path": "/uploads/gallery_solitaire_feature.webp"
+  },
+  "/uploads/silver_necklace_rock_diya.webp": {
+    "entity_type": "category_hero",
+    "entity_id": "silver_meta_hero",
+    "description": "Category page Silver hero banner",
+    "hash": "f6741cd9e4fd902bd49f55b778b00479",
+    "path": "/uploads/silver_necklace_rock_diya.webp"
+  },
+  "/hero-necklace.png": {
+    "entity_type": "category_card",
+    "entity_id": "gold_main",
+    "description": "Gold main category cover",
+    "hash": "0212f9b908a9a325afdacd8cc2d7ebd3",
+    "path": "/hero-necklace.png"
+  },
+  "/IMG_20260603_130220.png": {
+    "entity_type": "category_card",
+    "entity_id": "gold-necklace-sets",
+    "description": "Gold Necklace Sets category cover",
+    "hash": "1a65e7d0f6362da465a512b839b06d98",
+    "path": "/IMG_20260603_130220.png"
+  },
+  "/IMG_20260603_130343.png": {
+    "entity_type": "category_card",
+    "entity_id": "gold-pendant-sets",
+    "description": "Gold Pendant Sets category cover",
+    "hash": "3c05233e77bc2424d72ccd00b2074d2e",
+    "path": "/IMG_20260603_130343.png"
+  },
+  "/IMG_20260603_134643.png": {
+    "entity_type": "category_card",
+    "entity_id": "gold-rings-lady",
+    "description": "Gold Ladys Rings category cover",
+    "hash": "9c665c31bb6c4c7cf1226ee0103e58e7",
+    "path": "/IMG_20260603_134643.png"
+  },
+  "/IMG_20260603_133507.png": {
+    "entity_type": "category_card",
+    "entity_id": "gold-rings-gents",
+    "description": "Gold Gents Rings category cover",
+    "hash": "1dbcacaa1a94448f8f45130e481a9764",
+    "path": "/IMG_20260603_133507.png"
+  },
+  "/featured-earrings.png": {
+    "entity_type": "category_card",
+    "entity_id": "gold-eartops",
+    "description": "Gold Eartops category cover",
+    "hash": "967c9ff98cfdb952dc1642c839354749",
+    "path": "/featured-earrings.png"
+  },
+  "/IMG_20260603_132136.png": {
+    "entity_type": "category_card",
+    "entity_id": "gold-bracelets",
+    "description": "Gold Bracelets category cover",
+    "hash": "f57c7ba523773bc0bc9872b37d2abd51",
+    "path": "/IMG_20260603_132136.png"
+  },
+  "/IMG_20260603_142317.png": {
+    "entity_type": "category_card",
+    "entity_id": "gold-bangles",
+    "description": "Gold Bangles category cover",
+    "hash": "0dce4d41077223676ef0254bd75359f3",
+    "path": "/IMG_20260603_142317.png"
+  },
+  "/IMG_20260603_133228.png": {
+    "entity_type": "category_card",
+    "entity_id": "gold-noa",
+    "description": "Gold Noa category cover",
+    "hash": "30edb98ea2115b2106064a827ef6ae2b",
+    "path": "/IMG_20260603_133228.png"
+  },
+  "/IMG_20260603_134842.png": {
+    "entity_type": "category_card",
+    "entity_id": "gold-chains",
+    "description": "Gold Chains category cover",
+    "hash": "338bfa7aa2242413f0005d065d599599",
+    "path": "/IMG_20260603_134842.png"
+  },
+  "/IMG_20260603_141310.png": {
+    "entity_type": "category_card",
+    "entity_id": "gold-rakhi",
+    "description": "Gold Rakhi category cover",
+    "hash": "d0169173e4e8a5bc3b2387e2b75903e0",
+    "path": "/IMG_20260603_141310.png"
+  },
+  "/diamond_solitaire_ring.jpg": {
+    "entity_type": "category_card",
+    "entity_id": "diamond_main",
+    "description": "Diamond main category cover",
+    "hash": "1cdd18c99800f845de999a114ea20250",
+    "path": "/diamond_solitaire_ring.jpg"
+  },
+  "/diamond_pendant_chain.jpg": {
+    "entity_type": "category_card",
+    "entity_id": "diamond-chains-pendant",
+    "description": "Diamond Chains with Pendant cover",
+    "hash": "2a411554a32d9f4c73639e26a2110744",
+    "path": "/diamond_pendant_chain.jpg"
+  },
+  "/IMG_20260603_125514.png": {
+    "entity_type": "category_card",
+    "entity_id": "diamond-rings",
+    "description": "Diamond Rings category cover",
+    "hash": "5860fbe96d56284b0005f50a75421692",
+    "path": "/IMG_20260603_125514.png"
+  },
+  "/IMG_20260603_141216.png": {
+    "entity_type": "category_card",
+    "entity_id": "diamond-earrings",
+    "description": "Diamond Earrings category cover",
+    "hash": "8c41acb0cf7f68535401faca45d27a2b",
+    "path": "/IMG_20260603_141216.png"
+  },
+  "/IMG_20260603_135005.png": {
+    "entity_type": "category_card",
+    "entity_id": "diamond-nosepins",
+    "description": "Diamond Nosepins category cover",
+    "hash": "1724d0d2a1856a1aabc29b2f09180280",
+    "path": "/IMG_20260603_135005.png"
+  },
+  "/silver_luxury_necklace.jpg": {
+    "entity_type": "category_card",
+    "entity_id": "silver_main",
+    "description": "Silver main category cover",
+    "hash": "a24836310211bfdd1353fe2e0ebb5e3b",
+    "path": "/silver_luxury_necklace.jpg"
+  },
+  "/uploads/silver_necklace_carved_chest.webp": {
+    "entity_type": "category_card",
+    "entity_id": "silver-necklaces",
+    "description": "Silver Necklaces category cover",
+    "hash": "1437c5ca7c275639165dbc2b0a31e406",
+    "path": "/uploads/silver_necklace_carved_chest.webp"
+  },
+  "/uploads/silver_bangles_makara_pair.webp": {
+    "entity_type": "category_card",
+    "entity_id": "silver-bangles",
+    "description": "Silver Bangles category cover",
+    "hash": "c7b5aba534b2e70f8fbcbe626a350a0d",
+    "path": "/uploads/silver_bangles_makara_pair.webp"
+  },
+  "/silver_rings_luxury.jpg": {
+    "entity_type": "category_card",
+    "entity_id": "silver-rings",
+    "description": "Silver Rings category cover",
+    "hash": "2631d1dc447c8aa6da697d7371607239",
+    "path": "/silver_rings_luxury.jpg"
+  },
+  "/silver_nosepin_luxury.jpg": {
+    "entity_type": "category_card",
+    "entity_id": "silver-nosepins",
+    "description": "Silver Nosepins category cover",
+    "hash": "34667632009c3e727fdb2eb1ace4e842",
+    "path": "/silver_nosepin_luxury.jpg"
+  },
+  "/silver_rakhi_luxury.jpg": {
+    "entity_type": "category_card",
+    "entity_id": "silver-rakhi",
+    "description": "Silver Rakhi category cover",
+    "hash": "5d94ff70dfbba8c72effe62db28b53b8",
+    "path": "/silver_rakhi_luxury.jpg"
+  },
+  "/IMG_20260603_141414.png": {
+    "entity_type": "category_card",
+    "entity_id": "costume-jewellery",
+    "description": "Costume Jewellery category cover",
+    "hash": "e7bd595ebc09c9d2bb5d209508dd75d6",
+    "path": "/IMG_20260603_141414.png"
+  },
+  "/bridal-edit.png": {
+    "entity_type": "category_card",
+    "entity_id": "offers-deals",
+    "description": "Offers & Deals category cover",
+    "hash": "d96412d764cd83336bfb989b0fadbbdf",
+    "path": "/bridal-edit.png"
+  },
+  "/uploads/gold-bala-filigree-pair-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-1",
+    "description": "Handcrafted 22K Gold Filigree Bala Bangles Pair",
+    "hash": "42aeb4260890c6a2d195b2f48ede11e2",
+    "path": "/uploads/gold-bala-filigree-pair-1.webp"
+  },
+  "/uploads/gold-bala-filigree-pair-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-1",
+    "description": "Handcrafted 22K Gold Filigree Bala Bangles Pair",
+    "hash": "89d8eb1c4bcba23e8b39c34982a8f4ba",
+    "path": "/uploads/gold-bala-filigree-pair-2.webp"
+  },
+  "/uploads/gold-bala-filigree-pair-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-1",
+    "description": "Handcrafted 22K Gold Filigree Bala Bangles Pair",
+    "hash": "e332c9384598dff4e91d74425e62d4f0",
+    "path": "/uploads/gold-bala-filigree-pair-3.webp"
+  },
+  "/uploads/gold-bala-filigree-pair-4.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-1",
+    "description": "Handcrafted 22K Gold Filigree Bala Bangles Pair",
+    "hash": "5fa63c40e46102d521701aa8ba03e6f1",
+    "path": "/uploads/gold-bala-filigree-pair-4.webp"
+  },
+  "/uploads/gold-ratanchoor-bracelet-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-2",
+    "description": "22K Gold Floral Filigree Ratanchoor Bracelet",
+    "hash": "46ecdab80ba0f377a84f022b7b476b23",
+    "path": "/uploads/gold-ratanchoor-bracelet-1.webp"
+  },
+  "/uploads/gold-ratanchoor-bracelet-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-2",
+    "description": "22K Gold Floral Filigree Ratanchoor Bracelet",
+    "hash": "b0ba417a8908cf84fc14fc941dd08555",
+    "path": "/uploads/gold-ratanchoor-bracelet-2.webp"
+  },
+  "/uploads/gold-ratanchoor-bracelet-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-2",
+    "description": "22K Gold Floral Filigree Ratanchoor Bracelet",
+    "hash": "ff8297822536540ab55c0994c77daef3",
+    "path": "/uploads/gold-ratanchoor-bracelet-3.webp"
+  },
+  "/uploads/gold-filigree-jhumkas-vintage-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-3",
+    "description": "Vintage 22K Gold Filigree Jhumka Drop Earrings",
+    "hash": "e52dc83dec920437e11eaca3868722f8",
+    "path": "/uploads/gold-filigree-jhumkas-vintage-1.webp"
+  },
+  "/uploads/gold-filigree-jhumkas-vintage-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-3",
+    "description": "Vintage 22K Gold Filigree Jhumka Drop Earrings",
+    "hash": "987471bb307c209a887fde87f98fe91e",
+    "path": "/uploads/gold-filigree-jhumkas-vintage-2.webp"
+  },
+  "/uploads/gold-filigree-jhumkas-vintage-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-3",
+    "description": "Vintage 22K Gold Filigree Jhumka Drop Earrings",
+    "hash": "1cbb567e36e772af6c0d484a6ca6e330",
+    "path": "/uploads/gold-filigree-jhumkas-vintage-3.webp"
+  },
+  "/uploads/gold-floral-bridal-choker-set-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-4",
+    "description": "Opulent 22K Gold Floral Bridal Choker & Jhumkas Set",
+    "hash": "2fd89bcf0a1ba1280bf1ae9e9ee1d480",
+    "path": "/uploads/gold-floral-bridal-choker-set-1.webp"
+  },
+  "/uploads/gold-floral-bridal-choker-set-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-4",
+    "description": "Opulent 22K Gold Floral Bridal Choker & Jhumkas Set",
+    "hash": "1116bd73318b9f18f78b46415f1f3b23",
+    "path": "/uploads/gold-floral-bridal-choker-set-2.webp"
+  },
+  "/uploads/gold-floral-bridal-choker-set-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-4",
+    "description": "Opulent 22K Gold Floral Bridal Choker & Jhumkas Set",
+    "hash": "cd0466d934cd80654139c3271e1bcbdf",
+    "path": "/uploads/gold-floral-bridal-choker-set-3.webp"
+  },
+  "/uploads/gold-floral-bridal-choker-set-4.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-4",
+    "description": "Opulent 22K Gold Floral Bridal Choker & Jhumkas Set",
+    "hash": "cc0abfc50991f28ea72674562fe855d1",
+    "path": "/uploads/gold-floral-bridal-choker-set-4.webp"
+  },
+  "/uploads/gold-dome-cocktail-ring-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-5",
+    "description": "Royal 22K Gold Dome Filigree Cocktail Ring",
+    "hash": "13e9717160cd29795ffc8659d82cb7f9",
+    "path": "/uploads/gold-dome-cocktail-ring-1.webp"
+  },
+  "/uploads/gold-dome-cocktail-ring-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-5",
+    "description": "Royal 22K Gold Dome Filigree Cocktail Ring",
+    "hash": "2fd23a86332cc782d27df3f41fb31d8c",
+    "path": "/uploads/gold-dome-cocktail-ring-2.webp"
+  },
+  "/uploads/gold-dome-cocktail-ring-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-5",
+    "description": "Royal 22K Gold Dome Filigree Cocktail Ring",
+    "hash": "b1df7b1280f56356c40312f2febc456c",
+    "path": "/uploads/gold-dome-cocktail-ring-3.webp"
+  },
+  "/uploads/gold-royal-bridal-trousseau-choker-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-6",
+    "description": "Grand Royal 22K Gold Bridal Trousseau Choker Set",
+    "hash": "631b2a06e2e348eb8e61da31abdb2be9",
+    "path": "/uploads/gold-royal-bridal-trousseau-choker-1.webp"
+  },
+  "/uploads/gold-royal-bridal-trousseau-choker-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-6",
+    "description": "Grand Royal 22K Gold Bridal Trousseau Choker Set",
+    "hash": "df511e50b046cd9b652e0b8d606bd031",
+    "path": "/uploads/gold-royal-bridal-trousseau-choker-2.webp"
+  },
+  "/uploads/gold-royal-bridal-trousseau-choker-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-6",
+    "description": "Grand Royal 22K Gold Bridal Trousseau Choker Set",
+    "hash": "e6b7ca67df4c47450092d7f1bda742cf",
+    "path": "/uploads/gold-royal-bridal-trousseau-choker-3.webp"
+  },
+  "/uploads/gold-royal-bridal-trousseau-choker-4.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-6",
+    "description": "Grand Royal 22K Gold Bridal Trousseau Choker Set",
+    "hash": "4029f3f5c4d657ccef46cce044960144",
+    "path": "/uploads/gold-royal-bridal-trousseau-choker-4.webp"
+  },
+  "/uploads/gold-carved-chur-bangles-pair-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-7",
+    "description": "Sculpted 22K Gold Chur Bangles Pair",
+    "hash": "ebae98a5893160ef12d4133893661af5",
+    "path": "/uploads/gold-carved-chur-bangles-pair-1.webp"
+  },
+  "/uploads/gold-carved-chur-bangles-pair-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-7",
+    "description": "Sculpted 22K Gold Chur Bangles Pair",
+    "hash": "175953fd7286387cafd23add214e9530",
+    "path": "/uploads/gold-carved-chur-bangles-pair-2.webp"
+  },
+  "/uploads/gold-carved-chur-bangles-pair-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-7",
+    "description": "Sculpted 22K Gold Chur Bangles Pair",
+    "hash": "2c5278c19a697ea136bab0fb6fbc7a63",
+    "path": "/uploads/gold-carved-chur-bangles-pair-3.webp"
+  },
+  "/uploads/gold-peacock-filigree-necklace-set-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-8",
+    "description": "Heritage Peacock 22K Gold Filigree Necklace Set",
+    "hash": "c9726e0a144d7b13b17945649a5667ce",
+    "path": "/uploads/gold-peacock-filigree-necklace-set-1.webp"
+  },
+  "/uploads/gold-peacock-filigree-necklace-set-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-8",
+    "description": "Heritage Peacock 22K Gold Filigree Necklace Set",
+    "hash": "18653cc3ee4d142b3f2bc3392859ca45",
+    "path": "/uploads/gold-peacock-filigree-necklace-set-2.webp"
+  },
+  "/uploads/gold-peacock-filigree-necklace-set-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-8",
+    "description": "Heritage Peacock 22K Gold Filigree Necklace Set",
+    "hash": "72abad008769bf3316a36299d5c7b562",
+    "path": "/uploads/gold-peacock-filigree-necklace-set-3.webp"
+  },
+  "/uploads/gold-chandelier-earrings-pair-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-9",
+    "description": "Artisanal 22K Gold Chandelier Statement Earrings",
+    "hash": "94a071e231a4e7f9ac1cb57433635731",
+    "path": "/uploads/gold-chandelier-earrings-pair-1.webp"
+  },
+  "/uploads/gold-chandelier-earrings-pair-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-9",
+    "description": "Artisanal 22K Gold Chandelier Statement Earrings",
+    "hash": "bfbc8a95c6581e5cb61fa6ba6e5c9616",
+    "path": "/uploads/gold-chandelier-earrings-pair-2.webp"
+  },
+  "/uploads/gold-chandelier-earrings-pair-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-9",
+    "description": "Artisanal 22K Gold Chandelier Statement Earrings",
+    "hash": "8cd425bd7cc4906ae1d6561ca7edc9fc",
+    "path": "/uploads/gold-chandelier-earrings-pair-3.webp"
+  },
+  "/uploads/gold-chandbali-crescent-earrings-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-10",
+    "description": "Traditional 22K Gold Chandbali Crescent Earrings",
+    "hash": "45ae5b9be43f1f0ad1020e50a10f2950",
+    "path": "/uploads/gold-chandbali-crescent-earrings-1.webp"
+  },
+  "/uploads/gold-chandbali-crescent-earrings-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-10",
+    "description": "Traditional 22K Gold Chandbali Crescent Earrings",
+    "hash": "5c60bbd822e29cefd9f42b29bf476ddc",
+    "path": "/uploads/gold-chandbali-crescent-earrings-2.webp"
+  },
+  "/uploads/gold-chandbali-crescent-earrings-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-10",
+    "description": "Traditional 22K Gold Chandbali Crescent Earrings",
+    "hash": "4ca18957ba663778a19763f66e581949",
+    "path": "/uploads/gold-chandbali-crescent-earrings-3.webp"
+  },
+  "/uploads/gold-chandbali-crescent-earrings-4.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-10",
+    "description": "Traditional 22K Gold Chandbali Crescent Earrings",
+    "hash": "10fe47c11e993aaeda27107e569c7dbe",
+    "path": "/uploads/gold-chandbali-crescent-earrings-4.webp"
+  },
+  "/uploads/gold-peacock-pendant-chain-set-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-11",
+    "description": "Engraved Peacock 22K Gold Pendant & Chain Set",
+    "hash": "677e4941b6693e686ba2b1d8e54027b6",
+    "path": "/uploads/gold-peacock-pendant-chain-set-1.webp"
+  },
+  "/uploads/gold-peacock-pendant-chain-set-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-11",
+    "description": "Engraved Peacock 22K Gold Pendant & Chain Set",
+    "hash": "fd6fd0bc5f13e08d9444d7a16d0fbe73",
+    "path": "/uploads/gold-peacock-pendant-chain-set-2.webp"
+  },
+  "/uploads/gold-peacock-pendant-chain-set-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-11",
+    "description": "Engraved Peacock 22K Gold Pendant & Chain Set",
+    "hash": "54ff7ef1a8a54982785961deb38ce233",
+    "path": "/uploads/gold-peacock-pendant-chain-set-3.webp"
+  },
+  "/uploads/gold-radiant-bridal-necklace-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-12",
+    "description": "Radiant Sunlight 22K Gold Bridal Necklace",
+    "hash": "7e989c8dab717eb7c0bd73d2a77cedfd",
+    "path": "/uploads/gold-radiant-bridal-necklace-1.webp"
+  },
+  "/uploads/gold-radiant-bridal-necklace-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-12",
+    "description": "Radiant Sunlight 22K Gold Bridal Necklace",
+    "hash": "1f82dafc36cf26df5ff0cc408fc3cd94",
+    "path": "/uploads/gold-radiant-bridal-necklace-2.webp"
+  },
+  "/uploads/gold-radiant-bridal-necklace-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-12",
+    "description": "Radiant Sunlight 22K Gold Bridal Necklace",
+    "hash": "12399a2e1fc9f5513565d5c3927a1c1f",
+    "path": "/uploads/gold-radiant-bridal-necklace-3.webp"
+  },
+  "/uploads/gold-grand-bridal-choker-set-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-13",
+    "description": "Heirloom 22K Gold Grand Bridal Choker & Earrings",
+    "hash": "2897d9aa490da6dc23db23bc0347136b",
+    "path": "/uploads/gold-grand-bridal-choker-set-1.webp"
+  },
+  "/uploads/gold-grand-bridal-choker-set-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-13",
+    "description": "Heirloom 22K Gold Grand Bridal Choker & Earrings",
+    "hash": "fa03e7c86fc7d291094ae9aea2afba01",
+    "path": "/uploads/gold-grand-bridal-choker-set-2.webp"
+  },
+  "/uploads/gold-grand-bridal-choker-set-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-13",
+    "description": "Heirloom 22K Gold Grand Bridal Choker & Earrings",
+    "hash": "3a8ea88da15a59c78a24caa8f0d01e76",
+    "path": "/uploads/gold-grand-bridal-choker-set-3.webp"
+  },
+  "/uploads/gold-sculpted-filigree-necklace-set-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-14",
+    "description": "Sculpted 22K Gold Filigree Necklace & Earring Set",
+    "hash": "e6e78801aceaf5f5f490df490467a11f",
+    "path": "/uploads/gold-sculpted-filigree-necklace-set-1.webp"
+  },
+  "/uploads/gold-sculpted-filigree-necklace-set-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-14",
+    "description": "Sculpted 22K Gold Filigree Necklace & Earring Set",
+    "hash": "9760407a01eaf954ceea4adad49ee027",
+    "path": "/uploads/gold-sculpted-filigree-necklace-set-2.webp"
+  },
+  "/uploads/gold-sculpted-filigree-necklace-set-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-14",
+    "description": "Sculpted 22K Gold Filigree Necklace & Earring Set",
+    "hash": "05cda98d1dbcc76b7bbcb8ba39e2576d",
+    "path": "/uploads/gold-sculpted-filigree-necklace-set-3.webp"
+  },
+  "/uploads/gold-royal-layered-sitahar-haar-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-15",
+    "description": "Grand Layered 22K Gold Sitahar Haar & Jhumkas",
+    "hash": "b2ff959589544c0f8e465ac33a8d0d32",
+    "path": "/uploads/gold-royal-layered-sitahar-haar-1.webp"
+  },
+  "/uploads/gold-royal-layered-sitahar-haar-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-15",
+    "description": "Grand Layered 22K Gold Sitahar Haar & Jhumkas",
+    "hash": "ab9c7ec29318b9cacb69c801d1159847",
+    "path": "/uploads/gold-royal-layered-sitahar-haar-2.webp"
+  },
+  "/uploads/gold-royal-layered-sitahar-haar-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-15",
+    "description": "Grand Layered 22K Gold Sitahar Haar & Jhumkas",
+    "hash": "c8f7a3446dab06cfbe3db61ac6576fd5",
+    "path": "/uploads/gold-royal-layered-sitahar-haar-3.webp"
+  },
+  "/uploads/gold-royal-layered-sitahar-haar-4.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-15",
+    "description": "Grand Layered 22K Gold Sitahar Haar & Jhumkas",
+    "hash": "c8a39ee64ba11c657b1a7c09f4a4a88f",
+    "path": "/uploads/gold-royal-layered-sitahar-haar-4.webp"
+  },
+  "/uploads/gold-heavy-nakshi-bangles-pair-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-16",
+    "description": "Heavy 22K Gold Nakshi Floral Bangles Pair",
+    "hash": "57520f07cacb0da823ecd5912b4c93a2",
+    "path": "/uploads/gold-heavy-nakshi-bangles-pair-1.webp"
+  },
+  "/uploads/gold-heavy-nakshi-bangles-pair-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-16",
+    "description": "Heavy 22K Gold Nakshi Floral Bangles Pair",
+    "hash": "481183b74568b66e14d2d3dbdfa02417",
+    "path": "/uploads/gold-heavy-nakshi-bangles-pair-2.webp"
+  },
+  "/uploads/gold-heavy-nakshi-bangles-pair-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-16",
+    "description": "Heavy 22K Gold Nakshi Floral Bangles Pair",
+    "hash": "23619279cc524396c7e08fd56ac24b3e",
+    "path": "/uploads/gold-heavy-nakshi-bangles-pair-3.webp"
+  },
+  "/uploads/gold-floral-pendant-earrings-set-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-17",
+    "description": "Aesthetic 22K Gold Floral Pendant & Earrings Set",
+    "hash": "e6aec8013987b06a7fd8cfdd8f3e5128",
+    "path": "/uploads/gold-floral-pendant-earrings-set-1.webp"
+  },
+  "/uploads/gold-floral-pendant-earrings-set-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-17",
+    "description": "Aesthetic 22K Gold Floral Pendant & Earrings Set",
+    "hash": "f4c11f2c2089f93486b3ba41b8fedaf5",
+    "path": "/uploads/gold-floral-pendant-earrings-set-2.webp"
+  },
+  "/uploads/gold-floral-pendant-earrings-set-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-17",
+    "description": "Aesthetic 22K Gold Floral Pendant & Earrings Set",
+    "hash": "8a3168cd44a13ccb56a657768ead9855",
+    "path": "/uploads/gold-floral-pendant-earrings-set-3.webp"
+  },
+  "/uploads/gold-floral-pendant-earrings-set-4.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-17",
+    "description": "Aesthetic 22K Gold Floral Pendant & Earrings Set",
+    "hash": "3e5f5b4c4f012de35b33167d2ef1f078",
+    "path": "/uploads/gold-floral-pendant-earrings-set-4.webp"
+  },
+  "/uploads/gold-filigree-leaf-necklace-set-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-18",
+    "description": "Cascading Leaf 22K Gold Filigree Necklace Set",
+    "hash": "d61db3a0822ca3f2af2fa4d27063c370",
+    "path": "/uploads/gold-filigree-leaf-necklace-set-1.webp"
+  },
+  "/uploads/gold-filigree-leaf-necklace-set-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-18",
+    "description": "Cascading Leaf 22K Gold Filigree Necklace Set",
+    "hash": "06fcb32ea9fa50be284154531aae911b",
+    "path": "/uploads/gold-filigree-leaf-necklace-set-2.webp"
+  },
+  "/uploads/gold-noa-bandha-bridal-bangles-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-19",
+    "description": "Traditional Bengali 22K Gold Noa Bandha Bangles",
+    "hash": "6914a40c1d2658308f41c83c0b5c6410",
+    "path": "/uploads/gold-noa-bandha-bridal-bangles-1.webp"
+  },
+  "/uploads/gold-noa-bandha-bridal-bangles-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-19",
+    "description": "Traditional Bengali 22K Gold Noa Bandha Bangles",
+    "hash": "fd191cb682e0f92cc4ee086bded14f7d",
+    "path": "/uploads/gold-noa-bandha-bridal-bangles-2.webp"
+  },
+  "/uploads/gold-regal-lotus-necklace-set-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-20",
+    "description": "Sacred Lotus 22K Gold Bridal Necklace Set",
+    "hash": "84e9ebc23c42727162b01376751d867e",
+    "path": "/uploads/gold-regal-lotus-necklace-set-1.webp"
+  },
+  "/uploads/gold-regal-lotus-necklace-set-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-20",
+    "description": "Sacred Lotus 22K Gold Bridal Necklace Set",
+    "hash": "f4f3ceb210c71a7f95544639846dece5",
+    "path": "/uploads/gold-regal-lotus-necklace-set-2.webp"
+  },
+  "/uploads/gold-regal-lotus-necklace-set-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-20",
+    "description": "Sacred Lotus 22K Gold Bridal Necklace Set",
+    "hash": "06b98a61e85f8716786f8d2bda155d99",
+    "path": "/uploads/gold-regal-lotus-necklace-set-3.webp"
+  },
+  "/uploads/gold-peacock-triple-sitahar-haar-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-21",
+    "description": "Triple-Strand 22K Gold Peacock Sitahar Haar",
+    "hash": "410d41280e63fe843364a72b7c4766b7",
+    "path": "/uploads/gold-peacock-triple-sitahar-haar-1.webp"
+  },
+  "/uploads/gold-peacock-triple-sitahar-haar-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-21",
+    "description": "Triple-Strand 22K Gold Peacock Sitahar Haar",
+    "hash": "de0e8a15a3bc16d6fcb96c722a9c45b3",
+    "path": "/uploads/gold-peacock-triple-sitahar-haar-2.webp"
+  },
+  "/uploads/gold-peacock-triple-sitahar-haar-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-gld-21",
+    "description": "Triple-Strand 22K Gold Peacock Sitahar Haar",
+    "hash": "ef532120df86da550aa084e759288cbc",
+    "path": "/uploads/gold-peacock-triple-sitahar-haar-3.webp"
+  },
+  "/uploads/silver-filigree-sitahar-diya-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-1",
+    "description": "Pure Handcrafted Silver Filigree Sitahar Necklace",
+    "hash": "a53bff1c9d2492f1dc28b9ce14a74584",
+    "path": "/uploads/silver-filigree-sitahar-diya-1.webp"
+  },
+  "/uploads/silver-filigree-sitahar-diya-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-1",
+    "description": "Pure Handcrafted Silver Filigree Sitahar Necklace",
+    "hash": "55539af0fcaaf8c305cc534470713cc6",
+    "path": "/uploads/silver-filigree-sitahar-diya-2.webp"
+  },
+  "/uploads/silver-filigree-sitahar-diya-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-1",
+    "description": "Pure Handcrafted Silver Filigree Sitahar Necklace",
+    "hash": "7aff582243f37a700314383a4e2e4dfb",
+    "path": "/uploads/silver-filigree-sitahar-diya-3.webp"
+  },
+  "/uploads/silver-royal-necklace-heirloom-box-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-2",
+    "description": "Royal Silver Heritage Sitahar on Heirloom Chest",
+    "hash": "68c3479aee3678d0c0e8532fce0646b8",
+    "path": "/uploads/silver-royal-necklace-heirloom-box-1.webp"
+  },
+  "/uploads/silver-royal-necklace-heirloom-box-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-2",
+    "description": "Royal Silver Heritage Sitahar on Heirloom Chest",
+    "hash": "5d1668dfac3cd8f59f192c07c33d4b1b",
+    "path": "/uploads/silver-royal-necklace-heirloom-box-2.webp"
+  },
+  "/uploads/silver-royal-necklace-heirloom-box-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-2",
+    "description": "Royal Silver Heritage Sitahar on Heirloom Chest",
+    "hash": "5eb7aa29526ec123bbc8936bbae129c7",
+    "path": "/uploads/silver-royal-necklace-heirloom-box-3.webp"
+  },
+  "/uploads/silver-royal-necklace-heirloom-box-4.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-2",
+    "description": "Royal Silver Heritage Sitahar on Heirloom Chest",
+    "hash": "34184c05dc7d7fce68eb6b37edcbccf3",
+    "path": "/uploads/silver-royal-necklace-heirloom-box-4.webp"
+  },
+  "/uploads/silver-enamel-necklace-earrings-set-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-3",
+    "description": "Pure Silver Enamel Necklace & Jhumkas Set",
+    "hash": "6079800cbc8c3467a9b17216f8e8264d",
+    "path": "/uploads/silver-enamel-necklace-earrings-set-1.webp"
+  },
+  "/uploads/silver-enamel-necklace-earrings-set-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-3",
+    "description": "Pure Silver Enamel Necklace & Jhumkas Set",
+    "hash": "7c9bcebc3c4c70285f21004f9264d236",
+    "path": "/uploads/silver-enamel-necklace-earrings-set-2.webp"
+  },
+  "/uploads/silver-makara-lion-kadas-pair-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-4",
+    "description": "Pure Handcrafted Silver Makara Lion-Head Kadas Pair",
+    "hash": "8258d0277a548ccbf8e1af64d75b2000",
+    "path": "/uploads/silver-makara-lion-kadas-pair-1.webp"
+  },
+  "/uploads/silver-makara-lion-kadas-pair-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-4",
+    "description": "Pure Handcrafted Silver Makara Lion-Head Kadas Pair",
+    "hash": "635ff2327de5e1081b6d6dc9cc5c96de",
+    "path": "/uploads/silver-makara-lion-kadas-pair-2.webp"
+  },
+  "/uploads/silver-makara-lion-kadas-pair-3.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-4",
+    "description": "Pure Handcrafted Silver Makara Lion-Head Kadas Pair",
+    "hash": "c0d5249a413e42bdd6bcb29bb95d59da",
+    "path": "/uploads/silver-makara-lion-kadas-pair-3.webp"
+  },
+  "/uploads/silver-makara-lion-kadas-pair-4.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-4",
+    "description": "Pure Handcrafted Silver Makara Lion-Head Kadas Pair",
+    "hash": "e8e5d11038f2d5ec6bd06183407b4b4a",
+    "path": "/uploads/silver-makara-lion-kadas-pair-4.webp"
+  },
+  "/uploads/silver-traditional-necklace-saree-1.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-5",
+    "description": "Heirloom Pure Silver Traditional Saree Necklace",
+    "hash": "359f61b66a2d73d40d0a41b7b6442e35",
+    "path": "/uploads/silver-traditional-necklace-saree-1.webp"
+  },
+  "/uploads/silver-traditional-necklace-saree-2.webp": {
+    "entity_type": "product",
+    "entity_id": "gdrive-slv-5",
+    "description": "Heirloom Pure Silver Traditional Saree Necklace",
+    "hash": "715013dd575cb516445c3a4e9bba8fbd",
+    "path": "/uploads/silver-traditional-necklace-saree-2.webp"
+  },
+  "/IMG_20260603_142357.png": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-1",
+    "description": "Royal Heritage Bridal Choker",
+    "hash": "41e373455b82140d113e410dd8dc04a0",
+    "path": "/IMG_20260603_142357.png"
+  },
+  "/master_gallery_royal_set.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-1",
+    "description": "Royal Heritage Bridal Choker",
+    "hash": "ed62d55fa5a5080046e73a50ae6433a2",
+    "path": "/master_gallery_royal_set.jpg"
+  },
+  "/master_gallery_necklace_closeup.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-2",
+    "description": "Artisanal Peacock & Leaf Gold Choker",
+    "hash": "efec023689ac4529a9dc8449cc2ab2ea",
+    "path": "/master_gallery_necklace_closeup.jpg"
+  },
+  "/IMG_20260603_142431.png": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-2",
+    "description": "Artisanal Peacock & Leaf Gold Choker",
+    "hash": "9e17ac41429525a66f114e9c696d42c8",
+    "path": "/IMG_20260603_142431.png"
+  },
+  "/IMG_20260603_191918.png": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-3",
+    "description": "Grand Bengali Sitahar Haar",
+    "hash": "ee305c0ded28a0add62843ddb6ece0a2",
+    "path": "/IMG_20260603_191918.png"
+  },
+  "/uploads/lookbook_bridal_sitahar.webp": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-3",
+    "description": "Grand Bengali Sitahar Haar",
+    "hash": "2d9b244765ec8ec5c1525a87da724db9",
+    "path": "/uploads/lookbook_bridal_sitahar.webp"
+  },
+  "/IMG_20260603_132847.png": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-4",
+    "description": "Antiquity Peacock Gold Pendant & Chain",
+    "hash": "3f4487f5afa997c912676cdd3c1be1cb",
+    "path": "/IMG_20260603_132847.png"
+  },
+  "/master_gallery_heirloom_box.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-4",
+    "description": "Antiquity Peacock Gold Pendant & Chain",
+    "hash": "d8158c7b769f1a8d4cc03eb2c737decc",
+    "path": "/master_gallery_heirloom_box.jpg"
+  },
+  "/IMG_20260603_143103.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-5",
+    "description": "Antique Floral Carved Gold Lady's Ring",
+    "hash": "31fa2933a67f3d8906343df4fbde3cf1",
+    "path": "/IMG_20260603_143103.jpg"
+  },
+  "/IMG_20260603_142625.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-6",
+    "description": "Traditional Royal Lion Gent's Signet Ring",
+    "hash": "89f5fc54ec836d3b38a3684bc0294041",
+    "path": "/IMG_20260603_142625.jpg"
+  },
+  "/IMG_20260603_142513.png": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-7",
+    "description": "Royal Peacock Jhumka",
+    "hash": "afc635430bb70459055b5422671cfd7c",
+    "path": "/IMG_20260603_142513.png"
+  },
+  "/uploads/lookbook_filigree_jhumkas.webp": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-7",
+    "description": "Royal Peacock Jhumka",
+    "hash": "985a43576622b6984294a51af4f5494c",
+    "path": "/uploads/lookbook_filigree_jhumkas.webp"
+  },
+  "/master_gallery_earring_drop.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-8",
+    "description": "Heritage Paisley Filigree Drop Earrings",
+    "hash": "16fc2213256b5160931d098e34a23f64",
+    "path": "/master_gallery_earring_drop.jpg"
+  },
+  "/IMG_20260603_191511.png": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-8",
+    "description": "Heritage Paisley Filigree Drop Earrings",
+    "hash": "0e303b0688bcc4a80ab1a619e1436e57",
+    "path": "/IMG_20260603_191511.png"
+  },
+  "/IMG_20260603_143133.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-9",
+    "description": "Sacred Iconography Nakshi Kada",
+    "hash": "1dedf48b9f022f5df980dc4f36ed62fe",
+    "path": "/IMG_20260603_143133.jpg"
+  },
+  "/gold_temple_nakshi.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-9",
+    "description": "Sacred Iconography Nakshi Kada",
+    "hash": "f0d9c791d57b13bb34fe587ee7836a71",
+    "path": "/gold_temple_nakshi.jpg"
+  },
+  "/IMG_20260603_142555.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-10",
+    "description": "Bengali Heirloom Filigree Bala Bangles (Pair)",
+    "hash": "5e93602db719ec9c870dece9e23680c9",
+    "path": "/IMG_20260603_142555.jpg"
+  },
+  "/IMG_20260603_191719.png": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-11",
+    "description": "Traditional Gold Sankha & Pola Bandha (Noa)",
+    "hash": "183ccf637da2efeea2f9bcf4e1cb2a6c",
+    "path": "/IMG_20260603_191719.png"
+  },
+  "/IMG_20260603_191636.png": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-12",
+    "description": "Solid Gold Link Chain (Biswa)",
+    "hash": "513cd2842eb342c8ef07cf3bf2b6dcad",
+    "path": "/IMG_20260603_191636.png"
+  },
+  "/IMG_20260603_141113.png": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-13",
+    "description": "Auspicious Floral Gold Rakhi Bracelet",
+    "hash": "7521679f39ba74e178d2904dc255abc0",
+    "path": "/IMG_20260603_141113.png"
+  },
+  "/IMG_20260603_142739.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-gld-14",
+    "description": "Artisanal Byzantine Gold Bracelet",
+    "hash": "c5b43e8713638e09988798f3c67f8322",
+    "path": "/IMG_20260603_142739.jpg"
+  },
+  "/IMG_20260603_130726.png": {
+    "entity_type": "product",
+    "entity_id": "prod-dia-1",
+    "description": "Imperial Solitaire & Ruby Halo Pendant",
+    "hash": "bad71a681695f2d346b091fe4c168fe3",
+    "path": "/IMG_20260603_130726.png"
+  },
+  "/IMG_20260603_142707.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-dia-2",
+    "description": "Radiant Solitaire Engagement Ring",
+    "hash": "56491b75d038f151be28fe675bf4dc1b",
+    "path": "/IMG_20260603_142707.jpg"
+  },
+  "/IMG_20260603_132405.png": {
+    "entity_type": "product",
+    "entity_id": "prod-dia-3",
+    "description": "Eternal Diamond Eternity Band",
+    "hash": "bb58e32bf64332a834f2699e00ef4d3a",
+    "path": "/IMG_20260603_132405.png"
+  },
+  "/stone_sapphire_nila.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-dia-4",
+    "description": "Emerald & Diamond Cocktail Ring",
+    "hash": "16d19ec1632f97e083f1f07d298cb1b3",
+    "path": "/stone_sapphire_nila.jpg"
+  },
+  "/uploads/gallery_chandeliers_feature.webp": {
+    "entity_type": "product",
+    "entity_id": "prod-dia-5",
+    "description": "Cascading Diamond Floral Drop Earrings",
+    "hash": "fa5f39c858a2b096ce4e642c2f727ab5",
+    "path": "/uploads/gallery_chandeliers_feature.webp"
+  },
+  "/IMG_20260603_130513.png": {
+    "entity_type": "product",
+    "entity_id": "prod-dia-6",
+    "description": "Minimalist Solitaire Pendant Set",
+    "hash": "65a29f227965ea2c3c2f226f4d668eff",
+    "path": "/IMG_20260603_130513.png"
+  },
+  "/IMG_20260603_135153.png": {
+    "entity_type": "product",
+    "entity_id": "prod-dia-7",
+    "description": "Traditional Diamond Nosepin (Mukut Mukti)",
+    "hash": "9ce709d4e422495819d1c52cfefbf96b",
+    "path": "/IMG_20260603_135153.png"
+  },
+  "/IMG_20260603_125336.png": {
+    "entity_type": "product",
+    "entity_id": "prod-dia-8",
+    "description": "Contemporary Multi-Row Diamond Chain",
+    "hash": "0c3e6184b0fa05582e490af26ffe562d",
+    "path": "/IMG_20260603_125336.png"
+  },
+  "/IMG_20260603_143343.png": {
+    "entity_type": "product",
+    "entity_id": "prod-slv-1",
+    "description": "Royal Sterling Silver Hasli Choker",
+    "hash": "bc47375d13714c66e665b13369f723fb",
+    "path": "/IMG_20260603_143343.png"
+  },
+  "/uploads/lookbook_silver_bangles.webp": {
+    "entity_type": "product",
+    "entity_id": "prod-slv-2",
+    "description": "Handcrafted Oxidized Silver Floral Choker",
+    "hash": "efae88d6d5f7ea715b35140a7f3dcc19",
+    "path": "/uploads/lookbook_silver_bangles.webp"
+  },
+  "/silver_bangles_craft.jpg": {
+    "entity_type": "product",
+    "entity_id": "prod-slv-3",
+    "description": "Artisanal Silver Filigree Bangle Pair",
+    "hash": "587b8ba73cbcb904eec94eba73392e8f",
+    "path": "/silver_bangles_craft.jpg"
+  },
+  "/IMG_20260603_133127.png": {
+    "entity_type": "product",
+    "entity_id": "prod-slv-4",
+    "description": "Tribal Carved Silver Statement Ring",
+    "hash": "41cd8c9bb37a4274f7f7a4873a738919",
+    "path": "/IMG_20260603_133127.png"
+  },
+  "/IMG_20260603_141002.png": {
+    "entity_type": "product",
+    "entity_id": "prod-slv-5",
+    "description": "Silver Crown Adjustable Solitaire Ring",
+    "hash": "cf9dd6134ae2107044e61446b7571022",
+    "path": "/IMG_20260603_141002.png"
+  },
+  "/IMG_20260603_141759.png": {
+    "entity_type": "product",
+    "entity_id": "prod-slv-6",
+    "description": "Traditional Silver Mookuthi Nosepin",
+    "hash": "2893d83c3a108a83b7dcc36d8238dd20",
+    "path": "/IMG_20260603_141759.png"
+  },
+  "/IMG_20260603_141906.png": {
+    "entity_type": "product",
+    "entity_id": "prod-slv-7",
+    "description": "Auspicious Handcrafted Silver Rakhi",
+    "hash": "48685967bfeac167ff2c5210536a6c34",
+    "path": "/IMG_20260603_141906.png"
+  },
+  "/uploads/lookbook_heritage_filigree.webp": {
+    "entity_type": "product",
+    "entity_id": "prod-slv-8",
+    "description": "Antique Silver Jhumka with Pearl Drops",
+    "hash": "22a30f9f409fafa4a380d9387056fc16",
+    "path": "/uploads/lookbook_heritage_filigree.webp"
+  }
+}

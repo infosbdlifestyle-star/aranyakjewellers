@@ -33,7 +33,7 @@ const FALLBACK_CATEGORIES = [
     id: 'cat-1',
     name: 'Bridal Heritage',
     slug: 'bridal-jewellery',
-    imageUrl: '/hero-necklace.png',
+    imageUrl: '/uploads/cat_bridal_heritage.webp',
     tagline: 'Handcrafted Trousseau Treasures',
     span: 'md:col-span-7'
   },
@@ -41,7 +41,7 @@ const FALLBACK_CATEGORIES = [
     id: 'cat-2',
     name: 'Royal Gold',
     slug: 'gold',
-    imageUrl: '/gold_temple_nakshi.jpg',
+    imageUrl: '/uploads/cat_royal_gold.webp',
     tagline: '22K BIS Hallmarked Masterpieces',
     span: 'md:col-span-5'
   },
@@ -49,7 +49,7 @@ const FALLBACK_CATEGORIES = [
     id: 'cat-3',
     name: 'Certified Diamonds',
     slug: 'diamond',
-    imageUrl: '/diamond_solitaire_ring.jpg',
+    imageUrl: '/uploads/cat_certified_diamonds.webp',
     tagline: 'VVS-VS Solitaires & Fine Sets',
     span: 'md:col-span-4'
   },
@@ -57,7 +57,7 @@ const FALLBACK_CATEGORIES = [
     id: 'cat-4',
     name: 'Pure 925 Silver',
     slug: 'silver',
-    imageUrl: '/silver_luxury_necklace.jpg',
+    imageUrl: '/uploads/cat_antique_silver_heritage.webp',
     tagline: 'Artisanal Filigree & Auspicious Silverware',
     span: 'md:col-span-8'
   }

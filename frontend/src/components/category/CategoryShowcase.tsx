@@ -40,7 +40,7 @@ const CATEGORY_METAS: Record<string, CategoryMeta> = {
     badge: "22KT BIS 916",
     hallmarkText: "100% BIS Hallmarked • Unique HUID Laser Certified • 100% Lifetime Exchange Guarantee",
     purityBanner: "Official Gold Purity: 91.6% Pure Gold (22K)",
-    heroImage: "/hero-necklace.png",
+    heroImage: "/uploads/gallery_royal_bridal_feature.webp",
   },
   diamond: {
     title: "Certified Natural Diamonds",
@@ -48,7 +48,7 @@ const CATEGORY_METAS: Record<string, CategoryMeta> = {
     badge: "VVS-VS Certified",
     hallmarkText: "IGI & GIA Certified Natural Diamonds • Conflict-Free Ethical Sourcing • 90% Buy-Back Value",
     purityBanner: "Certified Natural Diamonds in 18KT Hallmarked Gold",
-    heroImage: "/diamond_solitaire_ring.jpg",
+    heroImage: "/uploads/gallery_solitaire_feature.webp",
   },
   silver: {
     title: "92.5 Sterling Silver Fine Jewellery",
@@ -56,7 +56,7 @@ const CATEGORY_METAS: Record<string, CategoryMeta> = {
     badge: "92.5 Sterling Silver",
     hallmarkText: "92.5 Hallmarked Sterling Silver • Premium Anti-Tarnish E-Coating • Hand-Engraved",
     purityBanner: "Official Silver Purity: 92.5% Pure Sterling Silver",
-    heroImage: "/silver_luxury_necklace.jpg",
+    heroImage: "/uploads/silver_necklace_rock_diya.webp",
   }
 };
 
