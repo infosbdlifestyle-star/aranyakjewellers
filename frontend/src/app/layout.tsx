@@ -69,7 +69,6 @@ async function getGlobalData() {
 }
 
 import { AuthProvider } from "@/context/AuthContext";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { ScrollProgressBar } from "@/components/animations/LuxuryMotion";
 
 export default async function RootLayout({
@@ -82,11 +81,10 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${cormorant.variable} antialiased lg:cursor-none`}
+      className={`${geistSans.variable} ${cormorant.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
         <ScrollProgressBar />
-        <CustomCursor />
         <AuthProvider>
           <PageLoader />
           <SmoothScroll>
