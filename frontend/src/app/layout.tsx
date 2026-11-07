@@ -51,7 +51,6 @@ export const metadata: Metadata = {
     ],
     shortcut: ["/favicon.ico"],
   },
-  manifest: "/site.webmanifest",
 };
 
 import { api } from '@/lib/api';
@@ -70,6 +69,7 @@ async function getGlobalData() {
 
 import { AuthProvider } from "@/context/AuthContext";
 import { ScrollProgressBar } from "@/components/animations/LuxuryMotion";
+import { DisablePwa } from "@/components/ui/DisablePwa";
 
 export default async function RootLayout({
   children,
@@ -85,6 +85,7 @@ export default async function RootLayout({
     >
       <body className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
         <ScrollProgressBar />
+        <DisablePwa />
         <AuthProvider>
           <PageLoader />
           <SmoothScroll>
