@@ -1,10 +1,24 @@
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+/**
+ * Aranyak Jewellers API Client
+ * 
+ * - In the browser: ALWAYS uses relative '/api' so requests are proxied via Next.js
+ *   rewrites to the VPS backend. Calling 'http://localhost:3001' from the client triggers
+ *   Chrome's Private Network Access security popup ("wants to Access other apps and services on this device").
+ * - On the server (SSR): Connects directly to the VPS backend or BACKEND_URL.
+ */
+export function getApiBaseUrl(): string {
+  if (typeof window !== 'undefined') {
+    return '/api';
+  }
+  const backend = process.env.BACKEND_URL || 'http://117.252.16.132:3001';
+  return `${backend.replace(/\/$/, '')}/api`;
+}
+
+export const API_URL = getApiBaseUrl();
 
 class ApiClient {
-  private baseUrl: string;
-
-  constructor() {
-    this.baseUrl = API_URL;
+  private get baseUrl(): string {
+    return getApiBaseUrl();
   }
 
   private getHeaders(token?: string): HeadersInit {

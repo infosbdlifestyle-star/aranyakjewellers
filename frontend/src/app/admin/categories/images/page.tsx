@@ -55,9 +55,8 @@ export default function CategoryImagesPage() {
       }
       
       const imagePath = uploadRes.url || uploadRes.path;
-      // Prepend the base server URL to make it absolute so it works on Vercel too
-      const baseUrl = 'https://117.252.16.132.nip.io';
-      const newImageUrl = imagePath.startsWith('http') ? imagePath : `${baseUrl}${imagePath}`;
+      // Store relative path like /uploads/... proxied by Next.js
+      const newImageUrl = imagePath.startsWith('http') ? imagePath : (imagePath.startsWith('/') ? imagePath : `/${imagePath}`);
       
       // 2. Update the category document with the new image URL
       const updateRes = await api.updateCategory(token, subCategoryId, { imageUrl: newImageUrl });
