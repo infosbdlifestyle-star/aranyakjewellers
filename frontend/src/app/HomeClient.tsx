@@ -975,7 +975,7 @@ export default function HomeClient({
                   
                   <div className="relative z-10 text-center flex flex-col items-center justify-end h-full pb-6">
                     <span 
-                      className="text-[9px] font-bold tracking-[0.3em] uppercase px-3 py-1 rounded-full border mb-3 group-hover:scale-105 transition-transform backdrop-blur-sm"
+                      className="text-[9px] font-semibold tracking-[0.28em] uppercase px-3.5 py-1 rounded-full border mb-3 group-hover:scale-105 transition-transform backdrop-blur-sm shadow-sm"
                       style={{
                         color: "#E0BD72",
                         background: "rgba(33,24,19,0.75)",
@@ -985,25 +985,33 @@ export default function HomeClient({
                       {gemAura.tag}
                     </span>
                     <h4 
-                      className="text-3xl sm:text-4xl md:text-5xl font-serif font-light mb-4 transition-colors drop-shadow-md"
+                      className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-serif font-light tracking-[0.05em] sm:tracking-[0.07em] leading-[1.15] md:leading-[1.18] mb-3 sm:mb-4 transition-colors drop-shadow-md"
                       style={{ color: "#FFF8EC" }}
                     >
-                      {cat.name}
+                      {cat.name.includes('925') ? (
+                        <span className="inline-flex items-baseline justify-center gap-[0.28em]">
+                          <span>Pure</span>
+                          <span className="font-serif font-light tracking-[0.04em] tabular-nums text-[0.96em]">925</span>
+                          <span>Silver</span>
+                        </span>
+                      ) : (
+                        cat.name
+                      )}
                     </h4>
                     <p 
-                      className="text-xs font-normal max-w-xs mx-auto mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 leading-relaxed"
+                      className="text-[11px] sm:text-xs md:text-[13px] font-sans font-light tracking-[0.14em] sm:tracking-[0.18em] uppercase max-w-md mx-auto mb-5 leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-sm"
                       style={{ color: "#E5D9C8" }}
                     >
                       {cat.tagline}
                     </p>
                     <div 
-                      className="text-[10px] font-bold tracking-[0.35em] uppercase border-b-2 pb-1.5 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500"
+                      className="text-[10px] sm:text-[11px] font-medium tracking-[0.28em] sm:tracking-[0.32em] uppercase border-b border-[#E0BD72]/70 group-hover:border-[#E0BD72] pb-1 inline-flex items-center gap-2 transform translate-y-1 group-hover:translate-y-0 transition-all duration-500"
                       style={{
-                        color: "#E0BD72",
-                        borderColor: "#E0BD72"
+                        color: "#E0BD72"
                       }}
                     >
-                      Discover Collection →
+                      <span>DISCOVER COLLECTION</span>
+                      <span className="transform group-hover:translate-x-1 transition-transform duration-300 font-serif">→</span>
                     </div>
                   </div>
                 </Link>
