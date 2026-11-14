@@ -19,6 +19,7 @@ import {
   StaggerItem 
 } from '@/components/animations/LuxuryMotion';
 import { CategoryNavBar, CategoryNavItem } from './CategoryNavBar';
+import { VaultImagePlaceholder } from '@/components/ui/VaultImagePlaceholder';
 
 interface CategoryShowcaseProps {
   categorySlug: string;
@@ -88,15 +89,6 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
   const abortControllerRef = useRef<AbortController | null>(null);
 
-  // Fallback image helper
-  const getFallbackImage = useCallback((category: string) => {
-    const c = category.toLowerCase();
-    if (c.includes('diamond')) return '/diamond_solitaire_ring.jpg';
-    if (c.includes('silver')) return '/silver_luxury_necklace.jpg';
-    if (c.includes('stone')) return '/stone_sapphire_nila.jpg';
-    return '/hero-necklace.png';
-  }, []);
-
   // Fetch function with robust fallback and lifecycle management
   const loadCategoryData = useCallback(async () => {
     // Cancel any in-flight request
@@ -139,7 +131,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
             diamondClarity: p.diamondClarity,
             diamondCarat: p.diamondCarat,
             tags: Array.isArray(p.tags) ? p.tags : ['Bespoke'],
-            images: Array.isArray(p.images) && p.images.length > 0 ? p.images : [getFallbackImage(categoryKey)],
+            images: Array.isArray(p.images) && p.images.length > 0 ? p.images : [],
             stockCount: p.stockCount ?? 1,
             sku: p.sku || `AR-${categoryKey.toUpperCase()}-001`,
             isActive: p.isActive ?? true,
@@ -176,7 +168,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
     } finally {
       setLoading(false);
     }
-  }, [categoryKey, getFallbackImage]);
+  }, [categoryKey]);
 
   useEffect(() => {
     loadCategoryData();
@@ -402,9 +394,8 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 {displayedProducts.map((p) => {
                   const hasImageError = imageErrorMap[p.id];
-                  const displayImage = hasImageError 
-                    ? getFallbackImage(p.category)
-                    : (p.images?.[0] || getFallbackImage(p.category));
+                  const rawImage = Array.isArray(p.images) && p.images.length > 0 ? p.images[0] : null;
+                  const showPlaceholder = !rawImage || hasImageError;
 
                   return (
                     <StaggerItem key={p.id}>
@@ -417,34 +408,47 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                             onClick={() => setSelectedProduct(p)}
                             className="relative aspect-[4/5] bg-[#211813] rounded-xl overflow-hidden cursor-pointer"
                           >
-                            <Image
-                              src={displayImage}
-                              alt={`${p.name} - Handcrafted Fine Jewellery | Aranyak Jewellers`}
-                              fill
-                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                              onError={() => handleImageError(p.id)}
-                              className="object-cover group-hover:scale-108 transition-transform duration-700"
-                            />
+                            {showPlaceholder ? (
+                              <VaultImagePlaceholder
+                                name={p.name}
+                                category={p.category}
+                                subCategory={p.subCategory}
+                                goldPurity={p.goldPurity}
+                                diamondCarat={p.diamondCarat}
+                                diamondClarity={p.diamondClarity}
+                              />
+                            ) : (
+                              <>
+                                <Image
+                                  src={rawImage!}
+                                  alt={`${p.name} - Handcrafted Fine Jewellery | Aranyak Jewellers`}
+                                  fill
+                                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                  onError={() => handleImageError(p.id)}
+                                  className="object-cover group-hover:scale-108 transition-transform duration-700"
+                                />
 
-                            {/* Warm vignette */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/80 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
+                                {/* Warm vignette */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/80 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
 
-                            {/* Purity & Metal Badge */}
-                            <div className="absolute top-3 left-3 flex flex-col gap-1">
-                              <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#C49A45]/50 text-[#D6B15D] text-[9px] font-bold tracking-widest uppercase rounded">
-                                {p.categorySlug === 'silver' ? '92.5 Silver' : p.goldPurity ? `${p.goldPurity}KT Hallmarked` : meta.badge}
-                              </span>
-                              {p.diamondCarat && (
-                                <span className="px-2.5 py-0.5 bg-[#FFFFFF]/90 backdrop-blur-md text-[#211813] text-[9px] font-bold tracking-wider rounded">
-                                  {p.diamondCarat} ct {p.diamondClarity || 'Diamond'}
-                                </span>
-                              )}
-                            </div>
+                                {/* Purity & Metal Badge */}
+                                <div className="absolute top-3 left-3 flex flex-col gap-1">
+                                  <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#C49A45]/50 text-[#D6B15D] text-[9px] font-bold tracking-widest uppercase rounded">
+                                    {p.categorySlug === 'silver' ? '92.5 Silver' : p.goldPurity ? `${p.goldPurity}KT Hallmarked` : meta.badge}
+                                  </span>
+                                  {p.diamondCarat && (
+                                    <span className="px-2.5 py-0.5 bg-[#FFFFFF]/90 backdrop-blur-md text-[#211813] text-[9px] font-bold tracking-wider rounded">
+                                      {p.diamondCarat} ct {p.diamondClarity || 'Diamond'}
+                                    </span>
+                                  )}
+                                </div>
 
-                            {/* Inspect Detail Hover Pill */}
-                            <div className="absolute bottom-3 right-3 bg-[#211813]/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#C49A45]/40 text-[9px] uppercase tracking-widest font-bold text-[#D6B15D] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                              🔍 Inspect Piece
-                            </div>
+                                {/* Inspect Detail Hover Pill */}
+                                <div className="absolute bottom-3 right-3 bg-[#211813]/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#C49A45]/40 text-[9px] uppercase tracking-widest font-bold text-[#D6B15D] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                  🔍 Inspect Piece
+                                </div>
+                              </>
+                            )}
                           </div>
 
                           {/* Card Content Area */}
@@ -541,14 +545,26 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
               </button>
 
               {/* Modal Image */}
-              <div className="w-full md:w-1/2 aspect-square relative bg-[#211813]">
-                <Image
-                  src={imageErrorMap[selectedProduct.id] ? getFallbackImage(selectedProduct.category) : (selectedProduct.images?.[0] || getFallbackImage(selectedProduct.category))}
-                  alt={`${selectedProduct.name} - Handcrafted Fine Jewellery | Aranyak Jewellers`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
+              <div className="w-full md:w-1/2 aspect-square relative bg-[#211813] overflow-hidden">
+                {(!selectedProduct.images?.[0] || imageErrorMap[selectedProduct.id]) ? (
+                  <VaultImagePlaceholder
+                    name={selectedProduct.name}
+                    category={selectedProduct.category}
+                    subCategory={selectedProduct.subCategory}
+                    goldPurity={selectedProduct.goldPurity}
+                    diamondCarat={selectedProduct.diamondCarat}
+                    diamondClarity={selectedProduct.diamondClarity}
+                  />
+                ) : (
+                  <Image
+                    src={selectedProduct.images[0]}
+                    alt={`${selectedProduct.name} - Handcrafted Fine Jewellery | Aranyak Jewellers`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    onError={() => handleImageError(selectedProduct.id)}
+                    className="object-cover"
+                  />
+                )}
               </div>
 
               {/* Modal Details */}

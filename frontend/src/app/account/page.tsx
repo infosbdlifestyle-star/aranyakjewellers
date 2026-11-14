@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
+import { VaultImagePlaceholder } from '@/components/ui/VaultImagePlaceholder';
 
 interface Address {
   id: string;
@@ -883,17 +884,25 @@ export default function AccountPage() {
                 {wishlist.map((item) => {
                   const product = item.product;
                   if (!product) return null;
-                  const img = product.coverImage || product.images?.[0] || '/hero-necklace.png';
+                  const img = product.coverImage || product.images?.[0];
 
                   return (
                     <div key={item.id} className="bg-[#100707] border border-white/10 rounded-2xl overflow-hidden shadow-xl hover:border-[#E5C158]/40 transition-all flex flex-col justify-between group">
                       <div className="relative aspect-square w-full bg-[#180C0C] overflow-hidden">
-                        <Image
-                          src={img}
-                          alt={product.name}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
+                        {img ? (
+                          <Image
+                            src={img}
+                            alt={product.name}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                        ) : (
+                          <VaultImagePlaceholder
+                            name={product.name}
+                            category={product.category}
+                            goldPurity={product.goldPurity}
+                          />
+                        )}
                         <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-[#E5C158]/30">
                           <span className="text-[9px] uppercase tracking-[0.25em] font-bold text-[#E5C158]">
                             {product.category} {product.goldPurity ? `• ${product.goldPurity}KT` : ''}

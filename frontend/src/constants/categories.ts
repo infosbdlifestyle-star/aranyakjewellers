@@ -45,6 +45,7 @@ export const CATEGORIES: Category[] = [
     subcategories: [
       { id: "silver-necklaces", name: "Necklaces", slug: "necklaces", imageUrl: "/uploads/silver_necklace_carved_chest.webp" },
       { id: "silver-bangles", name: "Bangles", slug: "bangles", imageUrl: "/uploads/silver_bangles_makara_pair.webp" },
+      { id: "silver-earrings", name: "Earrings", slug: "earrings", imageUrl: "/uploads/lookbook_heritage_filigree.webp" },
       { id: "silver-rings", name: "Rings", slug: "rings", imageUrl: "/silver_rings_luxury.jpg" },
       { id: "silver-nosepins", name: "Nosepins", slug: "nosepins", imageUrl: "/silver_nosepin_luxury.jpg" },
       { id: "silver-rakhi", name: "Rakhi", slug: "rakhi", imageUrl: "/silver_rakhi_luxury.jpg" },

@@ -18,10 +18,10 @@ export const GALLERY_CATEGORIES = [
   { id: 'silver', label: 'Pure 925 Silver' },
   { id: 'bridal', label: 'Bridal Trousseau' },
   { id: 'necklace-sets', label: 'Necklaces & Sitahar' },
-  { id: 'bangles', label: 'Bangles & Kadas' },
+  { id: 'bangles', label: 'Bangles & Bracelets' },
   { id: 'earrings', label: 'Earrings & Jhumkas' },
   { id: 'pendant-sets', label: 'Pendants & Chains' },
-  { id: 'rings', label: 'Rings & Bracelets' },
+  { id: 'rings', label: 'Rings & Solitaires' },
   { id: 'diamond', label: 'Diamonds' },
 ] as const;
 
@@ -73,34 +73,34 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
   {
     "id": "gal-gold-ratanchoor-bracelet-1",
     "title": "22K Gold Floral Filigree Ratanchoor Bracelet (Primary Showcase)",
-    "category": "rings",
+    "category": "bangles",
     "metal": "gold",
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-ratanchoor-bracelet-1.webp",
     "description": "Grand royal 22K gold Ratanchoor hand ornament featuring an elaborate blooming lotus medallion with delicate connecting gold link chains.",
-    "tag": "Gold \u2022 Bracelets",
+    "tag": "Gold • Bracelets",
     "productSlug": "gold-ratanchoor-bracelet"
   },
   {
     "id": "gal-gold-ratanchoor-bracelet-2",
     "title": "22K Gold Floral Filigree Ratanchoor Bracelet (Angle 2)",
-    "category": "rings",
+    "category": "bangles",
     "metal": "gold",
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-ratanchoor-bracelet-2.webp",
     "description": "Grand royal 22K gold Ratanchoor hand ornament featuring an elaborate blooming lotus medallion with delicate connecting gold link chains.",
-    "tag": "Gold \u2022 Bracelets",
+    "tag": "Gold • Bracelets",
     "productSlug": "gold-ratanchoor-bracelet"
   },
   {
     "id": "gal-gold-ratanchoor-bracelet-3",
     "title": "22K Gold Floral Filigree Ratanchoor Bracelet (Angle 3)",
-    "category": "rings",
+    "category": "bangles",
     "metal": "gold",
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-ratanchoor-bracelet-3.webp",
     "description": "Grand royal 22K gold Ratanchoor hand ornament featuring an elaborate blooming lotus medallion with delicate connecting gold link chains.",
-    "tag": "Gold \u2022 Bracelets",
+    "tag": "Gold • Bracelets",
     "productSlug": "gold-ratanchoor-bracelet"
   },
   {
@@ -991,10 +991,10 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
   {
     "id": "g-2",
     "title": "Imperial Solitaire & Ruby Necklace",
-    "category": "diamond",
+    "category": "necklace-sets",
     "metal": "diamond",
     "purity": "VVS-VS Certified",
-    "imageUrl": "/hero-necklace.png",
+    "imageUrl": "/uploads/diamond_pendant_chain.webp",
     "description": "Precision-cut certified diamonds accented by deep vivid Burmese rubies.",
     "tag": "Haute Joaillerie"
   },

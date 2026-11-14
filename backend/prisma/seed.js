@@ -37,6 +37,7 @@ const CATEGORIES = [
     subcategories: [
       { name: "Necklaces", slug: "necklaces", imageUrl: "/uploads/silver-filigree-sitahar-diya-1.webp" },
       { name: "Bangles", slug: "bangles", imageUrl: "/uploads/silver-makara-lion-kadas-pair-1.webp" },
+      { name: "Earrings", slug: "earrings", imageUrl: "/uploads/lookbook_heritage_filigree.webp" },
       { name: "Rings", slug: "rings", imageUrl: "/silver_rings_luxury.jpg" },
       { name: "Nosepins", slug: "nosepins", imageUrl: "/silver_nosepin_luxury.jpg" },
       { name: "Rakhi", slug: "rakhi", imageUrl: "/silver_rakhi_luxury.jpg" },
@@ -101,7 +102,7 @@ const SAMPLE_PRODUCTS = [
     category: "Gold",
     subCategory: "Necklace Sets",
     stockCount: 1,
-    images: ["/IMG_20260603_130220.png", "/master_gallery_royal_set.jpg"]
+    images: ["/IMG_20260603_130220.png", "/uploads/lookbook_bridal_sitahar.webp"]
   },
   {
     name: "Antiquity Peacock Gold Pendant & Chain",
@@ -237,7 +238,7 @@ const SAMPLE_PRODUCTS = [
     category: "Diamond",
     subCategory: "Chains with Pendant",
     stockCount: 1,
-    images: ["/diamond_pendant_chain.jpg", "/hero-necklace.png"]
+    images: ["/diamond_pendant_chain.jpg"]
   },
   {
     name: "Radiant Solitaire Engagement Ring",
@@ -265,7 +266,7 @@ const SAMPLE_PRODUCTS = [
     category: "Diamond",
     subCategory: "Rings",
     stockCount: 4,
-    images: ["/diamond_solitaire_ring.jpg"]
+    images: []
   },
   {
     name: "Cascading Diamond Floral Drop Earrings",
@@ -307,7 +308,7 @@ const SAMPLE_PRODUCTS = [
     category: "Silver",
     subCategory: "Necklaces",
     stockCount: 4,
-    images: ["/silver_luxury_necklace.jpg", "/silver_bangles_craft.jpg"]
+    images: ["/uploads/silver-filigree-hasli-choker-1.webp"]
   },
   {
     name: "Handcrafted Oxidized Silver Floral Haar",
@@ -320,6 +321,18 @@ const SAMPLE_PRODUCTS = [
     subCategory: "Necklaces",
     stockCount: 3,
     images: ["/silver_luxury_necklace.jpg"]
+  },
+  {
+    name: "Antique Silver Jhumka with Pearl Drops",
+    slug: "antique-silver-jhumka-pearls",
+    sku: "AR-SLV-ER-001",
+    description: "Oxidized sterling silver temple jhumkas featuring delicate floral filigree and freshwater seed pearls.",
+    goldPurity: 925,
+    goldWeight: 24.0,
+    category: "Silver",
+    subCategory: "Earrings",
+    stockCount: 4,
+    images: ["/uploads/lookbook_heritage_filigree.webp"]
   },
   {
     name: "Tribal Carved Silver Statement Ring",
