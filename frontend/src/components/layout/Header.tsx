@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CATEGORIES } from '@/constants/categories';
 import { useAuth } from '@/context/AuthContext';
-import PromotionalAnnouncementBar from '@/components/layout/PromotionalAnnouncementBar';
 
 const NAV_LINKS = [
   { name: 'Gallery', href: '/gallery' },
@@ -648,9 +647,6 @@ const Header = ({
             </>
           )}
         </AnimatePresence>
-
-      {/* Dedicated Promotional Announcement Bar positioned immediately below the navigation */}
-      <PromotionalAnnouncementBar marqueeText={settings?.marquee_text} />
     </div>
   );
 };

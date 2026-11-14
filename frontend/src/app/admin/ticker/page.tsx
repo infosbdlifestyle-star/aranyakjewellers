@@ -6,7 +6,17 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
-import { removeEmojis } from '@/components/layout/PromotionalAnnouncementBar';
+/**
+ * Strips all emojis, pictographs, symbols, and variation selectors from a string
+ * while preserving Bengali script (U+0980-U+09FF), English, numbers, rupee ₹, and standard punctuation.
+ */
+function removeEmojis(text: string): string {
+  if (!text) return "";
+  return text
+    .replace(/[\p{Extended_Pictographic}\p{Emoji_Presentation}\uFE0F\u200D\u20E3\u2600-\u26FF\u2700-\u27BF]/gu, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
 interface TickerItem {
   id: string;

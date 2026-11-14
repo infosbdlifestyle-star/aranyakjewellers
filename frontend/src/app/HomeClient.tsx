@@ -132,7 +132,6 @@ export default function HomeClient({
   const [liveSettings, setLiveSettings] = useState<Record<string, string>>(initialSettings || {});
   const [liveMediaMap, setLiveMediaMap] = useState<Record<string, string>>(initialMediaMap || {});
   const [liveStoresCount, setLiveStoresCount] = useState<number>(storesCount || 4);
-  const [liveOffers, setLiveOffers] = useState<any[]>([]);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -141,14 +140,13 @@ export default function HomeClient({
 
     const fetchLiveData = async () => {
       try {
-        const [rates, bans, cats, sets, stores, media, offers] = await Promise.all([
+        const [rates, bans, cats, sets, stores, media] = await Promise.all([
           api.getGoldPrices(),
           api.getBanners(),
           api.getCategories(),
           api.getSettings(),
           api.getStores(),
           api.getMediaMap(),
-          api.getOffers('cards')
         ]);
         if (Array.isArray(rates) && rates.length > 0) setLiveGoldRates(rates);
         if (Array.isArray(bans) && bans.length > 0) setLiveBanners(bans);
@@ -157,9 +155,6 @@ export default function HomeClient({
         if (media && typeof media === 'object') setLiveMediaMap(media);
         if (Array.isArray(stores) && stores.length >= 4) {
           setLiveStoresCount(stores.length);
-        }
-        if (Array.isArray(offers) && offers.length > 0) {
-          setLiveOffers(offers);
         }
       } catch { /* empty */ }
     };
@@ -295,8 +290,6 @@ export default function HomeClient({
   const enabledSections = useMemo(() => {
     const map: Record<string, boolean> = {
       hero: true,
-      ticker: true,
-      offers: true,
       top_picks: true,
       philosophy_stats: true,
       craftsmanship: true,
@@ -342,56 +335,6 @@ export default function HomeClient({
     }
     return STATS;
   }, [liveSettings]);
-
-  // Dynamic Offers
-  const displayOffers = useMemo(() => {
-    if (liveOffers.length > 0) {
-      return liveOffers.map(o => ({
-        title: `${o.titleBn}${o.titleEn ? ` (${o.titleEn})` : ''}`,
-        desc: o.descBn || o.descEn || '',
-        tag: o.tag,
-        highlight: Boolean(o.highlight)
-      }));
-    }
-    return [
-      { 
-        title: 'সোনার গয়না (Gold Jewellery)', 
-        desc: '১০০০/- টাকা ছাড় প্রতিগ্রাম সোনার গয়না কেনাকাটায়', 
-        tag: '₹1000 OFF/GM' 
-      },
-      { 
-        title: 'পুরোনো গয়না পরিবর্তন (Exchange)', 
-        desc: '১০০% মূল্য হলমার্ক যুক্ত পুরোনো গয়নার পরিবর্তে', 
-        tag: 'ZERO LOSS EXCHANGE' 
-      },
-      { 
-        title: 'হীরের গয়না (Diamond Jewellery)', 
-        desc: '১০০% ছাড় হীরের গয়নার মজুরিতে', 
-        tag: '100% FREE MAKING' 
-      },
-      { 
-        title: 'রুপোর গয়না (Silver Ornaments)', 
-        desc: '২৫% ছাড় রূপোর গয়নার MRP-র উপর', 
-        tag: '25% FLAT DISCOUNT' 
-      },
-      { 
-        title: 'প্রতিদিন লাকি ড্র (Daily Lucky Draw)', 
-        desc: 'প্রতিদিন লাকি ড্র-তে হোম অ্যাপ্লায়েন্স', 
-        tag: 'DAILY PRIZES' 
-      },
-      { 
-        title: 'নিশ্চিত উপহার (Assured Gifts)', 
-        desc: 'নিশ্চিত উপহার প্রতি কেনাকাটায়', 
-        tag: 'FREE GIFTS' 
-      },
-      { 
-        title: 'মেগা লাকি ড্র (Mega Lucky Draw)', 
-        desc: 'MEGA LUCKY DRAW ৩টি স্কুটি', 
-        tag: '3X SCOOTY BUMPER',
-        highlight: true 
-      },
-    ];
-  }, [liveOffers]);
 
   return (
     <main id="homepage-root" className="homepage-root min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C] selection:bg-[#D6B15D] selection:text-[#211813]" ref={containerRef}>
@@ -501,37 +444,7 @@ export default function HomeClient({
           box-shadow: 0 0 42px rgba(37, 211, 102, 0.95), 0 8px 24px rgba(0, 0, 0, 0.6) !important;
         }
 
-        /* 5. Festive & Wedding Celebration Badge: Subtle Border Glow */
-        @keyframes celebrationBadgeGlow {
-          0%, 100% {
-            border-color: rgba(214, 177, 93, 0.35);
-            box-shadow: 0 0 8px rgba(214, 177, 93, 0.2), inset 0 0 6px rgba(214, 177, 93, 0.1);
-          }
-          50% {
-            border-color: rgba(214, 177, 93, 0.85);
-            box-shadow: 0 0 20px rgba(214, 177, 93, 0.55), inset 0 0 10px rgba(214, 177, 93, 0.25);
-          }
-        }
-
-        .celebration-badge-glow {
-          animation: celebrationBadgeGlow 3s ease-in-out infinite;
-        }
-
-        /* 6. Gold Announcement Ticker: Smooth, Continuous 60 FPS, No Jump or Flickering */
-        body.is-homepage .offers-marquee-track,
-        body:has(#homepage-root) .offers-marquee-track {
-          display: flex !important;
-          width: max-content !important;
-          will-change: transform;
-          transform: translate3d(0, 0, 0);
-          -webkit-transform: translate3d(0, 0, 0);
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-          perspective: 1000px;
-          -webkit-perspective: 1000px;
-        }
-
-        /* 7. Hero Ambient Aura & Shimmer Line */
+        /* 5. Hero Ambient Aura & Shimmer Line */
         @keyframes heroAuraPulse {
           0%, 100% {
             opacity: 0.5;
@@ -560,15 +473,13 @@ export default function HomeClient({
           animation: goldShimmerSweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
-        /* 8. Respect prefers-reduced-motion */
+        /* 6. Respect prefers-reduced-motion */
         @media (prefers-reduced-motion: reduce) {
           body.is-homepage .hero-gold-sweep,
-          body.is-homepage .celebration-badge-glow,
           body.is-homepage .animate-hero-aura,
           body.is-homepage .animate-gold-shimmer-sweep,
           body.is-homepage a[aria-label="Chat on WhatsApp"] > div > div.rounded-full,
           body:has(#homepage-root) .hero-gold-sweep,
-          body:has(#homepage-root) .celebration-badge-glow,
           body:has(#homepage-root) .animate-hero-aura,
           body:has(#homepage-root) .animate-gold-shimmer-sweep,
           body:has(#homepage-root) a[aria-label="Chat on WhatsApp"] > div > div.rounded-full {
@@ -690,115 +601,14 @@ export default function HomeClient({
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FFF8EC] to-transparent w-full animate-gold-shimmer-sweep" />
             </motion.div>
           </div>
+
+          {/* Straight Clean Antique-Gold Luxury Divider into Warm Ivory Section */}
+          <div className="w-full flex justify-center pointer-events-none absolute bottom-0 inset-x-0">
+            <div className="w-full max-w-7xl px-6">
+              <div className="h-[1px] bg-gradient-to-r from-transparent via-[#C49A45]/40 to-transparent" />
+            </div>
+          </div>
         </section>
-      )}
-
-      {/* 2.5 Special Festive & Wedding Offers Grid */}
-      {enabledSections.offers && (
-        <section className="pt-12 md:pt-16 pb-12 md:pb-16 bg-gradient-to-b from-[#211813] via-[#211813] to-[#211813] relative overflow-hidden text-[#FFF8EB] border-b border-[#DED2C1]/15">
-        <div className="absolute inset-0 bg-radial-gold opacity-20 pointer-events-none" />
-        <div className="container mx-auto px-6 max-w-7xl relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="celebration-badge-glow inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#211813] border mb-4 shadow-md backdrop-blur-sm">
-                <span className="text-xs">🌸</span>
-                <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#D6B15D]">
-                  FESTIVE & WEDDING CELEBRATION
-                </span>
-                <span className="text-xs">🌸</span>
-              </div>
-            </motion.div>
-            
-            <motion.h2
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.9, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="text-3xl sm:text-4xl md:text-5xl font-serif font-light tracking-tight text-[#FFF8EB] mb-3"
-            >
-              Exclusive <span className="font-editorial gold-gradient italic">Privileges</span> & Offers
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.85, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              className="text-xs sm:text-sm text-[#E5D7C5] max-w-xl mx-auto font-light leading-relaxed"
-            >
-              Celebrate life&apos;s most precious milestones with guaranteed purity, exceptional exchange value, and festival blessings across all Tripura boutiques.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.85, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#211813]/90 border border-[#D6B15D]/50 shadow-[0_4px_20px_rgba(196,154,69,0.15)] backdrop-blur-sm"
-            >
-              <span className="w-2 h-2 rounded-full bg-[#D6B15D] animate-pulse" />
-              <span className="text-xs sm:text-sm font-medium tracking-wide text-[#FFF8EB]">
-                অফার* চলবে ১ নভেম্বর থেকে ১৪ নভেম্বর ২০২৬ পর্যন্ত
-              </span>
-              <span className="text-[#D6B15D] text-xs">✦</span>
-            </motion.div>
-          </div>
-
-          <StaggerContainer staggerDelay={0.09} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayOffers.map((item: any, idx: number) => (
-              <StaggerItem 
-                key={idx} 
-                y={35} 
-                className={`h-full ${
-                  idx === 6 
-                    ? 'sm:col-span-2 lg:col-span-1 lg:col-start-2 sm:max-w-md sm:mx-auto lg:max-w-none w-full' 
-                    : ''
-                }`}
-              >
-                <MagneticCard tiltIntensity={5} className="h-full rounded-2xl">
-                  <div className={`p-6 sm:p-7 rounded-2xl bg-[#211813]/80 backdrop-blur-md border ${
-                    item.highlight 
-                      ? 'border-[#D6B15D]/60 shadow-[0_0_25px_rgba(196,154,69,0.15)]' 
-                      : 'border-[#DED2C1]/25'
-                  } hover:border-[#D6B15D]/80 hover:shadow-[0_8px_30px_rgba(196,154,69,0.22)] transition-all duration-500 h-full flex flex-col justify-between group`}>
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-[9px] font-extrabold tracking-widest uppercase px-3 py-1 rounded-full bg-[#D6B15D]/15 text-[#D6B15D] border border-[#D6B15D]/30 shadow-sm">
-                          {item.tag}
-                        </span>
-                        <span className="text-[#D6B15D]/50 group-hover:text-[#D6B15D] transition-colors text-xs font-serif">
-                          ✦
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-serif font-bold text-[#FFF8EB] mb-2 group-hover:text-[#D6B15D] transition-colors leading-snug">
-                        {item.title}
-                      </h3>
-                      <p className="text-xs text-[#E5D7C5] leading-relaxed font-light">
-                        {item.desc}
-                      </p>
-                    </div>
-                    <div className="mt-5 pt-4 border-t border-[#DED2C1]/15 flex items-center justify-between text-[10px] text-[#D6B15D] font-bold tracking-wider uppercase">
-                      <span>Avail at all Stores</span>
-                      <span className="group-hover:translate-x-1.5 transition-transform duration-300">→</span>
-                    </div>
-                  </div>
-                </MagneticCard>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-        {/* Straight Clean Antique-Gold Luxury Divider into Warm Ivory Section */}
-        <div className="w-full flex justify-center mt-12 sm:mt-16 pointer-events-none">
-          <div className="w-full max-w-7xl px-6">
-            <div className="h-[1px] bg-gradient-to-r from-transparent via-[#C49A45]/40 to-transparent" />
-          </div>
-        </div>
-      </section>
       )}
 
       {/* 3.5 Animated 3D Cover-Flow "Top Picks" Luxury Showcase */}
