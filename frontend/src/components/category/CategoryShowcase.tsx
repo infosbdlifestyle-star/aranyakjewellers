@@ -41,7 +41,7 @@ const CATEGORY_METAS: Record<string, CategoryMeta> = {
     badge: "22KT BIS 916",
     hallmarkText: "100% BIS Hallmarked • Unique HUID Laser Certified • 100% Lifetime Exchange Guarantee",
     purityBanner: "Official Gold Purity: 91.6% Pure Gold (22K)",
-    heroImage: "/uploads/gallery_royal_bridal_feature.webp",
+    heroImage: "/uploads/hero-banner.webp",
   },
   diamond: {
     title: "Certified Natural Diamonds",
@@ -49,7 +49,7 @@ const CATEGORY_METAS: Record<string, CategoryMeta> = {
     badge: "VVS-VS Certified",
     hallmarkText: "IGI & GIA Certified Natural Diamonds • Conflict-Free Ethical Sourcing • 90% Buy-Back Value",
     purityBanner: "Certified Natural Diamonds in 18KT Hallmarked Gold",
-    heroImage: "/uploads/gallery_solitaire_feature.webp",
+    heroImage: "/uploads/cat_certified_diamonds.webp",
   },
   silver: {
     title: "92.5 Sterling Silver Fine Jewellery",
@@ -57,7 +57,7 @@ const CATEGORY_METAS: Record<string, CategoryMeta> = {
     badge: "92.5 Sterling Silver",
     hallmarkText: "92.5 Hallmarked Sterling Silver • Premium Anti-Tarnish E-Coating • Hand-Engraved",
     purityBanner: "Official Silver Purity: 92.5% Pure Sterling Silver",
-    heroImage: "/uploads/silver_necklace_rock_diya.webp",
+    heroImage: "/uploads/cat_antique_silver_heritage.webp",
   }
 };
 
@@ -257,10 +257,10 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
       {/* 1. Luxury Editorial Hero Banner */}
       <section className="relative py-24 md:py-32 px-6 md:px-12 text-left overflow-hidden bg-[#211813] border-b border-[#DED2C1]/15">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-70 scale-105 transition-transform duration-1000"
+          className="absolute inset-0 bg-cover bg-center md:bg-right opacity-85 scale-105 transition-transform duration-1000"
           style={{ backgroundImage: `url(${meta.heroImage})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/92 via-[#211813]/60 to-[#211813]/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#211813] via-[#211813]/75 via-45% to-[#211813]/20 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-transparent to-transparent pointer-events-none" />
 
         <div className="relative z-10 container mx-auto max-w-7xl">
