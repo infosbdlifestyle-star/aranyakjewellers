@@ -87,7 +87,7 @@ const Header = ({
           ? 'bg-[#FFFFFF] border-[#D6B15D]/30 shadow-md' 
           : 'bg-[#FFFFFF] border-[#D6B15D]/20'
       }`}>
-        <div className="container mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           {/* Logo on the Left - Mobile & Desktop */}
           <Link 
             href="/" 
@@ -98,33 +98,33 @@ const Header = ({
             <Image 
               src="/logo-transparent.png" 
               alt="Aranyak Jewellers - Fine Gold & Diamond Jewellery" 
-              width={180}
-              height={56}
+              width={150}
+              height={44}
               priority
-              className="h-10 sm:h-12 lg:h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+              className="h-8 sm:h-9 lg:h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]"
             />
           </Link>
 
           {/* Navigation - Desktop (Visible Black Text, Golden Hover Accent & Smooth Underline) */}
-          <nav className="hidden lg:flex flex-1 justify-center items-center space-x-3 xl:space-x-6 h-full">
+          <nav className="hidden lg:flex flex-1 justify-center items-center space-x-1.5 xl:space-x-3.5 h-full">
             {visibleCategories.map((cat: any) => (
               <div 
                 key={cat.id}
-                className="relative group h-full flex items-center px-2 xl:px-3"
+                className="relative group h-full flex items-center px-1.5 xl:px-2.5"
               >
                 <Link 
                   href={`/category/${cat.slug}`}
-                  className="text-xs xl:text-sm font-bold text-[#1A1A1A] group-hover:text-[#9A6B20] focus:outline-none focus:text-[#9A6B20] transition-colors uppercase tracking-[0.16em] py-2 relative flex items-center gap-1.5"
+                  className="text-[11px] xl:text-xs font-bold text-[#1A1A1A] group-hover:text-[#9A6B20] focus:outline-none focus:text-[#9A6B20] transition-colors uppercase tracking-[0.14em] py-1.5 relative flex items-center gap-1"
                 >
-                  <span className="relative pb-1">
+                  <span className="relative pb-0.5">
                     {cat.name}
                     <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#9A6B20] via-[#C9A044] to-[#9A6B20] group-hover:w-full transition-all duration-300 rounded-full pointer-events-none" />
                   </span>
                   {cat.subcategories && cat.subcategories.length > 0 && (
                     <svg 
                       xmlns="http://www.w3.org/2000/svg" 
-                      width="10" 
-                      height="10" 
+                      width="9" 
+                      height="9" 
                       viewBox="0 0 24 24" 
                       fill="none" 
                       stroke="currentColor" 
@@ -189,19 +189,19 @@ const Header = ({
             ))}
 
             {/* Gallery with Luxury Dropdown */}
-            <div className="relative group h-full flex items-center px-2 xl:px-3">
+            <div className="relative group h-full flex items-center px-1.5 xl:px-2.5">
               <Link
                 href="/gallery"
-                className="text-xs xl:text-sm font-bold uppercase tracking-[0.16em] py-2 transition-colors text-[#1A1A1A] group-hover:text-[#9A6B20] focus:outline-none focus:text-[#9A6B20] flex items-center gap-1.5"
+                className="text-[11px] xl:text-xs font-bold uppercase tracking-[0.14em] py-1.5 transition-colors text-[#1A1A1A] group-hover:text-[#9A6B20] focus:outline-none focus:text-[#9A6B20] flex items-center gap-1"
               >
-                <span className="relative pb-1">
+                <span className="relative pb-0.5">
                   Gallery
                   <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#9A6B20] via-[#C9A044] to-[#9A6B20] group-hover:w-full transition-all duration-300 rounded-full pointer-events-none" />
                 </span>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  width="10" 
-                  height="10" 
+                  width="9" 
+                  height="9" 
                   viewBox="0 0 24 24" 
                   fill="none" 
                   stroke="currentColor" 
@@ -249,12 +249,12 @@ const Header = ({
 
             {/* Remaining Static nav links (About, Stores, Contact) */}
             {NAV_LINKS.filter(l => l.name !== 'Gallery').map((link) => (
-              <div key={link.name} className="relative group h-full flex items-center px-2 xl:px-3">
+              <div key={link.name} className="relative group h-full flex items-center px-1.5 xl:px-2.5">
                 <Link
                   href={link.href}
-                  className="text-xs xl:text-sm font-bold uppercase tracking-[0.16em] py-2 transition-colors text-[#1A1A1A] group-hover:text-[#9A6B20] focus:outline-none focus:text-[#9A6B20]"
+                  className="text-[11px] xl:text-xs font-bold uppercase tracking-[0.14em] py-1.5 transition-colors text-[#1A1A1A] group-hover:text-[#9A6B20] focus:outline-none focus:text-[#9A6B20]"
                 >
-                  <span className="relative pb-1">
+                  <span className="relative pb-0.5">
                     {link.name}
                     <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#9A6B20] via-[#C9A044] to-[#9A6B20] group-hover:w-full transition-all duration-300 rounded-full pointer-events-none" />
                   </span>
@@ -264,14 +264,14 @@ const Header = ({
           </nav>
 
           {/* Desktop Right CTA (Sign In / Account & Phone) */}
-          <div className="hidden lg:flex items-center space-x-3 justify-end">
+          <div className="hidden lg:flex items-center space-x-2.5 xl:space-x-3 justify-end">
             {isAuthenticated ? (
               <div className="flex items-center space-x-2">
                 <Link
                   href="/account"
-                  className="inline-flex items-center space-x-2 px-3.5 py-2 bg-[#9A6B20]/10 hover:bg-[#9A6B20]/20 border border-[#9A6B20]/40 text-[#1A1A1A] hover:text-[#9A6B20] rounded-md transition-all text-xs font-bold tracking-[0.15em] uppercase shadow-sm group"
+                  className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-[#9A6B20]/10 hover:bg-[#9A6B20]/20 border border-[#9A6B20]/40 text-[#1A1A1A] hover:text-[#9A6B20] rounded transition-all text-[11px] font-bold tracking-[0.12em] uppercase shadow-sm group"
                 >
-                  <span className="w-5 h-5 rounded-full bg-[#D6B15D] text-[#211813] text-[10px] flex items-center justify-center font-serif font-bold group-hover:scale-105 transition-transform">
+                  <span className="w-4 h-4 rounded-full bg-[#D6B15D] text-[#211813] text-[9px] flex items-center justify-center font-serif font-bold group-hover:scale-105 transition-transform">
                     {(user?.name || 'P').charAt(0).toUpperCase()}
                   </span>
                   <span>My Account</span>
@@ -280,10 +280,10 @@ const Header = ({
                 {(user?.role === 'ADMIN' || user?.role === 'SUPER_ADMIN') && (
                   <Link
                     href="/admin"
-                    className="inline-flex items-center space-x-1.5 px-3 py-2 bg-[#C9A044]/20 hover:bg-[#C9A044]/30 border border-[#C9A044]/40 text-[#9A6B20] hover:text-[#1A1A1A] rounded-md transition-all text-xs font-bold tracking-widest uppercase"
+                    className="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-[#C9A044]/20 hover:bg-[#C9A044]/30 border border-[#C9A044]/40 text-[#9A6B20] hover:text-[#1A1A1A] rounded transition-all text-[11px] font-bold tracking-widest uppercase"
                     title="Admin Dashboard"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                     <span>Admin</span>
                   </Link>
                 )}
@@ -291,22 +291,22 @@ const Header = ({
             ) : (
               <Link 
                 href="/login" 
-                className="inline-flex items-center space-x-2 px-4 py-2 bg-[#C9A044] hover:bg-[#9A6B20] text-[#1A1A1A] hover:text-[#FFFFFF] font-bold rounded-md transition-all text-xs tracking-[0.15em] uppercase shadow-[0_2px_10px_rgba(201,160,68,0.35)] border border-[#C9A044] hover:border-[#9A6B20] active:scale-95"
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-[#C9A044] hover:bg-[#9A6B20] text-[#1A1A1A] hover:text-[#FFFFFF] font-bold rounded transition-all text-[11px] tracking-[0.12em] uppercase shadow-sm border border-[#C9A044] hover:border-[#9A6B20] active:scale-95"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 <span>Sign In</span>
               </Link>
             )}
             
             <a 
               href="tel:+919436501506" 
-              className="flex items-center space-x-2 text-[#1A1A1A] hover:text-[#9A6B20] focus:outline-none focus:text-[#9A6B20] transition-colors group font-bold px-2 py-1.5"
+              className="flex items-center space-x-1.5 text-[#1A1A1A] hover:text-[#9A6B20] focus:outline-none focus:text-[#9A6B20] transition-colors group font-bold px-1.5 py-1"
               title="Call Aranyak Jewellers: +91 9436501506"
             >
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
-                width="16" 
-                height="16" 
+                width="13" 
+                height="13" 
                 viewBox="0 0 24 24" 
                 fill="none" 
                 stroke="currentColor" 
@@ -317,7 +317,7 @@ const Header = ({
               >
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
-              <span className="text-xs font-bold tracking-[0.16em] uppercase whitespace-nowrap">Call Us</span>
+              <span className="text-[11px] font-bold tracking-[0.13em] uppercase whitespace-nowrap">Call Us</span>
             </a>
           </div>
 
@@ -326,22 +326,22 @@ const Header = ({
             <a 
               href="tel:+919436501506" 
               aria-label="Call Aranyak Jewellers"
-              className="flex items-center justify-center w-10 h-10 rounded-lg text-[#1A1A1A] hover:text-[#9A6B20] bg-transparent hover:bg-[#9A6B20]/10 border border-[#1A1A1A]/20 hover:border-[#9A6B20]/40 active:scale-95 transition-all"
+              className="flex items-center justify-center w-8 h-8 rounded-md text-[#1A1A1A] hover:text-[#9A6B20] bg-transparent hover:bg-[#9A6B20]/10 border border-[#1A1A1A]/20 hover:border-[#9A6B20]/40 active:scale-95 transition-all"
               title="Call Us: +91 9436501506"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </a>
 
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="flex items-center justify-center w-11 h-11 text-[#1A1A1A] hover:text-[#9A6B20] bg-transparent hover:bg-[#9A6B20]/10 border border-[#1A1A1A]/25 hover:border-[#9A6B20]/50 rounded-lg transition-all focus:outline-none active:scale-95 shadow-sm"
+              className="flex items-center justify-center w-9 h-9 text-[#1A1A1A] hover:text-[#9A6B20] bg-transparent hover:bg-[#9A6B20]/10 border border-[#1A1A1A]/25 hover:border-[#9A6B20]/50 rounded-md transition-all focus:outline-none active:scale-95 shadow-sm"
               aria-expanded={isMobileMenuOpen}
               aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             >
               {isMobileMenuOpen ? (
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
               )}
             </button>
           </div>
@@ -369,7 +369,7 @@ const Header = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:hidden fixed inset-x-0 bottom-0 top-20 bg-[#1A120D] border-t border-[#D6B15D]/25 z-[95] overflow-y-auto overscroll-contain flex flex-col justify-between shadow-2xl"
+              className="lg:hidden fixed inset-x-0 bottom-0 top-16 bg-[#1A120D] border-t border-[#D6B15D]/25 z-[95] overflow-y-auto overscroll-contain flex flex-col justify-between shadow-2xl"
             >
                 <div className="p-5 sm:p-6 pb-28 max-w-lg mx-auto w-full space-y-6">
                   {/* Top Action Bar: SIGN IN & CALL US */}
