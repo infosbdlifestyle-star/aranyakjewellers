@@ -174,13 +174,14 @@ export default function TopPicksCoverFlow({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [goToNext, goToPrev]);
 
-  // Autoplay: automatically advance to next card every 2 seconds (2000ms), resets on manual navigation
+  // Autoplay: automatically advance to next card every 5 seconds (5000ms), only when visible
   useEffect(() => {
     if (isHovered) return;
 
     const interval = setInterval(() => {
+      if (typeof document !== 'undefined' && document.hidden) return;
       setActiveIndex((prev) => (prev + 1) % items.length);
-    }, 2000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [activeIndex, isHovered, items.length]);

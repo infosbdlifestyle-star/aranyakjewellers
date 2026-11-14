@@ -180,8 +180,8 @@ const SLIDES: HeroSlide[] = [
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-const AUTOPLAY_DELAY = 2000;
-const TRANSITION_DURATION = 300; // ms — fast snappy transition
+const AUTOPLAY_DELAY = 5000;
+const TRANSITION_DURATION = 400; // ms — smooth transition
 
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
@@ -204,7 +204,7 @@ export default function HeroCarousel() {
   const scheduleNext = useCallback(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
-      if (!isPaused.current) {
+      if (!isPaused.current && !(typeof document !== 'undefined' && document.hidden)) {
         setCurrent((c) => (c + 1) % SLIDES.length);
         setAnimKey((k) => k + 1);
       }

@@ -53,47 +53,73 @@ class ApiClient {
     } else if (tokenOrFallback !== undefined) {
       fallback = tokenOrFallback;
     }
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
     try {
       const res = await fetch(`${this.baseUrl}${path}`, {
         cache: 'no-store',
         headers: this.getHeaders(token),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
       return await this.safeJson(res, fallback);
     } catch {
+      clearTimeout(timeout);
       return fallback;
     }
   }
 
   private async post(path: string, token: string | undefined, data: any, fallback: any = null) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
     try {
       const res = await fetch(`${this.baseUrl}${path}`, {
         method: 'POST',
         headers: this.getHeaders(token),
         body: JSON.stringify(data),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
       return this.safeJson(res, fallback);
-    } catch { return fallback; }
+    } catch {
+      clearTimeout(timeout);
+      return fallback;
+    }
   }
 
   private async put(path: string, token: string | undefined, data: any, fallback: any = null) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
     try {
       const res = await fetch(`${this.baseUrl}${path}`, {
         method: 'PUT',
         headers: this.getHeaders(token),
         body: JSON.stringify(data),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
       return this.safeJson(res, fallback);
-    } catch { return fallback; }
+    } catch {
+      clearTimeout(timeout);
+      return fallback;
+    }
   }
 
   private async del(path: string, token: string | undefined, fallback: any = { success: true }) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
     try {
       const res = await fetch(`${this.baseUrl}${path}`, {
         method: 'DELETE',
         headers: this.getHeaders(token),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
       return this.safeJson(res, fallback);
-    } catch { return fallback; }
+    } catch {
+      clearTimeout(timeout);
+      return fallback;
+    }
   }
 
   // Products

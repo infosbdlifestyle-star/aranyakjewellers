@@ -133,35 +133,29 @@ export default function HomeClient({
   const [liveMediaMap, setLiveMediaMap] = useState<Record<string, string>>(initialMediaMap || {});
   const [liveStoresCount, setLiveStoresCount] = useState<number>(storesCount || 4);
   const [mounted, setMounted] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    setIsDesktop(window.innerWidth >= 768);
     document.body.classList.add('is-homepage');
 
-    const fetchLiveData = async () => {
-      try {
-        const [rates, bans, cats, sets, stores, media] = await Promise.all([
-          api.getGoldPrices(),
-          api.getBanners(),
-          api.getCategories(),
-          api.getSettings(),
-          api.getStores(),
-          api.getMediaMap(),
-        ]);
+    // Only fetch if initial data was missing
+    const needsFetch = !initialGoldRates?.length || !initialCategories?.length;
+    if (needsFetch) {
+      api.getGoldPrices().then(rates => {
         if (Array.isArray(rates) && rates.length > 0) setLiveGoldRates(rates);
-        if (Array.isArray(bans) && bans.length > 0) setLiveBanners(bans);
-        if (Array.isArray(cats) && cats.length > 0) setLiveCategories(cats);
-        if (sets && typeof sets === 'object') setLiveSettings(sets);
-        if (media && typeof media === 'object') setLiveMediaMap(media);
-        if (Array.isArray(stores) && stores.length >= 4) {
-          setLiveStoresCount(stores.length);
-        }
-      } catch { /* empty */ }
-    };
-    fetchLiveData();
+      }).catch(() => {});
+    }
 
-    // Refresh live real-time data every 10 seconds
-    const interval = setInterval(fetchLiveData, 10000);
+    // Refresh live gold rate periodically (every 3 minutes), only when page is visible
+    const interval = setInterval(() => {
+      if (typeof document !== 'undefined' && document.hidden) return;
+      api.getGoldPrices().then(rates => {
+        if (Array.isArray(rates) && rates.length > 0) setLiveGoldRates(rates);
+      }).catch(() => {});
+    }, 180000);
+
     return () => {
       clearInterval(interval);
       document.body.classList.remove('is-homepage');
@@ -521,7 +515,7 @@ export default function HomeClient({
           </div>
 
           {/* Gentle Floating Gold Dust Particles */}
-          {mounted && (
+          {mounted && isDesktop && (
             <div className="absolute inset-0 pointer-events-none z-15 overflow-hidden" aria-hidden="true">
               {HERO_PARTICLES.map((p) => (
                 <motion.div

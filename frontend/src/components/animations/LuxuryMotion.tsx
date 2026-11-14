@@ -134,6 +134,7 @@ export function MagneticCard({
 }: MagneticCardProps) {
   const effectiveTilt = tiltIntensity ?? tiltAmount ?? 6;
   const cardRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50, opacity: 0 });
@@ -143,26 +144,38 @@ export function MagneticCard({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const clientX = e.clientX;
+    const clientY = e.clientY;
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+    if (rafRef.current !== null) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      if (!cardRef.current) return;
+      const rect = cardRef.current.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
 
-    const rX = ((y - centerY) / centerY) * -effectiveTilt;
-    const rY = ((x - centerX) / centerX) * effectiveTilt;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
 
-    setRotateX(rX);
-    setRotateY(rY);
-    setGlarePos({
-      x: (x / rect.width) * 100,
-      y: (y / rect.height) * 100,
-      opacity: glareOpacity,
+      const rX = ((y - centerY) / centerY) * -effectiveTilt;
+      const rY = ((x - centerX) / centerX) * effectiveTilt;
+
+      setRotateX(rX);
+      setRotateY(rY);
+      setGlarePos({
+        x: (x / rect.width) * 100,
+        y: (y / rect.height) * 100,
+        opacity: glareOpacity,
+      });
     });
   };
 
   const handleMouseLeave = () => {
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
     setRotateX(0);
     setRotateY(0);
     setGlarePos(prev => ({ ...prev, opacity: 0 }));
