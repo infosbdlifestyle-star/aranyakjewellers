@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Reveal } from '@/components/animations/Reveal';
 import { TextReveal } from '@/components/animations/LuxuryMotion';
+import { CategoryNavBar, CategoryNavItem } from '@/components/category/CategoryNavBar';
 
 export interface StoreLocation {
   id: string;
@@ -141,6 +142,13 @@ export default function StoresClient({
   // Guaranteed fallback and deduplication
   const sourceStores = mergeWithDefaultStores(stores);
 
+  const storeNavItems = useMemo<CategoryNavItem[]>(() => {
+    return TABS.map((tab) => ({
+      id: tab.id,
+      name: tab.label,
+    }));
+  }, []);
+
   // Filter logic: 'all' returns all showrooms, otherwise filter by city or keywords
   const filteredStores = activeTab === 'all'
     ? sourceStores
@@ -191,38 +199,13 @@ export default function StoresClient({
         </div>
       </section>
 
-      {/* Interactive Location Filter Tabs */}
-      <section className="sticky top-[124px] sm:top-[128px] md:top-[130px] z-20 bg-[#FAF7F0]/95 backdrop-blur-md border-b border-[#DED2C1] py-4 px-6 shadow-sm">
-        <div className="container mx-auto max-w-5xl flex items-center justify-center overflow-x-auto no-scrollbar space-x-2 sm:space-x-3">
-          {TABS.map((tab) => {
-            const isActive = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`relative px-5 py-2.5 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase whitespace-nowrap transition-colors duration-300 rounded-full overflow-hidden border ${
-                  isActive
-                    ? 'border-[#98712E]/50'
-                    : 'border-[#DED2C1] bg-[#FFFDF8] hover:border-[#98712E]'
-                }`}
-              >
-                {isActive && (
-                  <motion.div 
-                    layoutId="activeStoreTab"
-                    className="absolute inset-0 bg-[#211813] shadow-md z-0 rounded-full"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                <span className={`relative z-10 transition-colors duration-300 ${
-                  isActive ? 'text-[#FFF8EC] font-bold' : 'text-[#211813] hover:text-[#8A5A12]'
-                }`}>
-                  {tab.label}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </section>
+      {/* Interactive Location Filter Navigation Bar */}
+      <CategoryNavBar
+        items={storeNavItems}
+        activeId={activeTab}
+        onSelect={(id) => setActiveTab(id)}
+        layoutId="activeStoreTab"
+      />
 
       {/* Stores Responsive Grid */}
       <section className="py-16 md:py-24 flex-1 bg-gradient-to-b from-[#211813] via-[#211813] to-[#211813] text-[#FFF8EC] relative overflow-hidden">
