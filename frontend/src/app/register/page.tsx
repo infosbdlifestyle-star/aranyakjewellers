@@ -68,7 +68,7 @@ export default function RegisterPage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#F8F4EC] text-[#76551C]">
       <section className="flex-1 flex items-center justify-center py-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
+        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-35" />
 
         <div className="w-full max-w-lg bg-[#211813] text-[#FFF8EC] p-8 md:p-12 shadow-2xl border border-[#DED2C1]/20 relative z-10 rounded-2xl">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#A77C32] via-[#C49A45] to-[#A77C32] rounded-t-2xl" />

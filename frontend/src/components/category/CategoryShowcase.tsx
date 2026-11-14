@@ -257,10 +257,11 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
       {/* 1. Luxury Editorial Hero Banner */}
       <section className="relative py-24 md:py-32 px-6 md:px-12 text-left overflow-hidden bg-[#211813] border-b border-[#DED2C1]/15">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity scale-105 transition-transform duration-1000"
+          className="absolute inset-0 bg-cover bg-center opacity-70 scale-105 transition-transform duration-1000"
           style={{ backgroundImage: `url(${meta.heroImage})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#211813]/95 via-[#211813]/85 to-[#211813] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/92 via-[#211813]/60 to-[#211813]/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-transparent to-transparent pointer-events-none" />
 
         <div className="relative z-10 container mx-auto max-w-7xl">
           {/* Breadcrumbs */}

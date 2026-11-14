@@ -11,8 +11,9 @@ export default function GoldRatePage() {
   return (
     <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#211813] selection:bg-[#C49A45] selection:text-[#211813]">
       <section className="py-24 px-6 md:px-12 relative bg-[#211813] text-left border-b border-[#DED2C1]/15 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-15 mix-blend-luminosity scale-105" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#211813]/90 via-[#211813]/70 to-[#211813] pointer-events-none" />
+        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-65 scale-105 transition-transform duration-1000" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/92 via-[#211813]/60 to-[#211813]/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-transparent to-transparent pointer-events-none" />
         
         <div className="relative z-10 container mx-auto max-w-7xl">
           <div className="inline-flex items-center gap-2 mb-3">

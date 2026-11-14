@@ -52,7 +52,7 @@ export default function LoginPage() {
     <main className="min-h-screen flex flex-col bg-[#F8F4EC] text-[#76551C]">
       
       <section className="flex-1 flex items-center justify-center py-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-10 mix-blend-luminosity" />
+        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-35" />
 
         <div className="w-full max-w-md bg-[#211813] text-[#FFF8EC] p-10 shadow-2xl border border-[#DED2C1]/20 relative z-10 rounded-2xl">
           {/* Decorative element */}

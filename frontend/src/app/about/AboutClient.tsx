@@ -52,9 +52,10 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
       <section className="py-28 md:py-36 px-6 md:px-12 text-left relative overflow-hidden bg-[#211813] text-[#FFF8EC] border-b border-[#DED2C1]/15">
         <div 
           style={{ backgroundImage: `url('${heroBackdrop}')` }}
-          className="absolute inset-0 bg-cover bg-center opacity-15 mix-blend-luminosity scale-105 transition-transform duration-1000" 
+          className="absolute inset-0 bg-cover bg-center opacity-65 scale-105 transition-transform duration-1000" 
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#211813]/90 via-[#211813]/70 to-[#211813]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/92 via-[#211813]/60 to-[#211813]/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-transparent to-transparent pointer-events-none" />
         
         <div className="relative z-10 container mx-auto max-w-7xl">
           <motion.div
@@ -100,7 +101,7 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
                     src={mdPhoto} 
                     alt="Managing Director - Aranyak Jewellers" 
                     fill
-                    className="object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                    className="object-cover contrast-105 group-hover:scale-105 transition-all duration-1000"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   {/* Luxury Inner Filigree Inset Frame */}

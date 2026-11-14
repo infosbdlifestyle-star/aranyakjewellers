@@ -492,7 +492,7 @@ export default function HomeClient({
           {/* Completely Stationary Hero Background (Zero scale, zero zoom, original size) */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <Image 
-              src={heroConfig.imageUrl || liveMediaMap['home_hero_banner'] || (liveBanners && liveBanners.length > 0 ? liveBanners[0].imageUrl : (initialBanners && initialBanners.length > 0 ? initialBanners[0].imageUrl : "/Website banner .png"))} 
+              src={heroConfig.imageUrl || liveMediaMap['home_hero_banner'] || (liveBanners && liveBanners.length > 0 ? liveBanners[0].imageUrl : (initialBanners && initialBanners.length > 0 ? initialBanners[0].imageUrl : "/website-banner.webp"))} 
               alt="Aranyak Jewellers Masterpiece Collection" 
               fill
               className="object-cover object-center no-select opacity-75"

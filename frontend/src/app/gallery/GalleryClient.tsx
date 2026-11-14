@@ -85,7 +85,11 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
       
       {/* 1. Header Banner */}
       <section className="relative py-24 sm:py-32 bg-[#211813] border-b border-[#DED2C1]/15 overflow-hidden text-center px-6">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#211813]/95 via-[#211813]/80 to-[#211813] pointer-events-none" />
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-60 scale-105 transition-transform duration-1000"
+          style={{ backgroundImage: `url('/uploads/gallery_royal_bridal_feature.webp')` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#211813]/88 via-[#211813]/70 to-[#211813]/95 pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto">
           <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#211813] border border-[#C49A45]/40 mb-6 shadow-xl">
             <SparkleGlint color="#D6B15D" size={12}>

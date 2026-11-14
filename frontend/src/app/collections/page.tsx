@@ -14,10 +14,10 @@ import {
 import { api } from '@/lib/api';
 
 const DEFAULT_CATEGORY_IMAGES: Record<string, string> = {
-  gold: '/hero-banner.png',
-  diamond: '/hero-necklace.png',
-  silver: '/IMG_20260603_135005.png',
-  'costume-jewellery': '/IMG_20260603_141414.png',
+  gold: '/uploads/gallery_royal_bridal_feature.webp',
+  diamond: '/uploads/gallery_solitaire_feature.webp',
+  silver: '/uploads/silver_necklace_rock_diya.webp',
+  'costume-jewellery': '/uploads/gallery_chandeliers_feature.webp',
   'offers-deals': '/bridal-edit.png'
 };
 
@@ -38,8 +38,9 @@ export default function CollectionsPage() {
     <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C]">
       {/* Page Hero */}
       <section className="relative py-28 md:py-36 px-6 md:px-12 text-left bg-[#211813] text-[#FFF8EC] overflow-hidden border-b border-[#DED2C1]/20">
-        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-15 mix-blend-luminosity animate-slow-zoom" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/70 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-[url('/hero-banner.png')] bg-cover bg-center opacity-65 scale-105 transition-transform duration-1000" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/92 via-[#211813]/60 to-[#211813]/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-transparent to-transparent pointer-events-none" />
         
         <div className="relative z-10 container mx-auto max-w-7xl">
           <Reveal y={30}>
