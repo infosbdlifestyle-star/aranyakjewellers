@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  TextReveal, 
   MagneticCard, 
   SparkleGlint, 
   StaggerContainer, 
@@ -102,7 +101,7 @@ export default function ContactClient() {
     <main className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#76551C] selection:bg-[#C49A45] selection:text-[#211813]">
       
       {/* 1. Hero */}
-      <section className="py-28 md:py-36 px-6 md:px-12 relative bg-[#211813] text-[#FFF8EC] text-left border-b border-[#DED2C1]/15 overflow-hidden">
+      <section className="py-20 md:py-24 px-6 md:px-12 relative bg-[#211813] text-[#FFF8EC] text-left border-b border-[#DED2C1]/15 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/hero-banner.webp')] bg-cover bg-center md:bg-right opacity-80 scale-105 transition-transform duration-1000" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#211813] via-[#211813]/75 via-45% to-[#211813]/20 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-transparent to-transparent pointer-events-none" />
@@ -112,20 +111,15 @@ export default function ContactClient() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 mb-4"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#211813] border border-[#C49A45]/40 mb-5 shadow-sm"
           >
             <SparkleGlint color="#E7C880" size={12}>
               <span className="text-[#E0BD72]">✧</span>
             </SparkleGlint>
-            <p className="text-[10px] tracking-[0.5em] uppercase text-[#E0BD72] font-bold">
+            <h1 className="text-[10px] sm:text-xs tracking-[0.45em] uppercase text-[#E0BD72] font-bold">
               Aranyak Patron Concierge
-            </p>
+            </h1>
           </motion.div>
-
-          <h1 className="text-5xl md:text-8xl font-serif font-light mb-6 text-[#FFF8EC] tracking-tight">
-            <TextReveal text="Get in" />{' '}
-            <span className="font-editorial italic gold-gradient">Touch</span>
-          </h1>
 
           <p className="text-xs sm:text-sm text-[#E5D9C8] font-normal tracking-widest uppercase max-w-xl leading-relaxed">
             Connect with our diamond gemologists, bridal trousseau consultants, and master artisans across Tripura.
