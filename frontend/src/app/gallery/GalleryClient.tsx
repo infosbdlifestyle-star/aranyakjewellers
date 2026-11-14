@@ -6,6 +6,7 @@ import { TextReveal, SparkleGlint } from '@/components/animations/LuxuryMotion';
 import { LuxuryJewelryGallery } from '@/components/ui/LuxuryJewelryGallery';
 import { MASTER_GALLERY_ITEMS, GALLERY_CATEGORIES, MasterGalleryItem } from '@/data/gallery';
 import { api } from '@/lib/api';
+import { CategoryNavBar, CategoryNavItem } from '@/components/category/CategoryNavBar';
 
 export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<string, string> }) {
   const [activeTab, setActiveTab] = useState<string>('all');
@@ -72,6 +73,13 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
     });
   }, [dynamicGalleryItems, activeTab]);
 
+  const galleryNavItems = useMemo<CategoryNavItem[]>(() => {
+    return GALLERY_CATEGORIES.map((cat) => ({
+      id: cat.id,
+      name: cat.label,
+    }));
+  }, []);
+
   return (
     <main className="min-h-screen bg-[#FAF7F0] text-[#211813] selection:bg-[#C49A45] selection:text-[#211813]">
       
@@ -105,34 +113,13 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
         </div>
       </section>
 
-      {/* 2. Category Filter Tabs with Sliding Animated Pill */}
-      <section className="sticky top-[124px] sm:top-[128px] md:top-[130px] z-20 bg-[#FAF7F0]/95 backdrop-blur-md border-b border-[#DED2C1] py-4 px-6 shadow-sm">
-        <div className="container mx-auto max-w-7xl flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar space-x-2 sm:space-x-3">
-          {GALLERY_CATEGORIES.map((cat) => {
-            const isActive = activeTab === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => setActiveTab(cat.id)}
-                className="relative px-4 py-2 sm:px-5 sm:py-2.5 text-[10px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.25em] uppercase whitespace-nowrap transition-colors duration-300 rounded-full overflow-hidden"
-              >
-                {isActive && (
-                  <motion.div 
-                    layoutId="activeGalleryTabPill"
-                    className="absolute inset-0 bg-[#211813] rounded-full shadow-md z-0 border border-[#D6B15D]/60"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                <span className={`relative z-10 transition-colors duration-300 ${
-                  isActive ? 'text-[#FFF8EC]' : 'text-[#211813] hover:text-[#8A5A12]'
-                }`}>
-                  {cat.label}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </section>
+      {/* 2. Compact, Properly Aligned Category Navigation Bar */}
+      <CategoryNavBar
+        items={galleryNavItems}
+        activeId={activeTab}
+        onSelect={(id) => setActiveTab(id)}
+        layoutId="activeGalleryTabPill"
+      />
 
       {/* 3. Luxury Master Gallery with Interactive Hover-to-Zoom Lens & Modal */}
       <section className="py-16 sm:py-24 px-6 container mx-auto max-w-[1400px]">

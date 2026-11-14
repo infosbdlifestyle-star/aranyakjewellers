@@ -18,6 +18,7 @@ import {
   StaggerContainer, 
   StaggerItem 
 } from '@/components/animations/LuxuryMotion';
+import { CategoryNavBar, CategoryNavItem } from './CategoryNavBar';
 
 interface CategoryShowcaseProps {
   categorySlug: string;
@@ -205,6 +206,23 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
     return list;
   }, [categoryKey, products]);
 
+  // Unified Category Navigation Items
+  const navItems = useMemo<CategoryNavItem[]>(() => {
+    return [
+      { id: 'all', name: 'All Masterpieces', count: products.length },
+      ...subCategories.map((sub) => ({
+        id: sub.slug,
+        name: sub.name,
+      })),
+    ];
+  }, [products.length, subCategories]);
+
+  const sortOptions = useMemo(() => [
+    { value: 'featured', label: 'Featured First' },
+    { value: 'weight-desc', label: 'Gold Weight: Highest' },
+    { value: 'name', label: 'Alphabetical' },
+  ], []);
+
   // Filtered and Sorted Products
   const displayedProducts = useMemo(() => {
     let result = products;
@@ -280,71 +298,16 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
         </div>
       </section>
 
-      {/* 2. Subcategory Filter Pills Bar */}
-      <section className="sticky top-[124px] sm:top-[128px] md:top-[130px] z-20 bg-[#FAF7F0]/95 backdrop-blur-md border-b border-[#DED2C1] py-4 px-6 shadow-sm">
-        <div className="container mx-auto max-w-7xl flex items-center justify-between gap-4">
-          
-          {/* Subcategory Pills */}
-          <div className="flex items-center space-x-2 overflow-x-auto no-scrollbar py-1">
-            <button
-              onClick={() => setSelectedSubCategory('all')}
-              className={`relative px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-300 shrink-0 ${
-                selectedSubCategory === 'all'
-                  ? 'text-[#FFF8EC]'
-                  : 'text-[#211813] hover:text-[#8A5A12] bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#8A5A12]'
-              }`}
-            >
-              {selectedSubCategory === 'all' && (
-                <motion.div
-                  layoutId="activeSubCategoryPill"
-                  className="absolute inset-0 bg-[#211813] rounded-full -z-10 shadow-sm border border-[#98712E]/50"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-              <span>All Masterpieces ({products.length})</span>
-            </button>
-
-            {subCategories.map((sub) => {
-              const isActive = selectedSubCategory === sub.slug;
-              return (
-                <button
-                  key={sub.slug}
-                  onClick={() => setSelectedSubCategory(sub.slug)}
-                  className={`relative px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-300 shrink-0 ${
-                    isActive
-                      ? 'text-[#FFF8EC]'
-                      : 'text-[#211813] hover:text-[#8A5A12] bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#8A5A12]'
-                  }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeSubCategoryPill"
-                      className="absolute inset-0 bg-[#211813] rounded-full -z-10 shadow-sm border border-[#98712E]/50"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span>{sub.name}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Sort Dropdown */}
-          <div className="hidden sm:flex items-center space-x-3 shrink-0">
-            <span className="text-[10px] font-bold tracking-widest uppercase text-[#76551C]">Sort:</span>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
-              className="text-xs font-semibold bg-[#FFFDF8] border border-[#DED2C1] rounded-lg px-3 py-1.5 text-[#211813] focus:outline-none focus:border-[#8A5A12] cursor-pointer"
-            >
-              <option value="featured">Featured First</option>
-              <option value="weight-desc">Gold Weight: Highest</option>
-              <option value="name">Alphabetical</option>
-            </select>
-          </div>
-
-        </div>
-      </section>
+      {/* 2. Compact, Properly Aligned Category Navigation Bar */}
+      <CategoryNavBar
+        items={navItems}
+        activeId={selectedSubCategory}
+        onSelect={(id) => setSelectedSubCategory(id)}
+        sortOptions={sortOptions}
+        sortBy={sortBy}
+        onSortChange={(val) => setSortBy(val as any)}
+        layoutId="activeSubCategoryPill"
+      />
 
       {/* 3. Main Content Area */}
       <section className="py-16 md:py-24 flex-1">
