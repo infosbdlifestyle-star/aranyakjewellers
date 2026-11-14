@@ -34,7 +34,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-bala-filigree-pair-1.webp",
     "description": "An exceptional pair of traditional Bengali 22K BIS hallmarked gold Balas adorned with intricate Mayur peacock filigree and polished wire craftsmanship.",
-    "tag": "Gold \u2022 Bangles",
+    "tag": "Gold • Bangles",
     "productSlug": "gold-bala-filigree-pair"
   },
   {
@@ -45,7 +45,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-bala-filigree-pair-2.webp",
     "description": "An exceptional pair of traditional Bengali 22K BIS hallmarked gold Balas adorned with intricate Mayur peacock filigree and polished wire craftsmanship.",
-    "tag": "Gold \u2022 Bangles",
+    "tag": "Gold • Bangles",
     "productSlug": "gold-bala-filigree-pair"
   },
   {
@@ -56,7 +56,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-bala-filigree-pair-3.webp",
     "description": "An exceptional pair of traditional Bengali 22K BIS hallmarked gold Balas adorned with intricate Mayur peacock filigree and polished wire craftsmanship.",
-    "tag": "Gold \u2022 Bangles",
+    "tag": "Gold • Bangles",
     "productSlug": "gold-bala-filigree-pair"
   },
   {
@@ -67,7 +67,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-bala-filigree-pair-4.webp",
     "description": "An exceptional pair of traditional Bengali 22K BIS hallmarked gold Balas adorned with intricate Mayur peacock filigree and polished wire craftsmanship.",
-    "tag": "Gold \u2022 Bangles",
+    "tag": "Gold • Bangles",
     "productSlug": "gold-bala-filigree-pair"
   },
   {
@@ -111,7 +111,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-filigree-jhumkas-vintage-1.webp",
     "description": "Handcrafted vintage 22K gold chandelier jhumka drop earrings featuring multi-tiered bell motifs and cascading gold droplets.",
-    "tag": "Gold \u2022 Eartops",
+    "tag": "Gold • Eartops",
     "productSlug": "gold-filigree-jhumkas-vintage"
   },
   {
@@ -122,7 +122,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-filigree-jhumkas-vintage-2.webp",
     "description": "Handcrafted vintage 22K gold chandelier jhumka drop earrings featuring multi-tiered bell motifs and cascading gold droplets.",
-    "tag": "Gold \u2022 Eartops",
+    "tag": "Gold • Eartops",
     "productSlug": "gold-filigree-jhumkas-vintage"
   },
   {
@@ -133,7 +133,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-filigree-jhumkas-vintage-3.webp",
     "description": "Handcrafted vintage 22K gold chandelier jhumka drop earrings featuring multi-tiered bell motifs and cascading gold droplets.",
-    "tag": "Gold \u2022 Eartops",
+    "tag": "Gold • Eartops",
     "productSlug": "gold-filigree-jhumkas-vintage"
   },
   {
@@ -144,7 +144,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-dome-cocktail-ring-1.webp",
     "description": "Majestic royal dome filigree cocktail ring in 22K hallmarked gold, sculpted with an intricate openwork floral dome and beaded borders.",
-    "tag": "Gold \u2022 Lady's Rings",
+    "tag": "Gold • Lady's Rings",
     "productSlug": "gold-dome-cocktail-ring"
   },
   {
@@ -155,7 +155,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-dome-cocktail-ring-2.webp",
     "description": "Majestic royal dome filigree cocktail ring in 22K hallmarked gold, sculpted with an intricate openwork floral dome and beaded borders.",
-    "tag": "Gold \u2022 Lady's Rings",
+    "tag": "Gold • Lady's Rings",
     "productSlug": "gold-dome-cocktail-ring"
   },
   {
@@ -166,7 +166,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-dome-cocktail-ring-3.webp",
     "description": "Majestic royal dome filigree cocktail ring in 22K hallmarked gold, sculpted with an intricate openwork floral dome and beaded borders.",
-    "tag": "Gold \u2022 Lady's Rings",
+    "tag": "Gold • Lady's Rings",
     "productSlug": "gold-dome-cocktail-ring"
   },
   {
@@ -177,7 +177,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-floral-bridal-choker-set-1.webp",
     "description": "Opulent 22K gold bridal choker necklace set featuring cascading floral medallions, embossed leaf borders, and matching royal jhumka earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-floral-bridal-choker-set"
   },
   {
@@ -188,7 +188,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-floral-bridal-choker-set-2.webp",
     "description": "Opulent 22K gold bridal choker necklace set featuring cascading floral medallions, embossed leaf borders, and matching royal jhumka earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-floral-bridal-choker-set"
   },
   {
@@ -199,7 +199,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-floral-bridal-choker-set-3.webp",
     "description": "Opulent 22K gold bridal choker necklace set featuring cascading floral medallions, embossed leaf borders, and matching royal jhumka earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-floral-bridal-choker-set"
   },
   {
@@ -210,7 +210,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-floral-bridal-choker-set-4.webp",
     "description": "Opulent 22K gold bridal choker necklace set featuring cascading floral medallions, embossed leaf borders, and matching royal jhumka earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-floral-bridal-choker-set"
   },
   {
@@ -221,7 +221,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-royal-bridal-trousseau-choker-1.webp",
     "description": "Regal Bengali bridal trousseau choker set sculpted with layered gold lace and traditional Nakshi scrollwork, paired with ornate chandelier earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-royal-bridal-trousseau-choker"
   },
   {
@@ -232,7 +232,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-royal-bridal-trousseau-choker-2.webp",
     "description": "Regal Bengali bridal trousseau choker set sculpted with layered gold lace and traditional Nakshi scrollwork, paired with ornate chandelier earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-royal-bridal-trousseau-choker"
   },
   {
@@ -243,7 +243,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-royal-bridal-trousseau-choker-3.webp",
     "description": "Regal Bengali bridal trousseau choker set sculpted with layered gold lace and traditional Nakshi scrollwork, paired with ornate chandelier earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-royal-bridal-trousseau-choker"
   },
   {
@@ -254,7 +254,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-royal-bridal-trousseau-choker-4.webp",
     "description": "Regal Bengali bridal trousseau choker set sculpted with layered gold lace and traditional Nakshi scrollwork, paired with ornate chandelier earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-royal-bridal-trousseau-choker"
   },
   {
@@ -265,7 +265,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-carved-chur-bangles-pair-1.webp",
     "description": "Heavy pair of broad 22K gold Chur bangles showcasing deeply hand-chased floral scrollwork and solid die-stamped hinge closures.",
-    "tag": "Gold \u2022 Bangles",
+    "tag": "Gold • Bangles",
     "productSlug": "gold-carved-chur-bangles-pair"
   },
   {
@@ -276,7 +276,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-carved-chur-bangles-pair-2.webp",
     "description": "Heavy pair of broad 22K gold Chur bangles showcasing deeply hand-chased floral scrollwork and solid die-stamped hinge closures.",
-    "tag": "Gold \u2022 Bangles",
+    "tag": "Gold • Bangles",
     "productSlug": "gold-carved-chur-bangles-pair"
   },
   {
@@ -287,7 +287,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-carved-chur-bangles-pair-3.webp",
     "description": "Heavy pair of broad 22K gold Chur bangles showcasing deeply hand-chased floral scrollwork and solid die-stamped hinge closures.",
-    "tag": "Gold \u2022 Bangles",
+    "tag": "Gold • Bangles",
     "productSlug": "gold-carved-chur-bangles-pair"
   },
   {
@@ -298,7 +298,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-peacock-filigree-necklace-set-1.webp",
     "description": "Centuries-old Bengali filigree gold necklace set highlighting twin peacock terminals, delicate floral links, and matching peacock dangle earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-peacock-filigree-necklace-set"
   },
   {
@@ -309,7 +309,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-peacock-filigree-necklace-set-2.webp",
     "description": "Centuries-old Bengali filigree gold necklace set highlighting twin peacock terminals, delicate floral links, and matching peacock dangle earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-peacock-filigree-necklace-set"
   },
   {
@@ -320,7 +320,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-peacock-filigree-necklace-set-3.webp",
     "description": "Centuries-old Bengali filigree gold necklace set highlighting twin peacock terminals, delicate floral links, and matching peacock dangle earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-peacock-filigree-necklace-set"
   },
   {
@@ -331,7 +331,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-chandelier-earrings-pair-1.webp",
     "description": "Artisanal 22K gold statement chandelier earrings designed with tiered filigree arches and swaying gold fringe droplets.",
-    "tag": "Gold \u2022 Eartops",
+    "tag": "Gold • Eartops",
     "productSlug": "gold-chandelier-earrings-pair"
   },
   {
@@ -342,7 +342,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-chandelier-earrings-pair-2.webp",
     "description": "Artisanal 22K gold statement chandelier earrings designed with tiered filigree arches and swaying gold fringe droplets.",
-    "tag": "Gold \u2022 Eartops",
+    "tag": "Gold • Eartops",
     "productSlug": "gold-chandelier-earrings-pair"
   },
   {
@@ -353,7 +353,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-chandelier-earrings-pair-3.webp",
     "description": "Artisanal 22K gold statement chandelier earrings designed with tiered filigree arches and swaying gold fringe droplets.",
-    "tag": "Gold \u2022 Eartops",
+    "tag": "Gold • Eartops",
     "productSlug": "gold-chandelier-earrings-pair"
   },
   {
@@ -364,7 +364,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-chandbali-crescent-earrings-1.webp",
     "description": "Timeless 22K gold Chandbali crescent earrings showcasing blooming flower centers and rhythmic tassel fringe beads.",
-    "tag": "Gold \u2022 Eartops",
+    "tag": "Gold • Eartops",
     "productSlug": "gold-chandbali-crescent-earrings"
   },
   {
@@ -375,7 +375,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-chandbali-crescent-earrings-2.webp",
     "description": "Timeless 22K gold Chandbali crescent earrings showcasing blooming flower centers and rhythmic tassel fringe beads.",
-    "tag": "Gold \u2022 Eartops",
+    "tag": "Gold • Eartops",
     "productSlug": "gold-chandbali-crescent-earrings"
   },
   {
@@ -386,7 +386,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-chandbali-crescent-earrings-3.webp",
     "description": "Timeless 22K gold Chandbali crescent earrings showcasing blooming flower centers and rhythmic tassel fringe beads.",
-    "tag": "Gold \u2022 Eartops",
+    "tag": "Gold • Eartops",
     "productSlug": "gold-chandbali-crescent-earrings"
   },
   {
@@ -397,7 +397,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-chandbali-crescent-earrings-4.webp",
     "description": "Timeless 22K gold Chandbali crescent earrings showcasing blooming flower centers and rhythmic tassel fringe beads.",
-    "tag": "Gold \u2022 Eartops",
+    "tag": "Gold • Eartops",
     "productSlug": "gold-chandbali-crescent-earrings"
   },
   {
@@ -408,7 +408,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-peacock-pendant-chain-set-1.webp",
     "description": "Exquisite 22K gold filigree medallion pendant featuring a dancing peacock crest and dangling bell tassel, suspended on an heirloom link chain.",
-    "tag": "Gold \u2022 Pendant Sets",
+    "tag": "Gold • Pendant Sets",
     "productSlug": "gold-peacock-pendant-chain-set"
   },
   {
@@ -419,7 +419,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-peacock-pendant-chain-set-2.webp",
     "description": "Exquisite 22K gold filigree medallion pendant featuring a dancing peacock crest and dangling bell tassel, suspended on an heirloom link chain.",
-    "tag": "Gold \u2022 Pendant Sets",
+    "tag": "Gold • Pendant Sets",
     "productSlug": "gold-peacock-pendant-chain-set"
   },
   {
@@ -430,7 +430,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-peacock-pendant-chain-set-3.webp",
     "description": "Exquisite 22K gold filigree medallion pendant featuring a dancing peacock crest and dangling bell tassel, suspended on an heirloom link chain.",
-    "tag": "Gold \u2022 Pendant Sets",
+    "tag": "Gold • Pendant Sets",
     "productSlug": "gold-peacock-pendant-chain-set"
   },
   {
@@ -441,7 +441,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-radiant-bridal-necklace-1.webp",
     "description": "Sunburst-inspired 22K gold bridal necklace sculpted with radiating filigree rays and polished gold spears that frame the neckline.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-radiant-bridal-necklace"
   },
   {
@@ -452,7 +452,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-radiant-bridal-necklace-2.webp",
     "description": "Sunburst-inspired 22K gold bridal necklace sculpted with radiating filigree rays and polished gold spears that frame the neckline.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-radiant-bridal-necklace"
   },
   {
@@ -463,7 +463,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-radiant-bridal-necklace-3.webp",
     "description": "Sunburst-inspired 22K gold bridal necklace sculpted with radiating filigree rays and polished gold spears that frame the neckline.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-radiant-bridal-necklace"
   },
   {
@@ -474,7 +474,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-grand-bridal-choker-set-1.webp",
     "description": "Monumental 22K gold bridal choker with dense filigree latticework, cascading dewdrop tassels, and matching grand earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-grand-bridal-choker-set"
   },
   {
@@ -485,7 +485,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-grand-bridal-choker-set-2.webp",
     "description": "Monumental 22K gold bridal choker with dense filigree latticework, cascading dewdrop tassels, and matching grand earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-grand-bridal-choker-set"
   },
   {
@@ -496,7 +496,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-grand-bridal-choker-set-3.webp",
     "description": "Monumental 22K gold bridal choker with dense filigree latticework, cascading dewdrop tassels, and matching grand earrings.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-grand-bridal-choker-set"
   },
   {
@@ -507,7 +507,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-sculpted-filigree-necklace-set-1.webp",
     "description": "Delicately sculpted 22K gold necklace set featuring curving ribbon filigree and sparkling flower cluster pendants.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-sculpted-filigree-necklace-set"
   },
   {
@@ -518,7 +518,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-sculpted-filigree-necklace-set-2.webp",
     "description": "Delicately sculpted 22K gold necklace set featuring curving ribbon filigree and sparkling flower cluster pendants.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-sculpted-filigree-necklace-set"
   },
   {
@@ -529,7 +529,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-sculpted-filigree-necklace-set-3.webp",
     "description": "Delicately sculpted 22K gold necklace set featuring curving ribbon filigree and sparkling flower cluster pendants.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-sculpted-filigree-necklace-set"
   },
   {
@@ -540,7 +540,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-royal-layered-sitahar-haar-1.webp",
     "description": "Multi-strand long royal 22K gold Sitahar haar with triple medallions, hand-carved floral links, and matching chandelier jhumkas.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-royal-layered-sitahar-haar"
   },
   {
@@ -551,7 +551,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-royal-layered-sitahar-haar-2.webp",
     "description": "Multi-strand long royal 22K gold Sitahar haar with triple medallions, hand-carved floral links, and matching chandelier jhumkas.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-royal-layered-sitahar-haar"
   },
   {
@@ -562,7 +562,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-royal-layered-sitahar-haar-3.webp",
     "description": "Multi-strand long royal 22K gold Sitahar haar with triple medallions, hand-carved floral links, and matching chandelier jhumkas.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-royal-layered-sitahar-haar"
   },
   {
@@ -573,7 +573,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-royal-layered-sitahar-haar-4.webp",
     "description": "Multi-strand long royal 22K gold Sitahar haar with triple medallions, hand-carved floral links, and matching chandelier jhumkas.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-royal-layered-sitahar-haar"
   },
   {
@@ -584,7 +584,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-heavy-nakshi-bangles-pair-1.webp",
     "description": "Opulent pair of 22K gold Nakshi bridal bangles embossed with sacred floral vines and scalloped imperial borders.",
-    "tag": "Gold \u2022 Bangles",
+    "tag": "Gold • Bangles",
     "productSlug": "gold-heavy-nakshi-bangles-pair"
   },
   {
@@ -595,7 +595,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-heavy-nakshi-bangles-pair-2.webp",
     "description": "Opulent pair of 22K gold Nakshi bridal bangles embossed with sacred floral vines and scalloped imperial borders.",
-    "tag": "Gold \u2022 Bangles",
+    "tag": "Gold • Bangles",
     "productSlug": "gold-heavy-nakshi-bangles-pair"
   },
   {
@@ -606,7 +606,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-heavy-nakshi-bangles-pair-3.webp",
     "description": "Opulent pair of 22K gold Nakshi bridal bangles embossed with sacred floral vines and scalloped imperial borders.",
-    "tag": "Gold \u2022 Bangles",
+    "tag": "Gold • Bangles",
     "productSlug": "gold-heavy-nakshi-bangles-pair"
   },
   {
@@ -617,7 +617,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-floral-pendant-earrings-set-1.webp",
     "description": "Graceful 22K gold floral pendant and matching drop earrings set accented with multi-strand bead tassels and polished gold floret.",
-    "tag": "Gold \u2022 Pendant Sets",
+    "tag": "Gold • Pendant Sets",
     "productSlug": "gold-floral-pendant-earrings-set"
   },
   {
@@ -628,7 +628,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-floral-pendant-earrings-set-2.webp",
     "description": "Graceful 22K gold floral pendant and matching drop earrings set accented with multi-strand bead tassels and polished gold floret.",
-    "tag": "Gold \u2022 Pendant Sets",
+    "tag": "Gold • Pendant Sets",
     "productSlug": "gold-floral-pendant-earrings-set"
   },
   {
@@ -639,7 +639,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-floral-pendant-earrings-set-3.webp",
     "description": "Graceful 22K gold floral pendant and matching drop earrings set accented with multi-strand bead tassels and polished gold floret.",
-    "tag": "Gold \u2022 Pendant Sets",
+    "tag": "Gold • Pendant Sets",
     "productSlug": "gold-floral-pendant-earrings-set"
   },
   {
@@ -650,7 +650,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-floral-pendant-earrings-set-4.webp",
     "description": "Graceful 22K gold floral pendant and matching drop earrings set accented with multi-strand bead tassels and polished gold floret.",
-    "tag": "Gold \u2022 Pendant Sets",
+    "tag": "Gold • Pendant Sets",
     "productSlug": "gold-floral-pendant-earrings-set"
   },
   {
@@ -661,7 +661,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-filigree-leaf-necklace-set-1.webp",
     "description": "Contemporary 22K gold necklace and earring set featuring alternating satin-finish and polished filigree leaves.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-filigree-leaf-necklace-set"
   },
   {
@@ -672,7 +672,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-filigree-leaf-necklace-set-2.webp",
     "description": "Contemporary 22K gold necklace and earring set featuring alternating satin-finish and polished filigree leaves.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-filigree-leaf-necklace-set"
   },
   {
@@ -683,7 +683,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-noa-bandha-bridal-bangles-1.webp",
     "description": "Sacred Bengali wedding 22K gold-embossed Noa Bandha bangles paired with hand-cut white conch Sankha and red Pola bracelets.",
-    "tag": "Gold \u2022 Noa",
+    "tag": "Gold • Noa",
     "productSlug": "gold-noa-bandha-bridal-bangles"
   },
   {
@@ -694,7 +694,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-noa-bandha-bridal-bangles-2.webp",
     "description": "Sacred Bengali wedding 22K gold-embossed Noa Bandha bangles paired with hand-cut white conch Sankha and red Pola bracelets.",
-    "tag": "Gold \u2022 Noa",
+    "tag": "Gold • Noa",
     "productSlug": "gold-noa-bandha-bridal-bangles"
   },
   {
@@ -705,7 +705,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-regal-lotus-necklace-set-1.webp",
     "description": "Regal 22K gold necklace set inspired by sacred pond lotuses, featuring hand-textured petal crescents and matching floral ear-hangers.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-regal-lotus-necklace-set"
   },
   {
@@ -716,7 +716,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-regal-lotus-necklace-set-2.webp",
     "description": "Regal 22K gold necklace set inspired by sacred pond lotuses, featuring hand-textured petal crescents and matching floral ear-hangers.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-regal-lotus-necklace-set"
   },
   {
@@ -727,7 +727,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-regal-lotus-necklace-set-3.webp",
     "description": "Regal 22K gold necklace set inspired by sacred pond lotuses, featuring hand-textured petal crescents and matching floral ear-hangers.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-regal-lotus-necklace-set"
   },
   {
@@ -738,7 +738,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-peacock-triple-sitahar-haar-1.webp",
     "description": "Masterpiece triple-strand 22K gold Sitahar necklace with hand-engraved peacock shoulders and graduated temple bead chains.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-peacock-triple-sitahar-haar"
   },
   {
@@ -749,7 +749,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-peacock-triple-sitahar-haar-2.webp",
     "description": "Masterpiece triple-strand 22K gold Sitahar necklace with hand-engraved peacock shoulders and graduated temple bead chains.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-peacock-triple-sitahar-haar"
   },
   {
@@ -760,7 +760,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/uploads/gold-peacock-triple-sitahar-haar-3.webp",
     "description": "Masterpiece triple-strand 22K gold Sitahar necklace with hand-engraved peacock shoulders and graduated temple bead chains.",
-    "tag": "Gold \u2022 Necklace Sets",
+    "tag": "Gold • Necklace Sets",
     "productSlug": "gold-peacock-triple-sitahar-haar"
   },
   {
@@ -771,7 +771,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-filigree-sitahar-diya-1.webp",
     "description": "Pure 92.5 handcrafted fine silver filigree sitahar necklace, sculpted with traditional Bengali lace art and centered with sacred emerald and ruby enamel.",
-    "tag": "Silver \u2022 Necklaces",
+    "tag": "Silver • Necklaces",
     "productSlug": "silver-filigree-sitahar-diya"
   },
   {
@@ -782,7 +782,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-filigree-sitahar-diya-2.webp",
     "description": "Pure 92.5 handcrafted fine silver filigree sitahar necklace, sculpted with traditional Bengali lace art and centered with sacred emerald and ruby enamel.",
-    "tag": "Silver \u2022 Necklaces",
+    "tag": "Silver • Necklaces",
     "productSlug": "silver-filigree-sitahar-diya"
   },
   {
@@ -793,7 +793,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-filigree-sitahar-diya-3.webp",
     "description": "Pure 92.5 handcrafted fine silver filigree sitahar necklace, sculpted with traditional Bengali lace art and centered with sacred emerald and ruby enamel.",
-    "tag": "Silver \u2022 Necklaces",
+    "tag": "Silver • Necklaces",
     "productSlug": "silver-filigree-sitahar-diya"
   },
   {
@@ -804,7 +804,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-royal-necklace-heirloom-box-1.webp",
     "description": "Royal antique silver sitahar necklace draped with tiered silver bells and floral filigree medallion, crafted in pure hallmarked silver.",
-    "tag": "Silver \u2022 Necklaces",
+    "tag": "Silver • Necklaces",
     "productSlug": "silver-royal-necklace-heirloom-box"
   },
   {
@@ -815,7 +815,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-royal-necklace-heirloom-box-2.webp",
     "description": "Royal antique silver sitahar necklace draped with tiered silver bells and floral filigree medallion, crafted in pure hallmarked silver.",
-    "tag": "Silver \u2022 Necklaces",
+    "tag": "Silver • Necklaces",
     "productSlug": "silver-royal-necklace-heirloom-box"
   },
   {
@@ -826,7 +826,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-royal-necklace-heirloom-box-3.webp",
     "description": "Royal antique silver sitahar necklace draped with tiered silver bells and floral filigree medallion, crafted in pure hallmarked silver.",
-    "tag": "Silver \u2022 Necklaces",
+    "tag": "Silver • Necklaces",
     "productSlug": "silver-royal-necklace-heirloom-box"
   },
   {
@@ -837,7 +837,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-royal-necklace-heirloom-box-4.webp",
     "description": "Royal antique silver sitahar necklace draped with tiered silver bells and floral filigree medallion, crafted in pure hallmarked silver.",
-    "tag": "Silver \u2022 Necklaces",
+    "tag": "Silver • Necklaces",
     "productSlug": "silver-royal-necklace-heirloom-box"
   },
   {
@@ -848,7 +848,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-enamel-necklace-earrings-set-1.webp",
     "description": "Fine 92.5 silver necklace and matching chandelier jhumkas set detailed with royal blue and green Meenakari enamel artwork.",
-    "tag": "Silver \u2022 Necklaces",
+    "tag": "Silver • Necklaces",
     "productSlug": "silver-enamel-necklace-earrings-set"
   },
   {
@@ -859,7 +859,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-enamel-necklace-earrings-set-2.webp",
     "description": "Fine 92.5 silver necklace and matching chandelier jhumkas set detailed with royal blue and green Meenakari enamel artwork.",
-    "tag": "Silver \u2022 Necklaces",
+    "tag": "Silver • Necklaces",
     "productSlug": "silver-enamel-necklace-earrings-set"
   },
   {
@@ -870,7 +870,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-makara-lion-kadas-pair-1.webp",
     "description": "Handcrafted pair of heavy pure silver Makara kadas featuring sculpted lion-head terminals, hand-chased scales, and ruby enamel accents.",
-    "tag": "Silver \u2022 Bangles",
+    "tag": "Silver • Bangles",
     "productSlug": "silver-makara-lion-kadas-pair"
   },
   {
@@ -881,7 +881,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-makara-lion-kadas-pair-2.webp",
     "description": "Handcrafted pair of heavy pure silver Makara kadas featuring sculpted lion-head terminals, hand-chased scales, and ruby enamel accents.",
-    "tag": "Silver \u2022 Bangles",
+    "tag": "Silver • Bangles",
     "productSlug": "silver-makara-lion-kadas-pair"
   },
   {
@@ -892,7 +892,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-makara-lion-kadas-pair-3.webp",
     "description": "Handcrafted pair of heavy pure silver Makara kadas featuring sculpted lion-head terminals, hand-chased scales, and ruby enamel accents.",
-    "tag": "Silver \u2022 Bangles",
+    "tag": "Silver • Bangles",
     "productSlug": "silver-makara-lion-kadas-pair"
   },
   {
@@ -903,7 +903,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-makara-lion-kadas-pair-4.webp",
     "description": "Handcrafted pair of heavy pure silver Makara kadas featuring sculpted lion-head terminals, hand-chased scales, and ruby enamel accents.",
-    "tag": "Silver \u2022 Bangles",
+    "tag": "Silver • Bangles",
     "productSlug": "silver-makara-lion-kadas-pair"
   },
   {
@@ -914,7 +914,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-traditional-necklace-saree-1.webp",
     "description": "Heirloom pure silver traditional festive necklace showcasing triple-tiered filigree arches and shimmering silver droplet tassels.",
-    "tag": "Silver \u2022 Necklaces",
+    "tag": "Silver • Necklaces",
     "productSlug": "silver-traditional-necklace-saree"
   },
   {
@@ -925,7 +925,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "92.5 Fine Silver",
     "imageUrl": "/uploads/silver-traditional-necklace-saree-2.webp",
     "description": "Heirloom pure silver traditional festive necklace showcasing triple-tiered filigree arches and shimmering silver droplet tassels.",
-    "tag": "Silver \u2022 Necklaces",
+    "tag": "Silver • Necklaces",
     "productSlug": "silver-traditional-necklace-saree"
   },
   {
@@ -936,7 +936,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/master_gallery_earring_drop.jpg",
     "description": "Handcrafted traditional gold drop earrings with delicate leaf motifs and intricate filigree paisley art.",
-    "tag": "Master Gallery \u2022 Bespoke"
+    "tag": "Master Gallery • Bespoke"
   },
   {
     "id": "g-master-2",
@@ -946,7 +946,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/master_gallery_royal_set.jpg",
     "description": "Exquisite bridal trousseau choker set featuring cascading leaf filigree, matching earrings, and statement ring.",
-    "tag": "Master Gallery \u2022 Royal"
+    "tag": "Master Gallery • Royal"
   },
   {
     "id": "g-master-3",
@@ -956,7 +956,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/master_gallery_necklace_closeup.jpg",
     "description": "Master craftsmanship highlighting hand-engraved peacock curves and solid gold filigree work.",
-    "tag": "Master Gallery \u2022 Heritage"
+    "tag": "Master Gallery • Heritage"
   },
   {
     "id": "g-master-4",
@@ -966,7 +966,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/master_gallery_heirloom_box.jpg",
     "description": "Traditional Bengali wedding keepsake featuring handcrafted gold earrings, ring, and vintage velvet box.",
-    "tag": "Master Gallery \u2022 Heirloom"
+    "tag": "Master Gallery • Heirloom"
   },
   {
     "id": "g-master-5",
@@ -976,7 +976,7 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
     "purity": "22K BIS 916",
     "imageUrl": "/master_gallery_vintage_earrings.jpg",
     "description": "Classic handcrafted gold earrings showcasing intricate floral filigree and timeless elegance.",
-    "tag": "Master Gallery \u2022 Classic"
+    "tag": "Master Gallery • Classic"
   },
   {
     "id": "g-1",
@@ -990,13 +990,13 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
   },
   {
     "id": "g-2",
-    "title": "Imperial Solitaire & Ruby Necklace",
+    "title": "Classic Cultured Pearl Necklace with Diamond Clasp",
     "category": "necklace-sets",
     "metal": "diamond",
-    "purity": "VVS-VS Certified",
+    "purity": "18K Diamond",
     "imageUrl": "/uploads/diamond_pendant_chain.webp",
-    "description": "Precision-cut certified diamonds accented by deep vivid Burmese rubies.",
-    "tag": "Haute Joaillerie"
+    "description": "Graduated natural cultured freshwater pearl strand finished with a brilliant-cut diamond floral cluster clasp in white gold.",
+    "tag": "Grace Collection"
   },
   {
     "id": "g-3",
@@ -1030,13 +1030,13 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
   },
   {
     "id": "g-6",
-    "title": "Emerald & Diamond Cocktail Ring",
+    "title": "Antique Floral Carved 22K Gold Lady's Ring",
     "category": "rings",
-    "metal": "diamond",
-    "purity": "VVS Solitaire",
+    "metal": "gold",
+    "purity": "22K BIS 916",
     "imageUrl": "/IMG_20260603_125514.png",
-    "description": "High-clarity solitaire diamond encircled by natural emerald halos.",
-    "tag": "Collector Series"
+    "description": "Heirloom 22K hallmarked gold lady's ring sculpted in an intricate floral dome motif with diamond-cut heart petals.",
+    "tag": "Heritage Gold"
   },
   {
     "id": "g-7",
@@ -1060,13 +1060,13 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
   },
   {
     "id": "g-9",
-    "title": "Minimalist Solitaire Pendant Set",
-    "category": "diamond",
-    "metal": "diamond",
-    "purity": "IGI Certified",
+    "title": "Sculpted 22K Gold Chur Bangle (Kada)",
+    "category": "bangles",
+    "metal": "gold",
+    "purity": "22K BIS 916",
     "imageUrl": "/IMG_20260603_130513.png",
-    "description": "Timeless single-stone diamond pendant with matching studs in platinum setting.",
-    "tag": "Everyday Luxury"
+    "description": "Heavy solid 22KT gold sculpted chur kada bangle handcrafted with traditional Bengali filigree and leaf embossing.",
+    "tag": "Royal Trousseau"
   },
   {
     "id": "g-10",
@@ -1080,13 +1080,13 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
   },
   {
     "id": "g-11",
-    "title": "Contemporary Diamond Choker",
-    "category": "diamond",
-    "metal": "diamond",
-    "purity": "GIA Certified",
+    "title": "Solid 22K Gold Men's Biswa Link Chain",
+    "category": "chains",
+    "metal": "gold",
+    "purity": "22K BIS 916",
     "imageUrl": "/IMG_20260603_130726.png",
-    "description": "Sleek multi-row diamond choker designed for red-carpet elegance.",
-    "tag": "Modern Craft"
+    "description": "Substantial 22K hallmarked yellow gold interlocking flat biswa link chain for gentlemen.",
+    "tag": "Gentlemen Edition"
   },
   {
     "id": "g-12",
@@ -1110,13 +1110,13 @@ export const MASTER_GALLERY_ITEMS: MasterGalleryItem[] = [
   },
   {
     "id": "g-14",
-    "title": "Vintage Polki Kundan Necklace",
+    "title": "Royal Heritage 22K Gold Bridal Choker",
     "category": "bridal",
     "metal": "gold",
     "purity": "22K BIS 916",
     "imageUrl": "/IMG_20260603_132847.png",
-    "description": "Uncut diamond Polki necklace set with ruby drops and green enamel work.",
-    "tag": "Kundan Edition"
+    "description": "Opulent 22KT hallmarked bridal choker featuring handcrafted floral filigree tiers and shimmering gold bead drops.",
+    "tag": "Royal Bridal"
   },
   {
     "id": "g-15",
