@@ -308,7 +308,7 @@ const SAMPLE_PRODUCTS = [
     category: "Silver",
     subCategory: "Necklaces",
     stockCount: 4,
-    images: ["/uploads/silver-filigree-hasli-choker-1.webp"]
+    images: ["/IMG_20260603_143343.png"]
   },
   {
     name: "Handcrafted Oxidized Silver Floral Haar",
