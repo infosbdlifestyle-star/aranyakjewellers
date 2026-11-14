@@ -150,7 +150,7 @@ const SAMPLE_PRODUCTS = [
     category: "Gold",
     subCategory: "Eartops",
     stockCount: 2,
-    images: ["/featured-earrings.png", "/master_gallery_earring_drop.jpg"]
+    images: ["/IMG_20260603_142513.png", "/uploads/lookbook_filigree_jhumkas.webp"]
   },
   {
     name: "Sacred Iconography Nakshi Kada",
@@ -683,6 +683,84 @@ const SAMPLE_PRODUCTS = [
     subCategory: "Necklaces",
     stockCount: 3,
     images: ["/uploads/silver-traditional-necklace-saree-1.webp", "/uploads/silver-traditional-necklace-saree-2.webp"]
+  },
+  {
+    name: "Heritage Paisley Filigree Drop Earrings",
+    slug: "heritage-paisley-filigree-earrings",
+    sku: "AR-GLD-ER-002",
+    description: "Intricately woven 22KT gold filigree paisley ear-hangers detailed with granulated drop beads.",
+    goldPurity: 22,
+    goldWeight: 12.4,
+    category: "Gold",
+    subCategory: "Eartops",
+    stockCount: 5,
+    images: ["/master_gallery_earring_drop.jpg", "/IMG_20260603_191511.png"]
+  },
+  {
+    name: "Emerald & Diamond Cocktail Ring",
+    slug: "emerald-diamond-cocktail-ring",
+    sku: "AR-DIA-RG-003",
+    description: "Fine 18KT gold cocktail ring set with a brilliant natural Colombian emerald surrounded by a double halo of round brilliant diamonds.",
+    goldPurity: 18,
+    goldWeight: 6.2,
+    diamondCarat: 0.85,
+    diamondClarity: "VVS-VS",
+    category: "Diamond",
+    subCategory: "Rings",
+    stockCount: 2,
+    images: ["/IMG_20260603_125514.png"]
+  },
+  {
+    name: "Minimalist Solitaire Pendant Set",
+    slug: "minimalist-solitaire-pendant-set",
+    sku: "AR-DIA-PD-001",
+    description: "Timeless 18KT white and yellow gold solitaire diamond pendant with a four-prong setting, paired with delicate diamond studs.",
+    goldPurity: 18,
+    goldWeight: 4.8,
+    diamondCarat: 0.65,
+    diamondClarity: "VVS1",
+    category: "Diamond",
+    subCategory: "Chains with Pendant",
+    stockCount: 5,
+    images: ["/IMG_20260603_130513.png"]
+  },
+  {
+    name: "Contemporary Multi-Row Diamond Choker",
+    slug: "contemporary-multi-row-diamond-choker",
+    sku: "AR-DIA-NK-002",
+    description: "Striking 18KT white gold multi-tier choker meticulously encrusted with certified natural brilliant-cut diamonds.",
+    goldPurity: 18,
+    goldWeight: 28.5,
+    diamondCarat: 2.45,
+    diamondClarity: "VVS",
+    category: "Diamond",
+    subCategory: "Chains with Pendant",
+    stockCount: 1,
+    images: ["/IMG_20260603_130726.png"]
+  },
+  {
+    name: "Artisanal Silver Filigree Bangle Pair",
+    slug: "artisanal-silver-filigree-bangles",
+    sku: "AR-SLV-BG-001",
+    description: "Pair of pure 92.5 sterling silver filigree bangles hand-woven in open lattice patterns with a smooth anti-tarnish protective finish.",
+    goldPurity: 925,
+    goldWeight: 48.0,
+    category: "Silver",
+    subCategory: "Bangles",
+    stockCount: 4,
+    images: ["/silver_bangles_craft.jpg"]
+  },
+  {
+    name: "Silver Crown Adjustable Solitaire Ring",
+    slug: "silver-crown-adjustable-solitaire-ring",
+    sku: "AR-SLV-RG-002",
+    description: "Charming 92.5 hallmark sterling silver adjustable ring with a royal tiara crest and shimmering solitaire gemstone.",
+    goldPurity: 925,
+    goldWeight: 4.5,
+    category: "Silver",
+    subCategory: "Rings",
+    stockCount: 7,
+    images: ["/IMG_20260603_141002.png"]
   },
 ];
 

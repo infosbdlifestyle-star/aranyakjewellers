@@ -85,6 +85,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
   const [selectedSubCategory, setSelectedSubCategory] = useState<string>(initialSubCategorySlug || 'all');
   const [sortBy, setSortBy] = useState<'featured' | 'weight-desc' | 'name'>('featured');
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const [imageErrorMap, setImageErrorMap] = useState<Record<string, boolean>>({});
 
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -241,6 +242,11 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
   const handleImageError = (productId: string) => {
     setImageErrorMap(prev => ({ ...prev, [productId]: true }));
+  };
+
+  const handleOpenProductModal = (product: ProductItem) => {
+    setSelectedProduct(product);
+    setSelectedImageIndex(0);
   };
 
   return (
@@ -405,7 +411,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                         >
                           {/* Card Image Area */}
                           <div 
-                            onClick={() => setSelectedProduct(p)}
+                            onClick={() => handleOpenProductModal(p)}
                             className="relative aspect-[4/5] bg-[#211813] rounded-xl overflow-hidden cursor-pointer"
                           >
                             {showPlaceholder ? (
@@ -462,7 +468,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                               </div>
 
                               <h3 
-                                onClick={() => setSelectedProduct(p)}
+                                onClick={() => handleOpenProductModal(p)}
                                 className="text-base font-serif font-medium text-[#211813] group-hover:text-[#8A5A12] transition-colors cursor-pointer line-clamp-1"
                               >
                                 {p.name}
@@ -496,7 +502,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                                 </a>
 
                                 <button
-                                  onClick={() => setSelectedProduct(p)}
+                                  onClick={() => handleOpenProductModal(p)}
                                   className="px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase bg-[#F0E7D8] hover:bg-[#211813] text-[#76551C] hover:text-[#FFF8EC] rounded border border-[#DED2C1] transition-all"
                                 >
                                   Details
@@ -544,26 +550,61 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                 ✕
               </button>
 
-              {/* Modal Image */}
-              <div className="w-full md:w-1/2 aspect-square relative bg-[#211813] overflow-hidden">
-                {(!selectedProduct.images?.[0] || imageErrorMap[selectedProduct.id]) ? (
-                  <VaultImagePlaceholder
-                    name={selectedProduct.name}
-                    category={selectedProduct.category}
-                    subCategory={selectedProduct.subCategory}
-                    goldPurity={selectedProduct.goldPurity}
-                    diamondCarat={selectedProduct.diamondCarat}
-                    diamondClarity={selectedProduct.diamondClarity}
-                  />
-                ) : (
-                  <Image
-                    src={selectedProduct.images[0]}
-                    alt={`${selectedProduct.name} - Handcrafted Fine Jewellery | Aranyak Jewellers`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    onError={() => handleImageError(selectedProduct.id)}
-                    className="object-cover"
-                  />
+              {/* Modal Image Area */}
+              <div className="w-full md:w-1/2 flex flex-col bg-[#1A120E] border-b md:border-b-0 md:border-r border-[#C49A45]/20">
+                <div className="relative aspect-square w-full bg-[#211813] overflow-hidden">
+                  {(!selectedProduct.images?.[selectedImageIndex] || imageErrorMap[`${selectedProduct.id}-${selectedImageIndex}`]) ? (
+                    <VaultImagePlaceholder
+                      name={selectedProduct.name}
+                      category={selectedProduct.category}
+                      subCategory={selectedProduct.subCategory}
+                      goldPurity={selectedProduct.goldPurity}
+                      diamondCarat={selectedProduct.diamondCarat}
+                      diamondClarity={selectedProduct.diamondClarity}
+                    />
+                  ) : (
+                    <Image
+                      src={selectedProduct.images[selectedImageIndex] || selectedProduct.images[0]}
+                      alt={`${selectedProduct.name} - Angle ${selectedImageIndex + 1} | Aranyak Jewellers`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      onError={() => setImageErrorMap(prev => ({ ...prev, [`${selectedProduct.id}-${selectedImageIndex}`]: true }))}
+                      className="object-cover"
+                      priority
+                    />
+                  )}
+                  {selectedProduct.images && selectedProduct.images.length > 1 && (
+                    <div className="absolute top-3 left-3 bg-[#211813]/90 backdrop-blur-md px-2.5 py-1 rounded border border-[#C49A45]/40 text-[9px] font-mono tracking-widest text-[#E0BD72]">
+                      VIEW {selectedImageIndex + 1} OF {selectedProduct.images.length}
+                    </div>
+                  )}
+                </div>
+
+                {/* Multi-angle Thumbnails strip */}
+                {selectedProduct.images && selectedProduct.images.length > 1 && (
+                  <div className="p-3 bg-[#140C08] flex items-center justify-center gap-2 overflow-x-auto border-t border-[#C49A45]/15">
+                    {selectedProduct.images.map((img, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setSelectedImageIndex(idx)}
+                        className={`relative w-14 h-14 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
+                          selectedImageIndex === idx
+                            ? 'border-[#E0BD72] scale-105 shadow-md shadow-[#C49A45]/30'
+                            : 'border-[#DED2C1]/30 opacity-60 hover:opacity-100 hover:border-[#D6B15D]'
+                        }`}
+                        aria-label={`View angle ${idx + 1}`}
+                      >
+                        <Image
+                          src={img}
+                          alt=""
+                          fill
+                          sizes="56px"
+                          className="object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
                 )}
               </div>
 
