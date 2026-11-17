@@ -59,6 +59,26 @@ const CATEGORY_METAS: Record<string, CategoryMeta> = {
   }
 };
 
+// Specific products explicitly hidden from public-facing website as requested
+const EXPLICITLY_HIDDEN_SKUS = new Set(['AR-DIA-PD-001', 'AR-DIA-NP-001']);
+const EXPLICITLY_HIDDEN_SLUGS = new Set(['minimalist-solitaire-pendant-set', 'traditional-diamond-nosepin']);
+const EXPLICITLY_HIDDEN_NAMES = new Set(['minimalist solitaire pendant set', 'traditional diamond nosepin']);
+const EXPLICITLY_HIDDEN_IDS = new Set([
+  '6af8323d29f4b73218ea05aa',
+  '6ae0440a31b58d0030879546',
+  'prod-dia-001',
+  'prod-dia-002',
+]);
+
+export const isExplicitlyHiddenProduct = (p: { id?: string; sku?: string; slug?: string; name?: string; isActive?: boolean }) => {
+  if (p.isActive === false) return true;
+  if (p.sku && EXPLICITLY_HIDDEN_SKUS.has(p.sku)) return true;
+  if (p.slug && EXPLICITLY_HIDDEN_SLUGS.has(p.slug)) return true;
+  if (p.id && EXPLICITLY_HIDDEN_IDS.has(p.id)) return true;
+  if (p.name && EXPLICITLY_HIDDEN_NAMES.has(p.name.trim().toLowerCase())) return true;
+  return false;
+};
+
 export default function CategoryShowcase({ categorySlug, initialSubCategorySlug }: CategoryShowcaseProps) {
   const normSlug = (categorySlug || 'gold').toLowerCase().replace(/[^a-z0-9]/g, '');
   
@@ -100,7 +120,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
     setError(null);
 
     // Initial local baseline products for zero-wait display
-    const localBaseline = getCatalogueProducts(categoryKey);
+    const localBaseline = getCatalogueProducts(categoryKey).filter(p => !isExplicitlyHiddenProduct(p));
 
     try {
       // 5-second hard timeout for live backend call
@@ -112,6 +132,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
         // Filter live products matching this category
         const liveMatched: ProductItem[] = liveProducts
           .filter((p: any) => {
+            if (isExplicitlyHiddenProduct(p)) return false;
             const pCat = (p.category || '').toLowerCase().replace(/[^a-z0-9]/g, '');
             return pCat.includes(categoryKey) || categoryKey.includes(pCat);
           })
@@ -217,8 +238,9 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
   // Active products: in Gold, Silver, and Diamond, exclude any product without an authentic photograph
   const visibleProducts = useMemo(() => {
-    if (!isTargetCategory) return products;
-    return products.filter(hasValidJewelleryImage);
+    const active = products.filter(p => !isExplicitlyHiddenProduct(p));
+    if (!isTargetCategory) return active;
+    return active.filter(hasValidJewelleryImage);
   }, [products, isTargetCategory, hasValidJewelleryImage]);
 
   // Subcategories derived from visible products
@@ -261,7 +283,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
   // Filtered and Sorted Products
   const displayedProducts = useMemo(() => {
-    let result = visibleProducts;
+    let result = visibleProducts.filter(p => !isExplicitlyHiddenProduct(p));
 
     if (selectedSubCategory !== 'all') {
       result = result.filter(p => matchSubcategory(p, selectedSubCategory));
@@ -289,6 +311,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
   };
 
   const handleOpenProductModal = (product: ProductItem) => {
+    if (isExplicitlyHiddenProduct(product)) return;
     setSelectedProduct(product);
     setSelectedImageIndex(0);
   };
@@ -453,6 +476,9 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
             >
               {displayedProducts.map((p, idx) => {
+                if (isExplicitlyHiddenProduct(p)) {
+                  return null;
+                }
                 const hasActualImage = hasValidJewelleryImage(p);
                 // In Gold, Silver, and Diamond: hide the entire card if no actual photograph is available
                 if (isTargetCategory && !hasActualImage) {

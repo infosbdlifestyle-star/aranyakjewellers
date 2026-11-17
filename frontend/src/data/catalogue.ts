@@ -2062,7 +2062,7 @@ export const VERIFIED_PRODUCTS: ProductItem[] = [
     ],
     "stockCount": 5,
     "sku": "AR-DIA-PD-001",
-    "isActive": true,
+    "isActive": false,
     "isFeatured": true,
     "pricing": {
       "finalPrice": 48500,
@@ -2099,7 +2099,7 @@ export const VERIFIED_PRODUCTS: ProductItem[] = [
     ],
     "stockCount": 8,
     "sku": "AR-DIA-NP-001",
-    "isActive": true,
+    "isActive": false,
     "isFeatured": true,
     "pricing": {
       "finalPrice": 12800,
@@ -2192,14 +2192,25 @@ export const VERIFIED_PRODUCTS: ProductItem[] = [
 /**
  * Filter verified products by category and optional subcategory
  */
+const HIDDEN_SKUS = new Set(['AR-DIA-PD-001', 'AR-DIA-NP-001']);
+const HIDDEN_SLUGS = new Set(['minimalist-solitaire-pendant-set', 'traditional-diamond-nosepin']);
+
+export function isCatalogueProductHidden(p: ProductItem): boolean {
+  if (p.isActive === false) return true;
+  if (p.sku && HIDDEN_SKUS.has(p.sku)) return true;
+  if (p.slug && HIDDEN_SLUGS.has(p.slug)) return true;
+  return false;
+}
+
 export function getCatalogueProducts(categorySlug?: string, subCategorySlug?: string): ProductItem[] {
+  const filterActive = (list: ProductItem[]) => list.filter(p => !isCatalogueProductHidden(p));
   if (!categorySlug || categorySlug === 'all') {
-    return VERIFIED_PRODUCTS;
+    return filterActive(VERIFIED_PRODUCTS);
   }
   
   const normCat = categorySlug.toLowerCase().replace(/[^a-z0-9]/g, '');
   
-  return VERIFIED_PRODUCTS.filter(p => {
+  return filterActive(VERIFIED_PRODUCTS).filter(p => {
     const matchCat = p.categorySlug.toLowerCase().replace(/[^a-z0-9]/g, '') === normCat ||
                      p.category.toLowerCase().replace(/[^a-z0-9]/g, '') === normCat;
     
