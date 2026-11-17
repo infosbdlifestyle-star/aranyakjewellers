@@ -16,6 +16,7 @@ export interface ProductItem {
   goldWeight: number; // in grams
   diamondClarity?: string;
   diamondCarat?: number;
+  diamondColor?: string;
   tags: string[];
   images: string[];
   coverImage?: string;
@@ -26,7 +27,8 @@ export interface ProductItem {
   pricing?: {
     goldRate?: number;
     components?: {
-      goldValue: number;
+      goldValue?: number;
+      diamondValue?: number;
       makingCharges: number;
       gst: number;
     };
@@ -482,266 +484,6 @@ export const VERIFIED_PRODUCTS: ProductItem[] = [
         "goldValue": 106400,
         "makingCharges": 6600,
         "gst": 2900
-      }
-    }
-  },
-  {
-    "id": "prod-dia-1",
-    "name": "Imperial Solitaire & Ruby Halo Necklace",
-    "slug": "imperial-solitaire-ruby-necklace",
-    "description": "Precision-cut certified natural diamonds (1.25 ct total weight, VVS clarity) encircled by deep vivid Burmese rubies in 18KT white gold.",
-    "category": "Diamond",
-    "categorySlug": "diamond",
-    "subCategory": "Chains with Pendant",
-    "subCategorySlug": "chains-with-pendant",
-    "goldPurity": 18,
-    "goldWeight": 22,
-    "diamondClarity": "VVS-VS",
-    "diamondCarat": 1.25,
-    "tags": [
-      "Haute Joaillerie",
-      "Certified",
-      "Ruby Halo",
-      "Solitaire"
-    ],
-    "images": [],
-    "stockCount": 1,
-    "sku": "AR-DIA-NK-001",
-    "isActive": true,
-    "isFeatured": true,
-    "pricing": {
-      "finalPrice": 285000,
-      "components": {
-        "goldValue": 130000,
-        "makingCharges": 25000,
-        "gst": 7000
-      }
-    }
-  },
-  {
-    "id": "prod-dia-2",
-    "name": "Radiant Solitaire Engagement Ring",
-    "slug": "radiant-solitaire-engagement-ring",
-    "description": "Flawless 1.02 ct round brilliant diamond set in a signature 6-prong platinum crown on an 18KT yellow gold band.",
-    "category": "Diamond",
-    "categorySlug": "diamond",
-    "subCategory": "Rings",
-    "subCategorySlug": "rings",
-    "goldPurity": 18,
-    "goldWeight": 3.8,
-    "diamondClarity": "VVS1 (GIA Certified)",
-    "diamondCarat": 1.02,
-    "tags": [
-      "Solitaire",
-      "Engagement",
-      "GIA",
-      "18KT"
-    ],
-    "images": [
-      "/diamond_solitaire_ring.jpg"
-    ],
-    "stockCount": 2,
-    "sku": "AR-DIA-RG-001",
-    "isActive": true,
-    "isFeatured": true,
-    "pricing": {
-      "finalPrice": 245000,
-      "components": {
-        "goldValue": 22500,
-        "makingCharges": 18000,
-        "gst": 6000
-      }
-    }
-  },
-  {
-    "id": "prod-dia-3",
-    "name": "Eternal Diamond Eternity Band",
-    "slug": "eternal-diamond-eternity-band",
-    "description": "Continuous circle of micro-pavé diamonds (0.65 ct total) set in delicate 18KT rose gold for effortless stackable glamour.",
-    "category": "Diamond",
-    "categorySlug": "diamond",
-    "subCategory": "Rings",
-    "subCategorySlug": "rings",
-    "goldPurity": 18,
-    "goldWeight": 4.2,
-    "diamondClarity": "VS-SI",
-    "diamondCarat": 0.65,
-    "tags": [
-      "Eternity Band",
-      "Rose Gold",
-      "Stackable",
-      "Daily Luxury"
-    ],
-    "images": [],
-    "stockCount": 4,
-    "sku": "AR-DIA-RG-002",
-    "isActive": true,
-    "pricing": {
-      "finalPrice": 68500,
-      "components": {
-        "goldValue": 25000,
-        "makingCharges": 7500,
-        "gst": 1700
-      }
-    }
-  },
-  {
-    "id": "prod-dia-4",
-    "name": "Emerald & Diamond Cocktail Ring",
-    "slug": "emerald-diamond-cocktail-ring",
-    "description": "Natural deep-green Zambian emerald framed by two tiers of baguette and brilliant-cut certified diamonds.",
-    "category": "Diamond",
-    "categorySlug": "diamond",
-    "subCategory": "Rings",
-    "subCategorySlug": "rings",
-    "goldPurity": 18,
-    "goldWeight": 6.5,
-    "diamondClarity": "VVS",
-    "diamondCarat": 0.85,
-    "tags": [
-      "Emerald",
-      "Cocktail Ring",
-      "Collector",
-      "18KT"
-    ],
-    "images": [],
-    "stockCount": 1,
-    "sku": "AR-DIA-RG-003",
-    "isActive": true,
-    "pricing": {
-      "finalPrice": 195000,
-      "components": {
-        "goldValue": 38500,
-        "makingCharges": 15000,
-        "gst": 4800
-      }
-    }
-  },
-  {
-    "id": "prod-dia-5",
-    "name": "Cascading Diamond Floral Drop Earrings",
-    "slug": "cascading-diamond-floral-drop-earrings",
-    "description": "Graceful floral clusters suspended on diamond line drops, articulating softly with every movement.",
-    "category": "Diamond",
-    "categorySlug": "diamond",
-    "subCategory": "Earrings",
-    "subCategorySlug": "earrings",
-    "goldPurity": 18,
-    "goldWeight": 9.8,
-    "diamondClarity": "VVS-VS",
-    "diamondCarat": 1.8,
-    "tags": [
-      "Earrings",
-      "Diamond Drop",
-      "Red Carpet",
-      "White Gold"
-    ],
-    "images": [],
-    "stockCount": 2,
-    "sku": "AR-DIA-ER-001",
-    "isActive": true,
-    "pricing": {
-      "finalPrice": 175000,
-      "components": {
-        "goldValue": 58000,
-        "makingCharges": 16000,
-        "gst": 4300
-      }
-    }
-  },
-  {
-    "id": "prod-dia-6",
-    "name": "Minimalist Solitaire Pendant Set",
-    "slug": "minimalist-solitaire-pendant-set",
-    "description": "Classic bezel-set round diamond (0.50 ct, IGI certified) with matching minimalist solitaire stud earrings.",
-    "category": "Diamond",
-    "categorySlug": "diamond",
-    "subCategory": "Chains with Pendant",
-    "subCategorySlug": "chains-with-pendant",
-    "goldPurity": 18,
-    "goldWeight": 5.6,
-    "diamondClarity": "IGI Certified VS1",
-    "diamondCarat": 0.5,
-    "tags": [
-      "Pendant",
-      "Solitaire",
-      "Everyday Wear",
-      "IGI"
-    ],
-    "images": [],
-    "stockCount": 3,
-    "sku": "AR-DIA-PD-001",
-    "isActive": true,
-    "pricing": {
-      "finalPrice": 88000,
-      "components": {
-        "goldValue": 33000,
-        "makingCharges": 9000,
-        "gst": 2200
-      }
-    }
-  },
-  {
-    "id": "prod-dia-7",
-    "name": "Traditional Diamond Nosepin (Mookuthi)",
-    "slug": "traditional-diamond-nosepin",
-    "description": "Classic 7-stone diamond floral nosepin in 18KT yellow gold with traditional screw-back fitting.",
-    "category": "Diamond",
-    "categorySlug": "diamond",
-    "subCategory": "Nosepins",
-    "subCategorySlug": "nosepins",
-    "goldPurity": 18,
-    "goldWeight": 1.1,
-    "diamondClarity": "VVS",
-    "diamondCarat": 0.18,
-    "tags": [
-      "Nosepin",
-      "Mookuthi",
-      "Traditional",
-      "18KT"
-    ],
-    "images": [],
-    "stockCount": 8,
-    "sku": "AR-DIA-NP-001",
-    "isActive": true,
-    "pricing": {
-      "finalPrice": 24500,
-      "components": {
-        "goldValue": 6500,
-        "makingCharges": 3500,
-        "gst": 600
-      }
-    }
-  },
-  {
-    "id": "prod-dia-8",
-    "name": "Contemporary Multi-Row Diamond Choker",
-    "slug": "contemporary-multi-row-diamond-choker",
-    "description": "Sleek multi-row flexible diamond choker set in 18KT white gold with brilliant-cut pave halos.",
-    "category": "Diamond",
-    "categorySlug": "diamond",
-    "subCategory": "Chains with Pendant",
-    "subCategorySlug": "chains-with-pendant",
-    "goldPurity": 18,
-    "goldWeight": 28.5,
-    "diamondClarity": "VVS-VS",
-    "diamondCarat": 3.2,
-    "tags": [
-      "Choker",
-      "Haute Joaillerie",
-      "Modern",
-      "White Gold"
-    ],
-    "images": [],
-    "stockCount": 1,
-    "sku": "AR-DIA-NK-002",
-    "isActive": true,
-    "pricing": {
-      "finalPrice": 485000,
-      "components": {
-        "goldValue": 168000,
-        "makingCharges": 35000,
-        "gst": 12000
       }
     }
   },
@@ -1926,8 +1668,376 @@ export const VERIFIED_PRODUCTS: ProductItem[] = [
         "gst": 612
       }
     }
+  },
+  {
+    "id": "prod-dia-011",
+    "name": "Flawless Solitaire Wave Diamond Mangalsutra Necklace",
+    "slug": "flawless-solitaire-wave-diamond-mangalsutra-necklace",
+    "description": "Contemporary 18K yellow gold wave pendant crowned with a certified brilliant-cut solitaire diamond on a double black-bead mangalsutra chain.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Necklaces",
+    "subCategorySlug": "necklaces",
+    "goldPurity": 18,
+    "goldWeight": 7.8,
+    "diamondCarat": 0.75,
+    "diamondClarity": "VVS-VS",
+    "diamondColor": "F-G",
+    "tags": [
+      "Necklaces",
+      "18KT Gold",
+      "Certified Diamond",
+      "Natural Diamonds",
+      "Chains with Pendant",
+      "Diamond Mangalsutra"
+    ],
+    "images": [
+      "/uploads/diamond-wave-solitaire-mangalsutra-1.webp",
+      "/uploads/diamond-wave-solitaire-mangalsutra-2.webp",
+      "/uploads/diamond-wave-solitaire-mangalsutra-3.webp"
+    ],
+    "stockCount": 3,
+    "sku": "AR-DIA-NEC-011",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 125000,
+      "components": {
+        "goldValue": 56250,
+        "diamondValue": 56250,
+        "makingCharges": 8750,
+        "gst": 3750
+      }
+    }
+  },
+  {
+    "id": "prod-dia-012",
+    "name": "Regal Floral Arch Diamond Mangalsutra Necklace",
+    "slug": "regal-floral-arch-diamond-mangalsutra-necklace",
+    "description": "Intricately crafted floral arch diamond pendant suspended from auspicious traditional black beads and 18K yellow gold links.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Necklaces",
+    "subCategorySlug": "necklaces",
+    "goldPurity": 18,
+    "goldWeight": 9.4,
+    "diamondCarat": 1.15,
+    "diamondClarity": "VVS1",
+    "diamondColor": "E-F",
+    "tags": [
+      "Necklaces",
+      "18KT Gold",
+      "Certified Diamond",
+      "Natural Diamonds",
+      "Chains with Pendant",
+      "Diamond Mangalsutra"
+    ],
+    "images": [
+      "/uploads/diamond-regal-floral-arch-mangalsutra-1.webp",
+      "/uploads/diamond-regal-floral-arch-mangalsutra-2.webp",
+      "/uploads/diamond-regal-floral-arch-mangalsutra-3.webp"
+    ],
+    "stockCount": 2,
+    "sku": "AR-DIA-NEC-012",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 168000,
+      "components": {
+        "goldValue": 75600,
+        "diamondValue": 75600,
+        "makingCharges": 11760,
+        "gst": 5040
+      }
+    }
+  },
+  {
+    "id": "prod-dia-013",
+    "name": "Modern Bypass Solitaire Diamond Engagement Ring",
+    "slug": "modern-bypass-solitaire-diamond-engagement-ring",
+    "description": "Graceful bypass swirl band in polished 18K yellow gold cradling a brilliant round solitaire diamond in a secure tension setting.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Rings",
+    "subCategorySlug": "rings",
+    "goldPurity": 18,
+    "goldWeight": 4.2,
+    "diamondCarat": 0.65,
+    "diamondClarity": "VVS2",
+    "diamondColor": "F-G",
+    "tags": [
+      "Rings",
+      "18KT Gold",
+      "Certified Diamond",
+      "Natural Diamonds"
+    ],
+    "images": [
+      "/uploads/diamond-bypass-solitaire-ring-1.webp",
+      "/uploads/diamond-bypass-solitaire-ring-2.webp",
+      "/uploads/diamond-bypass-solitaire-ring-3.webp",
+      "/uploads/diamond-bypass-solitaire-ring-4.webp"
+    ],
+    "stockCount": 4,
+    "sku": "AR-DIA-RNG-013",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 88000,
+      "components": {
+        "goldValue": 39600,
+        "diamondValue": 39600,
+        "makingCharges": 6160,
+        "gst": 2640
+      }
+    }
+  },
+  {
+    "id": "prod-dia-014",
+    "name": "Artisanal Floral Filigree Swirl Diamond Ring",
+    "slug": "artisanal-floral-filigree-swirl-diamond-ring",
+    "description": "Delicate flower swirl ring set with round brilliant diamonds along an open filigree shank in hallmarked 18K gold.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Rings",
+    "subCategorySlug": "rings",
+    "goldPurity": 18,
+    "goldWeight": 5.1,
+    "diamondCarat": 0.85,
+    "diamondClarity": "VS1",
+    "diamondColor": "G-H",
+    "tags": [
+      "Rings",
+      "18KT Gold",
+      "Certified Diamond",
+      "Natural Diamonds"
+    ],
+    "images": [
+      "/uploads/diamond-floral-filigree-swirl-ring-1.webp",
+      "/uploads/diamond-floral-filigree-swirl-ring-2.webp",
+      "/uploads/diamond-floral-filigree-swirl-ring-3.webp"
+    ],
+    "stockCount": 3,
+    "sku": "AR-DIA-RNG-014",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 104000,
+      "components": {
+        "goldValue": 46800,
+        "diamondValue": 46800,
+        "makingCharges": 7280,
+        "gst": 3120
+      }
+    }
+  },
+  {
+    "id": "prod-dia-015",
+    "name": "Open Heart Solitaire Diamond Kada Bangle",
+    "slug": "open-heart-solitaire-diamond-kada-bangle",
+    "description": "Romantic open heart centerpiece studded with pave diamonds and a floating solitaire on a sleek 18K solid gold kada band.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Bangles",
+    "subCategorySlug": "bangles",
+    "goldPurity": 18,
+    "goldWeight": 14.5,
+    "diamondCarat": 0.92,
+    "diamondClarity": "VVS-VS",
+    "diamondColor": "F-G",
+    "tags": [
+      "Bangles",
+      "18KT Gold",
+      "Certified Diamond",
+      "Natural Diamonds",
+      "Bracelets",
+      "Diamond Bangle"
+    ],
+    "images": [
+      "/uploads/diamond-open-heart-solitaire-bangle-1.webp",
+      "/uploads/diamond-open-heart-solitaire-bangle-2.webp",
+      "/uploads/diamond-open-heart-solitaire-bangle-3.webp"
+    ],
+    "stockCount": 2,
+    "sku": "AR-DIA-BAN-015",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 175000,
+      "components": {
+        "goldValue": 78750,
+        "diamondValue": 78750,
+        "makingCharges": 12250,
+        "gst": 5250
+      }
+    }
+  },
+  {
+    "id": "prod-dia-016",
+    "name": "Marquise Blossom Cluster Diamond Bangle",
+    "slug": "marquise-blossom-cluster-diamond-bangle",
+    "description": "Radiant blossom cluster composed of natural marquise and brilliant-cut diamonds on an articulated 18K yellow gold bangle.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Bangles",
+    "subCategorySlug": "bangles",
+    "goldPurity": 18,
+    "goldWeight": 16.2,
+    "diamondCarat": 1.45,
+    "diamondClarity": "VVS2",
+    "diamondColor": "E-F",
+    "tags": [
+      "Bangles",
+      "18KT Gold",
+      "Certified Diamond",
+      "Natural Diamonds",
+      "Bracelets",
+      "Diamond Bangle"
+    ],
+    "images": [
+      "/uploads/diamond-marquise-blossom-cluster-bangle-1.webp",
+      "/uploads/diamond-marquise-blossom-cluster-bangle-2.webp",
+      "/uploads/diamond-marquise-blossom-cluster-bangle-3.webp"
+    ],
+    "stockCount": 2,
+    "sku": "AR-DIA-BAN-016",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 228000,
+      "components": {
+        "goldValue": 102600,
+        "diamondValue": 102600,
+        "makingCharges": 15960,
+        "gst": 6840
+      }
+    }
+  },
+  {
+    "id": "prod-dia-017",
+    "name": "Entwined Triple Heart Diamond Bangle Bracelet",
+    "slug": "entwined-triple-heart-diamond-bangle-bracelet",
+    "description": "Three interlocking heart motifs pavé-encrusted with sparkling diamonds, transitioning into an ergonomic flexible 18K gold bangle.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Bangles",
+    "subCategorySlug": "bangles",
+    "goldPurity": 18,
+    "goldWeight": 15.8,
+    "diamondCarat": 1.2,
+    "diamondClarity": "VS1",
+    "diamondColor": "F-G",
+    "tags": [
+      "Bangles",
+      "18KT Gold",
+      "Certified Diamond",
+      "Natural Diamonds",
+      "Bracelets",
+      "Diamond Bangle"
+    ],
+    "images": [
+      "/uploads/diamond-entwined-triple-heart-bangle-1.webp",
+      "/uploads/diamond-entwined-triple-heart-bangle-2.webp",
+      "/uploads/diamond-entwined-triple-heart-bangle-3.webp",
+      "/uploads/diamond-entwined-triple-heart-bangle-4.webp"
+    ],
+    "stockCount": 2,
+    "sku": "AR-DIA-BAN-017",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 198000,
+      "components": {
+        "goldValue": 89100,
+        "diamondValue": 89100,
+        "makingCharges": 13860,
+        "gst": 5940
+      }
+    }
+  },
+  {
+    "id": "prod-dia-018",
+    "name": "Butterfly Petal Marquise Diamond Bangle",
+    "slug": "butterfly-petal-marquise-diamond-bangle",
+    "description": "Whimsical butterfly wings composed of fine marquise diamonds nestled alongside shimmering round accents in 18K yellow gold.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Bangles",
+    "subCategorySlug": "bangles",
+    "goldPurity": 18,
+    "goldWeight": 14.8,
+    "diamondCarat": 1.3,
+    "diamondClarity": "VVS-VS",
+    "diamondColor": "E-F",
+    "tags": [
+      "Bangles",
+      "18KT Gold",
+      "Certified Diamond",
+      "Natural Diamonds",
+      "Bracelets",
+      "Diamond Bangle"
+    ],
+    "images": [
+      "/uploads/diamond-butterfly-petal-marquise-bangle-1.webp",
+      "/uploads/diamond-butterfly-petal-marquise-bangle-2.webp",
+      "/uploads/diamond-butterfly-petal-marquise-bangle-3.webp"
+    ],
+    "stockCount": 2,
+    "sku": "AR-DIA-BAN-018",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 215000,
+      "components": {
+        "goldValue": 96750,
+        "diamondValue": 96750,
+        "makingCharges": 15050,
+        "gst": 6450
+      }
+    }
+  },
+  {
+    "id": "prod-dia-019",
+    "name": "Four-Leaf Clover Filigree Diamond Bangle Bracelet",
+    "slug": "four-leaf-clover-filigree-diamond-bangle-bracelet",
+    "description": "Auspicious four-leaf clover medallion accented with round brilliant diamonds and beaded gold filigree on a hinged 18K gold bangle.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Bangles",
+    "subCategorySlug": "bangles",
+    "goldPurity": 18,
+    "goldWeight": 17.2,
+    "diamondCarat": 1.1,
+    "diamondClarity": "VVS2",
+    "diamondColor": "F-G",
+    "tags": [
+      "Bangles",
+      "18KT Gold",
+      "Certified Diamond",
+      "Natural Diamonds",
+      "Bracelets",
+      "Diamond Bangle"
+    ],
+    "images": [
+      "/uploads/diamond-four-leaf-clover-filigree-bangle-1.webp",
+      "/uploads/diamond-four-leaf-clover-filigree-bangle-2.webp",
+      "/uploads/diamond-four-leaf-clover-filigree-bangle-3.webp"
+    ],
+    "stockCount": 2,
+    "sku": "AR-DIA-BAN-019",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 205000,
+      "components": {
+        "goldValue": 92250,
+        "diamondValue": 92250,
+        "makingCharges": 14350,
+        "gst": 6150
+      }
+    }
   }
 ];
+
 
 /**
  * Filter verified products by category and optional subcategory

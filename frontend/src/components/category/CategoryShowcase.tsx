@@ -141,9 +141,18 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
             }
           }));
 
-        // Merge live products with local baseline (prevent duplicate slugs)
-        const combined = [...liveMatched];
-        const existingSlugs = new Set(liveMatched.map(p => p.slug));
+        // Merge live products with local baseline (preserve authentic images and prevent duplicate slugs)
+        const combined = liveMatched.map(p => {
+          if (!Array.isArray(p.images) || p.images.length === 0) {
+            const fallback = localBaseline.find(b => b.slug === p.slug || b.sku === p.sku);
+            if (fallback && Array.isArray(fallback.images) && fallback.images.length > 0) {
+              return { ...p, images: fallback.images, isFeatured: true };
+            }
+          }
+          return p;
+        });
+
+        const existingSlugs = new Set(combined.map(p => p.slug));
 
         for (const item of localBaseline) {
           if (!existingSlugs.has(item.slug)) {
@@ -229,6 +238,11 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
     }
 
     return [...result].sort((a, b) => {
+      // Authentic photographed masterpieces always display first
+      const aHasImg = Array.isArray(a.images) && a.images.length > 0 ? 1 : 0;
+      const bHasImg = Array.isArray(b.images) && b.images.length > 0 ? 1 : 0;
+      if (aHasImg !== bHasImg) return bHasImg - aHasImg;
+
       if (sortBy === 'weight-desc') {
         return (b.goldWeight || 0) - (a.goldWeight || 0);
       }

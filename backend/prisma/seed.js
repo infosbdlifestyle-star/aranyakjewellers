@@ -22,10 +22,13 @@ const CATEGORIES = [
   {
     name: "Diamond",
     slug: "diamond",
-    imageUrl: "/diamond_solitaire_ring.jpg",
+    imageUrl: "/uploads/diamond-bypass-solitaire-ring-1.webp",
     subcategories: [
-      { name: "Chains with Pendant", slug: "chains-with-pendant", imageUrl: "/diamond_pendant_chain.jpg" },
-      { name: "Rings", slug: "rings", imageUrl: "/diamond_solitaire_ring.jpg" },
+      { name: "Necklaces", slug: "necklaces", imageUrl: "/uploads/diamond-regal-floral-arch-mangalsutra-1.webp" },
+      { name: "Chains with Pendant", slug: "chains-with-pendant", imageUrl: "/uploads/diamond-wave-solitaire-mangalsutra-1.webp" },
+      { name: "Rings", slug: "rings", imageUrl: "/uploads/diamond-bypass-solitaire-ring-1.webp" },
+      { name: "Bracelets", slug: "bracelets", imageUrl: "/uploads/diamond-open-heart-solitaire-bangle-1.webp" },
+      { name: "Bangles", slug: "bangles", imageUrl: "/uploads/diamond-marquise-blossom-cluster-bangle-1.webp" },
       { name: "Earrings", slug: "earrings", imageUrl: "/IMG_20260603_141216.png" },
       { name: "Nosepins", slug: "nosepins", imageUrl: "/IMG_20260603_135005.png" },
     ],
@@ -891,6 +894,179 @@ const SAMPLE_PRODUCTS = [
     "subCategory": "Rings",
     "stockCount": 7,
     "images": []
+  },
+  {
+    "name": "Flawless Solitaire Wave Diamond Mangalsutra Necklace",
+    "slug": "flawless-solitaire-wave-diamond-mangalsutra-necklace",
+    "sku": "AR-DIA-NEC-011",
+    "description": "Contemporary 18K yellow gold wave pendant crowned with a certified brilliant-cut solitaire diamond on a double black-bead mangalsutra chain.",
+    "goldPurity": 18,
+    "goldWeight": 7.8,
+    "diamondCarat": 0.75,
+    "diamondClarity": "VVS-VS",
+    "diamondColor": "F-G",
+    "category": "Diamond",
+    "subCategory": "Necklaces",
+    "stockCount": 3,
+    "images": [
+      "/uploads/diamond-wave-solitaire-mangalsutra-1.webp",
+      "/uploads/diamond-wave-solitaire-mangalsutra-2.webp",
+      "/uploads/diamond-wave-solitaire-mangalsutra-3.webp"
+    ]
+  },
+  {
+    "name": "Regal Floral Arch Diamond Mangalsutra Necklace",
+    "slug": "regal-floral-arch-diamond-mangalsutra-necklace",
+    "sku": "AR-DIA-NEC-012",
+    "description": "Intricately crafted floral arch diamond pendant suspended from auspicious traditional black beads and 18K yellow gold links.",
+    "goldPurity": 18,
+    "goldWeight": 9.4,
+    "diamondCarat": 1.15,
+    "diamondClarity": "VVS1",
+    "diamondColor": "E-F",
+    "category": "Diamond",
+    "subCategory": "Necklaces",
+    "stockCount": 2,
+    "images": [
+      "/uploads/diamond-regal-floral-arch-mangalsutra-1.webp",
+      "/uploads/diamond-regal-floral-arch-mangalsutra-2.webp",
+      "/uploads/diamond-regal-floral-arch-mangalsutra-3.webp"
+    ]
+  },
+  {
+    "name": "Modern Bypass Solitaire Diamond Engagement Ring",
+    "slug": "modern-bypass-solitaire-diamond-engagement-ring",
+    "sku": "AR-DIA-RNG-013",
+    "description": "Graceful bypass swirl band in polished 18K yellow gold cradling a brilliant round solitaire diamond in a secure tension setting.",
+    "goldPurity": 18,
+    "goldWeight": 4.2,
+    "diamondCarat": 0.65,
+    "diamondClarity": "VVS2",
+    "diamondColor": "F-G",
+    "category": "Diamond",
+    "subCategory": "Rings",
+    "stockCount": 4,
+    "images": [
+      "/uploads/diamond-bypass-solitaire-ring-1.webp",
+      "/uploads/diamond-bypass-solitaire-ring-2.webp",
+      "/uploads/diamond-bypass-solitaire-ring-3.webp",
+      "/uploads/diamond-bypass-solitaire-ring-4.webp"
+    ]
+  },
+  {
+    "name": "Artisanal Floral Filigree Swirl Diamond Ring",
+    "slug": "artisanal-floral-filigree-swirl-diamond-ring",
+    "sku": "AR-DIA-RNG-014",
+    "description": "Delicate flower swirl ring set with round brilliant diamonds along an open filigree shank in hallmarked 18K gold.",
+    "goldPurity": 18,
+    "goldWeight": 5.1,
+    "diamondCarat": 0.85,
+    "diamondClarity": "VS1",
+    "diamondColor": "G-H",
+    "category": "Diamond",
+    "subCategory": "Rings",
+    "stockCount": 3,
+    "images": [
+      "/uploads/diamond-floral-filigree-swirl-ring-1.webp",
+      "/uploads/diamond-floral-filigree-swirl-ring-2.webp",
+      "/uploads/diamond-floral-filigree-swirl-ring-3.webp"
+    ]
+  },
+  {
+    "name": "Open Heart Solitaire Diamond Kada Bangle",
+    "slug": "open-heart-solitaire-diamond-kada-bangle",
+    "sku": "AR-DIA-BAN-015",
+    "description": "Romantic open heart centerpiece studded with pave diamonds and a floating solitaire on a sleek 18K solid gold kada band.",
+    "goldPurity": 18,
+    "goldWeight": 14.5,
+    "diamondCarat": 0.92,
+    "diamondClarity": "VVS-VS",
+    "diamondColor": "F-G",
+    "category": "Diamond",
+    "subCategory": "Bangles",
+    "stockCount": 2,
+    "images": [
+      "/uploads/diamond-open-heart-solitaire-bangle-1.webp",
+      "/uploads/diamond-open-heart-solitaire-bangle-2.webp",
+      "/uploads/diamond-open-heart-solitaire-bangle-3.webp"
+    ]
+  },
+  {
+    "name": "Marquise Blossom Cluster Diamond Bangle",
+    "slug": "marquise-blossom-cluster-diamond-bangle",
+    "sku": "AR-DIA-BAN-016",
+    "description": "Radiant blossom cluster composed of natural marquise and brilliant-cut diamonds on an articulated 18K yellow gold bangle.",
+    "goldPurity": 18,
+    "goldWeight": 16.2,
+    "diamondCarat": 1.45,
+    "diamondClarity": "VVS2",
+    "diamondColor": "E-F",
+    "category": "Diamond",
+    "subCategory": "Bangles",
+    "stockCount": 2,
+    "images": [
+      "/uploads/diamond-marquise-blossom-cluster-bangle-1.webp",
+      "/uploads/diamond-marquise-blossom-cluster-bangle-2.webp",
+      "/uploads/diamond-marquise-blossom-cluster-bangle-3.webp"
+    ]
+  },
+  {
+    "name": "Entwined Triple Heart Diamond Bangle Bracelet",
+    "slug": "entwined-triple-heart-diamond-bangle-bracelet",
+    "sku": "AR-DIA-BAN-017",
+    "description": "Three interlocking heart motifs pavé-encrusted with sparkling diamonds, transitioning into an ergonomic flexible 18K gold bangle.",
+    "goldPurity": 18,
+    "goldWeight": 15.8,
+    "diamondCarat": 1.2,
+    "diamondClarity": "VS1",
+    "diamondColor": "F-G",
+    "category": "Diamond",
+    "subCategory": "Bangles",
+    "stockCount": 2,
+    "images": [
+      "/uploads/diamond-entwined-triple-heart-bangle-1.webp",
+      "/uploads/diamond-entwined-triple-heart-bangle-2.webp",
+      "/uploads/diamond-entwined-triple-heart-bangle-3.webp",
+      "/uploads/diamond-entwined-triple-heart-bangle-4.webp"
+    ]
+  },
+  {
+    "name": "Butterfly Petal Marquise Diamond Bangle",
+    "slug": "butterfly-petal-marquise-diamond-bangle",
+    "sku": "AR-DIA-BAN-018",
+    "description": "Whimsical butterfly wings composed of fine marquise diamonds nestled alongside shimmering round accents in 18K yellow gold.",
+    "goldPurity": 18,
+    "goldWeight": 14.8,
+    "diamondCarat": 1.3,
+    "diamondClarity": "VVS-VS",
+    "diamondColor": "E-F",
+    "category": "Diamond",
+    "subCategory": "Bangles",
+    "stockCount": 2,
+    "images": [
+      "/uploads/diamond-butterfly-petal-marquise-bangle-1.webp",
+      "/uploads/diamond-butterfly-petal-marquise-bangle-2.webp",
+      "/uploads/diamond-butterfly-petal-marquise-bangle-3.webp"
+    ]
+  },
+  {
+    "name": "Four-Leaf Clover Filigree Diamond Bangle Bracelet",
+    "slug": "four-leaf-clover-filigree-diamond-bangle-bracelet",
+    "sku": "AR-DIA-BAN-019",
+    "description": "Auspicious four-leaf clover medallion accented with round brilliant diamonds and beaded gold filigree on a hinged 18K gold bangle.",
+    "goldPurity": 18,
+    "goldWeight": 17.2,
+    "diamondCarat": 1.1,
+    "diamondClarity": "VVS2",
+    "diamondColor": "F-G",
+    "category": "Diamond",
+    "subCategory": "Bangles",
+    "stockCount": 2,
+    "images": [
+      "/uploads/diamond-four-leaf-clover-filigree-bangle-1.webp",
+      "/uploads/diamond-four-leaf-clover-filigree-bangle-2.webp",
+      "/uploads/diamond-four-leaf-clover-filigree-bangle-3.webp"
+    ]
   }
 ];
 
