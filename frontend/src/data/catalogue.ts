@@ -2036,6 +2036,156 @@ export const VERIFIED_PRODUCTS: ProductItem[] = [
       }
     }
   }
+,
+  {
+    "id": "prod-dia-001",
+    "name": "Minimalist Solitaire Pendant Set",
+    "slug": "minimalist-solitaire-pendant-set",
+    "description": "Timeless 18KT white and yellow gold solitaire diamond pendant with a four-prong setting, paired with delicate diamond studs.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Chains with Pendant",
+    "subCategorySlug": "chains-with-pendant",
+    "goldPurity": 18,
+    "goldWeight": 4.8,
+    "diamondCarat": 0.65,
+    "diamondClarity": "VVS1",
+    "diamondColor": "F-G",
+    "tags": [
+      "Chains with Pendant",
+      "Solitaire Pendant",
+      "18KT Gold",
+      "Certified Natural Diamonds"
+    ],
+    "images": [
+      "/uploads/diamond_pendant_chain.webp"
+    ],
+    "stockCount": 5,
+    "sku": "AR-DIA-PD-001",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 48500,
+      "components": {
+        "goldValue": 23040,
+        "diamondValue": 19500,
+        "makingCharges": 4500,
+        "gst": 1460
+      }
+    }
+  },
+  {
+    "id": "prod-dia-002",
+    "name": "Traditional Diamond Nosepin",
+    "slug": "traditional-diamond-nosepin",
+    "description": "Classic 7-stone diamond floral nosepin in 18KT yellow gold with certified brilliant-cut diamonds.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Nosepins",
+    "subCategorySlug": "nosepins",
+    "goldPurity": 18,
+    "goldWeight": 1.1,
+    "diamondCarat": 0.18,
+    "diamondClarity": "VVS",
+    "diamondColor": "E-F",
+    "tags": [
+      "Nosepins",
+      "Mookuthi",
+      "18KT Gold",
+      "Certified Natural Diamonds"
+    ],
+    "images": [
+      "/uploads/IMG_20260603_135005.webp"
+    ],
+    "stockCount": 8,
+    "sku": "AR-DIA-NP-001",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 12800,
+      "components": {
+        "goldValue": 5280,
+        "diamondValue": 5400,
+        "makingCharges": 1750,
+        "gst": 370
+      }
+    }
+  },
+  {
+    "id": "prod-dia-003",
+    "name": "Cascading Diamond Floral Drop Earrings",
+    "slug": "cascading-diamond-floral-drop-earrings",
+    "description": "Graceful floral clusters suspended on diamond line drops in 18KT white gold with certified natural diamonds.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Earrings",
+    "subCategorySlug": "earrings",
+    "goldPurity": 18,
+    "goldWeight": 9.8,
+    "diamondCarat": 1.8,
+    "diamondClarity": "VVS-VS",
+    "diamondColor": "F-G",
+    "tags": [
+      "Earrings",
+      "Diamond Drops",
+      "18KT Gold",
+      "Certified Natural Diamonds"
+    ],
+    "images": [
+      "/uploads/IMG_20260603_141216.webp"
+    ],
+    "stockCount": 2,
+    "sku": "AR-DIA-ER-001",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 142000,
+      "components": {
+        "goldValue": 47040,
+        "diamondValue": 72000,
+        "makingCharges": 18700,
+        "gst": 4260
+      }
+    }
+  },
+  {
+    "id": "prod-dia-004",
+    "name": "Radiant Solitaire Engagement Ring",
+    "slug": "radiant-solitaire-engagement-ring",
+    "description": "Flawless 1.02 ct round brilliant diamond set in signature 6-prong crown in 18KT yellow and white gold.",
+    "category": "Diamond",
+    "categorySlug": "diamond",
+    "subCategory": "Rings",
+    "subCategorySlug": "rings",
+    "goldPurity": 18,
+    "goldWeight": 3.8,
+    "diamondCarat": 1.02,
+    "diamondClarity": "VVS1 GIA",
+    "diamondColor": "E",
+    "tags": [
+      "Rings",
+      "Solitaire",
+      "Engagement Ring",
+      "18KT Gold",
+      "Certified Natural Diamonds"
+    ],
+    "images": [
+      "/uploads/diamond_solitaire_ring.webp"
+    ],
+    "stockCount": 2,
+    "sku": "AR-DIA-RG-001",
+    "isActive": true,
+    "isFeatured": true,
+    "pricing": {
+      "finalPrice": 165000,
+      "components": {
+        "goldValue": 18240,
+        "diamondValue": 130000,
+        "makingCharges": 11810,
+        "gst": 4950
+      }
+    }
+  }
 ];
 
 

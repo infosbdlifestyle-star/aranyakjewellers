@@ -25,12 +25,11 @@ const CATEGORIES = [
     imageUrl: "/uploads/diamond-bypass-solitaire-ring-1.webp",
     subcategories: [
       { name: "Necklaces", slug: "necklaces", imageUrl: "/uploads/diamond-regal-floral-arch-mangalsutra-1.webp" },
-      { name: "Chains with Pendant", slug: "chains-with-pendant", imageUrl: "/uploads/diamond-wave-solitaire-mangalsutra-1.webp" },
       { name: "Rings", slug: "rings", imageUrl: "/uploads/diamond-bypass-solitaire-ring-1.webp" },
-      { name: "Bracelets", slug: "bracelets", imageUrl: "/uploads/diamond-open-heart-solitaire-bangle-1.webp" },
       { name: "Bangles", slug: "bangles", imageUrl: "/uploads/diamond-marquise-blossom-cluster-bangle-1.webp" },
-      { name: "Earrings", slug: "earrings", imageUrl: "/IMG_20260603_141216.png" },
-      { name: "Nosepins", slug: "nosepins", imageUrl: "/IMG_20260603_135005.png" },
+      { name: "Chains with Pendant", slug: "chains-with-pendant", imageUrl: "/uploads/diamond_pendant_chain.webp" },
+      { name: "Nosepins", slug: "nosepins", imageUrl: "/uploads/IMG_20260603_135005.webp" },
+      { name: "Earrings", slug: "earrings", imageUrl: "/uploads/IMG_20260603_141216.webp" },
     ],
   },
   {
@@ -277,7 +276,7 @@ const SAMPLE_PRODUCTS = [
     "subCategory": "Rings",
     "stockCount": 2,
     "images": [
-      "/diamond_solitaire_ring.jpg"
+      "/uploads/diamond_solitaire_ring.webp"
     ]
   },
   {
@@ -306,7 +305,9 @@ const SAMPLE_PRODUCTS = [
     "category": "Diamond",
     "subCategory": "Earrings",
     "stockCount": 2,
-    "images": []
+    "images": [
+      "/uploads/IMG_20260603_141216.webp"
+    ]
   },
   {
     "name": "Traditional Diamond Nosepin",
@@ -320,7 +321,9 @@ const SAMPLE_PRODUCTS = [
     "category": "Diamond",
     "subCategory": "Nosepins",
     "stockCount": 8,
-    "images": []
+    "images": [
+      "/uploads/IMG_20260603_135005.webp"
+    ]
   },
   {
     "name": "Royal Sterling Silver Hasli Choker",
@@ -855,7 +858,9 @@ const SAMPLE_PRODUCTS = [
     "category": "Diamond",
     "subCategory": "Chains with Pendant",
     "stockCount": 5,
-    "images": []
+    "images": [
+      "/uploads/diamond_pendant_chain.webp"
+    ]
   },
   {
     "name": "Contemporary Multi-Row Diamond Choker",

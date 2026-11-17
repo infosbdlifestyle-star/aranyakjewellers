@@ -32,12 +32,11 @@ export const CATEGORIES: Category[] = [
     imageUrl: "/uploads/diamond-bypass-solitaire-ring-1.webp",
     subcategories: [
       { id: "diamond-necklaces", name: "Necklaces", slug: "necklaces", imageUrl: "/uploads/diamond-regal-floral-arch-mangalsutra-1.webp" },
-      { id: "diamond-chains-pendant", name: "Chains with Pendant", slug: "chains-with-pendant", imageUrl: "/uploads/diamond-wave-solitaire-mangalsutra-1.webp" },
       { id: "diamond-rings", name: "Rings", slug: "rings", imageUrl: "/uploads/diamond-bypass-solitaire-ring-1.webp" },
-      { id: "diamond-bracelets", name: "Bracelets", slug: "bracelets", imageUrl: "/uploads/diamond-open-heart-solitaire-bangle-1.webp" },
       { id: "diamond-bangles", name: "Bangles", slug: "bangles", imageUrl: "/uploads/diamond-marquise-blossom-cluster-bangle-1.webp" },
-      { id: "diamond-earrings", name: "Earrings", slug: "earrings", imageUrl: "/IMG_20260603_141216.png" },
-      { id: "diamond-nosepins", name: "Nosepins", slug: "nosepins", imageUrl: "/IMG_20260603_135005.png" },
+      { id: "diamond-chains-pendant", name: "Chains with Pendant", slug: "chains-with-pendant", imageUrl: "/uploads/diamond_pendant_chain.webp" },
+      { id: "diamond-nosepins", name: "Nosepins", slug: "nosepins", imageUrl: "/uploads/IMG_20260603_135005.webp" },
+      { id: "diamond-earrings", name: "Earrings", slug: "earrings", imageUrl: "/uploads/IMG_20260603_141216.webp" },
     ],
   },
   {

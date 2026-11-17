@@ -190,6 +190,22 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
     };
   }, [loadCategoryData]);
 
+  // Helper function to match product subcategory cleanly without substring overlap
+  const matchSubcategory = useCallback((p: ProductItem, targetSlug: string) => {
+    if (!targetSlug || targetSlug === 'all') return true;
+    const targetNorm = targetSlug.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const pSubNorm = (p.subCategorySlug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const pCatNorm = (p.subCategory || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+    if (pSubNorm === targetNorm || pCatNorm === targetNorm) return true;
+
+    const targetSingular = targetNorm.replace(/s$/, '');
+    const pSubSingular = pSubNorm.replace(/s$/, '');
+    const pCatSingular = pCatNorm.replace(/s$/, '');
+
+    return pSubSingular === targetSingular || pCatSingular === targetSingular;
+  }, []);
+
   // Subcategories derived from products and static catalogue
   const subCategories = useMemo(() => {
     const list = getCatalogueSubcategories(categoryKey);
@@ -208,16 +224,20 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
     return list;
   }, [categoryKey, products]);
 
-  // Unified Category Navigation Items
+  // Unified Category Navigation Items with dynamic, accurate product counts
   const navItems = useMemo<CategoryNavItem[]>(() => {
     return [
       { id: 'all', name: 'All Masterpieces', count: products.length },
-      ...subCategories.map((sub) => ({
-        id: sub.slug,
-        name: sub.name,
-      })),
+      ...subCategories.map((sub) => {
+        const matchingCount = products.filter(p => matchSubcategory(p, sub.slug)).length;
+        return {
+          id: sub.slug,
+          name: sub.name,
+          count: matchingCount,
+        };
+      }),
     ];
-  }, [products.length, subCategories]);
+  }, [products, subCategories, matchSubcategory]);
 
   const sortOptions = useMemo(() => [
     { value: 'featured', label: 'Featured First' },
@@ -230,11 +250,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
     let result = products;
 
     if (selectedSubCategory !== 'all') {
-      const targetNorm = selectedSubCategory.toLowerCase().replace(/[^a-z0-9]/g, '');
-      result = result.filter(p => {
-        const pSubNorm = (p.subCategorySlug || p.subCategory || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-        return pSubNorm === targetNorm || pSubNorm.includes(targetNorm) || targetNorm.includes(pSubNorm);
-      });
+      result = result.filter(p => matchSubcategory(p, selectedSubCategory));
     }
 
     return [...result].sort((a, b) => {
