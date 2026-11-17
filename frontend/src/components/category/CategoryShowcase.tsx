@@ -203,12 +203,29 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
     return pSubSingular === targetSingular || pCatSingular === targetSingular;
   }, []);
 
-  // Subcategories derived from products and static catalogue
+  const isTargetCategory = ['gold', 'silver', 'diamond'].includes(categoryKey);
+
+  // Helper function to verify if a product has a valid, authentic jewellery photograph
+  const hasValidJewelleryImage = useCallback((p: ProductItem) => {
+    if (imageErrorMap[p.id]) return false;
+    if (!Array.isArray(p.images) || p.images.length === 0) return false;
+    const firstImg = p.images[0];
+    if (typeof firstImg !== 'string' || firstImg.trim() === '') return false;
+    if (/placeholder|vault|blank|default/i.test(firstImg)) return false;
+    return true;
+  }, [imageErrorMap]);
+
+  // Active products: in Gold, Silver, and Diamond, exclude any product without an authentic photograph
+  const visibleProducts = useMemo(() => {
+    if (!isTargetCategory) return products;
+    return products.filter(hasValidJewelleryImage);
+  }, [products, isTargetCategory, hasValidJewelleryImage]);
+
+  // Subcategories derived from visible products
   const subCategories = useMemo(() => {
     const list = getCatalogueSubcategories(categoryKey);
-    // Also include any extra subcategories found in dynamic products
     const existing = new Set(list.map(s => s.slug));
-    for (const p of products) {
+    for (const p of visibleProducts) {
       if (p.subCategorySlug && !existing.has(p.subCategorySlug)) {
         list.push({
           name: p.subCategory,
@@ -219,22 +236,22 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
       }
     }
     return list;
-  }, [categoryKey, products]);
+  }, [categoryKey, visibleProducts]);
 
   // Unified Category Navigation Items with dynamic, accurate product counts
   const navItems = useMemo<CategoryNavItem[]>(() => {
     return [
-      { id: 'all', name: 'All Masterpieces', count: products.length },
+      { id: 'all', name: 'All Masterpieces', count: visibleProducts.length },
       ...subCategories.map((sub) => {
-        const matchingCount = products.filter(p => matchSubcategory(p, sub.slug)).length;
+        const matchingCount = visibleProducts.filter(p => matchSubcategory(p, sub.slug)).length;
         return {
           id: sub.slug,
           name: sub.name,
           count: matchingCount,
         };
-      }),
+      }).filter(item => !isTargetCategory || item.count > 0),
     ];
-  }, [products, subCategories, matchSubcategory]);
+  }, [visibleProducts, subCategories, matchSubcategory, isTargetCategory]);
 
   const sortOptions = useMemo(() => [
     { value: 'featured', label: 'Featured First' },
@@ -244,7 +261,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
   // Filtered and Sorted Products
   const displayedProducts = useMemo(() => {
-    let result = products;
+    let result = visibleProducts;
 
     if (selectedSubCategory !== 'all') {
       result = result.filter(p => matchSubcategory(p, selectedSubCategory));
@@ -252,8 +269,8 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
     return [...result].sort((a, b) => {
       // Authentic photographed masterpieces always display first
-      const aHasImg = Array.isArray(a.images) && a.images.length > 0 ? 1 : 0;
-      const bHasImg = Array.isArray(b.images) && b.images.length > 0 ? 1 : 0;
+      const aHasImg = hasValidJewelleryImage(a) ? 1 : 0;
+      const bHasImg = hasValidJewelleryImage(b) ? 1 : 0;
       if (aHasImg !== bHasImg) return bHasImg - aHasImg;
 
       if (sortBy === 'weight-desc') {
@@ -265,7 +282,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
       // 'featured'
       return (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0);
     });
-  }, [products, selectedSubCategory, sortBy]);
+  }, [visibleProducts, selectedSubCategory, sortBy, hasValidJewelleryImage]);
 
   const handleImageError = (productId: string) => {
     setImageErrorMap(prev => ({ ...prev, [productId]: true }));
@@ -436,77 +453,14 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
             >
               {displayedProducts.map((p, idx) => {
-                const isTargetCategory = ['gold', 'silver', 'diamond'].includes(categorySlug?.toLowerCase() || '');
-                const hasImageError = Boolean(imageErrorMap[p.id]);
-                const rawImage = Array.isArray(p.images) && p.images.length > 0 && typeof p.images[0] === 'string' && p.images[0].trim() !== '' ? p.images[0] : null;
-                const hasActualImage = Boolean(rawImage) && !hasImageError;
-                const hideImageSection = isTargetCategory && !hasActualImage;
-
-                if (hideImageSection) {
-                  // Compact card without jewellery photograph: image container removed, naturally sized
-                  return (
-                    <div
-                      key={p.id}
-                      className="relative bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E] transition-all duration-300 hover:-translate-y-1 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-xl flex flex-col justify-between self-start w-full group"
-                    >
-                      {/* Top content: Category, Net Weight, Product Name */}
-                      <div>
-                        <div className="flex items-center justify-between text-[11px] text-[#40352F] tracking-widest uppercase mb-2">
-                          <span className="font-semibold text-[#8A5A12]">{p.subCategory || meta.badge}</span>
-                          {p.goldWeight ? (
-                            <span className="font-mono text-xs text-[#211813] font-bold">{p.goldWeight}g Net Wt</span>
-                          ) : null}
-                        </div>
-
-                        <h3 
-                          onClick={() => handleOpenProductModal(p)}
-                          className="font-serif text-lg text-[#211813] font-medium group-hover:text-[#8A5A12] transition-colors line-clamp-2 cursor-pointer mb-3"
-                        >
-                          {p.name}
-                        </h3>
-
-                        {/* Hallmark & Specification Badges */}
-                        <div className="flex flex-wrap items-center gap-1.5 mb-3">
-                          <span className="px-2.5 py-0.5 bg-[#FAF7F0] border border-[#DED2C1] rounded-full text-[10px] font-bold text-[#8A5A12] tracking-wider uppercase">
-                            {p.goldPurity === 925 ? '92.5 Silver' : `${p.goldPurity}KT BIS Hallmarked`}
-                          </span>
-                          {p.diamondCarat && (
-                            <span className="px-2.5 py-0.5 bg-[#FAF7F0] border border-[#DED2C1] rounded-full text-[10px] font-bold text-[#8A5A12] tracking-wider uppercase">
-                              {p.diamondCarat} ct {p.diamondClarity || 'Certified'}
-                            </span>
-                          )}
-                          <span className="px-2 py-0.5 text-[10px] font-mono text-[#8A5A12]/80 uppercase">
-                            SKU: {p.sku}
-                          </span>
-                        </div>
-
-                        {p.description && (
-                          <p className="text-xs text-[#6B5E55] line-clamp-2 leading-relaxed font-light mb-2">
-                            {p.description}
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Bottom content: Price on Request & Details */}
-                      <div className="pt-4 mt-3 border-t border-[#DED2C1]/60 flex items-center justify-between">
-                        <div>
-                          <span className="font-serif text-xs sm:text-[13px] font-bold text-[#8A5A12] tracking-wider uppercase">
-                            Price on Request
-                          </span>
-                        </div>
-
-                        <button
-                          onClick={() => handleOpenProductModal(p)}
-                          className="px-4 py-2 bg-[#211813] text-[#FFF8EC] text-xs font-bold tracking-wider uppercase rounded-lg hover:bg-[#8A5A12] transition-colors"
-                        >
-                          Details
-                        </button>
-                      </div>
-                    </div>
-                  );
+                const hasActualImage = hasValidJewelleryImage(p);
+                // In Gold, Silver, and Diamond: hide the entire card if no actual photograph is available
+                if (isTargetCategory && !hasActualImage) {
+                  return null;
                 }
 
-                // Standard card with authentic jewellery photograph
+                const rawImage = Array.isArray(p.images) && p.images.length > 0 ? p.images[0] : null;
+
                 return (
                   <div
                     key={p.id}
@@ -517,10 +471,10 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                       onClick={() => handleOpenProductModal(p)}
                       className="relative aspect-[4/5] bg-[#211813] rounded-xl overflow-hidden cursor-pointer mb-4"
                     >
-                      {hasActualImage ? (
+                      {hasActualImage && rawImage ? (
                         <>
                           <Image
-                            src={rawImage!}
+                            src={rawImage}
                             alt={`${p.name} - Handcrafted Fine Jewellery | Aranyak Jewellers`}
                             fill
                             priority={idx < 4}
