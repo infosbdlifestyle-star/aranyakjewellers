@@ -436,79 +436,108 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
             >
               {displayedProducts.map((p, idx) => {
-                const hasImageError = imageErrorMap[p.id];
-                const rawImage = Array.isArray(p.images) && p.images.length > 0 ? p.images[0] : null;
-                const showPlaceholder = !rawImage || hasImageError;
+                const isTargetCategory = ['gold', 'silver', 'diamond'].includes(categorySlug?.toLowerCase() || '');
+                const hasImageError = Boolean(imageErrorMap[p.id]);
+                const rawImage = Array.isArray(p.images) && p.images.length > 0 && typeof p.images[0] === 'string' && p.images[0].trim() !== '' ? p.images[0] : null;
+                const hasActualImage = Boolean(rawImage) && !hasImageError;
+                const hideImageSection = isTargetCategory && !hasActualImage;
 
                 return (
                   <div
                     key={p.id}
-                    className="relative bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E] transition-all duration-300 hover:-translate-y-1 rounded-2xl p-4 shadow-sm hover:shadow-xl flex flex-col justify-between h-full group"
+                    className={`relative bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E] transition-all duration-300 hover:-translate-y-1 rounded-2xl ${
+                      hideImageSection ? 'p-5 sm:p-6' : 'p-4'
+                    } shadow-sm hover:shadow-xl flex flex-col justify-between h-full group`}
                   >
-                    {/* Card Image Area */}
-                    <div 
-                      onClick={() => handleOpenProductModal(p)}
-                      className="relative aspect-[4/5] bg-[#211813] rounded-xl overflow-hidden cursor-pointer"
-                    >
-                      {showPlaceholder ? (
-                        <VaultImagePlaceholder
-                          name={p.name}
-                          category={p.category}
-                          subCategory={p.subCategory}
-                          goldPurity={p.goldPurity}
-                          diamondCarat={p.diamondCarat}
-                          diamondClarity={p.diamondClarity}
-                        />
-                      ) : (
-                        <>
-                          <Image
-                            src={rawImage!}
-                            alt={`${p.name} - Handcrafted Fine Jewellery | Aranyak Jewellers`}
-                            fill
-                            priority={idx < 4}
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            onError={() => handleImageError(p.id)}
-                            className="object-cover group-hover:scale-108 transition-transform duration-700"
-                          />
+                    {!hideImageSection && (
+                      /* Card Image Area */
+                      <div 
+                        onClick={() => handleOpenProductModal(p)}
+                        className="relative aspect-[4/5] bg-[#211813] rounded-xl overflow-hidden cursor-pointer mb-4"
+                      >
+                        {hasActualImage ? (
+                          <>
+                            <Image
+                              src={rawImage!}
+                              alt={`${p.name} - Handcrafted Fine Jewellery | Aranyak Jewellers`}
+                              fill
+                              priority={idx < 4}
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              onError={() => handleImageError(p.id)}
+                              className="object-cover group-hover:scale-108 transition-transform duration-700"
+                            />
 
-                          {/* Warm vignette */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/80 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
+                            {/* Warm vignette */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/80 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
 
-                          {/* Purity & Metal Badge */}
-                          <div className="absolute top-3 left-3 flex flex-col gap-1 z-10">
-                            <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#DED2C1]/20 rounded-full text-[10px] font-bold text-[#D6B15D] tracking-wider uppercase shadow">
-                              {p.goldPurity === 925 ? '92.5 Silver' : `${p.goldPurity}KT Hallmarked`}
-                            </span>
-                            {p.diamondCarat && (
-                              <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#DED2C1]/20 rounded-full text-[10px] font-bold text-[#E0BD72] tracking-wider uppercase shadow">
-                                {p.diamondCarat} ct {p.diamondClarity || 'Diamond'}
+                            {/* Purity & Metal Badge */}
+                            <div className="absolute top-3 left-3 flex flex-col gap-1 z-10">
+                              <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#DED2C1]/20 rounded-full text-[10px] font-bold text-[#D6B15D] tracking-wider uppercase shadow">
+                                {p.goldPurity === 925 ? '92.5 Silver' : `${p.goldPurity}KT Hallmarked`}
                               </span>
-                            )}
-                          </div>
-                        </>
-                      )}
-                    </div>
+                              {p.diamondCarat && (
+                                <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#DED2C1]/20 rounded-full text-[10px] font-bold text-[#E0BD72] tracking-wider uppercase shadow">
+                                  {p.diamondCarat} ct {p.diamondClarity || 'Diamond'}
+                                </span>
+                              )}
+                            </div>
+                          </>
+                        ) : (
+                          <VaultImagePlaceholder
+                            name={p.name}
+                            category={p.category}
+                            subCategory={p.subCategory}
+                            goldPurity={p.goldPurity}
+                            diamondCarat={p.diamondCarat}
+                            diamondClarity={p.diamondClarity}
+                          />
+                        )}
+                      </div>
+                    )}
 
                     {/* Card Details */}
-                    <div className="pt-4 flex flex-col flex-1 justify-between">
+                    <div className="flex flex-col flex-1 justify-between">
                       <div>
-                        <div className="flex items-center justify-between text-[11px] text-[#40352F] tracking-widest uppercase mb-1">
-                          <span>{p.subCategory || meta.badge}</span>
+                        <div className="flex items-center justify-between text-[11px] text-[#40352F] tracking-widest uppercase mb-1.5">
+                          <span className="font-semibold text-[#8A5A12]">{p.subCategory || meta.badge}</span>
                           {p.goldWeight ? (
-                            <span>{p.goldWeight}g Net Wt</span>
+                            <span className="font-mono text-xs text-[#211813] font-bold">{p.goldWeight}g Net Wt</span>
                           ) : null}
                         </div>
 
                         <h3 
                           onClick={() => handleOpenProductModal(p)}
-                          className="font-serif text-lg text-[#211813] font-medium group-hover:text-[#8A5A12] transition-colors line-clamp-1 cursor-pointer"
+                          className="font-serif text-lg text-[#211813] font-medium group-hover:text-[#8A5A12] transition-colors line-clamp-2 cursor-pointer mb-2"
                         >
                           {p.name}
                         </h3>
+
+                        {/* When image is hidden in Gold/Silver/Diamond, display hallmark badges cleanly */}
+                        {hideImageSection && (
+                          <div className="flex flex-wrap items-center gap-1.5 my-3">
+                            <span className="px-2.5 py-0.5 bg-[#FAF7F0] border border-[#DED2C1] rounded-full text-[10px] font-bold text-[#8A5A12] tracking-wider uppercase">
+                              {p.goldPurity === 925 ? '92.5 Silver' : `${p.goldPurity}KT BIS Hallmarked`}
+                            </span>
+                            {p.diamondCarat && (
+                              <span className="px-2.5 py-0.5 bg-[#FAF7F0] border border-[#DED2C1] rounded-full text-[10px] font-bold text-[#8A5A12] tracking-wider uppercase">
+                                {p.diamondCarat} ct {p.diamondClarity || 'Certified'}
+                              </span>
+                            )}
+                            <span className="px-2 py-0.5 text-[10px] font-mono text-[#8A5A12]/80 uppercase">
+                              SKU: {p.sku}
+                            </span>
+                          </div>
+                        )}
+
+                        {hideImageSection && p.description && (
+                          <p className="text-xs text-[#6B5E55] line-clamp-2 mb-2 leading-relaxed font-light">
+                            {p.description}
+                          </p>
+                        )}
                       </div>
 
                       {/* Price on Request & Action */}
-                      <div className="pt-4 mt-2 border-t border-[#DED2C1]/60 flex items-center justify-between">
+                      <div className="pt-4 mt-3 border-t border-[#DED2C1]/60 flex items-center justify-between">
                         <div>
                           <span className="font-serif text-xs sm:text-[13px] font-bold text-[#8A5A12] tracking-wider uppercase">
                             Price on Request
@@ -543,83 +572,97 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
             className="fixed inset-0 z-[100] bg-[#211813]/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
             onClick={() => setSelectedProduct(null)}
           >
-            <motion.div
-              initial={{ scale: 0.94, y: 15 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.94, y: 15 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative bg-[#211813] border border-[#C49A45]/40 max-w-4xl w-full rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] overflow-y-auto"
-              onClick={e => e.stopPropagation()}
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedProduct(null)}
-                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-[#211813] border border-[#DED2C1]/20 text-[#FFF8EC] flex items-center justify-center text-lg hover:border-[#C49A45] hover:text-[#D6B15D] transition-colors"
-                aria-label="Close dialog"
-              >
-                ✕
-              </button>
+            {(() => {
+              const isTargetCategory = ['gold', 'silver', 'diamond'].includes(categorySlug?.toLowerCase() || '');
+              const modalRawImage = selectedProduct.images?.[selectedImageIndex] || selectedProduct.images?.[0];
+              const modalHasImageError = Boolean(imageErrorMap[`${selectedProduct.id}-${selectedImageIndex}`] || imageErrorMap[selectedProduct.id]);
+              const modalHasActualImage = Boolean(modalRawImage && typeof modalRawImage === 'string' && modalRawImage.trim() !== '') && !modalHasImageError;
+              const hideModalImage = isTargetCategory && !modalHasActualImage;
 
-              {/* Modal Image Area */}
-              <div className="w-full md:w-1/2 flex flex-col bg-[#1A120E] border-b md:border-b-0 md:border-r border-[#C49A45]/20">
-                <div className="relative aspect-square w-full bg-[#211813] overflow-hidden">
-                  {(!selectedProduct.images?.[selectedImageIndex] || imageErrorMap[`${selectedProduct.id}-${selectedImageIndex}`]) ? (
-                    <VaultImagePlaceholder
-                      name={selectedProduct.name}
-                      category={selectedProduct.category}
-                      subCategory={selectedProduct.subCategory}
-                      goldPurity={selectedProduct.goldPurity}
-                      diamondCarat={selectedProduct.diamondCarat}
-                      diamondClarity={selectedProduct.diamondClarity}
-                    />
-                  ) : (
-                    <Image
-                      src={selectedProduct.images[selectedImageIndex] || selectedProduct.images[0]}
-                      alt={`${selectedProduct.name} - Angle ${selectedImageIndex + 1} | Aranyak Jewellers`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      onError={() => setImageErrorMap(prev => ({ ...prev, [`${selectedProduct.id}-${selectedImageIndex}`]: true }))}
-                      className="object-cover"
-                      priority
-                    />
-                  )}
-                  {selectedProduct.images && selectedProduct.images.length > 1 && (
-                    <div className="absolute top-3 left-3 bg-[#211813]/90 backdrop-blur-md px-2.5 py-1 rounded border border-[#C49A45]/40 text-[9px] font-mono tracking-widest text-[#E0BD72]">
-                      VIEW {selectedImageIndex + 1} OF {selectedProduct.images.length}
+              return (
+                <motion.div
+                  initial={{ scale: 0.94, y: 15 }}
+                  animate={{ scale: 1, y: 0 }}
+                  exit={{ scale: 0.94, y: 15 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className={`relative bg-[#211813] border border-[#C49A45]/40 ${
+                    hideModalImage ? 'max-w-xl' : 'max-w-4xl'
+                  } w-full rounded-2xl overflow-hidden shadow-2xl flex flex-col ${
+                    hideModalImage ? '' : 'md:flex-row'
+                  } max-h-[90vh] overflow-y-auto`}
+                  onClick={e => e.stopPropagation()}
+                >
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setSelectedProduct(null)}
+                    className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-[#211813] border border-[#DED2C1]/20 text-[#FFF8EC] flex items-center justify-center text-lg hover:border-[#C49A45] hover:text-[#D6B15D] transition-colors"
+                    aria-label="Close dialog"
+                  >
+                    ✕
+                  </button>
+
+                  {!hideModalImage && (
+                    /* Modal Image Area */
+                    <div className="w-full md:w-1/2 flex flex-col bg-[#1A120E] border-b md:border-b-0 md:border-r border-[#C49A45]/20">
+                      <div className="relative aspect-square w-full bg-[#211813] overflow-hidden">
+                        {(!selectedProduct.images?.[selectedImageIndex] || imageErrorMap[`${selectedProduct.id}-${selectedImageIndex}`]) ? (
+                          <VaultImagePlaceholder
+                            name={selectedProduct.name}
+                            category={selectedProduct.category}
+                            subCategory={selectedProduct.subCategory}
+                            goldPurity={selectedProduct.goldPurity}
+                            diamondCarat={selectedProduct.diamondCarat}
+                            diamondClarity={selectedProduct.diamondClarity}
+                          />
+                        ) : (
+                          <Image
+                            src={selectedProduct.images[selectedImageIndex] || selectedProduct.images[0]}
+                            alt={`${selectedProduct.name} - Angle ${selectedImageIndex + 1} | Aranyak Jewellers`}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            onError={() => setImageErrorMap(prev => ({ ...prev, [`${selectedProduct.id}-${selectedImageIndex}`]: true }))}
+                            className="object-cover"
+                            priority
+                          />
+                        )}
+                        {selectedProduct.images && selectedProduct.images.length > 1 && (
+                          <div className="absolute top-3 left-3 bg-[#211813]/90 backdrop-blur-md px-2.5 py-1 rounded border border-[#C49A45]/40 text-[9px] font-mono tracking-widest text-[#E0BD72]">
+                            VIEW {selectedImageIndex + 1} OF {selectedProduct.images.length}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Multi-angle Thumbnails strip */}
+                      {selectedProduct.images && selectedProduct.images.length > 1 && (
+                        <div className="p-3 bg-[#140C08] flex items-center justify-center gap-2 overflow-x-auto border-t border-[#C49A45]/15">
+                          {selectedProduct.images.map((img, idx) => (
+                            <button
+                              key={idx}
+                              type="button"
+                              onClick={() => setSelectedImageIndex(idx)}
+                              className={`relative w-14 h-14 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
+                                selectedImageIndex === idx
+                                  ? 'border-[#E0BD72] scale-105 shadow-md shadow-[#C49A45]/30'
+                                  : 'border-[#DED2C1]/30 opacity-60 hover:opacity-100 hover:border-[#D6B15D]'
+                              }`}
+                              aria-label={`View angle ${idx + 1}`}
+                            >
+                              <Image
+                                src={img}
+                                alt=""
+                                fill
+                                sizes="56px"
+                                className="object-cover"
+                              />
+                            </button>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
-                </div>
 
-                {/* Multi-angle Thumbnails strip */}
-                {selectedProduct.images && selectedProduct.images.length > 1 && (
-                  <div className="p-3 bg-[#140C08] flex items-center justify-center gap-2 overflow-x-auto border-t border-[#C49A45]/15">
-                    {selectedProduct.images.map((img, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => setSelectedImageIndex(idx)}
-                        className={`relative w-14 h-14 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
-                          selectedImageIndex === idx
-                            ? 'border-[#E0BD72] scale-105 shadow-md shadow-[#C49A45]/30'
-                            : 'border-[#DED2C1]/30 opacity-60 hover:opacity-100 hover:border-[#D6B15D]'
-                        }`}
-                        aria-label={`View angle ${idx + 1}`}
-                      >
-                        <Image
-                          src={img}
-                          alt=""
-                          fill
-                          sizes="56px"
-                          className="object-cover"
-                        />
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Modal Details */}
-              <div className="w-full md:w-1/2 p-8 flex flex-col justify-between space-y-6">
+                  {/* Modal Details */}
+                  <div className={`w-full ${hideModalImage ? 'p-8 sm:p-10' : 'md:w-1/2 p-8'} flex flex-col justify-between space-y-6`}>
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-[10px] uppercase tracking-[0.3em] text-[#E0BD72] font-bold">
@@ -704,7 +747,9 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                   </div>
                 </div>
               </div>
-            </motion.div>
+                </motion.div>
+              );
+            })()}
           </motion.div>
         )}
       </AnimatePresence>
