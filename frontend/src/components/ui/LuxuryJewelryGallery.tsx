@@ -231,13 +231,13 @@ export function LuxuryJewelryGallery({
                 <div className="space-y-4 pt-6 border-t border-[#DED2C1]/20">
                   <a
                     href={`https://wa.me/919436501506?text=${encodeURIComponent(
-                      `Hello Aranyak Jewellers, I would like to inquire about: ${selectedItem.title} (${selectedItem.purity})`
+                      `Hello Aranyak Jewellers, I would like to request the price and inquire about: ${selectedItem.title} (${selectedItem.purity}). Please share pricing and details.`
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full btn-luxury py-4 text-center block text-[10px] font-bold tracking-[0.35em] uppercase"
                   >
-                    Consult Boutique on WhatsApp
+                    Request Price via WhatsApp
                   </a>
 
                   <button

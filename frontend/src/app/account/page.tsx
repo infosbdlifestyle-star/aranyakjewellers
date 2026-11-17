@@ -807,7 +807,7 @@ export default function AccountPage() {
                               <p className="text-[11px] text-white/50 tracking-wider">Quantity: {item.quantity}</p>
                             </div>
                             <span className="font-serif text-lg text-[#E5C158] font-bold">
-                              ₹{(item.price * item.quantity).toLocaleString('en-IN')}
+                              Price on Request
                             </span>
                           </div>
                         ))}
@@ -827,7 +827,7 @@ export default function AccountPage() {
                           <div className="text-right">
                             <span className="text-white/40 text-[10px] uppercase tracking-widest block">Total Net Value</span>
                             <span className="font-serif text-2xl text-[#E5C158] font-bold">
-                              ₹{order.totalAmount?.toLocaleString('en-IN')}
+                              Price on Request
                             </span>
                           </div>
 

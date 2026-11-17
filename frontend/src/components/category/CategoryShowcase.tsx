@@ -507,12 +507,11 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                         </h3>
                       </div>
 
-                      {/* Price & Action */}
+                      {/* Price on Request & Action */}
                       <div className="pt-4 mt-2 border-t border-[#DED2C1]/60 flex items-center justify-between">
                         <div>
-                          <span className="text-[10px] text-[#40352F] uppercase tracking-wider block">Est. Value</span>
-                          <span className="text-sm font-bold text-[#211813]">
-                            {p.pricing?.finalPrice ? `₹${p.pricing.finalPrice.toLocaleString('en-IN')}` : 'Price on Request'}
+                          <span className="font-serif text-xs sm:text-[13px] font-bold text-[#8A5A12] tracking-wider uppercase">
+                            Price on Request
                           </span>
                         </div>
 
@@ -681,12 +680,12 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                 {/* Actions */}
                 <div className="space-y-3 pt-4 border-t border-[#DED2C1]/20">
                   <a
-                    href={`https://wa.me/919436501506?text=${encodeURIComponent(`Hello Aranyak Jewellers, I would like to reserve/inquire about ${selectedProduct.name} (SKU: ${selectedProduct.sku}). Please assist with viewing at my nearest showroom.`)}`}
+                    href={`https://wa.me/919436501506?text=${encodeURIComponent(`Hello Aranyak Jewellers, I would like to request the price and inquire about ${selectedProduct.name} (SKU: ${selectedProduct.sku}). Please share pricing and showroom availability.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full btn-luxury py-3.5 text-xs font-bold tracking-[0.25em] uppercase text-center block shadow-lg"
+                    className="w-full btn-luxury py-3.5 text-xs font-bold tracking-[0.25em] uppercase text-center block shadow-lg flex items-center justify-center gap-2"
                   >
-                    Reserve / Inquire via WhatsApp
+                    Request Price via WhatsApp
                   </a>
 
                   <div className="flex gap-2">
