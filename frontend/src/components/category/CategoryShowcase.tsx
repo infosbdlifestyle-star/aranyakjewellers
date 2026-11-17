@@ -13,10 +13,7 @@ import {
 } from '@/data/catalogue';
 import { 
   TextReveal, 
-  MagneticCard, 
-  SparkleGlint, 
-  StaggerContainer, 
-  StaggerItem 
+  SparkleGlint 
 } from '@/components/animations/LuxuryMotion';
 import { CategoryNavBar, CategoryNavItem } from './CategoryNavBar';
 import { VaultImagePlaceholder } from '@/components/ui/VaultImagePlaceholder';
@@ -331,7 +328,15 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
       <CategoryNavBar
         items={navItems}
         activeId={selectedSubCategory}
-        onSelect={(id) => setSelectedSubCategory(id)}
+        onSelect={(id) => {
+          setSelectedSubCategory(id);
+          const el = document.getElementById('collection-grid-section');
+          if (el) {
+            const yOffset = -90;
+            const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }}
         sortOptions={sortOptions}
         sortBy={sortBy}
         onSortChange={(val) => setSortBy(val as any)}
@@ -339,11 +344,11 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
       />
 
       {/* 3. Main Content Area */}
-      <section className="py-16 md:py-24 flex-1">
+      <section id="collection-grid-section" className="pt-8 pb-16 md:pt-10 md:pb-24 flex-1">
         <div className="container mx-auto px-6 max-w-7xl">
 
           {/* Item count status bar */}
-          <div className="flex items-center justify-between mb-10 pb-4 border-b border-[#DED2C1]">
+          <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#DED2C1]">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#211813]">
               Showing <span className="text-[#8A5A12] font-extrabold">{displayedProducts.length}</span> {meta.badge} Pieces
             </p>
@@ -424,129 +429,105 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
             </div>
           )}
 
-          {/* Lifecycle State 4: Successful Data Display (Product Grid) */}
+          {/* Lifecycle State 4: Successful Data Display (Product Grid - 100% Reliable & Visible) */}
           {!loading && displayedProducts.length > 0 && (
-            <StaggerContainer delay={0.05} staggerDelay={0.06}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                {displayedProducts.map((p) => {
-                  const hasImageError = imageErrorMap[p.id];
-                  const rawImage = Array.isArray(p.images) && p.images.length > 0 ? p.images[0] : null;
-                  const showPlaceholder = !rawImage || hasImageError;
+            <div 
+              id="product-grid"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
+            >
+              {displayedProducts.map((p, idx) => {
+                const hasImageError = imageErrorMap[p.id];
+                const rawImage = Array.isArray(p.images) && p.images.length > 0 ? p.images[0] : null;
+                const showPlaceholder = !rawImage || hasImageError;
 
-                  return (
-                    <StaggerItem key={p.id}>
-                      <MagneticCard tiltIntensity={5} className="h-full">
-                        <div 
-                          className="bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E] transition-all duration-500 rounded-2xl p-4 shadow-sm hover:shadow-xl flex flex-col justify-between h-full group"
-                        >
-                          {/* Card Image Area */}
-                          <div 
-                            onClick={() => handleOpenProductModal(p)}
-                            className="relative aspect-[4/5] bg-[#211813] rounded-xl overflow-hidden cursor-pointer"
-                          >
-                            {showPlaceholder ? (
-                              <VaultImagePlaceholder
-                                name={p.name}
-                                category={p.category}
-                                subCategory={p.subCategory}
-                                goldPurity={p.goldPurity}
-                                diamondCarat={p.diamondCarat}
-                                diamondClarity={p.diamondClarity}
-                              />
-                            ) : (
-                              <>
-                                <Image
-                                  src={rawImage!}
-                                  alt={`${p.name} - Handcrafted Fine Jewellery | Aranyak Jewellers`}
-                                  fill
-                                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                  onError={() => handleImageError(p.id)}
-                                  className="object-cover group-hover:scale-108 transition-transform duration-700"
-                                />
+                return (
+                  <div
+                    key={p.id}
+                    className="relative bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#98712E] transition-all duration-300 hover:-translate-y-1 rounded-2xl p-4 shadow-sm hover:shadow-xl flex flex-col justify-between h-full group"
+                  >
+                    {/* Card Image Area */}
+                    <div 
+                      onClick={() => handleOpenProductModal(p)}
+                      className="relative aspect-[4/5] bg-[#211813] rounded-xl overflow-hidden cursor-pointer"
+                    >
+                      {showPlaceholder ? (
+                        <VaultImagePlaceholder
+                          name={p.name}
+                          category={p.category}
+                          subCategory={p.subCategory}
+                          goldPurity={p.goldPurity}
+                          diamondCarat={p.diamondCarat}
+                          diamondClarity={p.diamondClarity}
+                        />
+                      ) : (
+                        <>
+                          <Image
+                            src={rawImage!}
+                            alt={`${p.name} - Handcrafted Fine Jewellery | Aranyak Jewellers`}
+                            fill
+                            priority={idx < 4}
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            onError={() => handleImageError(p.id)}
+                            className="object-cover group-hover:scale-108 transition-transform duration-700"
+                          />
 
-                                {/* Warm vignette */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/80 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
+                          {/* Warm vignette */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/80 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
 
-                                {/* Purity & Metal Badge */}
-                                <div className="absolute top-3 left-3 flex flex-col gap-1">
-                                  <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#C49A45]/50 text-[#D6B15D] text-[9px] font-bold tracking-widest uppercase rounded">
-                                    {p.categorySlug === 'silver' ? '92.5 Silver' : p.goldPurity ? `${p.goldPurity}KT Hallmarked` : meta.badge}
-                                  </span>
-                                  {p.diamondCarat && (
-                                    <span className="px-2.5 py-0.5 bg-[#FFFFFF]/90 backdrop-blur-md text-[#211813] text-[9px] font-bold tracking-wider rounded">
-                                      {p.diamondCarat} ct {p.diamondClarity || 'Diamond'}
-                                    </span>
-                                  )}
-                                </div>
-
-                                {/* Inspect Detail Hover Pill */}
-                                <div className="absolute bottom-3 right-3 bg-[#211813]/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#C49A45]/40 text-[9px] uppercase tracking-widest font-bold text-[#D6B15D] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                  🔍 Inspect Piece
-                                </div>
-                              </>
+                          {/* Purity & Metal Badge */}
+                          <div className="absolute top-3 left-3 flex flex-col gap-1 z-10">
+                            <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#DED2C1]/20 rounded-full text-[10px] font-bold text-[#D6B15D] tracking-wider uppercase shadow">
+                              {p.goldPurity === 925 ? '92.5 Silver' : `${p.goldPurity}KT Hallmarked`}
+                            </span>
+                            {p.diamondCarat && (
+                              <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#DED2C1]/20 rounded-full text-[10px] font-bold text-[#E0BD72] tracking-wider uppercase shadow">
+                                {p.diamondCarat} ct {p.diamondClarity || 'Diamond'}
+                              </span>
                             )}
                           </div>
+                        </>
+                      )}
+                    </div>
 
-                          {/* Card Content Area */}
-                          <div className="pt-4 space-y-2 flex-1 flex flex-col justify-between">
-                            <div>
-                              <div className="flex items-center justify-between text-[10px] text-[#8A5A12] font-bold tracking-widest uppercase mb-1">
-                                <span>{p.subCategory}</span>
-                                {p.goldWeight > 0 && (
-                                  <span>{p.goldWeight}g Net Wt</span>
-                                )}
-                              </div>
-
-                              <h3 
-                                onClick={() => handleOpenProductModal(p)}
-                                className="text-base font-serif font-medium text-[#211813] group-hover:text-[#8A5A12] transition-colors cursor-pointer line-clamp-1"
-                              >
-                                {p.name}
-                              </h3>
-
-                              <p className="text-xs text-[#40352F] line-clamp-2 mt-1 font-normal leading-relaxed">
-                                {p.description}
-                              </p>
-                            </div>
-
-                            {/* Inquiry Action Row */}
-                            <div className="pt-3 border-t border-[#DED2C1]/60 flex items-center justify-between">
-                              <div className="flex items-center gap-1.5">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45] animate-pulse" />
-                                <span className="text-[10px] text-[#70440C] uppercase tracking-[0.2em] font-semibold">
-                                  Price on Request
-                                </span>
-                              </div>
-
-                              <div className="flex items-center gap-2">
-                                <a
-                                  href={`https://wa.me/919436501506?text=${encodeURIComponent(`Hello Aranyak Jewellers, I would like to inquire about ${p.name} (SKU: ${p.sku}). Please share availability and details.`)}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="w-8 h-8 rounded-full bg-[#211813] hover:bg-[#8A5A12] text-[#E0BD72] hover:text-[#FFF8EC] flex items-center justify-center border border-[#C49A45]/40 transition-colors"
-                                  title="Inquire on WhatsApp"
-                                >
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                                  </svg>
-                                </a>
-
-                                <button
-                                  onClick={() => handleOpenProductModal(p)}
-                                  className="px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase bg-[#F0E7D8] hover:bg-[#211813] text-[#76551C] hover:text-[#FFF8EC] rounded border border-[#DED2C1] transition-all"
-                                >
-                                  Details
-                                </button>
-                              </div>
-                            </div>
-                          </div>
+                    {/* Card Details */}
+                    <div className="pt-4 flex flex-col flex-1 justify-between">
+                      <div>
+                        <div className="flex items-center justify-between text-[11px] text-[#40352F] tracking-widest uppercase mb-1">
+                          <span>{p.subCategory || meta.badge}</span>
+                          {p.goldWeight ? (
+                            <span>{p.goldWeight}g Net Wt</span>
+                          ) : null}
                         </div>
-                      </MagneticCard>
-                    </StaggerItem>
-                  );
-                })}
-              </div>
-            </StaggerContainer>
+
+                        <h3 
+                          onClick={() => handleOpenProductModal(p)}
+                          className="font-serif text-lg text-[#211813] font-medium group-hover:text-[#8A5A12] transition-colors line-clamp-1 cursor-pointer"
+                        >
+                          {p.name}
+                        </h3>
+                      </div>
+
+                      {/* Price & Action */}
+                      <div className="pt-4 mt-2 border-t border-[#DED2C1]/60 flex items-center justify-between">
+                        <div>
+                          <span className="text-[10px] text-[#40352F] uppercase tracking-wider block">Est. Value</span>
+                          <span className="text-sm font-bold text-[#211813]">
+                            {p.pricing?.finalPrice ? `₹${p.pricing.finalPrice.toLocaleString('en-IN')}` : 'Price on Request'}
+                          </span>
+                        </div>
+
+                        <button
+                          onClick={() => handleOpenProductModal(p)}
+                          className="px-4 py-2 bg-[#211813] text-[#FFF8EC] text-xs font-bold tracking-wider uppercase rounded-lg hover:bg-[#8A5A12] transition-colors"
+                        >
+                          Details
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           )}
 
         </div>
