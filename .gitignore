@@ -57,3 +57,5 @@ downloaded_assets/
 afData.txt
 gdrive_*.html
 scratch/
+
+.vercel
