@@ -17,7 +17,7 @@ const DEFAULT_CATEGORY_IMAGES: Record<string, string> = {
   gold: '/uploads/gallery_royal_bridal_feature.webp',
   diamond: '/uploads/gallery_solitaire_feature.webp',
   silver: '/uploads/silver_necklace_rock_diya.webp',
-  'costume-jewellery': '/uploads/gallery_chandeliers_feature.webp',
+  'costume-jewellery': '/IMG_20260603_141414.png',
   'offers-deals': '/bridal-edit.png'
 };
 
@@ -55,7 +55,7 @@ export default function CollectionsPage() {
               Our
             </TextReveal>{" "}
             <TextReveal delay={0.25} duration={1.1}>
-              <span className="font-editorial italic gold-gradient">Collections</span>
+              <span className="font-editorial gold-gradient">Collections</span>
             </TextReveal>
           </h1>
 
@@ -104,7 +104,7 @@ export default function CollectionsPage() {
                     
                     {/* Floating Luxury Chapter Number */}
                     <div className={`absolute top-1/2 -translate-y-1/2 ${isEven ? '-left-10 lg:-left-16' : '-right-10 lg:-right-16'} hidden md:block z-20 pointer-events-none`}>
-                      <span className="text-[7rem] lg:text-[9rem] font-editorial text-[#D6B15D]/20 select-none drop-shadow-sm">
+                      <span className="text-[7rem] lg:text-[9rem] font-editorial text-[#D6B15D]/20 select-none drop-shadow-sm tabular-nums lining-nums">
                         0{idx + 1}
                       </span>
                     </div>
@@ -113,7 +113,7 @@ export default function CollectionsPage() {
                   {/* Content Area */}
                   <div className={`w-full md:w-1/2 flex flex-col ${isEven ? 'md:items-start' : 'md:items-end md:text-right'}`}>
                     <Reveal delay={0.1} y={30}>
-                      <div className="inline-flex items-center space-x-2 text-[10px] font-bold tracking-[0.4em] uppercase text-[#966719] mb-4">
+                      <div className="inline-flex items-center space-x-2 text-[10px] font-bold tracking-[0.4em] uppercase text-[#966719] mb-4 tabular-nums lining-nums">
                         <span>Chapter 0{idx + 1}</span>
                         <span>•</span>
                         <span>Bespoke Edition</span>

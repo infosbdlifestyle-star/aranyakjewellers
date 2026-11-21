@@ -514,11 +514,11 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
 
                           {/* Purity & Metal Badge */}
                           <div className="absolute top-3 left-3 flex flex-col gap-1 z-10">
-                            <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#DED2C1]/20 rounded-full text-[10px] font-bold text-[#D6B15D] tracking-wider uppercase shadow">
+                            <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#DED2C1]/20 rounded-full text-[10px] font-bold text-[#D6B15D] tracking-wider uppercase shadow lining-nums tabular-nums">
                               {p.goldPurity === 925 ? '92.5 Silver' : `${p.goldPurity}KT Hallmarked`}
                             </span>
                             {p.diamondCarat && (
-                              <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#DED2C1]/20 rounded-full text-[10px] font-bold text-[#E0BD72] tracking-wider uppercase shadow">
+                              <span className="px-2.5 py-1 bg-[#211813]/90 backdrop-blur-md border border-[#DED2C1]/20 rounded-full text-[10px] font-bold text-[#E0BD72] tracking-wider uppercase shadow lining-nums tabular-nums">
                                 {p.diamondCarat} ct {p.diamondClarity || 'Diamond'}
                               </span>
                             )}
@@ -542,7 +542,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                         <div className="flex items-center justify-between text-[11px] text-[#40352F] tracking-widest uppercase mb-1.5">
                           <span className="font-semibold text-[#8A5A12]">{p.subCategory || meta.badge}</span>
                           {p.goldWeight ? (
-                            <span className="font-mono text-xs text-[#211813] font-bold">{p.goldWeight}g Net Wt</span>
+                            <span className="font-sans text-xs text-[#211813] font-semibold tabular-nums lining-nums">{p.goldWeight}g Net Wt</span>
                           ) : null}
                         </div>
 
@@ -644,7 +644,7 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                           />
                         )}
                         {selectedProduct.images && selectedProduct.images.length > 1 && (
-                          <div className="absolute top-3 left-3 bg-[#211813]/90 backdrop-blur-md px-2.5 py-1 rounded border border-[#C49A45]/40 text-[9px] font-mono tracking-widest text-[#E0BD72]">
+                          <div className="absolute top-3 left-3 bg-[#211813]/90 backdrop-blur-md px-2.5 py-1 rounded border border-[#C49A45]/40 text-[9px] font-sans font-semibold tracking-widest text-[#E0BD72] tabular-nums lining-nums">
                             VIEW {selectedImageIndex + 1} OF {selectedProduct.images.length}
                           </div>
                         )}
@@ -708,14 +708,14 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
                     {selectedProduct.goldWeight > 0 && (
                       <div>
                         <span className="text-[#E5D9C8]/70 uppercase tracking-widest block text-[9px]">Net Weight</span>
-                        <span className="text-[#FFF8EC] font-serif font-medium">{selectedProduct.goldWeight} grams</span>
+                        <span className="text-[#FFF8EC] font-serif font-medium tabular-nums lining-nums">{selectedProduct.goldWeight} grams</span>
                       </div>
                     )}
 
                     {selectedProduct.diamondCarat && (
                       <div>
                         <span className="text-[#E5D9C8]/70 uppercase tracking-widest block text-[9px]">Diamond Specs</span>
-                        <span className="text-[#FFF8EC] font-serif font-medium">{selectedProduct.diamondCarat} ct ({selectedProduct.diamondClarity || 'Certified'})</span>
+                        <span className="text-[#FFF8EC] font-serif font-medium tabular-nums lining-nums">{selectedProduct.diamondCarat} ct ({selectedProduct.diamondClarity || 'Certified'})</span>
                       </div>
                     )}
 

@@ -177,7 +177,7 @@ export default function ContactClient() {
                 Tripura Boutiques Network
               </span>
               <h2 className="text-3xl md:text-4xl font-serif font-light text-[#211813]">
-                Visit Our <span className="font-editorial italic gold-gradient text-[#8A5A12]">Showrooms</span>
+                Visit Our <span className="font-editorial gold-gradient text-[#8A5A12]">Showrooms</span>
               </h2>
               <p className="text-xs text-[#40352F] mt-2 font-normal">
                 Serving patrons across Agartala, Dharmanagar, Kailashahar, and Khowai.
@@ -257,7 +257,7 @@ export default function ContactClient() {
                     Direct Inquiry
                   </span>
                   <h2 className="text-3xl md:text-4xl font-serif font-light text-[#76551C]">
-                    Send Us a <span className="font-editorial italic text-[#D6B15D]">Message</span>
+                    Send Us a <span className="font-editorial text-[#D6B15D]">Message</span>
                   </h2>
                   <p className="text-xs text-[#40352F] mt-2 font-normal">
                     We typically respond within 2 to 4 business hours.

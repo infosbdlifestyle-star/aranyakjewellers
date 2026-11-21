@@ -38,7 +38,7 @@ export default function CareGuideClient() {
 
           <h1 className="text-4xl md:text-7xl font-serif font-light mb-6 leading-tight text-[#76551C] tracking-tight">
             <TextReveal text="Jewellery" />{' '}
-            <span className="font-editorial italic text-[#D6B15D]">Care Guide</span>
+            <span className="font-editorial text-[#D6B15D]">Care Guide</span>
           </h1>
 
           <p className="text-[#76551C] font-normal max-w-2xl mx-auto leading-relaxed text-sm md:text-base">
@@ -63,8 +63,8 @@ export default function CareGuideClient() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/80 via-transparent to-transparent opacity-80" />
                   <div className="absolute bottom-6 left-6 text-[#FFF8EC]">
-                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D6B15D] block mb-1">Chapter 01</span>
-                    <h3 className="text-xl font-serif">22K BIS Hallmarked Gold</h3>
+                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D6B15D] block mb-1 tabular-nums lining-nums">Chapter 01</span>
+                    <h3 className="text-xl font-serif tabular-nums lining-nums">22K BIS Hallmarked Gold</h3>
                   </div>
                 </div>
               </MagneticCard>
@@ -110,7 +110,7 @@ export default function CareGuideClient() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/80 via-transparent to-transparent opacity-80" />
                   <div className="absolute bottom-6 left-6 text-[#FFF8EC]">
-                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D6B15D] block mb-1">Chapter 02</span>
+                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D6B15D] block mb-1 tabular-nums lining-nums">Chapter 02</span>
                     <h3 className="text-xl font-serif">Certified Natural Diamonds</h3>
                   </div>
                 </div>
@@ -157,7 +157,7 @@ export default function CareGuideClient() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/80 via-transparent to-transparent opacity-80" />
                   <div className="absolute bottom-6 left-6 text-[#FFF8EC]">
-                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D6B15D] block mb-1">Chapter 03</span>
+                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D6B15D] block mb-1 tabular-nums lining-nums">Chapter 03</span>
                     <h3 className="text-xl font-serif">Precious Emeralds & Rubies</h3>
                   </div>
                 </div>
@@ -195,7 +195,7 @@ export default function CareGuideClient() {
         <div className="mt-32">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-serif font-light text-[#76551C]">
-              The Patron&apos;s <span className="font-editorial italic text-[#D6B15D]">Dos &amp; Don&apos;ts</span>
+              The Patron&apos;s <span className="font-editorial text-[#D6B15D]">Dos &amp; Don&apos;ts</span>
             </h2>
           </div>
 

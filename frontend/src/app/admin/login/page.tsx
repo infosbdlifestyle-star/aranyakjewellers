@@ -110,7 +110,7 @@ function AdminLoginForm() {
           </Link>
           <div className="space-y-1">
             <h1 className="font-serif text-3xl sm:text-4xl font-light tracking-wide text-white">
-              Aranyak <span className="gold-gradient italic font-normal">Console</span>
+              Aranyak <span className="gold-gradient font-normal">Console</span>
             </h1>
             <p className="text-[10px] uppercase tracking-[0.35em] text-[#E5C158] font-bold">
               Secure Administrative Gateway

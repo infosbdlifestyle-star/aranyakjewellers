@@ -171,60 +171,55 @@ export default function HomeClient({
   const opacityParallax = useTransform(scrollYProgress, [0, 0.4], [1, 0.2]);
   const yParallaxGrid = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
-  // Normalize display categories with dynamic media management
-  const pickKeys = [
-    'top_picks_royal_heirloom',
-    'top_picks_temple_nakshi',
-    'top_picks_diamond_solitaires',
-    'top_picks_artisanal_craft',
-  ];
-
-  const fallbackList = [
+  // Curated High Jewellery Collections accurately matching every displayed image
+  const curatedCollections = useMemo(() => [
     {
-      id: 'cat-1',
-      name: 'Bridal Heritage',
+      id: 'high-jewellery-bridal',
+      name: 'Bridal Gold Jewellery',
+      badge: '22K Bridal Trousseau',
       slug: 'bridal-jewellery',
       imageUrl: liveMediaMap['top_picks_royal_heirloom'] || liveMediaMap['home_hero_necklace'] || '/uploads/cat_bridal_heritage.webp',
-      tagline: 'Handcrafted Trousseau Treasures',
+      altText: 'Handcrafted Royal Bridal Gold Jewellery & Jhumka Earrings',
+      tagline: 'Handcrafted Trousseau Treasures & Royal Jhumkas',
+      ctaText: 'DISCOVER COLLECTION',
       span: 'md:col-span-7'
     },
     {
-      id: 'cat-2',
-      name: 'Royal Gold',
-      slug: 'gold',
-      imageUrl: liveMediaMap['top_picks_temple_nakshi'] || '/uploads/cat_royal_gold.webp',
-      tagline: '22K BIS Hallmarked Masterpieces',
+      id: 'high-jewellery-gold-necklace',
+      name: 'Traditional Gold Necklaces',
+      badge: '22K Hallmarked Gold',
+      slug: 'gold/necklace-sets',
+      imageUrl: liveMediaMap['top_picks_temple_nakshi'] || '/uploads/top_picks_traditional_heritage.webp',
+      altText: 'Traditional 22K BIS Hallmarked Gold Heritage Necklace',
+      tagline: '22K BIS Hallmarked Masterpieces & Nakshi Karigari',
+      ctaText: 'DISCOVER COLLECTION',
       span: 'md:col-span-5'
     },
     {
-      id: 'cat-3',
-      name: 'Certified Diamonds',
-      slug: 'diamond',
+      id: 'high-jewellery-diamond-rings',
+      name: 'Diamond Rings',
+      badge: 'VVS-VS Solitaires',
+      slug: 'diamond/rings',
       imageUrl: liveMediaMap['top_picks_diamond_solitaires'] || '/uploads/cat_certified_diamonds.webp',
-      tagline: 'VVS-VS Solitaires & Fine Sets',
+      altText: 'Certified VVS-VS Solitaire Diamond Ring',
+      tagline: 'VVS-VS Solitaire Rings & Certified Bands',
+      ctaText: 'DISCOVER COLLECTION',
       span: 'md:col-span-4'
     },
     {
-      id: 'cat-4',
-      name: 'Pure 925 Silver',
-      slug: 'silver',
+      id: 'high-jewellery-silver-necklace',
+      name: 'Pure 925 Silver Necklaces',
+      badge: '92.5 Sterling Silver',
+      slug: 'silver/necklaces',
       imageUrl: liveMediaMap['top_picks_artisanal_craft'] || '/uploads/cat_antique_silver_heritage.webp',
-      tagline: 'Artisanal Filigree & Auspicious Silverware',
+      altText: 'Handcrafted Pure 925 Silver Filigree Traditional Necklace',
+      tagline: 'Artisanal Filigree & Auspicious Silver Necklaces',
+      ctaText: 'DISCOVER COLLECTION',
       span: 'md:col-span-8'
     }
-  ];
+  ], [liveMediaMap]);
 
-  const categoriesList = liveCategories.length > 0 ? liveCategories : (initialCategories || []);
-  const displayCategories = categoriesList && categoriesList.length >= 3 
-    ? categoriesList.slice(0, 4).map((c: any, i: number) => ({
-        id: c.id || `cat-${i}`,
-        name: c.name,
-        slug: c.slug,
-        imageUrl: liveMediaMap[pickKeys[i]] || c.imageUrl || (i === 0 ? '/uploads/cat_bridal_heritage.webp' : i === 1 ? '/uploads/cat_royal_gold.webp' : i === 2 ? '/uploads/cat_certified_diamonds.webp' : '/uploads/cat_antique_silver_heritage.webp'),
-        tagline: c.description || 'Exclusive Collection',
-        span: i === 0 ? 'md:col-span-7' : i === 1 ? 'md:col-span-5' : i === 2 ? 'md:col-span-4' : 'md:col-span-8'
-      }))
-    : fallbackList;
+  const displayCategories = curatedCollections;
 
   // Extract gold rates or fallback
   const currentGoldRates = liveGoldRates.length > 0 ? liveGoldRates : (initialGoldRates || []);
@@ -250,7 +245,7 @@ export default function HomeClient({
           brandTitle: parsed.brandTitle || 'ARANYAK JEWELLERS',
           tagline: parsed.tagline === 'Timeless Elegance & Royal Heritage' ? 'Tripura’s Best Jewellery Brand' : (parsed.tagline || 'Tripura’s Best Jewellery Brand'),
           imageUrl: parsed.imageUrl || '',
-          height: parsed.height || '64vh',
+          height: parsed.height && parsed.height !== '64vh' ? parsed.height : 'calc(100vh - 4rem)',
           alignment: parsed.alignment || 'center',
           overlayDarkness: parsed.overlayDarkness || '60',
         };
@@ -260,7 +255,7 @@ export default function HomeClient({
       brandTitle: 'ARANYAK JEWELLERS',
       tagline: 'Tripura’s Best Jewellery Brand',
       imageUrl: '',
-      height: '64vh',
+      height: 'calc(100vh - 4rem)',
       alignment: 'center',
       overlayDarkness: '60',
     };
@@ -376,14 +371,21 @@ export default function HomeClient({
           pointer-events: none;
         }
 
-        /* 2. Main Hero Heading Guaranteed Bright Champagne Gold Contrast */
+        /* 2. Main Hero Heading & Subtitle Guaranteed High Contrast */
         .hero-brand-heading,
         .hero-brand-heading *,
         h1.hero-brand-heading,
         h1.hero-brand-heading span {
           color: #F0D58A !important;
           opacity: 1 !important;
-          text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45) !important;
+          text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55) !important;
+        }
+
+        .hero-subtitle,
+        h2.hero-subtitle {
+          color: #FDF8EE !important;
+          opacity: 1 !important;
+          text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85) !important;
         }
 
         /* 3. Floating WhatsApp Button: Visible Animated Green Pulse Ring Around Button & Small Hover Effect */
@@ -486,23 +488,25 @@ export default function HomeClient({
       {/* 1. Full-Screen Luxury "Tripura’s Best Jewellery Brand" Hero Section */}
       {enabledSections.hero && (
         <section 
-          className="relative min-h-[58vh] sm:min-h-[64vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#211813]" 
+          className="relative w-full min-h-[calc(100vh-4rem)] min-h-[calc(100dvh-4rem)] flex flex-col items-center justify-center overflow-hidden bg-[#211813]" 
+          style={{ minHeight: heroConfig.height || 'calc(100vh - 4rem)' }}
           aria-label="Hero Section"
         >
-          {/* Completely Stationary Hero Background (Zero scale, zero zoom, original size) */}
+          {/* Completely Stationary Hero Background (Fills full width and height with clear jewellery visibility) */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <Image 
               src={heroConfig.imageUrl || liveMediaMap['home_hero_banner'] || (liveBanners && liveBanners.length > 0 ? liveBanners[0].imageUrl : (initialBanners && initialBanners.length > 0 ? initialBanners[0].imageUrl : "/website-banner.webp"))} 
               alt="Aranyak Jewellers Masterpiece Collection" 
               fill
-              className="object-cover object-center no-select opacity-75"
+              className="object-cover object-center no-select opacity-85 sm:opacity-90"
               priority
             />
           </div>
           
-          {/* Multi-layered Warm Espresso & Gold Ambient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/85 via-transparent to-[#211813]/85 pointer-events-none" />
+          {/* Multi-layered Warm Espresso & Gold Ambient Overlays tuned for optimal contrast and jewellery clarity */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#211813] via-[#211813]/40 to-[#211813]/30 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#211813]/70 via-[#211813]/30 to-[#211813]/70 pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(33,24,19,0.35)_0%,rgba(33,24,19,0.75)_80%,#211813_100%)] pointer-events-none" />
           
           {/* Subtle Animated Golden Light Sweep Moving Horizontally Across Hero Background */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden z-10" aria-hidden="true">
@@ -511,7 +515,7 @@ export default function HomeClient({
 
           {/* Soft glowing ambient gold highlights */}
           <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center overflow-hidden" aria-hidden="true">
-            <div className="w-[500px] h-[300px] sm:w-[750px] sm:h-[420px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(214,177,93,0.15)_0%,rgba(214,177,93,0.03)_50%,transparent_75%)] blur-2xl animate-hero-aura" />
+            <div className="w-[600px] h-[360px] sm:w-[900px] sm:h-[500px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(214,177,93,0.18)_0%,rgba(214,177,93,0.04)_50%,transparent_75%)] blur-2xl animate-hero-aura" />
           </div>
 
           {/* Gentle Floating Gold Dust Particles */}
@@ -545,12 +549,12 @@ export default function HomeClient({
           )}
           
           {/* Centered Brand Name Title with Letter-by-Letter Reveal & Moving Metallic Gold Shimmer */}
-          <div className="relative z-20 w-full px-6 max-w-6xl flex flex-col items-center justify-center text-center py-16 sm:py-20 md:py-24">
+          <div className="relative z-20 w-full px-6 max-w-7xl flex flex-col items-center justify-center text-center my-auto py-12 sm:py-16 md:py-20 lg:py-24">
             <motion.h1
               initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              className="hero-brand-heading relative inline-block font-serif font-light text-[#F0D58A] text-3xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[84px] tracking-[0.16em] sm:tracking-[0.2em] md:tracking-[0.22em] uppercase leading-tight sm:leading-none select-none"
-              style={{ color: "#F0D58A", opacity: 1, textShadow: "0 2px 12px rgba(0,0,0,0.45)" }}
+              className="hero-brand-heading relative inline-block font-serif font-light text-[#F0D58A] text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[96px] 2xl:text-[112px] tracking-[0.14em] sm:tracking-[0.18em] md:tracking-[0.2em] lg:tracking-[0.22em] uppercase leading-[1.15] sm:leading-[1.1] md:leading-none select-none"
+              style={{ color: "#F0D58A", opacity: 1, textShadow: "0 2px 16px rgba(0,0,0,0.55)" }}
             >
               <span className="relative z-10 inline-block" style={{ color: "#F0D58A", opacity: 1 }}>
                 {brandTitleWords.map((wordObj: { word: string; letters: { char: string; index: number }[] }, wIdx: number) => (
@@ -575,10 +579,11 @@ export default function HomeClient({
             {/* Subtitle Reveal: Smooth Fade & Upward Slide after heading finishes */}
             {heroConfig.tagline && (
               <motion.h2 
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0.9, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.95, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
-                className="text-xs sm:text-sm text-[#E5D7C5] tracking-[0.25em] uppercase mt-4 sm:mt-5 font-light drop-shadow"
+                transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="hero-subtitle text-sm sm:text-base md:text-lg lg:text-xl text-[#FDF8EE] tracking-[0.22em] sm:tracking-[0.28em] md:tracking-[0.32em] uppercase mt-5 sm:mt-7 md:mt-8 font-normal drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] max-w-3xl mx-auto leading-relaxed"
+                style={{ color: "#FDF8EE", opacity: 1, textShadow: "0 2px 14px rgba(0,0,0,0.85)" }}
               >
                 {heroConfig.tagline === 'Timeless Elegance & Royal Heritage' ? 'Tripura’s Best Jewellery Brand' : heroConfig.tagline}
               </motion.h2>
@@ -588,8 +593,8 @@ export default function HomeClient({
             <motion.div
               initial={{ scaleX: 0, opacity: 0 }}
               animate={{ scaleX: 1, opacity: 1 }}
-              transition={{ duration: 1.4, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}
-              className="w-24 sm:w-36 h-[1px] bg-gradient-to-r from-transparent via-[#D6B15D]/80 to-transparent mt-4 sm:mt-5 relative overflow-hidden"
+              transition={{ duration: 1.0, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              className="w-32 sm:w-48 md:w-64 lg:w-72 h-[1.5px] bg-gradient-to-r from-transparent via-[#D6B15D]/90 to-transparent mt-5 sm:mt-7 md:mt-8 relative overflow-hidden"
               aria-hidden="true"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FFF8EC] to-transparent w-full animate-gold-shimmer-sweep" />
@@ -625,7 +630,7 @@ export default function HomeClient({
               
               <Reveal delay={0.1}>
                 <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light leading-[1.1] text-[#211813]">
-                  Masterpieces born from <span className="font-editorial gold-gradient italic text-[#8A5A12]">heritage</span> & crafted for eternity.
+                  Masterpieces born from <span className="font-editorial gold-gradient text-[#8A5A12]">heritage</span> & crafted for eternity.
                 </h3>
               </Reveal>
               
@@ -675,14 +680,30 @@ export default function HomeClient({
 
           {/* Stats Bar */}
           <div className="mt-24 pt-16 border-t border-[#DED2C1] grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {dynamicStats.map((stat: any) => stat.label.includes('Showroom') ? { ...stat, value: `${liveStoresCount}` } : stat).map((stat: any, idx: number) => (
-              <MagneticCard key={idx} tiltAmount={4} glareOpacity={0.12}>
-                <div className="p-6 sm:p-8 bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#D6B15D]/70 transition-all duration-300 rounded-xl shadow-sm h-full flex flex-col justify-center">
-                  <p className="text-4xl md:text-5xl font-serif font-light text-[#8A5A12] mb-2">{stat.value}</p>
-                  <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#211813]">{stat.label}</p>
-                </div>
-              </MagneticCard>
-            ))}
+            {dynamicStats.map((stat: any) => stat.label.includes('Showroom') ? { ...stat, value: `${liveStoresCount}` } : stat).map((stat: any, idx: number) => {
+              const valStr = String(stat.value || '');
+              const numMatch = valStr.match(/^([0-9,]+)(.*)$/);
+
+              return (
+                <MagneticCard key={idx} tiltAmount={4} glareOpacity={0.12}>
+                  <div className="p-6 sm:p-8 bg-[#FFFDF8] border border-[#DED2C1] hover:border-[#D6B15D]/70 transition-all duration-300 rounded-xl shadow-sm h-full flex flex-col justify-center items-center">
+                    <p className="text-4xl md:text-5xl font-serif font-light text-[#8A5A12] mb-2 stat-counter inline-flex items-baseline justify-center">
+                      {numMatch ? (
+                        <>
+                          <span className="tabular-nums lining-nums">{numMatch[1]}</span>
+                          {numMatch[2] && (
+                            <span className="num-suffix font-light text-[0.68em] ml-0.5">{numMatch[2]}</span>
+                          )}
+                        </>
+                      ) : (
+                        <span className="tabular-nums lining-nums">{valStr}</span>
+                      )}
+                    </p>
+                    <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#211813] leading-snug">{stat.label}</p>
+                  </div>
+                </MagneticCard>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -714,7 +735,7 @@ export default function HomeClient({
             <Reveal delay={0.1}>
               <h2 className="text-4xl sm:text-6xl md:text-7xl font-serif font-light tracking-wide leading-tight max-w-4xl drop-shadow-2xl">
                 <span className="text-[#FFF8EB]">The Essence of</span>{" "}
-                <span className="font-editorial gold-gradient italic">Craftsmanship</span>
+                <span className="font-editorial gold-gradient">Craftsmanship</span>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
@@ -751,7 +772,7 @@ export default function HomeClient({
             </Reveal>
             <Reveal delay={0.1}>
               <h3 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#211813] tracking-tight">
-                High <span className="font-editorial gold-gradient italic text-[#8A5A12]">Jewellery</span>
+                High <span className="font-editorial gold-gradient text-[#8A5A12]">Jewellery</span>
               </h3>
             </Reveal>
           </div>
@@ -759,48 +780,40 @@ export default function HomeClient({
           <motion.div style={{ y: yParallaxGrid }} className="grid grid-cols-1 md:grid-cols-12 auto-rows-[500px] md:auto-rows-[580px] gap-6">
             
             {displayCategories.map((cat, idx) => {
-              const gemAura = [
-                { tag: 'Royal Ruby Heritage' },
-                { tag: '22K Hallmarked Gold' },
-                { tag: 'VVS Solitaires' },
-                { tag: 'Sacred Iconography' },
+              const badgeText = cat.badge || [
+                '22K Bridal Trousseau',
+                '22K Hallmarked Gold',
+                'VVS-VS Solitaires',
+                '92.5 Sterling Silver'
               ][idx % 4];
 
               return (
                 <Link 
                   key={cat.id} 
-                  href={`/category/${cat.slug}`} 
+                  href={cat.slug.startsWith('/') ? cat.slug : `/category/${cat.slug}`} 
                   className={`${cat.span} row-span-1 relative group overflow-hidden bg-[#211813] flex items-center justify-center p-10 border border-[#DED2C1]/30 hover:border-[#E0BD72]/70 rounded-2xl transition-all duration-700 shadow-xl`}
                 >
-                  <MouseParallaxImage src={cat.imageUrl} alt={cat.name} intensity={18} />
+                  <MouseParallaxImage src={cat.imageUrl} alt={cat.altText || cat.name} intensity={18} />
                   
                   {/* Subtle multi-stop image gradient ensuring high contrast without overly darkening jewellery */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#211813]/95 via-[#211813]/50 to-transparent transition-opacity duration-700 group-hover:opacity-95 pointer-events-none" />
                   
                   <div className="relative z-10 text-center flex flex-col items-center justify-end h-full pb-6">
                     <span 
-                      className="text-[9px] font-semibold tracking-[0.28em] uppercase px-3.5 py-1 rounded-full border mb-3 group-hover:scale-105 transition-transform backdrop-blur-sm shadow-sm"
+                      className="text-[9px] font-semibold tracking-[0.28em] uppercase px-3.5 py-1 rounded-full border mb-3 group-hover:scale-105 transition-transform backdrop-blur-sm shadow-sm lining-nums tabular-nums inline-flex items-center justify-center leading-none"
                       style={{
                         color: "#E0BD72",
                         background: "rgba(33,24,19,0.75)",
                         borderColor: "rgba(224,189,114,0.4)"
                       }}
                     >
-                      {gemAura.tag}
+                      {badgeText}
                     </span>
                     <h4 
-                      className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-serif font-light tracking-[0.05em] sm:tracking-[0.07em] leading-[1.15] md:leading-[1.18] mb-3 sm:mb-4 transition-colors drop-shadow-md"
+                      className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-serif font-light tracking-[0.05em] sm:tracking-[0.07em] leading-[1.15] md:leading-[1.18] mb-3 sm:mb-4 transition-colors drop-shadow-md lining-nums tabular-nums text-balance"
                       style={{ color: "#FFF8EC" }}
                     >
-                      {cat.name.includes('925') ? (
-                        <span className="inline-flex items-baseline justify-center gap-[0.28em]">
-                          <span>Pure</span>
-                          <span className="font-serif font-light tracking-[0.04em] tabular-nums text-[0.96em]">925</span>
-                          <span>Silver</span>
-                        </span>
-                      ) : (
-                        cat.name
-                      )}
+                      {cat.name}
                     </h4>
                     <p 
                       className="text-[11px] sm:text-xs md:text-[13px] font-sans font-light tracking-[0.14em] sm:tracking-[0.18em] uppercase max-w-md mx-auto mb-5 leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-sm"
@@ -814,7 +827,7 @@ export default function HomeClient({
                         color: "#E0BD72"
                       }}
                     >
-                      <span>DISCOVER COLLECTION</span>
+                      <span>{cat.ctaText || "DISCOVER COLLECTION"}</span>
                       <span className="transform group-hover:translate-x-1 transition-transform duration-300 font-serif">→</span>
                     </div>
                   </div>
@@ -854,7 +867,7 @@ export default function HomeClient({
 
             <Reveal width="100%" delay={0.1}>
               <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#211813] leading-tight">
-                Master <span className="font-editorial gold-gradient italic text-[#8A5A12]">Gallery</span> Directory
+                Master <span className="font-editorial gold-gradient text-[#8A5A12]">Gallery</span> Directory
               </h3>
             </Reveal>
 
@@ -924,7 +937,7 @@ export default function HomeClient({
                 <div className="relative h-[240px] sm:h-full w-full rounded-2xl overflow-hidden shadow-xl group border border-[#DED2C1]/60 bg-[#211813]">
                   <Image 
                     src={liveMediaMap['gallery_diamond_ring'] || "/uploads/gallery_solitaire_feature.webp"} 
-                    alt="Certified Solitaire Diamond Eternity Band"
+                    alt="Certified Solitaire Diamond Halo Ring"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1536px) 25vw, 20vw"
                     className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
@@ -941,7 +954,7 @@ export default function HomeClient({
                       className="text-sm font-serif font-medium"
                       style={{ color: "#FFF8EC" }}
                     >
-                      Diamond Flower Ring
+                      Solitaire Diamond Halo Ring
                     </span>
                   </div>
                 </div>
@@ -950,7 +963,7 @@ export default function HomeClient({
                 <div className="relative h-[240px] sm:h-full w-full rounded-2xl overflow-hidden shadow-xl group border border-[#DED2C1]/60 bg-[#211813]">
                   <Image 
                     src="/uploads/gallery_chandeliers_feature.webp" 
-                    alt="Haute Joaillerie Handcrafted Diamond Chandelier Earrings"
+                    alt="Handcrafted 22K Gold Butterfly Chandelier Earrings"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1536px) 25vw, 20vw"
                     className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
@@ -961,13 +974,13 @@ export default function HomeClient({
                       className="text-[9px] font-bold tracking-[0.25em] uppercase block mb-0.5"
                       style={{ color: "#E0BD72" }}
                     >
-                      BESPOKE EARPIECES
+                      22K GOLD EARPIECES
                     </span>
                     <span 
                       className="text-sm font-serif font-medium"
                       style={{ color: "#FFF8EC" }}
                     >
-                      Ruby & Diamond Drops
+                      Gold Butterfly Chandelier Drops
                     </span>
                   </div>
                 </div>
@@ -980,44 +993,60 @@ export default function HomeClient({
       </section>
       )}
 
-      {/* Instagram Official Lookbook & Feed Showcase */}
+      {/* Instagram & Social Official Lookbook & Feed Showcase */}
       {enabledSections.instagram && (
         <section className="py-24 bg-[#FFFDF8] border-b border-[#DED2C1] relative overflow-hidden">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <Reveal>
               <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-[#966719] mb-3 block">
-                INSTAGRAM OFFICIAL LOOKBOOK
+                CONNECT WITH ARANYAK
               </span>
             </Reveal>
             <Reveal delay={0.1}>
               <h3 className="text-4xl sm:text-6xl font-serif font-light text-[#211813] mb-4">
-                Follow <span className="font-editorial gold-gradient italic text-[#8A5A12]">@aranyakjewellers</span>
+                Follow Our Journey
               </h3>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="text-sm text-[#40352F] font-normal tracking-wide max-w-xl mx-auto uppercase mb-8 leading-relaxed">
-                Explore real bride trousseaus, daily gold rates, & store designs on Instagram
+              <p className="text-sm sm:text-base text-[#40352F] font-normal tracking-wide max-w-2xl mx-auto mb-8 leading-relaxed">
+                Discover our latest jewellery collections, new arrivals and timeless designs on social media.
               </p>
             </Reveal>
             <Reveal delay={0.3}>
-              <a 
-                href="https://www.instagram.com/aranyakjewellers/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-3 px-8 py-3.5 rounded-full bg-[#211813] text-[#FFF8EB] text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-[#8A5A12] hover:text-[#FFF8EC] border border-[#8A5A12]/30 transition-all duration-500 shadow-md"
-              >
-                <span>📸 Visit @aranyakjewellers on Instagram</span>
-              </a>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <a 
+                  href="https://www.instagram.com/aranyakjewellers/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-3 px-7 py-3.5 rounded-full bg-[#211813] text-[#FFF8EB] text-[11px] font-bold tracking-[0.2em] uppercase hover:bg-[#8A5A12] hover:text-[#FFF8EC] border border-[#8A5A12]/30 transition-all duration-300 shadow-md group"
+                >
+                  <svg className="w-4 h-4 fill-current text-[#D6B15D] group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                  <span>Follow on Instagram</span>
+                </a>
+                <a 
+                  href="https://www.facebook.com/aranyakjewellers" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-3 px-7 py-3.5 rounded-full bg-[#FAF7F0] text-[#211813] text-[11px] font-bold tracking-[0.2em] uppercase hover:bg-[#8A5A12] hover:text-[#FFF8EC] border border-[#211813]/20 hover:border-[#8A5A12] transition-all duration-300 shadow-sm group"
+                >
+                  <svg className="w-4 h-4 fill-current text-[#1877F2] group-hover:text-[#FFF8EC] transition-colors" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                  <span>Follow on Facebook</span>
+                </a>
+              </div>
             </Reveal>
           </div>
 
           {/* Instagram Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
-              { img: liveMediaMap['gallery_royal_set'] || '/uploads/lookbook_bridal_sitahar.webp', title: 'Royal Long Conch Haar', tag: 'Instagram Story' },
-              { img: liveMediaMap['gallery_earring_drop'] || '/uploads/lookbook_filigree_jhumkas.webp', title: 'Peacock Chandbali Jhumkas', tag: 'Reel Feature' },
-              { img: liveMediaMap['gallery_diamond_ring'] || '/uploads/gallery_solitaire_feature.webp', title: 'Diamond Flower Ring', tag: 'Spotlight Edit' },
+              { img: liveMediaMap['gallery_royal_set'] || '/uploads/lookbook_bridal_sitahar.webp', title: 'Pure Silver Filigree Sitahar', tag: 'Silver Heritage' },
+              { img: liveMediaMap['gallery_earring_drop'] || '/uploads/lookbook_filigree_jhumkas.webp', title: 'Silver Filigree Necklace & Jhumkas', tag: 'Silver Craft Feature' },
+              { img: liveMediaMap['gallery_diamond_ring'] || '/uploads/gallery_solitaire_feature.webp', title: 'Solitaire Diamond Halo Ring', tag: 'Spotlight Edit' },
               { img: liveMediaMap['gallery_sapphire_ring'] || '/uploads/lookbook_silver_bangles.webp', title: 'Pure Silver Makara Kadas', tag: 'Silver Heritage' }
             ].map((item, idx) => (
               <Reveal key={idx} width="100%" delay={idx * 0.1}>
@@ -1082,7 +1111,7 @@ export default function HomeClient({
               </Reveal>
               <Reveal delay={0.1}>
                 <h3 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#211813]">
-                  Cherished <span className="font-editorial gold-gradient italic text-[#8A5A12]">Stories</span>
+                  Cherished <span className="font-editorial gold-gradient text-[#8A5A12]">Stories</span>
                 </h3>
               </Reveal>
             </div>
@@ -1094,22 +1123,22 @@ export default function HomeClient({
                     <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 sm:p-10 flex flex-col justify-between h-full hover:border-[#D6B15D]/70 transition-all duration-500 shadow-sm hover:shadow-lg rounded-xl">
                       <div>
                         {/* Stars with Subtle Stagger */}
-                        <div className="flex items-center space-x-1.5 text-[#8A5A12] mb-6">
+                        <div className="flex items-center space-x-1 text-[#8A5A12] mb-6 leading-none">
                           {[...Array(t.rating || 5)].map((_, i) => (
-                            <span key={i} className="text-base font-bold drop-shadow-sm">★</span>
+                            <span key={i} className="text-sm font-bold drop-shadow-sm leading-none">★</span>
                           ))}
                         </div>
-                        <p className="text-sm text-[#40352F] font-normal leading-[1.8] italic mb-8">
+                        <p className="text-sm text-[#40352F] font-normal leading-[1.8] not-italic mb-8">
                           &ldquo;{t.quote}&rdquo;
                         </p>
                       </div>
 
-                      <div className="pt-6 border-t border-[#DED2C1] flex items-center justify-between">
+                      <div className="pt-6 border-t border-[#DED2C1] flex items-center justify-between gap-3">
                         <div>
-                          <h4 className="text-base font-serif font-bold text-[#211813]">{t.author}</h4>
-                          <p className="text-[11px] text-[#70440C] uppercase tracking-wider font-semibold">{t.location}</p>
+                          <h4 className="text-base font-serif font-bold text-[#211813] leading-snug">{t.author}</h4>
+                          <p className="text-[11px] text-[#70440C] uppercase tracking-wider font-semibold mt-0.5">{t.location}</p>
                         </div>
-                        <span className="text-[10px] font-bold tracking-wider uppercase text-[#8A5A12] bg-[#8A5A12]/10 border border-[#8A5A12]/30 px-3 py-1 rounded-sm">
+                        <span className="text-[10px] font-bold tracking-wider uppercase text-[#8A5A12] bg-[#8A5A12]/10 border border-[#8A5A12]/30 px-3 py-1 rounded-sm lining-nums tabular-nums whitespace-nowrap">
                           {t.tag}
                         </span>
                       </div>
@@ -1143,7 +1172,7 @@ export default function HomeClient({
           <Reveal delay={0.1}>
             <h3 className="text-4xl sm:text-6xl md:text-7xl font-serif font-light mb-8 leading-tight drop-shadow-2xl text-[#FFF8EB]">
               Experience the <br /> 
-              <span className="font-editorial gold-gradient italic">Brilliance</span> in Person
+              <span className="font-editorial gold-gradient">Brilliance</span> in Person
             </h3>
           </Reveal>
           

@@ -99,7 +99,7 @@ export default function AdminStoresPage() {
     <main className="p-6 lg:p-10 flex flex-col h-full">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-serif font-light tracking-tight text-white/90">Store <span className="text-secondary italic">Locations</span></h1>
+          <h1 className="text-3xl font-serif font-light tracking-tight text-white/90">Store <span className="text-secondary not-italic">Locations</span></h1>
           <p className="text-sm text-white/50 mt-1">Manage physical boutiques.</p>
         </div>
         <button 

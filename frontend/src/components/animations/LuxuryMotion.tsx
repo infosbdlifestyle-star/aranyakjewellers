@@ -28,9 +28,9 @@ export function TextReveal({
   return (
     <div className={`overflow-hidden inline-block ${className}`}>
       <motion.div
-        initial={{ y: "110%", opacity: 0 }}
+        initial={{ y: "100%", opacity: 0 }}
         whileInView={{ y: "0%", opacity: 1 }}
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true }}
         transition={{
           duration,
           delay,

@@ -67,10 +67,9 @@ export function LuxuryJewelryGallery({
           return (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => setSelectedItem(item)}
               onMouseMove={(e) => handleMouseMove(e, item.id)}
               onMouseLeave={handleMouseLeave}
@@ -109,7 +108,7 @@ export function LuxuryJewelryGallery({
 
                 {/* Top Gold Purity Seal */}
                 <div className="absolute top-4 left-4 z-20">
-                  <span className="text-[9px] font-bold tracking-widest uppercase text-[#E0BD72] bg-[#211813]/90 backdrop-blur-md border border-[#C49A45]/40 px-3 py-1 shadow-md rounded">
+                  <span className="text-[9px] font-bold tracking-widest uppercase text-[#E0BD72] bg-[#211813]/90 backdrop-blur-md border border-[#C49A45]/40 px-3 py-1 shadow-md rounded tabular-nums lining-nums">
                     {item.purity}
                   </span>
                 </div>
@@ -124,11 +123,11 @@ export function LuxuryJewelryGallery({
                 {/* Bottom Content Card */}
                 <div className="absolute bottom-0 inset-x-0 p-6 z-20 flex flex-col justify-end transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                   {item.tag && (
-                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-[#E0BD72] mb-1">
+                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-[#E0BD72] mb-1 tabular-nums lining-nums">
                       {item.tag}
                     </span>
                   )}
-                  <h3 className="text-xl font-serif font-light text-[#FFF8EC] group-hover:text-[#E0BD72] transition-colors mb-2 line-clamp-1">
+                  <h3 className="text-xl font-serif font-light text-[#FFF8EC] group-hover:text-[#E0BD72] transition-colors mb-2 line-clamp-1 tabular-nums lining-nums">
                     {item.title}
                   </h3>
 

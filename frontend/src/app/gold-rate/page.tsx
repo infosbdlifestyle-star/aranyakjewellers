@@ -27,7 +27,7 @@ export default function GoldRatePage() {
           
           <h1 className="text-4xl sm:text-6xl font-serif font-light mb-4 text-[#FFF8EC] tracking-tight">
             <TextReveal text="Today's Official" />{' '}
-            <span className="font-editorial italic gold-gradient">Gold Rate</span>
+            <span className="font-editorial gold-gradient">Gold Rate</span>
           </h1>
 
           <p className="text-xs sm:text-sm text-[#E5D9C8] font-normal tracking-wide max-w-xl leading-relaxed uppercase">

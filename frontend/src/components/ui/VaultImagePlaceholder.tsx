@@ -65,7 +65,7 @@ export function VaultImagePlaceholder({
       </h4>
 
       {/* Description note */}
-      <p className="text-[11px] text-[#A6917D] italic tracking-wide max-w-[210px] leading-relaxed mb-3">
+      <p className="text-[11px] text-[#A6917D] not-italic tracking-wide max-w-[210px] leading-relaxed mb-3">
         Authentic photograph preserved in boutique vault
       </p>
 

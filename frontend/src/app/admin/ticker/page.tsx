@@ -334,7 +334,7 @@ export default function AdminTickerPage() {
         }`}>
           <div className="bg-gradient-to-r from-[#D6B15D] via-[#F3E3B6] to-[#D6B15D] text-[#211813] font-serif py-2.5 px-4 shadow-inner overflow-hidden relative">
             {activeMessages.length === 0 ? (
-              <p className="text-center text-xs font-medium italic">No active ticker announcements to display.</p>
+              <p className="text-center text-xs font-medium not-italic">No active ticker announcements to display.</p>
             ) : (
               <div className="flex items-center space-x-6 whitespace-nowrap overflow-x-auto no-scrollbar py-0.5">
                 {[...activeMessages, ...activeMessages].map((msg, i) => (
@@ -349,7 +349,7 @@ export default function AdminTickerPage() {
             )}
           </div>
         </div>
-        <p className="text-[11px] text-[#8A7969] italic">
+        <p className="text-[11px] text-[#8A7969] not-italic">
           * Rendered without emojis. Standard luxury separators: &ldquo;—&rdquo;, &ldquo;•&rdquo;, &ldquo;✦&rdquo;, &ldquo;◆&rdquo;.
         </p>
       </div>

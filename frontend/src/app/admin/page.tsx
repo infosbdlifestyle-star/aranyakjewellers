@@ -102,7 +102,7 @@ export default function AdminPage() {
       <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl sm:text-4xl font-serif font-light tracking-tight text-white/95">
-            Admin <span className="gold-gradient font-editorial italic">Control Center</span>
+            Admin <span className="gold-gradient font-editorial not-italic">Control Center</span>
           </h1>
           <p className="text-sm text-white/60 mt-1">Real-time boutique metrics, market rates, and inventory governance.</p>
         </div>

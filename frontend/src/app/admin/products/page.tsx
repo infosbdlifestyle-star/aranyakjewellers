@@ -252,7 +252,7 @@ export default function AdminProductsPage() {
     <main className="p-6 lg:p-10 flex flex-col h-full">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-serif font-light tracking-tight text-white/90">Product <span className="text-secondary italic">Inventory</span></h1>
+          <h1 className="text-3xl font-serif font-light tracking-tight text-white/90">Product <span className="text-secondary not-italic">Inventory</span></h1>
           <p className="text-sm text-white/50 mt-1">Manage your boutique catalog and stock.</p>
         </div>
         <button 

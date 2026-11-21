@@ -79,7 +79,7 @@ const SLIDES: HeroSlide[] = [
         <span style={{ color: "#FFF8EC" }}>Timeless </span>
         <span
           style={{
-            fontStyle: "italic",
+            fontStyle: "normal",
             fontFamily: "var(--font-cormorant), serif",
             color: "#D6B15D",
             background:
@@ -117,7 +117,7 @@ const SLIDES: HeroSlide[] = [
         <span style={{ color: "#FFF8EC" }}>Exclusive </span>
         <span
           style={{
-            fontStyle: "italic",
+            fontStyle: "normal",
             fontFamily: "var(--font-cormorant), serif",
             color: "#B8D4F0",
             background:
@@ -155,7 +155,7 @@ const SLIDES: HeroSlide[] = [
         Old Jewellery?{" "}
         <span
           style={{
-            fontStyle: "italic",
+            fontStyle: "normal",
             fontFamily: "var(--font-cormorant), serif",
             background:
               "linear-gradient(135deg,#C0C0C0 0%,#E8E8E8 50%,#A8A8A8 100%)",

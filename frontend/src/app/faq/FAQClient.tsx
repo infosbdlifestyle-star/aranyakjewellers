@@ -96,7 +96,7 @@ export default function FAQClient() {
           
           <h1 className="text-4xl md:text-6xl font-serif font-light mb-6 text-[#76551C] tracking-tight">
             <TextReveal text="Frequently Asked" />{' '}
-            <span className="font-editorial italic text-[#D6B15D]">Questions</span>
+            <span className="font-editorial text-[#D6B15D]">Questions</span>
           </h1>
           
           <p className="text-[#76551C] font-normal max-w-2xl mx-auto leading-relaxed text-sm md:text-base">

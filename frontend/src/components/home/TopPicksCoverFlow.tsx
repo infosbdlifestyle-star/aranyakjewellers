@@ -449,7 +449,7 @@ export default function TopPicksCoverFlow({
 
           <Reveal delay={0.1}>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-light text-[#211813] tracking-tight leading-tight">
-              Top <span className="font-editorial gold-gradient italic text-[#8A5A12]">Picks</span>
+              Top <span className="font-editorial gold-gradient text-[#8A5A12]">Picks</span>
             </h2>
           </Reveal>
 
@@ -584,7 +584,7 @@ export default function TopPicksCoverFlow({
 
                     {/* Top Badges */}
                     <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
-                      <span className="px-3 py-1 rounded-full text-[9px] font-bold tracking-[0.25em] uppercase bg-[#211813]/85 backdrop-blur-md text-[#E0BD72] border border-[#C49A45]/40 shadow-md">
+                      <span className="px-3 py-1 rounded-full text-[9px] font-bold tracking-[0.25em] uppercase bg-[#211813]/85 backdrop-blur-md text-[#E0BD72] border border-[#C49A45]/40 shadow-md lining-nums tabular-nums">
                         {item.tag}
                       </span>
 
@@ -601,12 +601,12 @@ export default function TopPicksCoverFlow({
                     <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-20 flex flex-col justify-end text-left">
                       
                       {/* Small Gold Subtitle */}
-                      <span className="text-[11px] sm:text-xs font-editorial italic text-[#E0BD72] tracking-widest uppercase mb-1 drop-shadow-sm">
+                      <span className="text-[11px] sm:text-xs font-editorial text-[#E0BD72] tracking-widest uppercase mb-1 drop-shadow-sm">
                         {item.subtitle}
                       </span>
 
                       {/* Collection Title */}
-                      <h3 className="text-2xl sm:text-3xl font-serif font-normal text-[#FFF8EC] tracking-wide leading-tight drop-shadow-md">
+                      <h3 className="text-2xl sm:text-3xl font-serif font-normal text-[#FFF8EC] tracking-wide leading-tight drop-shadow-md lining-nums tabular-nums">
                         {item.title}
                       </h3>
 
@@ -642,15 +642,15 @@ export default function TopPicksCoverFlow({
           
           {/* Active Collection Counter */}
           <div className="flex items-center space-x-3 text-xs tracking-widest uppercase text-[#211813] font-semibold">
-            <span className="text-[#8A5A12] font-serif text-sm font-bold">
+            <span className="text-[#8A5A12] font-serif text-sm font-bold tabular-nums lining-nums leading-none inline-flex items-center">
               {String(activeIndex + 1).padStart(2, '0')}
             </span>
-            <span className="w-8 h-[1px] bg-[#DED2C1]" />
-            <span className="text-[#211813] font-medium">
+            <span className="w-8 h-[1px] bg-[#DED2C1] self-center" />
+            <span className="text-[#211813] font-medium leading-none">
               {activeItem.title}
             </span>
-            <span className="w-8 h-[1px] bg-[#DED2C1]" />
-            <span className="text-[#211813]/60 font-serif text-sm">
+            <span className="w-8 h-[1px] bg-[#DED2C1] self-center" />
+            <span className="text-[#211813]/60 font-serif text-sm tabular-nums lining-nums leading-none inline-flex items-center">
               {String(total).padStart(2, '0')}
             </span>
           </div>

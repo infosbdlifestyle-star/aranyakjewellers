@@ -67,14 +67,14 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
             <SparkleGlint color="#E7C880" size={12}>
               <span className="text-[#E0BD72]">✧</span>
             </SparkleGlint>
-            <p className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#E0BD72]">
+            <p className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#E0BD72] tabular-nums lining-nums">
               Heritage Est. 1995 • Tripura
             </p>
           </motion.div>
 
           <h1 className="text-5xl md:text-8xl font-serif font-light mb-6 tracking-tight text-[#FFF8EC]">
-            <TextReveal text="Our Generational" />{' '}
-            <span className="font-editorial italic gold-gradient">Legacy</span>
+            Our Generational{' '}
+            <span className="font-editorial gold-gradient">Legacy</span>
           </h1>
 
           <motion.p
@@ -106,7 +106,7 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
                   />
                   {/* Luxury Inner Filigree Inset Frame */}
                   <div className="absolute inset-4 border border-[#D6B15D]/40 rounded pointer-events-none group-hover:border-[#D6B15D] transition-colors duration-500" />
-                  <div className="absolute top-6 left-6 text-[10px] font-mono tracking-widest uppercase text-[#D6B15D]/70 bg-[#211813]/80 px-2 py-0.5 rounded backdrop-blur-sm">
+                  <div className="absolute top-6 left-6 text-[10px] font-sans font-semibold tracking-wider uppercase text-[#D6B15D] bg-[#211813]/90 px-2.5 py-1 rounded backdrop-blur-sm shadow border border-[#D6B15D]/30">
                     Founder & Managing Director
                   </div>
                 </div>
@@ -140,8 +140,8 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
                 </div>
                 
                 <h2 className="text-4xl md:text-5xl font-serif font-light text-[#211813] tracking-tight">
-                  <TextReveal text="A Vision of Uncompromising" />{' '}
-                  <span className="font-editorial italic gold-gradient text-[#8A5A12]">Purity</span>
+                  A Vision of Uncompromising{' '}
+                  <span className="font-editorial gold-gradient text-[#8A5A12]">Purity</span>
                 </h2>
                 
                 <p className="text-[#40352F] leading-[1.8] tracking-wide font-normal text-base">
@@ -164,7 +164,7 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
                           </span>
                           <span className="w-1.5 h-1.5 rounded-full bg-[#C49A45]/40 group-hover:bg-[#C49A45] transition-colors" />
                         </div>
-                        <h3 className="text-xs font-bold tracking-[0.2em] uppercase mb-2 text-[#211813] group-hover:text-[#8A5A12] transition-colors">
+                        <h3 className="text-xs font-bold tracking-[0.2em] uppercase mb-2 text-[#211813] group-hover:text-[#8A5A12] transition-colors tabular-nums lining-nums">
                           {pillar.title}
                         </h3>
                         <p className="text-xs text-[#40352F] leading-relaxed font-normal">
@@ -193,7 +193,7 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
               The Living Tradition
             </span>
             <h2 className="text-3xl md:text-5xl font-serif font-light text-[#211813]">
-              Centuries-Old <span className="font-editorial italic gold-gradient text-[#8A5A12]">Bengali Karigari</span>
+              Centuries-Old <span className="font-editorial gold-gradient text-[#8A5A12]">Bengali Karigari</span>
             </h2>
             <p className="text-[#40352F] mt-4 text-sm font-normal leading-relaxed">
               From the intricate swirls of Filigree (Tarakasi) to the regal sculptures of Nakshi work, our master jewelers breathe timeless elegance into pure 22 Karat gold.
@@ -203,7 +203,7 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
           <div className="grid md:grid-cols-3 gap-8">
             <MagneticCard tiltAmount={4} glareOpacity={0.12}>
               <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 rounded-xl shadow-sm text-center space-y-4">
-                <div className="w-12 h-12 mx-auto rounded-full bg-[#211813] text-[#E0BD72] flex items-center justify-center font-serif text-xl">
+                <div className="w-12 h-12 mx-auto rounded-full bg-[#211813] text-[#E0BD72] flex items-center justify-center font-serif text-xl leading-none shadow-sm border border-[#D6B15D]/40">
                   ১
                 </div>
                 <h3 className="text-lg font-serif text-[#211813]">Intricate Filigree (তারকাশি)</h3>
@@ -215,7 +215,7 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
 
             <MagneticCard tiltAmount={4} glareOpacity={0.12}>
               <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 rounded-xl shadow-sm text-center space-y-4">
-                <div className="w-12 h-12 mx-auto rounded-full bg-[#211813] text-[#E0BD72] flex items-center justify-center font-serif text-xl">
+                <div className="w-12 h-12 mx-auto rounded-full bg-[#211813] text-[#E0BD72] flex items-center justify-center font-serif text-xl leading-none shadow-sm border border-[#D6B15D]/40">
                   ২
                 </div>
                 <h3 className="text-lg font-serif text-[#211813]">Nakshi Embossing (নকশী)</h3>
@@ -227,7 +227,7 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
 
             <MagneticCard tiltAmount={4} glareOpacity={0.12}>
               <div className="bg-[#FFFDF8] border border-[#DED2C1] p-8 rounded-xl shadow-sm text-center space-y-4">
-                <div className="w-12 h-12 mx-auto rounded-full bg-[#211813] text-[#E0BD72] flex items-center justify-center font-serif text-xl">
+                <div className="w-12 h-12 mx-auto rounded-full bg-[#211813] text-[#E0BD72] flex items-center justify-center font-serif text-xl leading-none shadow-sm border border-[#D6B15D]/40">
                   ৩
                 </div>
                 <h3 className="text-lg font-serif text-[#211813]">Jadau & Polki Setting</h3>
@@ -251,7 +251,8 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
 
           <h2 className="text-3xl md:text-5xl font-serif font-light leading-snug text-[#FFF8EC]">
             &ldquo;Every gram of gold that leaves our stores carries our{' '}
-            <span className="font-editorial italic text-[#D6B15D]">solemn promise</span> of authenticity.&rdquo;
+            <span className="font-editorial text-[#D6B15D]">solemn promise</span>{' '}
+            of authenticity.&rdquo;
           </h2>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">

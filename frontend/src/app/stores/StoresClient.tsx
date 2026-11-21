@@ -187,7 +187,7 @@ export default function StoresClient({
               Our
             </TextReveal>{" "}
             <TextReveal delay={0.25} duration={1.1}>
-              <span className="font-editorial italic gold-gradient">Showrooms</span>
+              <span className="font-editorial gold-gradient">Showrooms</span>
             </TextReveal>
           </h1>
 
@@ -284,7 +284,7 @@ export default function StoresClient({
                             <circle cx="12" cy="12" r="10"/>
                             <polyline points="12 6 12 12 16 14"/>
                           </svg>
-                          <span className="font-semibold text-[#211813]">
+                          <span className="font-semibold text-[#211813] tabular-nums lining-nums">
                             {store.hours}
                           </span>
                         </div>
@@ -297,9 +297,9 @@ export default function StoresClient({
                             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                           </svg>
                           {store.phone.includes('X') ? (
-                            <span className="font-medium text-[#76551C]">{store.phone}</span>
+                            <span className="font-medium text-[#76551C] tabular-nums lining-nums">{store.phone}</span>
                           ) : (
-                            <a href={`tel:${store.phone.replace(/\s+/g,'')}`} className="font-medium text-[#40352F] hover:text-[#8A5A12] hover:underline transition-colors tracking-wide">
+                            <a href={`tel:${store.phone.replace(/\s+/g,'')}`} className="font-medium text-[#40352F] hover:text-[#8A5A12] hover:underline transition-colors tracking-wide tabular-nums lining-nums">
                               {store.phone}
                             </a>
                           )}
@@ -366,7 +366,7 @@ export default function StoresClient({
 
           <Reveal delay={0.1}>
             <h2 className="text-4xl md:text-6xl font-serif font-light text-[#FFF8EC] leading-tight">
-              Personalized Shopping <span className="font-editorial italic gold-gradient">Experience</span>
+              Personalized Shopping <span className="font-editorial gold-gradient">Experience</span>
             </h2>
           </Reveal>
 

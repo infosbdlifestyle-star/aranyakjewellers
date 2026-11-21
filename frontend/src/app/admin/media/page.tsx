@@ -300,7 +300,7 @@ export default function AdminMediaManagerPage() {
             <span className="uppercase tracking-widest text-[10px]">Zero-Code Image Management</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-serif font-light tracking-tight text-white/95">
-            Website <span className="text-secondary italic gold-gradient">Media Manager</span>
+            Website <span className="text-secondary not-italic gold-gradient">Media Manager</span>
           </h1>
           <p className="text-sm text-white/50 mt-1 max-w-2xl">
             Upload, replace, preview, and roll back website images across all sections. Changes update the live website immediately.

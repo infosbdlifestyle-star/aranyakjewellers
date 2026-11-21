@@ -17,7 +17,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({ title, description, icon, actio
       <div className="w-24 h-24 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mb-8 text-white/30">
         {icon}
       </div>
-      <h2 className="text-3xl font-serif font-light text-white italic mb-4">{title}</h2>
+      <h2 className="text-3xl font-serif font-light text-white not-italic mb-4">{title}</h2>
       <p className="text-white/60 max-w-md mb-10 text-sm leading-relaxed font-light">
         {description}
       </p>

@@ -98,6 +98,15 @@
   --font-serif: var(--font-cormorant);
 }
 
+/* Universal Lining Figures & Tabular Baseline Alignment for All Numbers */
+*,
+*::before,
+*::after {
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -105,19 +114,116 @@ body {
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings: "lnum" 1, "tnum" 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-cormorant), serif;
   letter-spacing: -0.01em;
   color: inherit;
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  text-wrap: balance;
 }
 
 /* Premium Typography */
+.font-editorial,
+.font-serif {
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
 .font-editorial {
   font-family: var(--font-cormorant), serif;
-  font-style: italic;
+  font-style: normal;
   font-weight: 300;
+}
+
+/* Universal Normal Font Style: Remove Italic Formatting Across Entire Site */
+i,
+em,
+.italic,
+.font-editorial {
+  font-style: normal !important;
+}
+
+/* Subscript & Superscript Baseline Normalization */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* Numeric & Baseline Alignment System */
+.lining-nums,
+.numeric-flat {
+  font-variant-numeric: lining-nums tabular-nums !important;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1 !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
+}
+
+.num-baseline {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  vertical-align: baseline;
+}
+
+.num-suffix {
+  font-size: 0.78em;
+  line-height: 1;
+  margin-left: 0.08em;
+  vertical-align: baseline;
+  font-weight: 400;
+}
+
+.stat-counter {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  letter-spacing: -0.02em;
+}
+
+.price-display {
+  display: inline-flex;
+  align-items: baseline;
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  letter-spacing: -0.01em;
+}
+
+.badge-luxury {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings: "lnum" 1, "tnum" 1;
 }
 
 /* White & Gold Typography Utilities - NO BLACK TEXT */
@@ -199,6 +305,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
   color: #8A5A12;
   display: inline-block;
+  font-style: normal;
 }
 
 .gold-gradient-subtle {
