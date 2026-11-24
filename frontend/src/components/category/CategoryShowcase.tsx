@@ -583,6 +583,9 @@ export default function CategoryShowcase({ categorySlug, initialSubCategorySlug 
       <AnimatePresence>
         {selectedProduct && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${selectedProduct.name} Details`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

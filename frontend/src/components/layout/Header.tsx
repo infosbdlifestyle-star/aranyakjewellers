@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CATEGORIES } from '@/constants/categories';
 import { useAuth } from '@/context/AuthContext';
+import { usePathname } from 'next/navigation';
 
 const NAV_LINKS = [
   { name: 'Gallery', href: '/gallery' },
@@ -32,12 +33,14 @@ const Header = ({
   categories?: any[]; 
   settings?: Record<string, string>;
 }) => {
+  const pathname = usePathname();
   const { user, isAuthenticated } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
   useEffect(() => {
+    if (pathname?.startsWith('/admin')) return;
     const handleScroll = () => {
       const scrolled = window.scrollY > 50;
       setIsScrolled(prev => (prev !== scrolled ? scrolled : prev));
@@ -82,6 +85,10 @@ const Header = ({
   const toggleCategory = (id: string) => {
     setExpandedCategory(prev => prev === id ? null : id);
   };
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   return (
     <div className="sticky top-0 z-50 w-full shadow-md bg-white">

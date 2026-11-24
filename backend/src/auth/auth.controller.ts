@@ -37,19 +37,22 @@ export class AuthController {
   @Post('totp/generate')
   @UseGuards(JwtAuthGuard)
   async generateTotp(@Request() req) {
-    return this.authService.generateTotpSecret(req.user.sub, req.user.email);
+    const userId = req.user.userId || req.user.sub;
+    return this.authService.generateTotpSecret(userId, req.user.email);
   }
 
   @Post('totp/enable')
   @UseGuards(JwtAuthGuard)
   async enableTotp(@Request() req, @Body() body: { token: string }) {
-    return this.authService.enableTotp(req.user.sub, body.token);
+    const userId = req.user.userId || req.user.sub;
+    return this.authService.enableTotp(userId, body.token);
   }
   
   @Post('totp/disable')
   @UseGuards(JwtAuthGuard)
   async disableTotp(@Request() req) {
-    return this.authService.disableTotp(req.user.sub);
+    const userId = req.user.userId || req.user.sub;
+    return this.authService.disableTotp(userId);
   }
 
   // --- Password Reset Endpoints ---

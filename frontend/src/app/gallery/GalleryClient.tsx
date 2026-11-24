@@ -119,7 +119,7 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
           style={{ backgroundImage: `url('/uploads/website-banner.webp')` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#211813]/85 via-[#211813]/55 to-[#211813]/90 pointer-events-none" />
-        <div className="relative z-10 max-w-4xl mx-auto">
+        <div className="relative z-10 max-w-5xl mx-auto">
           <div className="inline-flex items-center space-x-3 px-4 py-1.5 rounded-full bg-[#211813] border border-[#C49A45]/40 mb-6 shadow-xl">
             <SparkleGlint color="#D6B15D" size={12}>
               <span className="text-[#D6B15D]">✧</span>
@@ -132,9 +132,15 @@ export default function GalleryClient({ mediaMap = {} }: { mediaMap?: Record<str
             </SparkleGlint>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-serif font-light text-[#FFF8EC] tracking-tight leading-none mb-6">
-            <TextReveal text="Haute" /> <span className="font-editorial gold-gradient">Jewellery</span> <TextReveal text="Portfolio" />
-          </h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-light text-white tracking-tight leading-[1.18] sm:leading-[1.15] mb-6 text-balance"
+            style={{ color: '#FFFFFF' }}
+          >
+            Haute Jewellery <span className="text-[#C58B20]" style={{ color: '#C58B20' }}>Portfolio</span>
+          </motion.h1>
 
           <p className="text-xs sm:text-sm text-[#E5D9C8] tracking-widest max-w-2xl mx-auto leading-relaxed uppercase font-normal mb-6 tabular-nums lining-nums">
             Explore our comprehensive archive of handcrafted gold, pure 925 silver, and royal bridal trousseau masterpieces.

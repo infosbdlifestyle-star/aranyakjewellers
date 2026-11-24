@@ -81,9 +81,9 @@ export default function CollectionsPage() {
                   
                   {/* Image/Visual Area with Magnetic Tilt & Specular Lighting */}
                   <div className="w-full md:w-1/2 relative">
-                    <Reveal y={40} duration={0.9}>
-                      <MagneticCard tiltIntensity={6} className="rounded-2xl">
-                        <div className="relative aspect-[4/5] bg-[#211813] flex items-center justify-center overflow-hidden group border border-[#DED2C1] hover:border-[#D6B15D]/80 transition-all duration-700 shadow-xl rounded-2xl">
+                    <Reveal y={40} duration={0.9} width="100%" className="w-full">
+                      <MagneticCard tiltIntensity={6} className="rounded-2xl w-full">
+                        <div className="relative aspect-[4/5] w-full bg-[#211813] flex items-center justify-center overflow-hidden group border border-[#DED2C1] hover:border-[#D6B15D]/80 transition-all duration-700 shadow-xl rounded-2xl">
                           <Image 
                             src={imageSrc} 
                             alt={`${cat.name} Luxury Collection - Aranyak Jewellers`} 

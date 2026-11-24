@@ -2,15 +2,22 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 const WhatsAppButton = () => {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
+    if (pathname?.startsWith('/admin')) return;
     const timer = setTimeout(() => setIsVisible(true), 1500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [pathname]);
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   const phoneNumber = '919436501506';
   const message = encodeURIComponent('Hello Aranyak Jewellers! I would like to inquire about your collections.');

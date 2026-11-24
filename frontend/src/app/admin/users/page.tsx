@@ -21,9 +21,10 @@ export default function AdminUsersPage() {
   const fetchUsers = async () => {
     try {
       const data = await api.getUsers(token!);
-      setUsers(data);
+      setUsers(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error('Failed to load users');
+      setUsers([]);
     } finally {
       setLoading(false);
     }

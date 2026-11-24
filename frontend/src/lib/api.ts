@@ -248,7 +248,7 @@ class ApiClient {
   async getMyOrders(token: string) { return this.get('/orders/my', token, []); }
 
   // Users
-  async getUsers(token: string) { return this.get('/users', []); }
+  async getUsers(token: string) { return this.get('/users', token, []); }
   async createUser(token: string, data: any) { return this.post('/users', token, data); }
   async updateUser(token: string, id: string, data: any) { return this.put(`/users/${id}`, token, data); }
   async deleteUser(token: string, id: string) { return this.del(`/users/${id}`, token); }

@@ -13,18 +13,18 @@ interface RevealProps {
   className?: string;
 }
 
-export const Reveal = ({ children, width = "fit-content", delay = 0, duration = 0.5, y = 20, x = 0, className = "" }: RevealProps) => {
+export const Reveal = ({ children, width = "100%", delay = 0, duration = 0.5, y = 20, x = 0, className = "" }: RevealProps) => {
   return (
     <div className={className} style={{ position: "relative", width, height: width === "100%" ? "100%" : undefined }}>
       <motion.div
         variants={{
-          hidden: { opacity: 0, y, x, visibility: "hidden" as any },
-          visible: { opacity: 1, y: 0, x: 0, visibility: "visible" as any },
+          hidden: { opacity: 0, y, x },
+          visible: { opacity: 1, y: 0, x: 0 },
         }}
         initial="hidden"
         whileInView="visible"
         transition={{ duration, delay, ease: "easeOut" }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, margin: "0px", amount: 0.05 }}
         style={{ pointerEvents: "auto", width: width === "100%" ? "100%" : undefined, height: width === "100%" ? "100%" : undefined }}
       >
         {children}

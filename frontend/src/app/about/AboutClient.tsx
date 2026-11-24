@@ -186,16 +186,16 @@ export default function AboutClient({ settings = {}, mediaMap = {} }: AboutClien
       <ExpandingDivider color="#C49A45" maxWidth="75%" />
 
       {/* 3. Artisan Craftsmanship Section */}
-      <section className="py-24 bg-[#FAF7F0] relative overflow-hidden">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#966719] mb-3 block">
-              The Living Tradition
-            </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-light text-[#211813]">
-              Centuries-Old <span className="font-editorial gold-gradient text-[#8A5A12]">Bengali Karigari</span>
-            </h2>
-            <p className="text-[#40352F] mt-4 text-sm font-normal leading-relaxed">
+      <section className="py-20 sm:py-24 md:py-28 bg-[#FAF7F0] relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 md:mb-16">
+            {/* Small Upper Label */}
+            <p className="text-[11px] sm:text-xs font-semibold tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#966719] mb-3 sm:mb-4 select-none font-sans">
+              THE LIVING TRADITION
+            </p>
+
+            {/* Description Text */}
+            <p className="text-[#4A3B32] text-sm sm:text-base font-normal leading-[1.75] sm:leading-[1.8] tracking-[0.01em] max-w-xl sm:max-w-2xl mx-auto font-sans text-pretty">
               From the intricate swirls of Filigree (Tarakasi) to the regal sculptures of Nakshi work, our master jewelers breathe timeless elegance into pure 22 Karat gold.
             </p>
           </div>
